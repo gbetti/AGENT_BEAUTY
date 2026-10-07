@@ -1,6 +1,6 @@
 {
-  "created_at": "2026-10-07T15:42:58.799014+00:00",
-  "window_start": "2026-09-30T15:42:58.799014+00:00",
+  "created_at": "2026-10-07T15:50:01.534638+00:00",
+  "window_start": "2026-09-30T15:50:01.534638+00:00",
   "query": "(beauty OR skincare) (trend OR glow OR hydration OR longevity) when:7d",
   "product": "CC Gel – Crème Soin Teinté Eclat Parfait",
   "claim": "Un incarnato luminoso, dalla coprenza naturale.",
@@ -301,12 +301,6 @@
       "published_at": "2026-10-04T09:17:23+00:00"
     },
     {
-      "title": "Gli oggetti più sporchi delle camere d'hotel, il dottor Fadenti: \"Copriletti e cuscini ornamentali\" - Fanpage",
-      "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxQWVBBbWRkem5oV19uR3p1NlBuVndUREJ0ZVJ2MzZucWRNOHBicnJhMW1aUkwtYnNpR3Z2ZGJKX3gwWFdZU05JTGJHWHFFTmphTFNtOE9FNG8xZ2hDZTZkZ3ZSWmgzZU5GTnU4elA1eUZJU2huR1Z2V0RjbUhOWUpEOExmX0lpV1NJaXZkSVRzc0E4OWVnUEFWZzJyNFhRMGtPSVRQNExDTXhCUV9CYXN5SU5CbHc1S29pRDl1cVo2Zk1fVUM2Zk1lYzdxSDNYckxWaVd6T1I4dDdXdw?oc=5",
-      "publisher": "Fanpage",
-      "published_at": "2026-10-04T05:00:08+00:00"
-    },
-    {
       "title": "I jeans bootcut sono tornati e il modello Levi's interpreta il trend dell'autunno - ELLE",
       "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPRUh0MG5COWhUQ1pQdmhHTFEyLVVLc1ViV1ZYVmdKa1loVGU4b1hYVzVoczV5QzNldXVGOGpic1F3djdaUFQybkhseHhmaEJyd1V1bEd3ZXVWb1ZZekdhend0TVRwcGoweGdLcnFzUlZvQU00V2FsTUNBbVFEMWh6V1RUcw?oc=5",
       "publisher": "ELLE",
@@ -383,6 +377,12 @@
       "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPNWkxRld6X0dlN3FhSm9OZG9WbmptZWoxZVYxbzh6c2pOeGM2d3VGT2ZRX2RjT1hNX1BSSThvOURITTJrbU56U2haaWl6OEk1VzV2SUM1dGpoRno4NERZMlhwY3FJcDRhX3l4NXdFS2RaX0lsREhJallGVTA4RmlkaGZMWlRRVnZyMm9CeEx3VVNmQQ?oc=5",
       "publisher": "Mediaset Infinity",
       "published_at": "2026-10-01T23:15:11+00:00"
+    },
+    {
+      "title": "La couture aliena di Rick Owens alla Paris fashion week - Milano Finanza",
+      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxONTlBQUp2VHJzQ1prNFRoQ2o3bXlLdko5MDIxZFAzQWgtY0dSaVBHU0pPTUtWQkczVmRVQldEUW0zS0tRNHhqSXRKMU9rcUw4UUNleFhTRWRnQmdpcjB2czItQV9uR2x4MEtnNWFVd2dNNlJRR1JjLTdUUEtDSFo5V09uYWpXNFB3WUxVN1dHdko1clNCX0YycmtfUDU2VHNtM0VqY3ZSWXdJWE12QTFiYw?oc=5",
+      "publisher": "Milano Finanza",
+      "published_at": "2026-10-01T17:46:00+00:00"
     },
     {
       "title": "Lo storicismo del denim riletto da Acne studios - Milano Finanza",

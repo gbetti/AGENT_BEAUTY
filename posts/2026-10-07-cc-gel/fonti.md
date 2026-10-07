@@ -1,10 +1,9 @@
 # Fonti del post CC Gel
 
-Ricerca online effettuata il 7 ottobre 2026. Finestra: ultimi sette giorni.
+Prova live: 07/10/2026 17:50 (Europe/Rome).
+Finestra: 30/09/2026 17:50 – 07/10/2026 17:50.
 
-Fonte di ricerca: Google News RSS. Sono stati letti titoli, date e nomi delle testate, non il testo integrale degli articoli. Nessuna misurazione della viralità social.
-
-Il tema glow è stato selezionato contando i titoli contenenti le parole chiave del tema (anche make-up). Questo costituisce un segnale editoriale, non la dimostrazione di una tendenza virale.
+Il programma ha consultato Google News RSS: titoli, date e testate. Non ha letto il testo integrale degli articoli né misurato viralità Instagram/TikTok. Ha selezionato il tema glow contando i titoli che corrispondono alle sue parole chiave, incluse quelle make-up.
 
 ## Notizie abbinate al tema
 
@@ -15,5 +14,6 @@ Il tema glow è stato selezionato contando i titoli contenenti le parole chiave 
 - [Tendenze make-up che tornano in voga ad autunno - Webboh](https://news.google.com/rss/articles/CBMia0FVX3lxTE9zR2dOXzZ5bm5NancxZ1BEODAtWTBxbjBrbC04cTRMM1kzMW5oQlQ4WHhpUGFjSHFPQzd5UE5fVUVjNFBObXhiaHZVbjJEaDdjRUhNLUl6SGJReGMzaVp4MnlFQmVyWDhZX1hR?oc=5) — Webboh, 2026-10-01
 - [Come truccare occhi e bocca con la pelle matura, la make-up artist: "No ombretti glitter e rossetti matte" - Fanpage](https://news.google.com/rss/articles/CBMi4AFBVV95cUxQTy03ZVNndF9GbGRlZVdKWnJUYUJmbU1tb0VNNWh0Tkl3MXJqalkya3ZFOFAzc0ZhNkg4UnJaS2VGU0lwT25kZ1l3NEFPQUpHUmh0LTBNS3ZwS25xWWhMTjFLR3JEczRPeDdnX0Vqeld5X3pHMUZ3REo3MVJ0Q1lrenJHd3F6RW5vR0ZyVU9WVGRwdlNmRlh5cVVGREwyNmFpd2lxTHYtS3RlbUUwTHBPeE1yd3h3N3FnMTk5QTVOTTNfQVp6TkpnYlFGUlc2b21Qam9BSk01aC1zak41aGRrTg?oc=5) — Fanpage, 2026-10-01
 
-Il file research.json contiene tutte le 65 notizie restituite e le date precise.
-Il claim proviene dalla descrizione del prodotto fornita dall’utente e conservata nel database. La ricerca non verifica i benefici del prodotto.
+Tutte le 65 fonti sono disponibili in research.json.
+Il claim deriva dalla scheda prodotto fornita dall’utente e conservata nel database, non dalle notizie.
+Foto originale prodotto: non disponibile come file. La grafica esportata è tipografica.
