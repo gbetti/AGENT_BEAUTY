@@ -1,0 +1,443 @@
+{
+  "created_at": "2026-10-07T15:42:58.799014+00:00",
+  "window_start": "2026-09-30T15:42:58.799014+00:00",
+  "query": "(beauty OR skincare) (trend OR glow OR hydration OR longevity) when:7d",
+  "product": "CC Gel – Crème Soin Teinté Eclat Parfait",
+  "claim": "Un incarnato luminoso, dalla coprenza naturale.",
+  "theme": "glow",
+  "theme_news_counts": {
+    "glow": 6,
+    "renew": 0
+  },
+  "matched_news": [
+    {
+      "title": "Per un effetto glow incredibile, prova questo siero ai peptidi rosa e PDRN: oggi al -40% per la Festa delle Offerte Prime 2026 - alfemminile",
+      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQa3NJWGdZMnYxOENDc1BhRUtLYWZvdU5PcXZwcTNUc1d0RHFjRDB5Y2NwUXc2ekNMMGhwQkZ5SWFpb05NaUlnZkt1VVZlMUx5em1EUDVVaFBtYm96ZFl1dFc5bU1kT0RmMmpVQzdQcUVtMk1CR2pZc2czeHVNYVhUal9oMDJiamFJTlFva004bldkY0FmUWthQWxJamE5ZjR1SUUzRWhHLWdNcHpVbFVYcFZmNXhZd3JoTlJTMk1R?oc=5",
+      "publisher": "alfemminile",
+      "published_at": "2026-10-06T12:36:38+00:00"
+    },
+    {
+      "title": "Da Penelope a Circe: il beauty ispirato alla mitologia tra make-up e identità - Fashion Times",
+      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPRFh2N3hsRmgtWVQtUGtMMzJlbTdzRENPTFROYVdZVWl5cEJqOExjVDQwSExrczFkenRmd2VheWdCcmNUMGtfUWdJYXE4aWptMGxxTms2ZThjYlFqTmZnQXZwMS1KZi0yMUVKQml1Mll4X2JXaWw0ckhuaWJHMW1oak9nWDA5SG84SEJlY2hFZW5DcHo0SW9qdmQ4UmNKUQ?oc=5",
+      "publisher": "Fashion Times",
+      "published_at": "2026-10-06T09:46:43+00:00"
+    },
+    {
+      "title": "Charlotte Tilbury Natale 2026: cofanetti regalo e novità make-up - Mai Senza Trucco",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1CZUZLNTZCMklDay1hVC1hRUd5YmNaanc2d3YxbWhjMlNmbFVSNlR3YU1VSVNleTU5Y3JsX2J3UnE4VXlJbjNjbGVhSlJObXpZMFZRT3Z4M1NSWWZZaFVGZjBla2lOejBYM3BFWWoxWUhraTEz?oc=5",
+      "publisher": "Mai Senza Trucco",
+      "published_at": "2026-10-06T05:33:26+00:00"
+    },
+    {
+      "title": "Guida ai migliori calendari dell’Avvento beauty e makeup 2026 - Carol Pomme",
+      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1TV3AxQTVBVm9QaVZLc1hLZU11d0gxalkydXA3YVJDMzZobW9ySmVDbFQ0SjNBMG1xXzdueWJ4SERJckVUYjVQY0Q1S0tzS25SMDR6cHE0UXBCTndhcGNHR2MzSQ?oc=5",
+      "publisher": "Carol Pomme",
+      "published_at": "2026-10-01T07:00:00+00:00"
+    },
+    {
+      "title": "Tendenze make-up che tornano in voga ad autunno - Webboh",
+      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9zR2dOXzZ5bm5NancxZ1BEODAtWTBxbjBrbC04cTRMM1kzMW5oQlQ4WHhpUGFjSHFPQzd5UE5fVUVjNFBObXhiaHZVbjJEaDdjRUhNLUl6SGJReGMzaVp4MnlFQmVyWDhZX1hR?oc=5",
+      "publisher": "Webboh",
+      "published_at": "2026-10-01T05:20:00+00:00"
+    },
+    {
+      "title": "Come truccare occhi e bocca con la pelle matura, la make-up artist: \"No ombretti glitter e rossetti matte\" - Fanpage",
+      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQTy03ZVNndF9GbGRlZVdKWnJUYUJmbU1tb0VNNWh0Tkl3MXJqalkya3ZFOFAzc0ZhNkg4UnJaS2VGU0lwT25kZ1l3NEFPQUpHUmh0LTBNS3ZwS25xWWhMTjFLR3JEczRPeDdnX0Vqeld5X3pHMUZ3REo3MVJ0Q1lrenJHd3F6RW5vR0ZyVU9WVGRwdlNmRlh5cVVGREwyNmFpd2lxTHYtS3RlbUUwTHBPeE1yd3h3N3FnMTk5QTVOTTNfQVp6TkpnYlFGUlc2b21Qam9BSk01aC1zak41aGRrTg?oc=5",
+      "publisher": "Fanpage",
+      "published_at": "2026-10-01T05:00:53+00:00"
+    }
+  ],
+  "news": [
+    {
+      "title": "La cipria è tornata (e TikTok ne è ossessionato): dalle passerelle delle Fashion Week al “filtro senza filtro”, perché è di nuovo il prodotto beauty del momento - Il Fatto Quotidiano",
+      "url": "https://news.google.com/rss/articles/CBMisAJBVV95cUxOalVWRUpQc05WSm10eTN4NkpIcm44d0JoVHRvckpNWFFORVo4c1FBd183eVhjbzEzSURTMW1rYzdKQmFtX1VDTE1hX0RqZ2N0a1pfZHNjdm9fbWFPenhpT0RIUkE4dm1EZ0QtVVVMRFh3MmlyZmRTSW1kMGc1eWJuZkhUblM3QTEwM1pLQjRFa3FWMF9MVS11dk00QVFOcUJIbTVFaTIxekxOeGlsWTJYQ3RRVDdRSUJrSjVFNXk2eFk5Ym5ZaktUaUZLVXc5ZnMwZEtSbmM4NEZLUXU4c01JcmQ0a0ZsOHF1WFRDalpIOFZ1XzltOG5RajdDUVZEZUpPVG9oOUlwaWxOVmVnRGJBS3J0QzFTV3ZreHdTcmtxMGFJT0ZIVmg3YVBmNTRVTEdB?oc=5",
+      "publisher": "Il Fatto Quotidiano",
+      "published_at": "2026-10-07T15:30:39+00:00"
+    },
+    {
+      "title": "Zendaya alla Paris Fashion Week: riutilizza la giacca da sposa e anticipa il trend beauty - Rumors.it",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOTUNjSzVPY0c0Q2phRExCVHMtOU5WVlFHWFVvT1hrTWc0TXRJZ3BndEl0cUpfU0tQWWxBeWJ5anF1ZUhwWDZ0NWRNcHlaWnN2Q1JzbFRNSzhqQUxmZ2ZwcVdBWE93a0Q3V2hzdEdhR0ozbTFxRmhIWVRTT0NZRnNvazRSdVVCa2FocWdKLWpuQV8zaUNwb25GbFV2VDNpNVhKSllYZ0tvZmFrZ3hENk9TeWlXdjBRTUpKZ1E?oc=5",
+      "publisher": "Rumors.it",
+      "published_at": "2026-10-07T13:30:16+00:00"
+    },
+    {
+      "title": "La K-beauty conquista anche Roma: rituali coreani, formazione e skincare dal vivo con il debutto di NOW nella Capitale - https://www.lacapitalenews.it/",
+      "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPeURWVXV0bnFkWUJ0ZlRqc21EeEFpaDREcm5zM0NCeTloU2VITF9adDZvYjU2VXNhTzZCYnlNMjUtWTVYeGVhb0tBU3NuMTVRWXF0UG9sVjdTb21sSDdCRk91Wlcyd1ZEUU0tdWNvOG9EU25ERE5tYURxRlVWUTlza0lHbEx5Uzg5bGUyTi1YN0ItZUpUSndF?oc=5",
+      "publisher": "https://www.lacapitalenews.it/",
+      "published_at": "2026-10-07T13:24:03+00:00"
+    },
+    {
+      "title": "\"Partenope under the sea\", una notte di musica, mito e solidarietà - Flash Style Magazine Vip",
+      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOWHlma2xBNEZLbzg3TXZDWHVCRWRzeTdQaDNuem03RHBuQ2YyTC1EWW55YzYzSG9HMTlzVUpSRDYydUs1VHphYTlJZjd3Z2NSWVlNNEM1YTlBUUYzYlNNTm9JQTlBclU2aWNhU1lzVVlYUTFHQ3V2WHdjNThINnJORXBSNFF4SHhrdEtFOVA3ZnJLaXI3WW5wZmtWRy02bEVpTW9FRUxCTnI?oc=5",
+      "publisher": "Flash Style Magazine Vip",
+      "published_at": "2026-10-07T12:10:56+00:00"
+    },
+    {
+      "title": "In Umbria c’è un hotel dove regna il silenzio, senza tv né WiFi: oggi il vero lusso è l'essenziale - Fanpage",
+      "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNQUNxaEZUS2FVYTdMWnNHRHN2YnROX1BTMDVjV0VPT0NHeEZQT0JlaGtxajZMMGJpdDZWN3AxYk94cmU1UDd4UFNpRlQwOGxqbkRHVUIwX1B6THYyVlVMMl91cFVVeExKcVlwOG5ySmotaXNrNXF6UzhJT3R4MklhcU84V0xGSVNITk5EYWhyWnNjT0I3ckczYWFsQmVjM3ZwYVFfZWd2V0tFZ2Q0ZlJUck9QTUhHeXM2SGczY2RlQ1ROa2xhWnUxY2ZWZmZ3eU9LRHpYNVR3?oc=5",
+      "publisher": "Fanpage",
+      "published_at": "2026-10-07T11:50:21+00:00"
+    },
+    {
+      "title": "Micoterapia e funghi funzionali: il trend tra scienza e benessere - nss g-club",
+      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPcEFpVUFRWXl6YVJnOXE3eTlyd2RldkxzVFBIMmpQUkpqSkpfdmtOTWJKRGJ6RzFnb3VXMHlmWmNIOEdpRUwtd3NDc3E4LWFtN1BxSEZ5LUFLZDhOWnlwNVd5X2hOM3lxSGR4OFJLeUJQV19LbHFIcllQX09YN3EzQjZRTF9nYjZGbk5XT0xZRk5XS0lmdTJUTTlmWHRrMFU?oc=5",
+      "publisher": "nss g-club",
+      "published_at": "2026-10-07T11:15:00+00:00"
+    },
+    {
+      "title": "Il nuovo colore di capelli di Billie Eilish è una nuance di castano speziato perfetto per l'autunno - Cosmopolitan",
+      "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQdG16eFVfUmhkS2M5Mmk3RVlXYUZWVGZxTlh4SGlxb19NNnJwSmNLR2VEaHNvczl2bTlvblMzUEdtc0s0dHRXcm1ySGJVZGZMOWNYYmtIVWFDdjh2S0xHRzZISjluNmEzVkNvWC1oRTUwZWc1Yk1ocUF1LXlDSWVYOVlZSDIxUHoySnZCaDYyTGJkR0pnQWdr?oc=5",
+      "publisher": "Cosmopolitan",
+      "published_at": "2026-10-07T10:37:59+00:00"
+    },
+    {
+      "title": "I preparativi di Aurora Ramazzotti per Ballando con le Stelle: le prove in micro shorts e stivali - Fanpage",
+      "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNYXlOTnE5Y2NveVFEbGJ5eFVOZ0g2b0x1VHk1Y2xhaER1MVdyVU0wOURSWUNVdjNUcXBRVTZsaVZtc053YVNUNHVleEVCU0JjYll6bVo0eHdseVdUdDBpTThwYnJ5UDViWVFxelNLRVRUNW1rQ1RPUnJuY002MFZ0ZWI2VkNOelNYYmV0RFpBckV6VTdKRnA3U1lUakNhN1pDaUJkdE9nNTY0VWtNR29kZUhJUTMyUjF4ZURaNk9lcEQwVG9JaUxTR0RBTURxNXExOHliNWdB?oc=5",
+      "publisher": "Fanpage",
+      "published_at": "2026-10-07T10:26:02+00:00"
+    },
+    {
+      "title": "La skincare coreana di lusso sbarca nella Capitale · ilreggino.it - Il Reggino",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOMmpEd3RLUElXLWFwemxfVUxSaEhOZkFFWlg4Zm5BazJtSkhaS08wNWlIc1ZxZUpJUVAzSktrX2Y4NTNGQTkzS0ZoOU9XeWs5OHkwM09ITHZOUTRodTVjWDU2b1lfSWtLVzZzdWNySy11Mlg0WlFudmZHcUhzUnV2SmFoNExUdThBWjMtSE1SUkZBZ9IBlwFBVV95cUxOUkRueEt0Zzc1cTdGYjlLQmo4ZHdKQUl1b3NlTEN1ckhvcjdFMHFDSEd2eU1GdElfeGRPb01vblotSDNZYzZaRmVmZ0ZmSHhHUWpHQktIa0xEZm5NVlMzNlZzajBBWGNJV0dsTHNGQXhSUWRVT3pkRDVrSWQyOXNQbllrTU1zb2FuZ3lEOGczanhGbG5keWtr?oc=5",
+      "publisher": "Il Reggino",
+      "published_at": "2026-10-07T10:17:33+00:00"
+    },
+    {
+      "title": "Addio imperfezioni con il peeling medicube ora a metà a prezzo su Amazon - alfemminile",
+      "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNTkNnQ1VzdnpjQ2JkbzVMQzVkLUxpUV9BMDF2Q3dGaEZ2LXgzeFFmZUhRamlqQXJ3LU1GcVpvZ1hmbld2RnlLV2RSWlMxUVVGeHc2XzhmOGd0eHBJLWc4SDJLMFVFMVBzcmp0YjFPVXhPaTdMdG9fTC1YNEhnaE9lUHR0Yl9PT2FzMmR1NlRySmc?oc=5",
+      "publisher": "alfemminile",
+      "published_at": "2026-10-07T08:05:00+00:00"
+    },
+    {
+      "title": "Il trench questo Autunno 2026 è cropped (e chic) e questi sono 10 modelli da comprare ora - ELLE",
+      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQV2g5MzZMa2JPNnd1b0dYZkFBWktMUnhVTEljOWNGYkVzSXlxMmxvSzBjalIwMU1DRjl1NEloUFlMSFA3bVlQTVE4azc0aUl6b0ppWHRvOTVDdDRJVWx0R09OVzdReTVpS1RoNVpEc01KOFp5c0JCV1VyVVRVYWttZXF4Ynk5NXktczhIY0ZNUUg1b1dhaWVEVWFuNA?oc=5",
+      "publisher": "ELLE",
+      "published_at": "2026-10-07T07:10:29+00:00"
+    },
+    {
+      "title": "Rachel Ojuromi corona il sogno impossibile: dai video nel villaggio in Nigeria alla passerella di Chanel - Fanpage",
+      "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxOS0lGVE1EQnNUZHFpZGowR3NpMkNNaEw1TVNnc2FnWVUtUi1heWFQZHZXRkR3T0llY1hFUmJSRE90RkViMkU0MmpST1FIQURLSDBhLVd2OFdvSjNrRTYzSmNQbWQxdXh3YXU1TjJLVUFHenNDRnRvaXFPWXBGZkdLbkFwdUxpQ0t1TWJpaUZFVFMyMVFnVU8zYm1tUVlDRTVMbVJqSmVFdUhqZFNvcU1XRW1CVUtqWDhMSDM2MVhvQlVicFYyUC05MU5DYTZVUENZMVJNNVlRNm4yenZnbmlF?oc=5",
+      "publisher": "Fanpage",
+      "published_at": "2026-10-07T06:11:25+00:00"
+    },
+    {
+      "title": "Profumi gourmand o puliti? Il grande trend che divide il web - Grazia",
+      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNQTQycEdOeVRNdVRFbHZSVk5pcjQ5d05nMjVqQzlYWDZTeHBRalg1OWFydEVMeUtTSHc0MFRSbmRnYXQ4RUFqOUdoUFJNeVE1ZFVadzZqOWZOVTRYaVh4YWdmZ3g4YktzM0hxSHZwem5WcWxTemQtVEV5NFpPUzlMdFpBMFB4cFF1R2ZKS1Zsd0RqbXBXaDhSaW56bXQ2Ym1OQUpudG10cUlTOTBTZTluMg?oc=5",
+      "publisher": "Grazia",
+      "published_at": "2026-10-07T06:00:00+00:00"
+    },
+    {
+      "title": "Clio Zammatteo: \"I colleghi si chiedevano perché avessi successo e loro no, mi auguravano che andasse male\" - Fanpage",
+      "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxOeng1TXpSbmY0ZDByUm9SaWZHUThtOEpIWTViQUZ0UnlzNXJjZ0k5Q3NDZkh5LVZqcWhhUkI5cVJ3UnY4UEh2V3VIRHlfLTdtMHAtWHBjMVZ4cFVoRTZHNEJXOTAxejdGQWhXX2lodGVjS0hoSmh3MUhBakFwZDZIdzBKYVFXLTlkazlCaHRUa3hhbmJLaHJMaWt2OHptbWU0Z043eXhHcVMwY09wYlcxVzV5YlNMZndLNGFMQ3VIWFBoUGp1Rmk0ZHQ3ZEdySVB1akQxUkVONnlWMi00VUV3?oc=5",
+      "publisher": "Fanpage",
+      "published_at": "2026-10-07T05:00:12+00:00"
+    },
+    {
+      "title": "Il treno per ammirare il foliage che attraversa l'Appennino: quando parte e quanto costa il viaggio tra Abruzzo e Molise - Fanpage",
+      "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOMEo2ZFF4Q21jdzNUQmRfb0RvWnpTUTZySTEyelBvdXpCQW1vSTloTTFLaGgxY1J6aUFvVHhOb2RCMnJXaW52ZXJ3eFVjcXpNbXNsb0lBMzhMNHM4YTNFaFNuMkowQ3VJY3Vmc3FLTUFkeGw3QzMtQWRyNENKYWRGQVY1Uk9OdS0xczUyZXNONUh2eHJ6WnM2UmR4UEdnMVVlMFNBdzFvd0dESWdlLWJ3OGtGWlRZRGhCSDBhek10bEFKQ3RXdXByLVY0cXV0bUNUbi16cE1DblZ1WHgtdmxEQmlaa1piZw?oc=5",
+      "publisher": "Fanpage",
+      "published_at": "2026-10-06T15:54:54+00:00"
+    },
+    {
+      "title": "Tutte pazze per il no blush, il trucco dell’autunno 2026 che cancella il rosa dalle guance - 361 Magazine",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOSlEwZE1kQ0RzVnJwYjkyVWZKWHhmREk5RFg2aGlkV1d5LUFlNkdjVWRQeDczMHYzbWdKTWpiS1dySC1jRTBienQ1QzVJVFZKY1lVamIwYllySmlldWhjdVl1QkNiaFBlek1aVkJFLW1rVUhGakRDVHpNWXk2OHV2VGNWaHowV05sV0hZclVmeWViUWpDMlVqU1Y3cFVsNWtFUnIybkFraWRhN0xHTXRyRElNRQ?oc=5",
+      "publisher": "361 Magazine",
+      "published_at": "2026-10-06T15:20:50+00:00"
+    },
+    {
+      "title": "Con Beauty Guides, l'AI di Pinterest traduce i Pin in piani d'azione per la bellezza - Blasting News",
+      "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPTXp3MlBIQjRHa1I4LUlET05hNEtPWXQ1ZVpGRVJ6M3RaN2JZN0VXRlN3VnRsenlnR3Jpdjd0Q0YxclZWS3hIS3VEV1pnZVpxbk9jd3paUWZTNWxLOFFvc0JXTmwtNWdpMkxJR0xzOE5hU09lNFUtZWZLSXNsRjNHQVRlbE5hX1Y4RGF2RDBZaGNrblBId1hCUm1RWUpWd0doWGltWWdFUVprb2RHOGhXeFlGbFVvaXpzV0gtcGRXOElMTUlZeVpIUzJ3R0ticnBucmFyejRUOXhRRHc?oc=5",
+      "publisher": "Blasting News",
+      "published_at": "2026-10-06T14:21:13+00:00"
+    },
+    {
+      "title": "La prima casa di Jackson Pollock a New York è in vendita: costa quasi 2 milioni di euro - Fanpage",
+      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPVG1BdnF5SWJJdk1HenRGZExlNTdJbUN4SEsyS21PbVlPWmo2ZkZwaGNpYThrMURyZWtTYUpkSENiaHpUSW1TYzB4TW5adWRYODZ6YWw5N2dvTWRNNE5CblBESlhMRnVRbHJXZURBTFB4LW9mTXBNYm1qcEMxQWhDYmJVamdTd3FqMGNLV3BHUHItcHpWWlk1YVJma19ELTZ4RUpJNUxpSTN2UnZSVDVyd3FUQjlMdnRPMG5mdXhkV05oTW0tdVFRaw?oc=5",
+      "publisher": "Fanpage",
+      "published_at": "2026-10-06T13:51:58+00:00"
+    },
+    {
+      "title": "Per un effetto glow incredibile, prova questo siero ai peptidi rosa e PDRN: oggi al -40% per la Festa delle Offerte Prime 2026 - alfemminile",
+      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQa3NJWGdZMnYxOENDc1BhRUtLYWZvdU5PcXZwcTNUc1d0RHFjRDB5Y2NwUXc2ekNMMGhwQkZ5SWFpb05NaUlnZkt1VVZlMUx5em1EUDVVaFBtYm96ZFl1dFc5bU1kT0RmMmpVQzdQcUVtMk1CR2pZc2czeHVNYVhUal9oMDJiamFJTlFva004bldkY0FmUWthQWxJamE5ZjR1SUUzRWhHLWdNcHpVbFVYcFZmNXhZd3JoTlJTMk1R?oc=5",
+      "publisher": "alfemminile",
+      "published_at": "2026-10-06T12:36:38+00:00"
+    },
+    {
+      "title": "Milano Beauty Week, presenze in crescita del 31% ma pesano le code - assodigitale.",
+      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPTFJxWGpQTXZWWGl4WjVfVV8wLXoxRFpic1NLa0NSUWZVSE10bEEyaEZURDFrVTBya3dkMlRvSjdqbG1ZX0VjNW13b0w5SmNVYTFWemdEQXk4al9kVmE1d3BnUGFsNVJpekg5QlpMbFZBa0hSME55YkxjR0RWaUpseVNUcVBZMVdfdU96Z2NzWmoxUkk?oc=5",
+      "publisher": "assodigitale.",
+      "published_at": "2026-10-06T10:23:42+00:00"
+    },
+    {
+      "title": "Il soprannome di Kate Middleton, che chiama \"pelato\" William quando è arrabbiata con lui - Fanpage",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPN0R2OWpBNkZSTFY3NHdiQlFOYW94a2IzODlSeENnOFd2UXNnSEZ6ODBnNUF0aHRBMEpLR1VOZjNEbU0yczdsU3d1WVV0U2tZeGpDa3FXcjNoc3c5bktqU2FiTWpST0V4NWZLZko1RFJsQjA5Zm1ubkhMbjlXSTVzMndjNjhuLXhZNVpfLUtUemY2QnhoNzB6Tm1SNlpuUGIxYjllRy11QUtUTDFORnlNS1hvMlA5Si1YRnNtNVlnaDEweTI2Y1ZZ?oc=5",
+      "publisher": "Fanpage",
+      "published_at": "2026-10-06T09:52:47+00:00"
+    },
+    {
+      "title": "Da Penelope a Circe: il beauty ispirato alla mitologia tra make-up e identità - Fashion Times",
+      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPRFh2N3hsRmgtWVQtUGtMMzJlbTdzRENPTFROYVdZVWl5cEJqOExjVDQwSExrczFkenRmd2VheWdCcmNUMGtfUWdJYXE4aWptMGxxTms2ZThjYlFqTmZnQXZwMS1KZi0yMUVKQml1Mll4X2JXaWw0ckhuaWJHMW1oak9nWDA5SG84SEJlY2hFZW5DcHo0SW9qdmQ4UmNKUQ?oc=5",
+      "publisher": "Fashion Times",
+      "published_at": "2026-10-06T09:46:43+00:00"
+    },
+    {
+      "title": "Heidi Klum presenta la figlia Lou Samuel: a 16 anni debutta alla Paris Fashion Week - Fanpage",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOQWtCVnBnLWVva0N6RzJRZi1iQlN4VXZ3RklMbnpVdUNVeE1CdlFWRktWRXlHOFdVMHd5bm51LW9JYnF6M2pBUlpuS2tNdFRfejQwblVZYUdKeEhVWU8zR0lueDVfS3F2SGpwQWt3NE0tdkNGOEJxU05rekJZb3RCUkpVSEFqZjhveVVCSjA0cnRoZU5yU3MzRm9XQ2xvaDk0QWN0S1JxOGFTeVpfN2liRlo5ZlBjR1RGeUVrUmZlQ0tqWXc?oc=5",
+      "publisher": "Fanpage",
+      "published_at": "2026-10-06T08:59:34+00:00"
+    },
+    {
+      "title": "I viralissimi toner pad di Medicube sono in offerta su Amazon: oggi li trovi a metà prezzo - alfemminile",
+      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPU0dRWElzcmVZQV9ocVp6M1FiRm1XWmVKYmtqTGx3eTMwYzViWXFyc0NqWlVEVjd1b3VpeHJEVklSdUp3SHQwNXBseFprSWtmb0JQQVhHYzlfUVROWEQ0eGxVdzZ2SHNTOERhRHhQZHl1QzZfclpnZ3hqcWx2dElReHdLMEFyYUVpdC15RVBfSjUxWjk0d3J2U2p3YXVnQ01USnllSzBqZUc?oc=5",
+      "publisher": "alfemminile",
+      "published_at": "2026-10-06T08:42:00+00:00"
+    },
+    {
+      "title": "Charlotte Casiraghi e Alexandra di Hannover insieme a Parigi: le sorelle vestono coordinate alle sfilate - Fanpage",
+      "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxQakZxQmlFS05vaDZOYXVXRnRzbkpOeU5HdkFUMTZUaXVTMTNLS09LTjY3QUtVaHkwYXhfUUFTaW9sWDJzRnB2dTNGUlUzamk0R1dlNjVadzRmY2QwNGJPazZ6OG9iS2RCNDhjVmI2ZWdRX3I4akZsVFpsWG1GVW5WOHhDeFFaTjFJVGh3OUZIYVVJVDRpbVVsak1oN3VKaEJNZlZObmJKXzJ4bFJZTXpmRW1VaWNYaUZaYVp5MXpWQ3laXzcxYk5qUGxEZWcxenVBVWcxMmIzbVpMMTVHNm9j?oc=5",
+      "publisher": "Fanpage",
+      "published_at": "2026-10-06T07:53:56+00:00"
+    },
+    {
+      "title": "Pensavamo di aver chiuso con l’ombretto grigio, poi è arrivato il Mineral Wash Eyeshadow - Grazia",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxORXhlTGlRWHhYaVBvYTk4MzhXcmVHekw2Zm1CakJLUHhrYXM0WlhQbUVmLUFCTHVJVXV1NHp6Nk41aWJxR2lEYUNiLThJZmRYSWI0ZWotUEVVMGhaSUNVQXVqSzJ5eUdWU2ROcUE2RDhNb3ZxbjU4OXliNWFBZk1ZS2ViakhySEdUcGxVTEw1Q0VhM0N5TGt5RGVnRjNUb2pCLWtndjJ0RHhBSWpQVHJJNXVRaHZfVXVBNWdWNQ?oc=5",
+      "publisher": "Grazia",
+      "published_at": "2026-10-06T06:00:00+00:00"
+    },
+    {
+      "title": "La storia dello stick labbra, a metà tra rossetto e gloss, più amato di sempre - Harper's BAZAAR",
+      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOOWh3SmY4cFVDTkRpdlFQOTFNelc5UGVZVW1NX3JSU0QyWXgyenJUSGJDVHlvWDFiSFk2UjFkd2RDV090bWFoNnRyME81VTlHVHlHTWlzeTlPeEpWUGFadnFkNkx3SEktN3NZQ3ZodzB0d29YQ2VoZG1CbzhzS056Y2Q2TEowcjdramluTTd2R3k5eUd0cnY3dnBSdXdKQUxaVE5BM2YxbUpUVXc?oc=5",
+      "publisher": "Harper's BAZAAR",
+      "published_at": "2026-10-06T05:34:38+00:00"
+    },
+    {
+      "title": "Charlotte Tilbury Natale 2026: cofanetti regalo e novità make-up - Mai Senza Trucco",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1CZUZLNTZCMklDay1hVC1hRUd5YmNaanc2d3YxbWhjMlNmbFVSNlR3YU1VSVNleTU5Y3JsX2J3UnE4VXlJbjNjbGVhSlJObXpZMFZRT3Z4M1NSWWZZaFVGZjBla2lOejBYM3BFWWoxWUhraTEz?oc=5",
+      "publisher": "Mai Senza Trucco",
+      "published_at": "2026-10-06T05:33:26+00:00"
+    },
+    {
+      "title": "Mary Kay presenta K-Beauty Texture Edit | Associated Press | syndication news - Enidnews.com",
+      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNVjZ5SGx1cl8xNy12eS1OeGVycUZSZy1mYWFWTDJHLWp0eUc1QUlCdTBDUkhJN2ZYME56Y1p5UzVnRzZYZ0JxdmwzNFRJeDdkbHVUdTNvZk5IR2dvSnBQTlZIeURna1hqNlVZaTJuZzJqSHNvaGhmdzRsYzZVZTRNLWFDTUJOdHR3SF9WVTBVWW1YY0pPUldJdEtfUC1BVGtZWHh4eE1ieVhocF9SczlQb19aWTlxYXdTczZ2ZHRR?oc=5",
+      "publisher": "Enidnews.com",
+      "published_at": "2026-10-05T22:20:07+00:00"
+    },
+    {
+      "title": "Mary Kay presenta K-Beauty Texture Edit - The Joplin Globe",
+      "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPVDZqMGJpUmc3QzlvdVFCRElwME4tS0dnYU9oQjQ4WDlScUJqajgyMHBIblQ4MjR6aWd0YmxUcmFhc3k0RXRRdjZOdzkyNlBuNGFJTEJhWklrZUt6RTJUd0ZIRS1lR05jV0d4Q3JaU19mWmM1bURsUHpWanFyUk40VUJhYWwzU3l1S1Z0MjVsMzFNVkYxcVhyWVNjTm1rNVFJR2o4VjZvYnFKSGJ0SWU1c1BvUk5tZmZ1Ym9ta1lUbzNWRjNYNU1TR2ZoTmJNN1VlTWwzMWdkakVmdw?oc=5",
+      "publisher": "The Joplin Globe",
+      "published_at": "2026-10-05T22:20:07+00:00"
+    },
+    {
+      "title": "Mary Kay presenta K-Beauty Texture Edit - Business Wire",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFA3UndfVlViaWhad0xiNm9LdXpYWEQzVTZ4cmp4Wm5ZU3ZXOHpSWHIzc01HRWZqcndWcElvQ1I0THpKeVRsRHMtaDdJMHpUZDU2aXlPSWVES2pDMEtVT0h2bld6djV6WVU?oc=5",
+      "publisher": "Business Wire",
+      "published_at": "2026-10-05T22:20:00+00:00"
+    },
+    {
+      "title": "Novità beauty Alfaparf Milano: i lanci skincare viso dell’autunno - Lifestyle Made in Italy",
+      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPa1l4RDRVVUh4TVczY3JCWUl6Z3FYWndBSXNOQVRDWWluRk4xVW5JN2xRM2Y0NXpFc3N3clQ4d3lmSVpqOGdVaThhYzdwMmw3Vmo3MlpiOFRUdnhmWldLamZ3bjdfaHpkUm51Q0MyZm9FU1c5RnZ6Q2x4el8yX0NrMy00QQ?oc=5",
+      "publisher": "Lifestyle Made in Italy",
+      "published_at": "2026-10-05T22:04:39+00:00"
+    },
+    {
+      "title": "K-beauty mania: gli sconti da non perdere per pelle di porcellana con la Festa delle Offerte Prime 2026 - alfemminile",
+      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOaHN2ODdsTVlnbGVfRXhLS0YxQm1ERnNqYW9HeXl5X2VnMzZmV3FSQ3JmRTFlZ3U4Z3kybzNpMVpMTUoyY25xSWs2RU1ldU13ODdLUXFlN2U2enczdHl6YXQ1UWo1ai1JbFA1eHpLWFhqQ3VPZWJrOXVBZjVkRWtmTTFwNDUzUG11ZFY4Zk9RWmFOSElzVmxnTnI4Zw?oc=5",
+      "publisher": "alfemminile",
+      "published_at": "2026-10-05T22:00:00+00:00"
+    },
+    {
+      "title": "Gli stivali cuissardes in vernice di Selvaggia Lucarelli potrebbero diventare una piccola ossessione - ELLE",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPX3o2NTVFQmh4SWg0eGxieEFmUHpOeEJyRWs3Q2xkbWxONDlYWjVOQ0R1NTBoYURXTjhqZGc1ZWI4aF9uQ2hlSXUweW9jNkZYdXhXeEVxZXF0VDFBT2lIQW8zZ3Rya0Z2ZVVEMkhxelZjaS1RZHNub1Z4dVZPaW05TmVxSUFqQzdwS3NseDhfeXJud2hFQ3lJVDF0UUpnWGZVSnJWRW0wSnpTa1FsV25JSm00ZUprbHpEc2hucg?oc=5",
+      "publisher": "ELLE",
+      "published_at": "2026-10-05T17:31:55+00:00"
+    },
+    {
+      "title": "4 trend da rubare ai look delle star alla Paris Fashion Week tra nuove ispirazioni e dettagli di stile - Mediaset Infinity",
+      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQRzFVTVlUdFFGMUJYYV9LZEg0MXhmUWdiMGwwYTZHWmZ5a2xQOE5yY1E3ME5rSTFtdVRCc1Q2X1dlOU5EbXJMZ3N0ajVNOFBPa3lzbXh3SzVFUkJVcm8wcFZSSDk4LTF2ajJ6LURHejhRNkRJQnFHOFZvbEpWa3k3Z1BlMGVVMXhQMU5yOWVOcUN0UXdOT3doUlpSOG5qYjN5ck5tUG1ibzNTakR3UmNKcW1GeU9PYmw0YmdEX25KazJyb2U2cXdBeHNaMEQ5c0ZoYkFDSXMwUEZOcXFBNV9xOA?oc=5",
+      "publisher": "Mediaset Infinity",
+      "published_at": "2026-10-05T16:09:46+00:00"
+    },
+    {
+      "title": "Il balayage fondue è il colore capelli definitivo per questo autunno se vuoi un effetto naturale - alfemminile",
+      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNUE0zUkQwNmhVVThKeFBVOXVDX28yMzYtUVFBbzlaZW9mRW01QkpESm9NcHhSNE55V0Z5MjBNa1g4T0pLcXIzQnNsU0M4Z1R6VGdudVE0ajhiRGJua3NVWGdQMTVUQ3dkOWFnSkxlRGxCSzZKejJWUTBmV3VESXF2NGcwNk5JLXh1dXlNWC1DS1Y5ZVk?oc=5",
+      "publisher": "alfemminile",
+      "published_at": "2026-10-05T09:57:00+00:00"
+    },
+    {
+      "title": "Le color combo ispirate alla natura sono il nuovo trend beauty della stagione (e dimostrano che le palette perfette esistono già in natura) - Vogue",
+      "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxOczhyLUlJczdZRnZ5YkJUTXpkdjZnTTYxUmtQWVpaamJ3NG9YRWlHSklFV204NWRIRl9CQXZLU3RFRkQweHdtN2pzbVJNV2pid21hbWJ3Qkthb1M0VUN2NkJKMnB5SENVYWtaX3ZoNkQ5dWFrSllMMXNHRFJWdzFsQUtVQTFrckZIbW03ZkV3?oc=5",
+      "publisher": "Vogue",
+      "published_at": "2026-10-05T09:12:37+00:00"
+    },
+    {
+      "title": "Royal Family, chi si occupa delle faccende domestiche a corte: Kate lava i piatti, William li asciuga - Fanpage",
+      "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQNlEzSUsxUWNZeG5icGxwT3FtaW5nZHptR2w2OUpmazRRbXM4QjlxSUp1SzdFYXNhNkJJUzZFaUlGbXdnUnJHVXM4ejk3Ukt0OXE3anJQcXVqZFhkX3p4b21HZFoxc1RWVkNuejhPQ3dlZjRIeTkzS1lRVU9PM09lTG1GU241R1pxNFZMYjY0cl9qTEV1NU1LUC03bEFxbEozTDVzeFBJdVVUVjY3Tkw4YzdfQ1dBRUtiSFdSRTduSFY1elEtOTRCaHpyUkwzNkdfd2EzeFY3N3E?oc=5",
+      "publisher": "Fanpage",
+      "published_at": "2026-10-05T09:05:11+00:00"
+    },
+    {
+      "title": "GoldenPass Belle Époque: il treno più bello d'Europa attraversa la Svizzera e costa poco più di 30 euro - Fanpage",
+      "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPaWNDZWhqM3lVcVp3NVA5NC1wZE9mTDJHSXRmWFQ1Ui1HdWhxeTRPb3NaQVRsT3hGcWhLbG9ReEN2X21XWUl5RnJKMGFjTnNzYjlaMHBjSjg3UUZsRlJnVHFFMGFTXzBjRUFBbmZ6WDlhRVVVNUJlRVJJQUxsbnlhbkUwMk5PMFVKNldCVUZrc2NCdTVianZRZ1docmw1WXNHTTJjUTV5a29SekVJUllJRlFEUkQxb1NpSmVlZEhtUjViQXREQjZXbnFsRUQ2VFVqZThobFNNdGhOQURGTnNF?oc=5",
+      "publisher": "Fanpage",
+      "published_at": "2026-10-05T07:01:52+00:00"
+    },
+    {
+      "title": "Cosa raccontano le nostre ricerche online del modo in cui sta cambiando la bellezza? Cresce l’interesse per il PDRN la K-Beauty e i prodotti ibridi E non solo - Zazoom Social News",
+      "url": "https://news.google.com/rss/articles/CBMipgJBVV95cUxNOGl3Ny1mbjMzblIycGltem1vY3NvTWY0bFpQWHl2VFh2UFNZZ2s2dGNYS01LdTJLUmxaSlBvVFU5cTBiOURKMjBYOEY2RzdoUThzc2wwaGdxQmhyRWN4N0ZuT3FacUREZm5RZkJ6T2JWUHA4bldNWnBuajVQQUxZLUdfYktmeEpHRlNXaFAwZjd1a2RDTmFnc1l4a0xhMXRNR2prT2FfREJvc0N3a1ZyZGxpeGRLQlo1NHZTTHdaMVhZWEM3eDd3MXJXamo0NlVteVRBaUwzYU5yZWFNQjlwSHl2Wm03a3hmVWZrNEJ4YjN5RWtYM0dIN2ZVOVdYWUVBMVo5anJPTFRtTElZQVBmNVQ0aUJfRjFKREMwcDg3YXNyUjhYaFE?oc=5",
+      "publisher": "Zazoom Social News",
+      "published_at": "2026-10-05T06:24:17+00:00"
+    },
+    {
+      "title": "Beauty trend: dal PDRN alla K-Beauty, cosa cercano le italiane su Google - iO Donna",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQQXBaNkhSVldOY2NQZlZ0OS1QaUNXa3pCU0dtT1dERUZLVG1HYVFrRzlXQ0RDYTdTME50TXhXbXhmcnU0Y2wzLUdvZTlwclRxeW9FY0dJV0NPUzB2UENzNWJFdUZYSEZuc0VZcjNVMUkzdXplZ0pCY3dEdkw2VEpJR0w5TjBtRE9nUmcta19Bc3ZnT3B5MHZvZUFCWWZ0b1JwbDQ0ekctMVNubmJsQWdVVjA3Wmg5WnhnTEluVA?oc=5",
+      "publisher": "iO Donna",
+      "published_at": "2026-10-05T05:51:27+00:00"
+    },
+    {
+      "title": "Noemi Bocchi e Aurora Ramazzotti, sfida a colpi di pizzo e strass a Ballando con le Stelle - Fanpage",
+      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNNzJrNURHMVcyTlVNZHZweW9KUVdKN1M1SF9fRFVVUjBJLWhIVlVQNlZ3NUhjSkVjZTZkVVJtTm15VzdmcjZFcDFwemlUdDRRRTBaNkFWdDZkeGt5X1pYdUxCeDZRUUtXMjExeC1VNFp1a1JaUlMzQmdwSzlSOXhJTjB2YWgya0p3QzJuS09TNDJpTnBfVlNnUm1LcmZJek9DdktWbGdIN0RyMEdnaTNfNS1uR05WU25RUXB6S2tBeVJOTlhfOGZGcEN3Y1k?oc=5",
+      "publisher": "Fanpage",
+      "published_at": "2026-10-04T09:17:23+00:00"
+    },
+    {
+      "title": "Gli oggetti più sporchi delle camere d'hotel, il dottor Fadenti: \"Copriletti e cuscini ornamentali\" - Fanpage",
+      "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxQWVBBbWRkem5oV19uR3p1NlBuVndUREJ0ZVJ2MzZucWRNOHBicnJhMW1aUkwtYnNpR3Z2ZGJKX3gwWFdZU05JTGJHWHFFTmphTFNtOE9FNG8xZ2hDZTZkZ3ZSWmgzZU5GTnU4elA1eUZJU2huR1Z2V0RjbUhOWUpEOExmX0lpV1NJaXZkSVRzc0E4OWVnUEFWZzJyNFhRMGtPSVRQNExDTXhCUV9CYXN5SU5CbHc1S29pRDl1cVo2Zk1fVUM2Zk1lYzdxSDNYckxWaVd6T1I4dDdXdw?oc=5",
+      "publisher": "Fanpage",
+      "published_at": "2026-10-04T05:00:08+00:00"
+    },
+    {
+      "title": "I jeans bootcut sono tornati e il modello Levi's interpreta il trend dell'autunno - ELLE",
+      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPRUh0MG5COWhUQ1pQdmhHTFEyLVVLc1ViV1ZYVmdKa1loVGU4b1hYVzVoczV5QzNldXVGOGpic1F3djdaUFQybkhseHhmaEJyd1V1bEd3ZXVWb1ZZekdhend0TVRwcGoweGdLcnFzUlZvQU00V2FsTUNBbVFEMWh6V1RUcw?oc=5",
+      "publisher": "ELLE",
+      "published_at": "2026-10-03T15:01:24+00:00"
+    },
+    {
+      "title": "Beauty playlist di ottobre: musica e prodotti per l'autunno - nss g-club",
+      "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9CMHBCdzhoS3ZVRUFRLWF4YkpzZmRsbG9mbkJUaGVlZ1FLckNXWWQzbXVod3EwY0hBNjJsQnJCdWZFdjFPMDBwbDVTZkN3aGFYUmxGQkp3ckNKbkQ5RTMyTGFRTWhsWVJqbHhQVkRhLWNHRTM3azd3cg?oc=5",
+      "publisher": "nss g-club",
+      "published_at": "2026-10-03T07:54:38+00:00"
+    },
+    {
+      "title": "I preparativi di Ilary Blasi per il GF Vip: a sostenerla in camerino ci sono Bastian, Isabel e Chanel - Fanpage",
+      "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOaTRMbFBMbnBLYTZERzh4Q05GSnI3RnFUazh5Q1ZVT0tMaDNoOFR2ZU9ieWUtLTlyV2phWlg5eTI0dTZDRWNTR1BzRWl4R083RHBMYjZTUVpLZldYQTFlNDdyb1NCWTIweHI0WkRlUTR1N2NOdHUwc0JzNUZCTTVhd2x6Z3VJUWpjMF9NRW1tQk5icU9mZndUdGczZUtyY1o4eDd0YkI0aFVGc0V0aGhDdEcwQkxMNnF0T3g3SUpqMzBJNUlsNkQ5T2ZrcG9CQkg3YkJfeHVjd3pSUQ?oc=5",
+      "publisher": "Fanpage",
+      "published_at": "2026-10-03T07:01:41+00:00"
+    },
+    {
+      "title": "Moda, lifestyle e beauty: le novità di ottobre 2026 - Style 24",
+      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNaU9ZM3o3QVNZVHMtdHVnQmtZbWRJVXJLWlB3VzRfZzRmVlNaS3FwbE9NN1FaUUVCOFROMUgtZ1dvX3RSZUFQaXVzdmR0V18tT3c0ZmVvM25UMUlMTEJERDNBMU5DX1ozSXVZMXdWejRXbV9rRlpEWGNTVEtpUmlxcDkzOTBlQQ?oc=5",
+      "publisher": "Style 24",
+      "published_at": "2026-10-03T06:57:11+00:00"
+    },
+    {
+      "title": "Longevità, le abitudini (non solo beauty) che fanno la differenza - iO Donna",
+      "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxQdDJyQy1oRzZSQzR3Z0taakxqRHhMNzIxd191XzltOWxlYnkxV1MtZ2JmNkF3QU5HTktxR3pHN3RuNUljLVdjYUV2OF9qMEE2WnZWLUJXZkRkVHdKVWlZc3ZLaGFjNTVjLXlkclNmMzNUeE8xSVJlSjNUaHNsZGZzVHlpQTVBOFF0T28taFdaLWt4M2ZZU1hYLVlmTjNfZkFLMTZENGk2ZkU5MjJQanJ2ZGJBMGJVQUprSXE0WGl4RzFmWDJ6bzdzeW83d2dmRmpGbUpqZV9yZWpiRWg0RktjZXljVEpjVS1kTHc?oc=5",
+      "publisher": "iO Donna",
+      "published_at": "2026-10-03T06:33:42+00:00"
+    },
+    {
+      "title": "L'autunno porta la fantasia dei maglioni a strisce sulle unghie, rendendo la manicure multicolore - Harper's BAZAAR",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOR3QxZ3lEQTVodmpibndTVlZRS0l0SzJHMERoX2w0Z0JqTnltTXRXblE2MmQ3N2UxU3VLVC1abHJjWVhMWmpfNl9GYUFROVJ2V0NYWktGUHA0RHh3YThUc0xFcTFraFVwcHpFTGd3TlJZaE16TEZvTG1GNkNNNzU1Q1p2QWltSWlISlVWX21nS0JON293b3FZWG51UGVXVzc2OEJuN21UcUZvZDVIR19BdldYQXpJcUtSOURwRjFtUQ?oc=5",
+      "publisher": "Harper's BAZAAR",
+      "published_at": "2026-10-03T05:32:22+00:00"
+    },
+    {
+      "title": "Il ritinolo e i suoi rivali: quali sono gli attivi anti-age più efficaci del momento - Amica.it",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNX3BkSU9GMGhuUUNXdWVNMEZaN2xYZkUzdVdZZldGSGlBZk54d3dOTURtRHM2akZCZ2R0X0dGc0FwVTBvWGIxdnhLRk9ybGI3a3JIUElCaWN0MUlHZ3hQR1cxRk9WYkdVcmxOVmFsZ1U2US1jaXNaZk9QU3Npejd5MWlFdEtyQjRtZFRKd1RFN1ZuTk5PUS1FeW5oTGFoY0t6VThVWW5QM1Jual92LWRrLWw1eXpQRVplWFg1cmhiZDZLclVF?oc=5",
+      "publisher": "Amica.it",
+      "published_at": "2026-10-03T05:13:06+00:00"
+    },
+    {
+      "title": "I jeans scuri di Federica Pellegrini sono l'alternativa perfetta al classico pantalone nero (da qui a maggio) - ELLE",
+      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOZUFzOXdjbk1ESTNqLUF5alZqNlRnck1wcjA1M0F6cmtYS1hZNVNXSVpXbFJSRjBuVVlUU3loVDAzWVd2dXRSSnFSdEhNWHd3a1VaT3hDQ0xSVk1SZkg5N2JXeGdzVHRNSS1UUEhoNGpyWVBPb2M3eDcwdE5kd3gwYUJWQWxfSU5DVkQ5V0VYSkNsWVBHSmh0WVpwblNoejZhRU5KMjFoZjNtU01qOXFR?oc=5",
+      "publisher": "ELLE",
+      "published_at": "2026-10-02T18:05:34+00:00"
+    },
+    {
+      "title": "Il nuovo trend unghie naturali? Si chiama Foundation e prende spunto dall'effetto seconda pelle - ELLE",
+      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQVzYwZUVyLWZCOFV4VFpfS3p2TWdEVUVIS3QtZFZSRmRQSzByR2N0cGxsTWJNN2tkYS00dDBpZXJYWl9Tb3pHRTN0SVNBUmo4azNBa3VRc0dtQ1hkcjZkVTN6eDlZYmNwUG5NX3FTOC1tQ09VSmhtM2Z3U09Wdjc3SzN3N2RrakQtRExoYTRqV0NvRkhMbWdsRUI5d0k1NWJOMlRZOUpB?oc=5",
+      "publisher": "ELLE",
+      "published_at": "2026-10-02T17:38:29+00:00"
+    },
+    {
+      "title": "A Elnòs Shopping, un week end dedicato a nuove esperienze tra moda, beauty e stile - QuiBrescia",
+      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQb1FxVUZJeEZETE9HODYxY1JrZ3FIeG5oSUpGajgxLU5zbU1YQzNDbk8tQVZaLXNfdHBhVXVyMTllaFRiZTU1T0Nna2hfNGk4anhHVHhULWNXUWF4OUVremxmeEZxWjgwVEJhMV9YVzBreVFQeFdoSTdfNkZKNzRDMVM1SnR6dEg1cnoySlQtaEp4TFludkVtdW8yd1BKNVB6Z0ZZaEtSU1JOclY2X3lWWjVLb0JiOEk0aWdOVFc5b3pXVFp3eWJocmhTQkJtUQ?oc=5",
+      "publisher": "QuiBrescia",
+      "published_at": "2026-10-02T15:22:39+00:00"
+    },
+    {
+      "title": "Tour a piedi gratuito: qual è la mancia consigliata per gli accompagnatori - Fanpage",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNNzVlY2dWbEppM195NF8wVGNXM0JvbkNHeDFKYVNQWEZsaDh4OTJtc1ItZkVhcWtRU0lSajFWelNIZ1UzVlhSc3Q0UFNoOWdVaHg1aDdLd1BtbkVRTU5KcGEtZnRFcV9lTFVzSlVndkpLSUhsUkxDdjVTM0hCZFRVcWJGejNUcTVsZkVkWmh0QjBEUXZYbFhOQ01vemJPdVdaUXMzZ2RRaXc0LWR1VUhTV0V6bUNreDRXMkE?oc=5",
+      "publisher": "Fanpage",
+      "published_at": "2026-10-02T14:50:24+00:00"
+    },
+    {
+      "title": "Calendari beauty imperdibili: le offerte e i prodotti da scoprire a dicembre - Moda a Colazione di Margherita Tizzi",
+      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNUlhhN045UUhVY09jUU5ZWEFnd00wN0p4cExrLXVoN0ZWeF9UX2tBSTNXZTJJSFotdWs1S1VIa0lGbHNNZ0F0VmZYX1NVX3ZCMDFtTXZjSmxINDc3a0ZOVlNtRjB0aGI5Mm5sbnphVjJFQ2lzYTk5VEtETE10Qkc5YjFndGtpN2U4c1o5RXozTm1JSnNoSF9Zdy1KNXZRS0paUDFzV1lyWERNRHM?oc=5",
+      "publisher": "Moda a Colazione di Margherita Tizzi",
+      "published_at": "2026-10-02T09:07:39+00:00"
+    },
+    {
+      "title": "X-Style: Puntata dell'1 ottobre Video - Mediaset Infinity",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPNWkxRld6X0dlN3FhSm9OZG9WbmptZWoxZVYxbzh6c2pOeGM2d3VGT2ZRX2RjT1hNX1BSSThvOURITTJrbU56U2haaWl6OEk1VzV2SUM1dGpoRno4NERZMlhwY3FJcDRhX3l4NXdFS2RaX0lsREhJallGVTA4RmlkaGZMWlRRVnZyMm9CeEx3VVNmQQ?oc=5",
+      "publisher": "Mediaset Infinity",
+      "published_at": "2026-10-01T23:15:11+00:00"
+    },
+    {
+      "title": "Lo storicismo del denim riletto da Acne studios - Milano Finanza",
+      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOb1ZUcE1HblZzSWNIY196REk1VDZCMHRuZ0FsUDBkWGtsN3FVQmI4TVF3bGVjSjNpSjZZSjVvVWtZMm16NDgtMHlXNU1qMk04TTExcER2SDRIeWMtTDlsOGtWeDZROW5CUXJoX3NJWVRxOEVRVE4yVHJuRE9TdkV6VGxyaXpveDlUbVFLYldVci1hRHh4cmdwdXN2cHI4ck9la09qcjBB?oc=5",
+      "publisher": "Milano Finanza",
+      "published_at": "2026-10-01T17:10:00+00:00"
+    },
+    {
+      "title": "Dal beauty club al running club: il nuovo benessere è stare bene insieme - Fashion Times",
+      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQMTJ0NjU4X21pdlk1bkdVTnhLYlVxMUZtaTNwWHZOc0kyNVBhemE5Z0wydjUxTDBIbkR1bEUtMkowVGRhOEJDSS1VdEJKRGJMck5OaGc3aHY0bVJkWmNIbzNuMzRFUGd1anBMSkhJc204NmNnUzdLRWJDMTNSNDdzbUFnLWdTWEl3dHN1cWE5VQ?oc=5",
+      "publisher": "Fashion Times",
+      "published_at": "2026-10-01T14:20:23+00:00"
+    },
+    {
+      "title": "Guida ai migliori calendari dell’Avvento beauty e makeup 2026 - Carol Pomme",
+      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1TV3AxQTVBVm9QaVZLc1hLZU11d0gxalkydXA3YVJDMzZobW9ySmVDbFQ0SjNBMG1xXzdueWJ4SERJckVUYjVQY0Q1S0tzS25SMDR6cHE0UXBCTndhcGNHR2MzSQ?oc=5",
+      "publisher": "Carol Pomme",
+      "published_at": "2026-10-01T07:00:00+00:00"
+    },
+    {
+      "title": "Skin Scents Autunno 2026: 5 profumi intimi effetto pelle - nss g-club",
+      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNSTREZndZTjBfMUFMR3RWOUFJOFdnVlR6ZlZESVIteWUtMXEtRzctNFQ4M3UtMmFlU1huamw5X19WTkV1dDJYcURjOFBWbFBYNFQ5Z1BWbVZPWXpmT2pSbWZmdjZkV3Q0amdYQ2E0cll2TWhyOVo4a0FjeUwwRi1IWGp3Zk1URFBwbWVpcnJYSlNsbGtONGRCQ3Q3NA?oc=5",
+      "publisher": "nss g-club",
+      "published_at": "2026-10-01T06:17:54+00:00"
+    },
+    {
+      "title": "Tendenze make-up che tornano in voga ad autunno - Webboh",
+      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9zR2dOXzZ5bm5NancxZ1BEODAtWTBxbjBrbC04cTRMM1kzMW5oQlQ4WHhpUGFjSHFPQzd5UE5fVUVjNFBObXhiaHZVbjJEaDdjRUhNLUl6SGJReGMzaVp4MnlFQmVyWDhZX1hR?oc=5",
+      "publisher": "Webboh",
+      "published_at": "2026-10-01T05:20:00+00:00"
+    },
+    {
+      "title": "Come truccare occhi e bocca con la pelle matura, la make-up artist: \"No ombretti glitter e rossetti matte\" - Fanpage",
+      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQTy03ZVNndF9GbGRlZVdKWnJUYUJmbU1tb0VNNWh0Tkl3MXJqalkya3ZFOFAzc0ZhNkg4UnJaS2VGU0lwT25kZ1l3NEFPQUpHUmh0LTBNS3ZwS25xWWhMTjFLR3JEczRPeDdnX0Vqeld5X3pHMUZ3REo3MVJ0Q1lrenJHd3F6RW5vR0ZyVU9WVGRwdlNmRlh5cVVGREwyNmFpd2lxTHYtS3RlbUUwTHBPeE1yd3h3N3FnMTk5QTVOTTNfQVp6TkpnYlFGUlc2b21Qam9BSk01aC1zak41aGRrTg?oc=5",
+      "publisher": "Fanpage",
+      "published_at": "2026-10-01T05:00:53+00:00"
+    },
+    {
+      "title": "Come si è vestita Victoria De Angelis al matrimonio di Damiano David: il look marrone in pizzo della bassista - Fanpage",
+      "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQRy1wRW1qeG53cFhwQ0pQZFk0UW5mel9kMW1vcDc5M1ZtbDBOMmVjQTB1czM5Sk1DLUwzNmI2TmlZbk16a3p5LVIydUlkdHpwVF9DMG1nX2hwNUg3STRQX1NpMVV4V25XVmloRTY5Y2dJNnZLOUwyUW5ZYll3OW40amJMNVQyZHExbU9tQ3g0M1JQTVA2dTMxR3BsTmMyOUFKTXJ3TVRqSHdMcW4ydFloa2VlQVlETExmR2N1eXRkYnhhRENCYURWbXdOdzdPVjNkVUVWWllzREQyRGxid0ZzUF9mNGpuQQ?oc=5",
+      "publisher": "Fanpage",
+      "published_at": "2026-09-30T18:09:10+00:00"
+    },
+    {
+      "title": "Deinfluencing: perché sui social ci fidiamo sempre di più di chi ci dice cosa non comprare - Grazia",
+      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNMTRHZEpLUnpFcTlyY0NBMmZKcWU3ZENkVExkdEtzaWQwaVg4RFV0S3JiZDNqdU1GSUpVWU1yVmljYktyTEpyR0FSbVM2VXo0bVAxY1dvaFFIQ0dsSS01QmlTaXpfaWh3LXJ0X2dxWFdkeThPbGxvcU9xMllWSkxPaU1DN1N3aFVFY1ZydWFBbWpfRFFKZWVHWDN2aGZYUFVUY25HR0dEZndnZw?oc=5",
+      "publisher": "Grazia",
+      "published_at": "2026-09-30T18:08:00+00:00"
+    },
+    {
+      "title": "Lista dei fondotinta, effetto nude, ideali per l'autunno 2026 - Cosmopolitan",
+      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNeTFNWDZTcXVrZjh2MXh6YW1iVy1kNHo0S0lkSnVpeEtydVZjY1NHNHJjS2JaSmdPMlE1VU1CcmVfazhkWmtDcGlOSHdCRElKV0hZclN0NEtGSlE3WVIwQVBSMmc3R2V4QUNPWDREUXVlbFNlYlVVWnVkUFB0dWhXWkduWEhQTnJIdkFSU3dXeGYzREdZLWc?oc=5",
+      "publisher": "Cosmopolitan",
+      "published_at": "2026-09-30T16:36:49+00:00"
+    }
+  ],
+  "limitations": "Segnali editoriali dalle notizie, non misure di viralità social. Grafica tipografica senza foto prodotto."
+}
