@@ -1,11 +1,17 @@
 # Fonti del post CC Gel
 
-Prova live: 07/10/2026 17:50 (Europe/Rome).
-Finestra: 30/09/2026 17:50 – 07/10/2026 17:50.
+Prova live con foto locale: 07/10/2026 17:58 (Europe/Rome).
+Finestra notizie: 30/09/2026 17:58 – 07/10/2026 17:58.
 
-Il programma ha consultato Google News RSS: titoli, date e testate. Non ha letto il testo integrale degli articoli né misurato viralità Instagram/TikTok. Ha selezionato il tema glow contando i titoli che corrispondono alle sue parole chiave, incluse quelle make-up.
+La ricerca ha consultato Google News RSS: titoli, date e testate. Non ha letto il testo integrale degli articoli né misurato viralità Instagram/TikTok.
 
-## Notizie abbinate al tema
+## Foto prodotto
+
+Foto conservata nel progetto: `assets/products/cc-gel.jpg`.
+[Origine ufficiale IOMA](https://ioma-paris.com/cdn/shop/files/cc-gel-soin-teinte-eclat-parfait-cc-creme-packshot-IOMA.jpg?v=1782400396&width=1000).
+La foto corrisponde alla confezione mostrata dall’utente, viene letta dal disco e collegata al prodotto tramite SQLite. Nessun download di prodotti durante l’avvio dell’agente.
+
+## Notizie associate al tema glow
 
 - [Per un effetto glow incredibile, prova questo siero ai peptidi rosa e PDRN: oggi al -40% per la Festa delle Offerte Prime 2026 - alfemminile](https://news.google.com/rss/articles/CBMivgFBVV95cUxQa3NJWGdZMnYxOENDc1BhRUtLYWZvdU5PcXZwcTNUc1d0RHFjRDB5Y2NwUXc2ekNMMGhwQkZ5SWFpb05NaUlnZkt1VVZlMUx5em1EUDVVaFBtYm96ZFl1dFc5bU1kT0RmMmpVQzdQcUVtMk1CR2pZc2czeHVNYVhUal9oMDJiamFJTlFva004bldkY0FmUWthQWxJamE5ZjR1SUUzRWhHLWdNcHpVbFVYcFZmNXhZd3JoTlJTMk1R?oc=5) — alfemminile, 2026-10-06
 - [Da Penelope a Circe: il beauty ispirato alla mitologia tra make-up e identità - Fashion Times](https://news.google.com/rss/articles/CBMingFBVV95cUxPRFh2N3hsRmgtWVQtUGtMMzJlbTdzRENPTFROYVdZVWl5cEJqOExjVDQwSExrczFkenRmd2VheWdCcmNUMGtfUWdJYXE4aWptMGxxTms2ZThjYlFqTmZnQXZwMS1KZi0yMUVKQml1Mll4X2JXaWw0ckhuaWJHMW1oak9nWDA5SG84SEJlY2hFZW5DcHo0SW9qdmQ4UmNKUQ?oc=5) — Fashion Times, 2026-10-06
@@ -14,6 +20,5 @@ Il programma ha consultato Google News RSS: titoli, date e testate. Non ha letto
 - [Tendenze make-up che tornano in voga ad autunno - Webboh](https://news.google.com/rss/articles/CBMia0FVX3lxTE9zR2dOXzZ5bm5NancxZ1BEODAtWTBxbjBrbC04cTRMM1kzMW5oQlQ4WHhpUGFjSHFPQzd5UE5fVUVjNFBObXhiaHZVbjJEaDdjRUhNLUl6SGJReGMzaVp4MnlFQmVyWDhZX1hR?oc=5) — Webboh, 2026-10-01
 - [Come truccare occhi e bocca con la pelle matura, la make-up artist: "No ombretti glitter e rossetti matte" - Fanpage](https://news.google.com/rss/articles/CBMi4AFBVV95cUxQTy03ZVNndF9GbGRlZVdKWnJUYUJmbU1tb0VNNWh0Tkl3MXJqalkya3ZFOFAzc0ZhNkg4UnJaS2VGU0lwT25kZ1l3NEFPQUpHUmh0LTBNS3ZwS25xWWhMTjFLR3JEczRPeDdnX0Vqeld5X3pHMUZ3REo3MVJ0Q1lrenJHd3F6RW5vR0ZyVU9WVGRwdlNmRlh5cVVGREwyNmFpd2lxTHYtS3RlbUUwTHBPeE1yd3h3N3FnMTk5QTVOTTNfQVp6TkpnYlFGUlc2b21Qam9BSk01aC1zak41aGRrTg?oc=5) — Fanpage, 2026-10-01
 
-Tutte le 65 fonti sono disponibili in research.json.
-Il claim deriva dalla scheda prodotto fornita dall’utente e conservata nel database, non dalle notizie.
-Foto originale prodotto: non disponibile come file. La grafica esportata è tipografica.
+Le 65 notizie e le date precise sono in research.json.
+Il claim proviene dalla descrizione del prodotto fornita dall’utente e conservata nel database.

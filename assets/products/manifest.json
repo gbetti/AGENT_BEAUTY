@@ -1,0 +1,41 @@
+[
+  {
+    "product_id": "urn:agent-beauty:manual:ioma:creme-sublime-revitalisante",
+    "name": "Crème Sublime Revitalisante – Soin anti-âge expert",
+    "path": "assets/products/creme-sublime-revitalisante.jpg",
+    "source_url": "https://ioma-paris.com/cdn/shop/files/creme-sublime-revitalisante-creme-anti-age-packshot-IOMA.jpg?v=1782462754&width=1000",
+    "source_page": "https://ioma-paris.com/products/creme-sublime-revitalisante",
+    "sha256": "a2f3028bc6e6047573af5131eb10d5737c754a6f8194e8c5decff07816bad7da",
+    "size": [
+      1000,
+      1000
+    ],
+    "origin": "Official IOMA packshot corresponding to the user-provided product photo"
+  },
+  {
+    "product_id": "urn:agent-beauty:manual:ioma:cc-gel",
+    "name": "CC Gel – Crème Soin Teinté Eclat Parfait",
+    "path": "assets/products/cc-gel.jpg",
+    "source_url": "https://ioma-paris.com/cdn/shop/files/cc-gel-soin-teinte-eclat-parfait-cc-creme-packshot-IOMA.jpg?v=1782400396&width=1000",
+    "source_page": "https://ioma-paris.com/products/cc-gel-soin-teinte-eclat-parfait",
+    "sha256": "4e5a06b8077b23ab89f52bea7dc54d70c26cf7b804c72d892549835a9c6be731",
+    "size": [
+      1000,
+      1000
+    ],
+    "origin": "Official IOMA packshot corresponding to the user-provided product photo"
+  },
+  {
+    "product_id": "urn:agent-beauty:manual:ioma:creme-genereuse-contour-des-yeux",
+    "name": "Crème Généreuse Contour des Yeux",
+    "path": "assets/products/creme-genereuse-contour-des-yeux.jpg",
+    "source_url": "https://ioma-paris.com/cdn/shop/files/creme-genereuse-contour-des-yeux-contour-des-yeux-anti-age-packshot-IOMA.jpg?v=1782401105&width=1000",
+    "source_page": "https://ioma-paris.com/products/creme-genereuse-contour-des-yeux",
+    "sha256": "a1dd87f81872dd509b13dbb9205817829fc4143db7ab97412af99c7ca1c979b0",
+    "size": [
+      1000,
+      1000
+    ],
+    "origin": "Official IOMA packshot corresponding to the user-provided product photo"
+  }
+]

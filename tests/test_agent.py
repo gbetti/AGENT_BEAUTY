@@ -4,7 +4,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 from argparse import Namespace
-from PIL import Image
+from PIL import Image, ImageChops
 from agent import load_products, parse_news, choose_product, render, run
 
 
@@ -25,6 +25,9 @@ class AgentTests(unittest.TestCase):
             path = Path(folder)/'catalog.sqlite'
             products = load_products(path)
             self.assertEqual(len(products), 3)
+            for item in products:
+                self.assertEqual(len(item['images']), 1)
+                self.assertTrue(Path(item['images'][0]['path']).is_file())
             original = path.read_bytes()
             self.assertEqual(load_products(path), products)
             self.assertEqual(path.read_bytes(), original)
@@ -35,6 +38,21 @@ class AgentTests(unittest.TestCase):
             with Image.open(Path(folder)/'post.png') as image:
                 self.assertEqual(image.size, (1080, 1350))
                 self.assertEqual(image.format, 'PNG')
+                with Image.open(product['images'][0]['path']) as original_photo:
+                    expected = original_photo.convert('RGB')
+                    expected.thumbnail((600, 600), Image.Resampling.LANCZOS)
+                # Confirm the exported post contains the exact local packshot,
+                # scaled to the photo area, rather than a placeholder.
+                actual = image.crop((240, 470, 840, 1070))
+                self.assertIsNone(ImageChops.difference(actual, expected).getbbox())
+
+    def test_missing_product_photo_is_reported(self):
+        with tempfile.TemporaryDirectory() as folder:
+            product = load_products(Path(folder)/'catalog.sqlite')[0]
+            product['images'][0]['path'] = str(Path(folder)/'missing.jpg')
+            with self.assertRaisesRegex(RuntimeError, 'Foto prodotto non trovata'):
+                render(product, 'glow', 'Un incarnato luminoso.', Path(folder)/'post.png')
+            self.assertFalse((Path(folder)/'post.png').exists())
 
     def test_network_failure_does_not_create_trend_artwork(self):
         with tempfile.TemporaryDirectory() as folder:

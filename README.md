@@ -15,11 +15,19 @@ A ogni avvio ricerca online notizie beauty degli ultimi **sette giorni** tramite
 
 Ogni esecuzione riuscita crea una cartella distinta sotto `output/` con:
 
-- `instagram.png`: grafica 1080×1350 pronta per il feed, con claim, nome e linea prodotto.
+- `instagram.png`: grafica 1080×1350 pronta per il feed, con foto della confezione, claim, nome e linea prodotto.
 - `caption.txt`: testo da accompagnare al post.
 - `research.json`: query, finestra temporale, titoli, fonti e ragione dell'abbinamento.
 
-Le grafiche sono tipografiche, con sfondo a gradiente coordinato: **non includono foto della confezione**, perché gli allegati della chat non sono disponibili come file. Non pubblica automaticamente su Instagram.
+Le grafiche includono la foto locale della confezione su uno sfondo a gradiente coordinato. L'originale viene conservato senza modifiche e soltanto ridimensionato nell'impaginazione. Non pubblica automaticamente su Instagram.
+
+## Foto dei prodotti
+
+Le foto di CC Gel, Crème Sublime Revitalisante e Crème Généreuse Contour des Yeux sono versionate in `assets/products/`. Sono state recuperate una volta dal sito ufficiale IOMA e corrispondono alle confezioni mostrate dall'utente. Non sono ricostruzioni generate con IA. `manifest.json` conserva origine, percorso, dimensioni e SHA-256 di ciascun file.
+
+Le tabelle SQLite `images` e `product_images` associano ogni foto al prodotto. I collegamenti sono inclusi anche in `catalog_seed.sql`, quindi disponibili nei nuovi cloni. All'apertura di un catalogo già esistente, l'agente registra questi collegamenti locali senza sostituire i prodotti e senza scaricare foto online. I percorsi salvati sono relativi al progetto e funzionano anche spostando il checkout.
+
+Il programma legge le foto dal disco. Se una foto associata manca, termina con un errore esplicito. `research.json` registra anche la foto usata nel post e la sua provenienza.
 
 ## Catalogo
 

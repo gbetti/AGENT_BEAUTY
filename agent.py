@@ -27,16 +27,51 @@ def initialize(db):
     PRIMARY KEY(page_url,name,image_url));''')
 
 
+def link_product_images(path):
+    """Register the checked-in photos locally, without network requests."""
+    manifest = json.loads((ROOT / 'assets/products/manifest.json').read_text(encoding='utf-8'))
+    with sqlite3.connect(path) as db:
+        initialize(db)
+        for asset in manifest:
+            row = db.execute('SELECT name,json_ld FROM products WHERE page_url=?',
+                             (asset['product_id'],)).fetchone()
+            if row is None:
+                continue
+            db.execute('INSERT INTO images(url,path) VALUES(?,?) '
+                       'ON CONFLICT(url) DO UPDATE SET path=excluded.path WHERE path != excluded.path',
+                       (asset['source_url'], asset['path']))
+            db.execute('INSERT OR IGNORE INTO product_images VALUES(?,?,?)',
+                       (asset['product_id'], row[0], asset['source_url']))
+            data = json.loads(row[1])
+            data['image_status'] = 'stored locally in project assets'
+            data['local_image_path'] = asset['path']
+            data['image_source_url'] = asset['source_url']
+            updated = json.dumps(data, ensure_ascii=False)
+            if updated != row[1]:
+                db.execute('UPDATE products SET json_ld=? WHERE page_url=?',
+                           (updated, asset['product_id']))
+
+
 def load_products(path):
     # A new clone is initialized from the supplied catalog, never from a website.
     if not path.exists():
         path.parent.mkdir(parents=True, exist_ok=True)
         with sqlite3.connect(path) as db:
             db.executescript((ROOT / 'catalog_seed.sql').read_text(encoding='utf-8'))
+    link_product_images(path)
     with sqlite3.connect(f'{path.resolve().as_uri()}?mode=ro', uri=True) as db:
         products = []
         for url, name, description, raw in db.execute('SELECT page_url,name,description,json_ld FROM products ORDER BY name'):
-            products.append({'id': url, 'name': name, 'description': description, 'data': json.loads(raw)})
+            images = []
+            for source_url, image_path in db.execute(
+                    'SELECT i.url,i.path FROM images i JOIN product_images pi ON pi.image_url=i.url '
+                    'WHERE pi.page_url=? AND pi.name=? ORDER BY i.url', (url, name)):
+                local_path = ROOT / image_path
+                if not local_path.is_file():
+                    local_path = path.parent / image_path
+                images.append({'source_url': source_url, 'path': str(local_path.resolve())})
+            products.append({'id': url, 'name': name, 'description': description,
+                             'data': json.loads(raw), 'images': images})
     if not products:
         raise RuntimeError('Il catalogo è vuoto. Inserisci un prodotto nel database.')
     return products
@@ -93,6 +128,11 @@ def choose_product(products, news, requested=None):
 
 def render(product, theme, claim, path, font_path=None):
     from PIL import Image, ImageDraw, ImageFont
+    if not product.get('images'):
+        raise RuntimeError('Nessuna foto collegata al prodotto nel database: ' + product['name'])
+    photo_path = Path(product['images'][0]['path'])
+    if not photo_path.is_file():
+        raise RuntimeError('Foto prodotto non trovata: ' + str(photo_path))
     def font(size):
         try:
             return ImageFont.truetype(font_path or 'DejaVuSans.ttf', size)
@@ -127,13 +167,20 @@ def render(product, theme, claim, path, font_path=None):
             draw.text((90, y), line, font=face, fill=ink)
             y += int(size * 1.35)
         return y
-    y = block(claim, 340, 66)
-    y = block(product['name'], max(y + 90, 780), 34)
+    y = block(claim, 300, 48)
+    if y > 460:
+        raise RuntimeError('Claim troppo lungo per il layout: abbrevia il claim editoriale.')
+    # Keep the original packshot intact: only scale it to fit its photo area.
+    with Image.open(photo_path) as original:
+        photo = original.convert('RGB')
+        photo.thumbnail((600, 600), Image.Resampling.LANCZOS)
+    image.paste(photo, ((1080-photo.width)//2, 470+(600-photo.height)//2))
+    y = block(product['name'], 1100, 27)
     properties = product['data'].get('additionalProperty', [])
     line = next((p['value'] for p in properties if p.get('name') == 'Gamme'), '')
-    block(line, y+35, 26)
-    draw.line((90, 1175, 990, 1175), fill=ink, width=2)
-    draw.text((90, 1210), 'Il tuo rituale beauty, ogni giorno.', font=font(28), fill=ink)
+    block(line, y+12, 22)
+    draw.line((90, 1230, 990, 1230), fill=ink, width=2)
+    draw.text((90, 1260), 'Il tuo rituale beauty, ogni giorno.', font=font(24), fill=ink)
     image.save(path, format='PNG')
 
 
@@ -150,7 +197,9 @@ def run(args):
     report = {'created_at': now.isoformat(), 'window_start': (now-timedelta(days=7)).isoformat(), 'query': QUERY,
               'product': product['name'], 'claim': claim, 'theme': theme, 'theme_news_counts': scores,
               'matched_news': matched, 'news': news,
-              'limitations': 'Segnali editoriali dalle notizie, non misure di viralità social. Grafica tipografica senza foto prodotto.'}
+              'product_image': {'project_path': product['data'].get('local_image_path'),
+                                'source_url': product['images'][0]['source_url']},
+              'limitations': 'Segnali editoriali dalle notizie, non misure di viralità social.'}
     (directory/'research.json').write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8')
     caption = f"{claim}\n\n{product['name']} — IOMA Paris\n\n#IOMAParis #Skincare #BeautyRoutine"
     (directory/'caption.txt').write_text(caption, encoding='utf-8')
