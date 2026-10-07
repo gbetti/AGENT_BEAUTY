@@ -10,6 +10,8 @@ import urllib.request
 import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parent
+BACKGROUND_PATH = ROOT / 'assets/backgrounds/ioma-campaign.png'
+LOGO_PATH = ROOT / 'assets/brand/ioma-logo.png'
 QUERY = '(beauty OR skincare) (trend OR glow OR hydration OR longevity) when:7d'
 THEMES = {
     'glow': {'keywords': ('glow', 'radiance', 'luminos', 'makeup', 'make-up', 'tinted', 'skin tint', 'teint'), 'label': 'Il tuo momento glow', 'colors': ((247, 233, 221), (205, 170, 144))},
@@ -24,7 +26,10 @@ def initialize(db):
     PRIMARY KEY(page_url,name));
     CREATE TABLE IF NOT EXISTS images (url TEXT PRIMARY KEY,path TEXT NOT NULL);
     CREATE TABLE IF NOT EXISTS product_images (page_url TEXT,name TEXT,image_url TEXT,
-    PRIMARY KEY(page_url,name,image_url));''')
+    PRIMARY KEY(page_url,name,image_url));
+    CREATE TABLE IF NOT EXISTS generations (
+    id TEXT PRIMARY KEY, created_at TEXT NOT NULL, product_id TEXT NOT NULL,
+    image_path TEXT NOT NULL, research_json TEXT NOT NULL);''')
 
 
 def link_product_images(path):
@@ -126,32 +131,66 @@ def choose_product(products, news, requested=None):
     return product, theme, claim, matched, scores
 
 
+def packshot_layer(photo_path):
+    """Remove only connected white background; keep the original asset unchanged."""
+    from PIL import Image, ImageChops, ImageDraw, ImageFilter
+    with Image.open(photo_path) as source:
+        photo = source.convert('RGB')
+    minimum = ImageChops.darker(photo.getchannel('R'),
+                               ImageChops.darker(photo.getchannel('G'), photo.getchannel('B')))
+    exterior = minimum.point(lambda value: 255 if value >= 250 else 0)
+    for corner in [(0, 0), (photo.width-1, 0), (0, photo.height-1),
+                   (photo.width-1, photo.height-1)]:
+        if exterior.getpixel(corner) == 255:
+            ImageDraw.floodfill(exterior, corner, 128)
+    alpha = exterior.point(lambda value: 0 if value == 128 else 255)
+    # Remove isolated edge speckles from JPEG compression and antialias the cutout.
+    alpha = alpha.filter(ImageFilter.MinFilter(3)).filter(ImageFilter.MaxFilter(3))
+    alpha = alpha.filter(ImageFilter.GaussianBlur(0.4))
+    result = photo.convert('RGBA')
+    result.putalpha(alpha)
+    bounds = alpha.getbbox()
+    if bounds is None:
+        raise RuntimeError('La foto non contiene un packshot visibile.')
+    return result.crop(bounds)
+
+
 def render(product, theme, claim, path, font_path=None):
-    from PIL import Image, ImageDraw, ImageFont
+    from PIL import Image, ImageDraw, ImageFont, ImageOps, ImageFilter, ImageChops
     if not product.get('images'):
         raise RuntimeError('Nessuna foto collegata al prodotto nel database: ' + product['name'])
     photo_path = Path(product['images'][0]['path'])
     if not photo_path.is_file():
         raise RuntimeError('Foto prodotto non trovata: ' + str(photo_path))
+    for asset in (BACKGROUND_PATH, LOGO_PATH):
+        if not asset.is_file():
+            raise RuntimeError('Asset grafico non trovato: ' + str(asset))
     def font(size):
         try:
-            return ImageFont.truetype(font_path or 'DejaVuSans.ttf', size)
+            return ImageFont.truetype(font_path or 'DejaVuSerif.ttf', size)
         except OSError:
             raise RuntimeError('Font non disponibile: usa --font /percorso/font.ttf')
-    image = Image.new('RGB', (1080, 1350))
+    with Image.open(BACKGROUND_PATH) as original_background:
+        image = ImageOps.fit(original_background.convert('RGB'), (1080, 1350)).convert('RGBA')
+    # Composite the real packshot, rather than asking a model to recreate it.
+    photo = packshot_layer(photo_path)
+    photo.thumbnail((430, 800), Image.Resampling.LANCZOS)
+    shadow = Image.new('RGBA', image.size)
+    ImageDraw.Draw(shadow).ellipse((810-photo.width*0.4, 998,
+                                  810+photo.width*0.4, 1020), fill=(35, 24, 15, 95))
+    image.alpha_composite(shadow.filter(ImageFilter.GaussianBlur(8)))
+    image.alpha_composite(photo, (810-photo.width//2, 1010-photo.height))
+    # Preserve the official wordmark's alpha silhouette; use its white brand variant.
+    with Image.open(LOGO_PATH) as original_logo:
+        original_logo = original_logo.convert('RGBA')
+        logo = Image.new('RGBA', original_logo.size, (255, 255, 255, 0))
+        logo.putalpha(ImageChops.multiply(original_logo.getchannel('A'),
+                                          ImageOps.invert(original_logo.convert('L'))))
+    logo.thumbnail((280, 117), Image.Resampling.LANCZOS)
+    image.alpha_composite(logo, (82, 90))
     draw = ImageDraw.Draw(image)
-    top, bottom = THEMES[theme]['colors']
-    for y in range(1350):
-        ratio = y / 1349
-        draw.line((0, y, 1080, y), fill=tuple(round(a + (b-a)*ratio) for a,b in zip(top,bottom)))
-    draw.ellipse((600, -220, 1400, 580), fill=top)
-    draw.ellipse((-340, 940, 420, 1700), outline=(244, 242, 232), width=3)
-    ink = (39, 49, 42)
-    draw.text((90, 95), 'IOMA PARIS', font=font(36), fill=ink)
-    draw.line((90, 169, 990, 169), fill=ink, width=2)
-    draw.text((90, 230), THEMES[theme]['label'], font=font(28), fill=ink)
-    def block(text, y, size, max_width=890):
-        face = font(size)
+    ink = (255, 249, 240)
+    def wrapped(text, face, max_width):
         lines = []
         current = ''
         for word in text.split():
@@ -163,25 +202,29 @@ def render(product, theme, claim, path, font_path=None):
                 current = trial
         if current:
             lines.append(current)
+        return lines
+    def block(text, y, size, max_width=470):
+        face = font(size)
+        lines = wrapped(text, face, max_width)
         for line in lines:
-            draw.text((90, y), line, font=face, fill=ink)
+            draw.text((82, y), line, font=face, fill=ink,
+                      stroke_width=1, stroke_fill=(88, 66, 53))
             y += int(size * 1.35)
         return y
-    y = block(claim, 300, 48)
-    if y > 460:
-        raise RuntimeError('Claim troppo lungo per il layout: abbrevia il claim editoriale.')
-    # Keep the original packshot intact: only scale it to fit its photo area.
-    with Image.open(photo_path) as original:
-        photo = original.convert('RGB')
-        photo.thumbnail((600, 600), Image.Resampling.LANCZOS)
-    image.paste(photo, ((1080-photo.width)//2, 470+(600-photo.height)//2))
-    y = block(product['name'], 1100, 27)
+    claim_size = 56
+    while claim_size >= 36:
+        lines = wrapped(claim, font(claim_size), 470)
+        if len(lines) * int(claim_size*1.35) <= 330:
+            break
+        claim_size -= 2
+    else:
+        raise RuntimeError('Claim troppo lungo per la foto: abbrevia il claim editoriale.')
+    block(claim, 470, claim_size)
+    y = block(product['name'], 1010, 23)
     properties = product['data'].get('additionalProperty', [])
     line = next((p['value'] for p in properties if p.get('name') == 'Gamme'), '')
-    block(line, y+12, 22)
-    draw.line((90, 1230, 990, 1230), fill=ink, width=2)
-    draw.text((90, 1260), 'Il tuo rituale beauty, ogni giorno.', font=font(24), fill=ink)
-    image.save(path, format='PNG')
+    block(line, y+22, 19)
+    image.convert('RGB').save(path, format='PNG')
 
 
 def run(args):
@@ -191,20 +234,27 @@ def run(args):
     news = search_news(now)
     product, theme, claim, matched, scores = choose_product(products, news, args.product)
     args.output.mkdir(parents=True, exist_ok=True)
-    import tempfile
-    directory = Path(tempfile.mkdtemp(prefix=now.strftime('%Y%m%dT%H%M%SZ-'), dir=args.output))
-    render(product, theme, claim, directory/'instagram.png', args.font)
+    import uuid
+    generation_id = now.strftime('%Y%m%dT%H%M%SZ-') + uuid.uuid4().hex[:8]
+    image_path = args.output / ('ioma-' + generation_id + '.png')
+    render(product, theme, claim, image_path, args.font)
     report = {'created_at': now.isoformat(), 'window_start': (now-timedelta(days=7)).isoformat(), 'query': QUERY,
               'product': product['name'], 'claim': claim, 'theme': theme, 'theme_news_counts': scores,
               'matched_news': matched, 'news': news,
               'product_image': {'project_path': product['data'].get('local_image_path'),
                                 'source_url': product['images'][0]['source_url']},
               'limitations': 'Segnali editoriali dalle notizie, non misure di viralità social.'}
-    (directory/'research.json').write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8')
-    caption = f"{claim}\n\n{product['name']} — IOMA Paris\n\n#IOMAParis #Skincare #BeautyRoutine"
-    (directory/'caption.txt').write_text(caption, encoding='utf-8')
-    print(f'Grafica Instagram 1080×1350: {directory / "instagram.png"}')
-    print(f'Fonti recenti: {len(news)}; notizie associate al tema: {len(matched)}')
+    # Keep evidence internally: the user-facing output is one finished image only.
+    try:
+        with sqlite3.connect(args.database) as db:
+            db.execute('INSERT INTO generations VALUES(?,?,?,?,?)',
+                       (generation_id, now.isoformat(), product['id'], str(image_path.resolve()),
+                        json.dumps(report, ensure_ascii=False)))
+    except Exception:
+        image_path.unlink(missing_ok=True)
+        raise
+    print(image_path.resolve())
+    return image_path
 
 
 def main():

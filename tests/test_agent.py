@@ -1,11 +1,12 @@
 from datetime import datetime, timezone
 from pathlib import Path
 import tempfile
+import sqlite3
 import unittest
 from unittest.mock import patch
 from argparse import Namespace
 from PIL import Image, ImageChops
-from agent import load_products, parse_news, choose_product, render, run
+from agent import load_products, parse_news, choose_product, render, run, packshot_layer
 
 
 class AgentTests(unittest.TestCase):
@@ -38,13 +39,16 @@ class AgentTests(unittest.TestCase):
             with Image.open(Path(folder)/'post.png') as image:
                 self.assertEqual(image.size, (1080, 1350))
                 self.assertEqual(image.format, 'PNG')
-                with Image.open(product['images'][0]['path']) as original_photo:
-                    expected = original_photo.convert('RGB')
-                    expected.thumbnail((600, 600), Image.Resampling.LANCZOS)
-                # Confirm the exported post contains the exact local packshot,
-                # scaled to the photo area, rather than a placeholder.
-                actual = image.crop((240, 470, 840, 1070))
-                self.assertIsNone(ImageChops.difference(actual, expected).getbbox())
+                photo = packshot_layer(product['images'][0]['path'])
+                photo.thumbnail((430, 800), Image.Resampling.LANCZOS)
+                left, top = 810-photo.width//2, 1010-photo.height
+                actual = image.crop((left, top, left+photo.width, top+photo.height))
+                opaque = photo.getchannel('A').point(lambda value: 255 if value == 255 else 0)
+                difference = ImageChops.difference(actual, photo.convert('RGB'))
+                difference.paste((0, 0, 0), mask=ImageChops.invert(opaque))
+                # The original product pixels, including its printed label,
+                # survive compositing onto the photographic background.
+                self.assertIsNone(difference.getbbox())
 
     def test_missing_product_photo_is_reported(self):
         with tempfile.TemporaryDirectory() as folder:
@@ -70,9 +74,16 @@ class AgentTests(unittest.TestCase):
                 run(args)
                 run(args)
             self.assertEqual(search.call_count, 2)
-            directories = list(args.output.iterdir())
-            self.assertEqual(len(directories), 2)
-            for directory in directories:
-                self.assertTrue((directory/'instagram.png').exists())
-                self.assertTrue((directory/'research.json').exists())
-                self.assertIn('Contour', (directory/'caption.txt').read_text())
+            files = list(args.output.iterdir())
+            self.assertEqual(len(files), 2)
+            self.assertTrue(all(path.is_file() and path.suffix == '.png' for path in files))
+            with sqlite3.connect(args.database) as db:
+                self.assertEqual(db.execute('SELECT COUNT(*) FROM generations').fetchone()[0], 2)
+
+    def test_missing_logo_is_reported(self):
+        with tempfile.TemporaryDirectory() as folder:
+            product = load_products(Path(folder)/'catalog.sqlite')[0]
+            with patch('agent.LOGO_PATH', Path(folder)/'missing.png'):
+                with self.assertRaisesRegex(RuntimeError, 'Asset grafico non trovato'):
+                    render(product, 'glow', 'Un incarnato luminoso.', Path(folder)/'post.png')
+            self.assertFalse((Path(folder)/'post.png').exists())

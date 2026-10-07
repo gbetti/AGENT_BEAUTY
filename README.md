@@ -1,37 +1,17 @@
 # AGENT_BEAUTY
 
-Agente per creare post Instagram usando i prodotti del database locale. Non cerca né scarica prodotti dal sito IOMA.
+Genera **una sola immagine Instagram finale** con packshot originale, claim sovrapposto e logo IOMA, su uno sfondo fotografico. Usa i prodotti e le foto del database locale. A ogni avvio ricerca online notizie beauty degli ultimi sette giorni per scegliere il tema e il prodotto.
 
 ## Avvio
 
-Richiede Python 3.10+.
+Python 3.10+:
 
 ```sh
 python3 -m pip install -r requirements.txt
 python3 agent.py
 ```
 
-A ogni avvio ricerca online notizie beauty degli ultimi **sette giorni** tramite Google News RSS e verifica la data di pubblicazione. Conta i titoli associati a glow o skincare/renew, sceglie un prodotto del catalogo e compone uno sfondo coordinato con un claim italiano derivato dalla descrizione del prodotto. Non inventa trend quando la ricerca fallisce. Si tratta di segnali editoriali, non di statistiche di viralità Instagram/TikTok.
-
-Ogni esecuzione riuscita crea una cartella distinta sotto `output/` con:
-
-- `instagram.png`: grafica 1080×1350 pronta per il feed, con foto della confezione, claim, nome e linea prodotto.
-- `caption.txt`: testo da accompagnare al post.
-- `research.json`: query, finestra temporale, titoli, fonti e ragione dell'abbinamento.
-
-Le grafiche includono la foto locale della confezione su uno sfondo a gradiente coordinato. L'originale viene conservato senza modifiche e soltanto ridimensionato nell'impaginazione. Non pubblica automaticamente su Instagram.
-
-## Foto dei prodotti
-
-Le foto di CC Gel, Crème Sublime Revitalisante e Crème Généreuse Contour des Yeux sono versionate in `assets/products/`. Sono state recuperate una volta dal sito ufficiale IOMA e corrispondono alle confezioni mostrate dall'utente. Non sono ricostruzioni generate con IA. `manifest.json` conserva origine, percorso, dimensioni e SHA-256 di ciascun file.
-
-Le tabelle SQLite `images` e `product_images` associano ogni foto al prodotto. I collegamenti sono inclusi anche in `catalog_seed.sql`, quindi disponibili nei nuovi cloni. All'apertura di un catalogo già esistente, l'agente registra questi collegamenti locali senza sostituire i prodotti e senza scaricare foto online. I percorsi salvati sono relativi al progetto e funzionano anche spostando il checkout.
-
-Il programma legge le foto dal disco. Se una foto associata manca, termina con un errore esplicito. `research.json` registra anche la foto usata nel post e la sua provenienza.
-
-## Catalogo
-
-Il database è `data/catalog.sqlite`. Se manca (ad esempio su un nuovo clone), viene inizializzato dal file `catalog_seed.sql`, contenente i tre prodotti forniti: Crème Sublime Revitalisante, CC Gel e Crème Généreuse Contour des Yeux. Un database esistente viene letto senza sostituirlo. Prezzi, descrizioni e claim sono quelli salvati, non vengono aggiornati online. Per nuovi prodotti, aggiungere nel JSON del database `editorial.theme` (`glow` o `renew`) e `editorial.claim_it` con un claim verificato sulla scheda.
+Il risultato è un solo file `output/ioma-<data>-<id>.png`, di 1080×1350 pixel. Il programma stampa soltanto il percorso dell'immagine. Non esporta caption, ZIP o file di fonti. Ogni avvio conserva i post precedenti e genera un nuovo file.
 
 ```sh
 python3 agent.py --product 'CC Gel'
@@ -40,4 +20,20 @@ python3 agent.py --font /percorso/font.ttf
 python3 -m unittest discover -s tests -v
 ```
 
-È necessario un font TrueType: normalmente `DejaVuSans.ttf`; se non presente, specificare `--font`. L'accesso HTTPS a `news.google.com` è indispensabile. Se il proxy blocca la richiesta, il programma termina con errore senza presentare una grafica come basata su trend aggiornati. Nell'ambiente cloud abilitare il dominio nelle impostazioni. Per installare Pillow servono `pypi.org` e `files.pythonhosted.org`.
+## Composizione dell'immagine
+
+I packshot reali sono in `assets/products/`, collegati al catalogo tramite le tabelle `images` e `product_images`. Sono le foto ufficiali delle confezioni mostrate dall'utente, recuperate una volta dal sito IOMA. Gli originali rimangono conservati senza modifiche. Nell'impaginazione viene rimosso soltanto il bianco esterno collegato ai bordi e la confezione viene ridimensionata, preservando i suoi pixel e le scritte. La confezione non viene rigenerata con IA.
+
+Il logo ufficiale è salvato in `assets/brand/ioma-logo.png`: la composizione usa la sagoma originale nella variante bianca. Lo sfondo fotografico di seta e pietra è stato creato con il generatore di immagini ed è conservato in `assets/backgrounds/ioma-campaign.png`. A ogni avvio l'agente compone questi asset locali con il claim presente nella scheda prodotto. Non richiede API di generazione a pagamento durante l'avvio.
+
+Il logo e il claim sono sovrapposti alla stessa immagine fotografica: nessuna scheda bianca separata attorno al packshot. Se manca una foto, il logo o lo sfondo, l'agente termina con un errore esplicito.
+
+## Database e ricerca
+
+Il catalogo è `data/catalog.sqlite`. Se manca viene inizializzato da `catalog_seed.sql` con CC Gel, Crème Sublime Revitalisante e Crème Généreuse Contour des Yeux. Le foto e i loro collegamenti sono disponibili anche nei nuovi cloni; un catalogo esistente viene conservato.
+
+L'agente non cerca né scarica prodotti dal sito IOMA all'avvio. Prezzi, descrizioni e claim provengono dal database. Per aggiungere un prodotto servono una foto locale collegata e i campi `editorial.theme` (`glow` o `renew`) e `editorial.claim_it` nel JSON della scheda.
+
+La ricerca usa Google News RSS con filtro e verifica delle date degli ultimi sette giorni. Si tratta di segnali dai titoli delle notizie, non di misure di viralità Instagram/TikTok. Se la ricerca fallisce non vengono inventati trend e non viene esportato un post. Le fonti e la scelta del prodotto restano nella tabella interna `generations` del database, senza file aggiuntivi per l'utente.
+
+Servono HTTPS verso `news.google.com` e, per installare Pillow, `pypi.org` e `files.pythonhosted.org`. Serve inoltre un font TrueType: di default `DejaVuSerif.ttf`; usare `--font` se assente. Il programma crea l'immagine, senza pubblicare automaticamente su Instagram.
