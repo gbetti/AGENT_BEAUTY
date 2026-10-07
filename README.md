@@ -1,6 +1,6 @@
 # AGENT_BEAUTY
 
-A ogni avvio cerca online le notizie beauty degli ultimi sette giorni, sceglie un prodotto dal database e costruisce un concept coerente con i trend. Crea **tre grafiche della stessa campagna e un PowerPoint con tutti i mockup**, usando packshot originale e logo IOMA. Ambientazione, headline e obiettivo del post cambiano tra esecuzioni; la stessa campagna mantiene visual, headline e CTA coerenti nei tre formati.
+A ogni avvio cerca online le notizie beauty degli ultimi sette giorni, sceglie un prodotto dal database e costruisce un concept coerente con i trend. Crea **quattro versioni linguistiche (italiano, francese, inglese e cinese semplificato), ciascuna con tre grafiche e un PowerPoint con tutti i mockup**, usando packshot originale e logo IOMA. Ambientazione, headline e obiettivo del post cambiano tra esecuzioni; la stessa campagna mantiene visual, headline e CTA coerenti nei tre formati.
 
 ## Avvio
 
@@ -11,11 +11,11 @@ python3 -m pip install -r requirements.txt
 python3 agent.py
 ```
 
-Ogni esecuzione riuscita crea una cartella distinta `output/ioma-<data>-<id>/` contenente **soltanto**:
+Ogni esecuzione riuscita crea una cartella distinta `output/ioma-<data>-<id>/` contenente le sottocartelle `it/`, `fr/`, `en/`, `zh/`. Ogni sottocartella contiene:
 
 | File | Formato finale | Composizione |
 | --- | --- | --- |
-| `feed.png` | 1080×1350, 4:5 | Master 1024×1536, ritaglio centrale 1024×1280; nessun contenuto importante nel 6% alto/basso del master. Visual protagonista, headline in alto, CTA in basso, logo piccolo in un angolo. Testo entro il 20% della superficie. |
+| `feed.png` | 1080×1350, 4:5 | Master 1024×1536, ritaglio centrale 1024×1280; nessun contenuto importante nel 6% alto/basso del master. Visual protagonista, headline in alto, CTA in basso, logo in alto al centro. Testo entro il 20% della superficie. |
 | `story.png` | 1080×1920, 9:16 | Stesso master verticale 1024×1536 adattato estendendo i bordi fotografici; testo e visual conservano le proporzioni. Safe zone: 13% superiore e 18% inferiore liberi; headline nel terzo superiore utile, visual centrale, CTA nella parte bassa utile. |
 | `banner.png` | 300×250, 6:5 | Master 1536×1024, ritaglio centrale quasi quadrato. Solo logo, headline breve, visual prodotto e CTA come pulsante. Nessun sottotitolo. Bordo da 1 px su sfondo bianco. |
 | `presentazione.pptx` | PowerPoint 16:9, 6 slide | Prodotto e concept; trend con fonti; feed nella cornice Instagram; feed nella cornice Facebook; Story/Reel nei due telefoni; banner dentro una pagina web. Caption e hashtag modificabili. |
@@ -63,10 +63,11 @@ In assenza di override, l'agente varia la headline tra gli hook coerenti con il 
 ```sh
 python3 agent.py --database data/catalog.sqlite --output output
 python3 agent.py --font /percorso/font.ttf
+python3 -m pip install -r requirements-dev.txt
 python3 -m unittest discover -s tests -v
 ```
 
-Di default sono usati DejaVu Sans Bold e DejaVu Sans Regular. `--font` usa un solo font personalizzato per tutti i testi.
+Le grafiche usano DejaVu Serif Regular per italiano, francese e inglese, e Noto Serif CJK SC Regular per il cinese semplificato: stile editoriale, con logo ufficiale sempre in alto al centro e dentro le safe zone. I font e le licenze sono inclusi in `assets/fonts/`. Anche i testi modificabili del PowerPoint usano queste famiglie; sul computer del destinatario devono essere installate per conservarne esattamente l’aspetto. `--font` consente un font personalizzato, che deve supportare i caratteri delle lingue richieste.
 
 ## Asset e database
 
@@ -79,3 +80,16 @@ Il catalogo è `data/catalog.sqlite`; se manca viene inizializzato da `catalog_s
 La ricerca usa Google News RSS, verifica le date degli ultimi sette giorni e richiede un riferimento beauty nel titolo per escludere notizie estranee. Sono segnali dai titoli delle notizie, non misure di viralità Instagram/TikTok. Le fonti, il concept, il setting, l'obiettivo, i testi esatti, i percorsi e le verifiche geometriche restano nella tabella interna `generations` del database, insieme alla caption, agli hashtag e ai mockup del PowerPoint. Non esporta file caption o ZIP separati e non pubblica su Instagram o Facebook.
 
 Servono HTTPS verso `news.google.com` e, per installare le dipendenze, `pypi.org` e `files.pythonhosted.org`.
+
+## Esportazione multilingue
+
+`python agent.py` cerca le notizie una sola volta, sceglie un solo concept e produce 12 PNG e 4 PowerPoint. Tutte le lingue condividono packshot, scena e obiettivo. Titolo, CTA, claim, caption e hashtag sono localizzati; il nome ufficiale del prodotto resta invariato. Le slide di ricerca e le annotazioni interne restano in italiano, con i titoli originali delle fonti.
+
+Le traduzioni editoriali del catalogo corrente sono in `localization.py`. Non si usa una traduzione automatica non verificata: un nuovo claim o override privo di traduzione produce un errore esplicito e non lascia pacchetti parziali. Per testi personalizzati soltanto in italiano usare `--languages it`; per il pacchetto completo aggiungere prima le traduzioni al dizionario.
+
+```sh
+python agent.py --languages it fr en zh
+python agent.py --languages fr en
+```
+
+Se fallisce anche una sola lingua, l'intero nuovo pacchetto viene annullato; le campagne precedenti rimangono intatte. La cronologia registra tutte le versioni nella voce `localizations`.

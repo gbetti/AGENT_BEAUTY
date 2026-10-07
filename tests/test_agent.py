@@ -201,8 +201,9 @@ class AgentTests(unittest.TestCase):
             self.assertEqual(len(folders), 2)
             for target in folders:
                 self.assertEqual({p.name for p in target.iterdir()},
-                                 {'feed.png','story.png','banner.png','presentazione.pptx'})
-                self.assertEqual(len(Presentation(target/'presentazione.pptx').slides), 6)
+                                 {'it','fr','en','zh'})
+                for language in ('it','fr','en','zh'):
+                    self.assertEqual(len(Presentation(target/language/'presentazione.pptx').slides), 6)
             with sqlite3.connect(args.database) as db:
                 rows = db.execute('SELECT research_json FROM generations').fetchall()
                 self.assertEqual(len(rows),2)
@@ -354,3 +355,45 @@ class AgentTests(unittest.TestCase):
                         if element['kind'] in ('headline','cta'):
                             self.assertGreaterEqual(element['contrast_ratio'],4.5)
                 self.assertLessEqual(result['feed']['text_area_ratio'],.20)
+
+
+class LocalizationTests(unittest.TestCase):
+    def test_every_hook_and_claim_has_safe_localizations(self):
+        from localization import LANGUAGES, localize
+        from creative import HOOKS
+        from campaign import editorial_font
+        from fontTools.ttLib import TTFont
+        with tempfile.TemporaryDirectory() as folder:
+            products=load_products(Path(folder)/'db.sqlite')
+            for product in products:
+                role='glow' if product['data']['editorial']['theme']=='glow' else ('eyes' if 'yeux' in product['name'] else 'renew')
+                for headline in HOOKS[role]:
+                    plan=campaign_plan(product,[{'title':'Glow skincare trend'}],[],headline)
+                    for language in LANGUAGES:
+                        copy=localize(plan,product,language)
+                        self.assertLessEqual(len(copy['headline'].split()),4)
+                        self.assertEqual(copy['scene'],plan['scene'])
+                        self.assertIn(copy['claim'],copy['caption'])
+                        chars=copy['headline']+copy['cta']+copy['caption']
+                        font=TTFont(editorial_font(chars)); cmap=font.getBestCmap()
+                        self.assertTrue(all(ord(c) in cmap for c in chars if not c.isspace()))
+                        font.close()
+            with self.assertRaisesRegex(ValueError,'Traduzione mancante'):
+                localize({**plan,'headline':'Testo personalizzato sconosciuto'},products[-1],'fr')
+
+    def test_logo_center_and_multilingual_layouts(self):
+        from localization import LANGUAGES, localize
+        from campaign import check_layout
+        with tempfile.TemporaryDirectory() as folder:
+            product=load_products(Path(folder)/'db.sqlite')[0]
+            plan=campaign_plan(product,[{'title':'Glow skincare trend'}],[],'Fai spazio al glow')
+            photo=packshot_layer(product['images'][0]['path'])
+            for language in LANGUAGES:
+                copy=localize(plan,product,language)
+                target=Path(folder)/language;target.mkdir()
+                with patch('campaign.packshot_layer',return_value=photo):
+                    graphics=render_campaign(product,copy['headline'],copy['cta'],target,scene=copy['scene'])
+                for kind,info in graphics.items():
+                    logo=next(e['box'] for e in info['elements'] if e['kind']=='logo')
+                    self.assertAlmostEqual((logo[0]+logo[2])/2,FORMATS[kind][0]/2,delta=.2)
+                    check_layout(kind,info['elements'])

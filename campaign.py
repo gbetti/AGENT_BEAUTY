@@ -65,12 +65,18 @@ def face(size, bold=False, font_path=None):
         raise RuntimeError('Font non disponibile: usa --font /percorso/font.ttf') from error
 
 
+def editorial_font(text):
+    name = 'NotoSerifCJKsc-Regular.otf' if any('\u3400' <= c <= '\u9fff' for c in text) else 'DejaVuSerif.ttf'
+    return str(ROOT/'assets/fonts'/name)
+
+
 def wrap(text, font, width):
     lines = []
     for paragraph in text.splitlines():
         current = ''
-        for word in paragraph.split():
-            trial = (current + ' ' + word).strip()
+        chinese = any('\u3400' <= c <= '\u9fff' for c in paragraph)
+        for word in (list(paragraph) if chinese else paragraph.split()):
+            trial = (current + ('' if chinese else ' ') + word).strip()
             if font.getlength(trial) > width and current:
                 lines.append(current)
                 current = word
@@ -137,7 +143,7 @@ def text_contrast(image, box, ink):
 
 
 def draw_headline(image, text, box, ink, font_path, maximum, minimum):
-    font, lines, step, size = fit_text(text, box, maximum, minimum, True, font_path)
+    font, lines, step, size = fit_text(text, box, maximum, minimum, False, font_path or editorial_font(text))
     draw = ImageDraw.Draw(image)
     left, top = box[:2]
     ratio = text_contrast(image, box, ink)
@@ -146,12 +152,12 @@ def draw_headline(image, text, box, ink, font_path, maximum, minimum):
         top += step
     actual = (left, box[1], left+max(math.ceil(font.getlength(line)) for line in lines), box[1]+len(lines)*step)
     return {'kind': 'headline', 'text': text, 'lines': lines, 'box': actual,
-            'font_size': size, 'weight': 'bold', 'contrast_ratio': ratio}
+            'font_size': size, 'weight': 'regular', 'contrast_ratio': ratio}
 
 
 def draw_cta(image, text, box, ink, fill, font_path, maximum, minimum, padding):
     inner = (box[0]+padding, box[1], box[2]-padding, box[3])
-    font, lines, _, size = fit_text(text, inner, maximum, minimum, False, font_path, single_line=True)
+    font, lines, _, size = fit_text(text, inner, maximum, minimum, False, font_path or editorial_font(text), single_line=True)
     draw = ImageDraw.Draw(image)
     draw.rounded_rectangle(box, radius=math.ceil((box[3]-box[1])*0.16), fill=fill)
     draw.text(((box[0]+box[2])/2, (box[1]+box[3])/2), text, font=font, fill=ink, anchor='mm')
@@ -237,13 +243,13 @@ def master(product_photo, headline, cta, landscape=False, font_path=None, includ
     button_ink = (255, 249, 240) if white_background else (24, 18, 14)
     elements = []
     if landscape:
-        logo_xy, logo_width = (225, 70), 260
+        logo_xy, logo_width = (639, 70), 260
         headline_box = (225, 315, 890, 625)
         cta_box = (225, 785, 850, 940)
         photo_limit, center_x, bottom = (330, 600), 1140, 930
         headline_sizes, cta_sizes, padding = (104, 76), (68, 58), 28
     else:
-        logo_xy, logo_width = (64, 196), 150
+        logo_xy, logo_width = (437, 196), 150
         headline_box = (64, 310, 960, 500)
         cta_box = (292, 1250, 732, 1335)
         photo_limit, center_x, bottom = (480, 600), 700, 1140

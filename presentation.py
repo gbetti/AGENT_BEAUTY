@@ -11,7 +11,7 @@ from pptx.enum.shapes import MSO_SHAPE
 from pptx.enum.text import MSO_AUTO_SIZE, PP_ALIGN
 from pptx.util import Inches, Pt
 
-from campaign import ROOT, FORMATS, face, logo_layer, wrap
+from campaign import ROOT, FORMATS, face, logo_layer, wrap, editorial_font
 from research import is_beauty_headline
 
 MOCHA = (47, 32, 22)
@@ -101,7 +101,7 @@ def text(slide, value, x, y, width, height, size=20, bold=False, color=INK,
     # Match the actual font metrics rather than relying on reader-side auto-fit.
     minimum=min(minimum,size)
     for fitted in range(size, minimum-1, -1):
-        font = face(fitted, bold)
+        font = face(fitted, bold, editorial_font(value))
         wrapped = [line for part in value.split('\n') for line in (wrap(part, font, width*72) or [''])]
         if len(wrapped)*fitted*1.22 <= height*72 and all(font.getlength(line) <= width*72 for line in wrapped):
             break
@@ -114,7 +114,7 @@ def text(slide, value, x, y, width, height, size=20, bold=False, color=INK,
     frame.auto_size = MSO_AUTO_SIZE.NONE
     frame.text = value
     for paragraph in frame.paragraphs:
-        paragraph.font.name = 'DejaVu Sans'
+        paragraph.font.name = 'Noto Serif CJK SC' if any('\u3400' <= c <= '\u9fff' for c in value) else 'DejaVu Serif'
         paragraph.font.size = Pt(fitted)
         paragraph.font.bold = bold
         paragraph.font.color.rgb = RGBColor(*color)
@@ -154,8 +154,8 @@ def blank(deck, background):
 
 def social_post_slide(deck, platform, feed_path, caption, tags):
     slide = blank(deck, IVORY)
-    text(slide, platform.title()+' · Feed 4:5', .6,.4,10.6,.6,size=28,bold=True)
-    brand(slide,11.5,.5,1.2)
+    text(slide, platform.title()+' · Feed 4:5', .6,.4,5.2,.6,size=24,bold=True)
+    brand(slide,6.066667,.2,1.2)
     rectangle(slide,.6,1.3,12.1,5.75,WHITE,border=(219,213,205),rounded=True)
     if platform == 'facebook':
         rectangle(slide,.72,1.42,11.85,.47,(239,245,255))
@@ -181,8 +181,8 @@ def social_post_slide(deck, platform, feed_path, caption, tags):
 
 def story_slide(deck, story_path, report):
     slide = blank(deck,IVORY)
-    text(slide,'Story / Reel · 9:16',.6,.4,10.6,.6,size=28,bold=True)
-    brand(slide,11.5,.5,1.2)
+    text(slide,'Story / Reel · 9:16',.6,.4,5.2,.6,size=24,bold=True)
+    brand(slide,6.066667,.2,1.2)
     for x,platform in ((1.05,'Instagram'),(4.8,'Facebook')):
         rectangle(slide,x,1.38,3,5.64,(24,25,30),border=(83,84,90),rounded=True)
         picture_contain(slide,story_path,x+.18,1.82,2.64,4.693333)
@@ -208,8 +208,8 @@ def story_slide(deck, story_path, report):
 
 def web_banner_slide(deck,banner_path,report):
     slide = blank(deck,IVORY)
-    text(slide,'Banner display · Pagina web',.6,.4,10.6,.6,size=28,bold=True)
-    brand(slide,11.5,.5,1.2)
+    text(slide,'Banner display · Pagina web',.6,.4,5.2,.6,size=24,bold=True)
+    brand(slide,6.066667,.2,1.2)
     rectangle(slide,.6,1.3,12.1,5.75,WHITE,border=(210,211,214),rounded=True)
     rectangle(slide,.72,1.43,11.86,.42,(235,237,241))
     text(slide,'● ● ●',.88,1.52,1.1,.17,size=9,color=(122,126,134))
@@ -261,7 +261,7 @@ def create_presentation(product, report, graphics, destination, platform='instag
     deck.core_properties.author = 'IOMA Paris · Beauty Agent'
 
     slide = blank(deck, MOCHA)
-    brand(slide, .65, .45, 1.5, white=True)
+    brand(slide, 5.916667, .3, 1.5, white=True)
     text(slide, 'CAMPAGNA BEAUTY', .65, 1.5, 6.1, .4, size=13, color=(221, 196, 164))
     text(slide, product['name'], .65, 2.05, 6.1, 2.1, size=32, minimum=24, bold=True, color=IVORY)
     rectangle(slide, .65, 4.35, .85, .035, GOLD)
@@ -276,9 +276,9 @@ def create_presentation(product, report, graphics, destination, platform='instag
         'Titolo e claim dal catalogo locale. Packshot originale: '+product['images'][0]['source_url'])
 
     slide = blank(deck, IVORY)
-    text(slide, 'I trend beauty della settimana', .6, .45, 10.2, .6, size=30, bold=True)
+    text(slide, 'I trend beauty della settimana', .6, .45, 5.2, .6, size=24, bold=True)
     text(slide, start+' — '+end, .6, 1.12, 10.2, .35, size=14, color=MUTED)
-    brand(slide, 11.5, .55, 1.2)
+    brand(slide, 6.066667, .15, 1.2)
     for index, article in enumerate(highlights):
         x = .6+index*4.13
         rectangle(slide, x, 1.85, 3.87, 4.65, WHITE, border=(222, 211, 197), rounded=True)

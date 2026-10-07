@@ -11,6 +11,7 @@ import xml.etree.ElementTree as ET
 from campaign import campaign_copy, render_campaign
 from presentation import create_presentation
 from research import is_beauty_headline
+from localization import LANGUAGES, localize
 from creative import campaign_plan, recent_campaigns
 
 ROOT = Path(__file__).resolve().parent
@@ -158,27 +159,43 @@ def run(args):
     working = Path(tempfile.mkdtemp(prefix='.campaign-', dir=args.output))
     published = False
     try:
-        graphics = render_campaign(product, headline, cta, working, args.font,scene=creative['scene'])
-        report = {'created_at': now.isoformat(), 'window_start': (now-timedelta(days=7)).isoformat(),
-                  'query': QUERY, 'product': product['name'], 'product_id': product['id'],
-                  'headline': headline, 'cta': cta, 'source_claim': claim, 'theme': theme,
-                  'creative': creative,
-                  'theme_news_counts': scores, 'matched_news': matched, 'news': news,
-                  'product_image': {'project_path': product['data'].get('local_image_path'),
-                                    'source_url': product['images'][0]['source_url']},
-                  'graphics': {kind: {**{k: v for k, v in info.items() if k != 'path'},
-                                      'path': str((directory/info['path'].name).resolve())}
-                               for kind, info in graphics.items()},
-                  'limitations': 'Segnali editoriali dalle notizie, non misure di viralità social.'}
-        presentation = create_presentation(product, report,{kind:info['path'] for kind,info in graphics.items()},
-                                           working/'presentazione.pptx',
-                                           getattr(args, 'platform', 'instagram'))
-        report['presentation'] = {**{k: v for k, v in presentation.items() if k != 'path'},
-                                  'path': str((directory/'presentazione.pptx').resolve())}
+        base_creative = creative
+        languages = getattr(args, 'languages', LANGUAGES)
+        if len(set(languages)) != len(languages) or not languages:
+            raise ValueError('Selezionare lingue distinte.')
+        localized_reports = {}
+        for language in languages:
+            creative = localize(base_creative, product, language)
+            headline, cta = creative['headline'], creative['cta']
+            locale_working = working/language
+            locale_directory = directory/language
+            locale_working.mkdir()
+            graphics = render_campaign(product, headline, cta, locale_working, args.font,scene=creative['scene'])
+            report = {'created_at': now.isoformat(), 'window_start': (now-timedelta(days=7)).isoformat(),
+                      'query': QUERY, 'product': product['name'], 'product_id': product['id'],
+                      'headline': headline, 'cta': cta, 'source_claim': creative['claim'], 'theme': theme,
+                      'creative': creative,
+                      'theme_news_counts': scores, 'matched_news': matched, 'news': news,
+                      'product_image': {'project_path': product['data'].get('local_image_path'),
+                                        'source_url': product['images'][0]['source_url']},
+                      'graphics': {kind: {**{k: v for k, v in info.items() if k != 'path'},
+                                          'path': str((locale_directory/info['path'].name).resolve())}
+                                   for kind, info in graphics.items()},
+                      'limitations': 'Segnali editoriali dalle notizie, non misure di viralità social.'}
+            presentation = create_presentation(product, report,{kind:info['path'] for kind,info in graphics.items()},
+                                               locale_working/'presentazione.pptx',
+                                               getattr(args, 'platform', 'instagram'))
+            report['presentation'] = {**{k: v for k, v in presentation.items() if k != 'path'},
+                                      'path': str((locale_directory/'presentazione.pptx').resolve())}
+            localized_reports[language] = report
+        report = dict(localized_reports.get('it', next(iter(localized_reports.values()))))
+        report['creative'] = base_creative
+        report['headline'] = base_creative['headline']
+        report['localizations'] = localized_reports
         # Commit all three images and the PowerPoint together, with their evidence.
         with sqlite3.connect(args.database) as db:
             db.execute('INSERT INTO generations VALUES(?,?,?,?,?)',
-                       (generation_id, now.isoformat(), product['id'], str((directory/'feed.png').resolve()),
+                       (generation_id, now.isoformat(), product['id'], str((directory/languages[0]/'feed.png').resolve()),
                         json.dumps(report, ensure_ascii=False)))
             working.rename(directory)
             published = True
@@ -188,10 +205,12 @@ def run(args):
         if published and directory.exists():
             shutil.rmtree(directory)
         raise
-    result = {kind: directory/(kind+'.png') for kind in graphics}
-    result['presentation'] = directory/'presentazione.pptx'
-    for path in result.values():
-        print(path.resolve())
+    result = {language: {kind: directory/language/(kind+'.png') for kind in graphics}
+              for language in languages}
+    for language in languages:
+        result[language]['presentation'] = directory/language/'presentazione.pptx'
+        for path in result[language].values():
+            print(path.resolve())
     return result
 
 
@@ -205,6 +224,8 @@ def main():
     parser.add_argument('--cta', help='Testo italiano esatto del pulsante, identico nei tre formati')
     parser.add_argument('--platform', choices=['instagram', 'facebook'], default='instagram',
                         help='Primo mockup del feed; il PowerPoint include sempre Instagram, Facebook, Story e web')
+    parser.add_argument('--languages', nargs='+', choices=LANGUAGES, default=list(LANGUAGES),
+                        help='Lingue da esportare (default: it fr en zh; cinese semplificato)')
     args = parser.parse_args()
     try:
         run(args)

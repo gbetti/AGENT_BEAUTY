@@ -1,0 +1,2 @@
+-r requirements.txt
+fonttools>=4.50,<5
