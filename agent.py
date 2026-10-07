@@ -1,171 +1,174 @@
-"""Collect public IOMA Product JSON-LD, honoring robots.txt, into SQLite."""
+"""Create Instagram artwork from the local catalog and fresh beauty news."""
 import argparse
-import hashlib
+from datetime import datetime, timedelta, timezone
+from email.utils import parsedate_to_datetime
 import json
 from pathlib import Path
 import sqlite3
-import time
 import urllib.parse
 import urllib.request
-import urllib.robotparser
 import xml.etree.ElementTree as ET
-from html.parser import HTMLParser
 
-
-class ProductParser(HTMLParser):
-    def __init__(self):
-        super().__init__()
-        self.active = False
-        self.buffer = []
-        self.products = []
-
-    def handle_starttag(self, tag, attrs):
-        if tag == 'script' and dict(attrs).get('type') == 'application/ld+json':
-            self.active = True
-            self.buffer = []
-
-    def handle_data(self, data):
-        if self.active:
-            self.buffer.append(data)
-
-    def handle_endtag(self, tag):
-        if tag == 'script' and self.active:
-            self.active = False
-            try:
-                self.walk(json.loads(''.join(self.buffer)))
-            except json.JSONDecodeError:
-                pass
-
-    def walk(self, item):
-        if isinstance(item, list):
-            for value in item:
-                self.walk(value)
-        elif isinstance(item, dict):
-            kind = item.get('@type', [])
-            if kind == 'Product' or isinstance(kind, list) and 'Product' in kind:
-                self.products.append(item)
-            for value in item.values():
-                if isinstance(value, (list, dict)):
-                    self.walk(value)
+ROOT = Path(__file__).resolve().parent
+QUERY = '(beauty OR skincare) (trend OR glow OR hydration OR longevity) when:7d'
+THEMES = {
+    'glow': {'keywords': ('glow', 'radiance', 'luminos', 'makeup', 'make-up', 'tinted', 'skin tint', 'teint'), 'label': 'Il tuo momento glow', 'colors': ((247, 233, 221), (205, 170, 144))},
+    'renew': {'keywords': ('longevity', 'aging', 'ageing', 'collagen', 'collag', 'barrier', 'barriera', 'hydrat', 'idrat', 'firm'), 'label': 'Dedicati un rituale di cura', 'colors': ((233, 237, 229), (161, 185, 169))},
+}
 
 
 def initialize(db):
-    db.executescript('''
-    CREATE TABLE IF NOT EXISTS products (
-      page_url TEXT NOT NULL, name TEXT NOT NULL, sku TEXT,
-      description TEXT, json_ld TEXT NOT NULL,
-      collected_at TEXT DEFAULT CURRENT_TIMESTAMP,
-      PRIMARY KEY (page_url, name));
-    CREATE TABLE IF NOT EXISTS images (
-      url TEXT PRIMARY KEY, path TEXT NOT NULL);
-    CREATE TABLE IF NOT EXISTS product_images (
-      page_url TEXT, name TEXT, image_url TEXT,
-      PRIMARY KEY (page_url, name, image_url));
-    ''')
+    db.executescript('''CREATE TABLE IF NOT EXISTS products (
+    page_url TEXT NOT NULL, name TEXT NOT NULL, sku TEXT, description TEXT,
+    json_ld TEXT NOT NULL, collected_at TEXT DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY(page_url,name));
+    CREATE TABLE IF NOT EXISTS images (url TEXT PRIMARY KEY,path TEXT NOT NULL);
+    CREATE TABLE IF NOT EXISTS product_images (page_url TEXT,name TEXT,image_url TEXT,
+    PRIMARY KEY(page_url,name,image_url));''')
+
+
+def load_products(path):
+    # A new clone is initialized from the supplied catalog, never from a website.
+    if not path.exists():
+        path.parent.mkdir(parents=True, exist_ok=True)
+        with sqlite3.connect(path) as db:
+            db.executescript((ROOT / 'catalog_seed.sql').read_text(encoding='utf-8'))
+    with sqlite3.connect(f'{path.resolve().as_uri()}?mode=ro', uri=True) as db:
+        products = []
+        for url, name, description, raw in db.execute('SELECT page_url,name,description,json_ld FROM products ORDER BY name'):
+            products.append({'id': url, 'name': name, 'description': description, 'data': json.loads(raw)})
+    if not products:
+        raise RuntimeError('Il catalogo è vuoto. Inserisci un prodotto nel database.')
+    return products
+
+
+def parse_news(raw, now):
+    cutoff = now - timedelta(days=7)
+    found = []
+    seen = set()
+    for item in ET.fromstring(raw).findall('.//item'):
+        try:
+            published = parsedate_to_datetime(item.findtext('pubDate', ''))
+            if published.tzinfo is None:
+                continue
+        except (ValueError, TypeError, OverflowError):
+            continue
+        title = item.findtext('title', '').strip()
+        url = item.findtext('link', '').strip()
+        if not title or not url.startswith('https://') or url in seen or not cutoff <= published <= now:
+            continue
+        seen.add(url)
+        found.append({'title': title, 'url': url, 'publisher': item.findtext('source', ''), 'published_at': published.isoformat()})
+    return sorted(found, key=lambda x: x['published_at'], reverse=True)
+
+
+def search_news(now):
+    query = urllib.parse.urlencode({'q': QUERY, 'hl': 'it', 'gl': 'IT', 'ceid': 'IT:it'})
+    req = urllib.request.Request('https://news.google.com/rss/search?' + query, headers={'User-Agent': 'AgentBeauty/2.0'})
+    with urllib.request.urlopen(req, timeout=30) as response:
+        news = parse_news(response.read(), now)
+    if not news:
+        raise RuntimeError('Nessuna notizia beauty datata negli ultimi sette giorni. Nessun trend inventato.')
+    return news
+
+
+def choose_product(products, news, requested=None):
+    candidates = [p for p in products if not requested or requested.casefold() in p['name'].casefold()]
+    if not candidates:
+        raise ValueError('Prodotto richiesto non trovato nel database.')
+    scores = {theme: sum(any(word in n['title'].casefold() for word in config['keywords']) for n in news) for theme, config in THEMES.items()}
+    ranked = []
+    for product in candidates:
+        editorial = product['data'].get('editorial', {})
+        theme = editorial.get('theme')
+        claim = editorial.get('claim_it')
+        if theme in THEMES and claim:
+            ranked.append((scores[theme], product['name'], product, theme, claim))
+    if not ranked:
+        raise RuntimeError('Mancano claim editoriale e tema nel catalogo. Aggiungerli senza inventare benefici.')
+    _, _, product, theme, claim = max(ranked, key=lambda item: (item[0], item[1]))
+    matched = [n for n in news if any(word in n['title'].casefold() for word in THEMES[theme]['keywords'])]
+    return product, theme, claim, matched, scores
+
+
+def render(product, theme, claim, path, font_path=None):
+    from PIL import Image, ImageDraw, ImageFont
+    def font(size):
+        try:
+            return ImageFont.truetype(font_path or 'DejaVuSans.ttf', size)
+        except OSError:
+            raise RuntimeError('Font non disponibile: usa --font /percorso/font.ttf')
+    image = Image.new('RGB', (1080, 1350))
+    draw = ImageDraw.Draw(image)
+    top, bottom = THEMES[theme]['colors']
+    for y in range(1350):
+        ratio = y / 1349
+        draw.line((0, y, 1080, y), fill=tuple(round(a + (b-a)*ratio) for a,b in zip(top,bottom)))
+    draw.ellipse((600, -220, 1400, 580), fill=top)
+    draw.ellipse((-340, 940, 420, 1700), outline=(244, 242, 232), width=3)
+    ink = (39, 49, 42)
+    draw.text((90, 95), 'IOMA PARIS', font=font(36), fill=ink)
+    draw.line((90, 169, 990, 169), fill=ink, width=2)
+    draw.text((90, 230), THEMES[theme]['label'], font=font(28), fill=ink)
+    def block(text, y, size, max_width=890):
+        face = font(size)
+        lines = []
+        current = ''
+        for word in text.split():
+            trial = (current + ' ' + word).strip()
+            if draw.textlength(trial, font=face) > max_width and current:
+                lines.append(current)
+                current = word
+            else:
+                current = trial
+        if current:
+            lines.append(current)
+        for line in lines:
+            draw.text((90, y), line, font=face, fill=ink)
+            y += int(size * 1.35)
+        return y
+    y = block(claim, 340, 66)
+    y = block(product['name'], max(y + 90, 780), 34)
+    properties = product['data'].get('additionalProperty', [])
+    line = next((p['value'] for p in properties if p.get('name') == 'Gamme'), '')
+    block(line, y+35, 26)
+    draw.line((90, 1175, 990, 1175), fill=ink, width=2)
+    draw.text((90, 1210), 'Il tuo rituale beauty, ogni giorno.', font=font(28), fill=ink)
+    image.save(path, format='PNG')
 
 
 def run(args):
-    base = args.base_url.rstrip('/')
-    host = urllib.parse.urlsplit(base).hostname
-    if host not in {'ioma-paris.com', 'www.ioma-paris.com'}:
-        raise ValueError('Only IOMA hosts are supported')
-    output = Path(args.output)
-    output.mkdir(parents=True, exist_ok=True)
-    (output / 'images').mkdir(exist_ok=True)
-    user_agent = 'AgentBeauty/1.0'
-    last_request = 0.0
-
-    def fetch(url):
-        nonlocal last_request
-        delay = max(args.delay, 1.0) - (time.monotonic() - last_request)
-        if delay > 0:
-            time.sleep(delay)
-        request = urllib.request.Request(url, headers={'User-Agent': user_agent})
-        last_request = time.monotonic()
-        with urllib.request.urlopen(request, timeout=30) as response:
-            return response.read(), response.headers.get_content_type()
-
-    # Fail closed if robots.txt cannot be fetched.
-    raw, _ = fetch(base + '/robots.txt')
-    robots = urllib.robotparser.RobotFileParser()
-    robots.parse(raw.decode('utf-8', errors='replace').splitlines())
-    pending = robots.site_maps() or [base + '/sitemap.xml']
-    pages = set(args.url)
-    visited = set()
-    while pending:
-        url = pending.pop()
-        if url in visited:
-            continue
-        if urllib.parse.urlsplit(url).hostname != host:
-            raise ValueError('Sitemap host differs from base host: ' + url)
-        visited.add(url)
-        if not robots.can_fetch(user_agent, url):
-            raise RuntimeError('robots.txt disallows sitemap: ' + url)
-        raw, _ = fetch(url)
-        root = ET.fromstring(raw)
-        locations = [node.text for node in root.iter() if node.tag.split('}')[-1] == 'loc' and node.text]
-        if root.tag.split('}')[-1] == 'sitemapindex':
-            pending.extend(locations)
-        else:
-            pages.update(locations)
-    total = 0
-    with sqlite3.connect(output / 'catalog.sqlite') as db:
-        initialize(db)
-        for url in sorted(pages)[:args.max_pages]:
-            if urllib.parse.urlsplit(url).hostname != host or not robots.can_fetch(user_agent, url):
-                continue
-            raw, content_type = fetch(url)
-            if content_type != 'text/html':
-                continue
-            parser = ProductParser()
-            parser.feed(raw.decode('utf-8', errors='replace'))
-            for product in parser.products:
-                name = product.get('name')
-                if not isinstance(name, str) or not name:
-                    continue
-                db.execute('INSERT OR REPLACE INTO products(page_url,name,sku,description,json_ld) VALUES(?,?,?,?,?)',
-                           (url, name, str(product.get('sku', '')), str(product.get('description', '')), json.dumps(product, ensure_ascii=False)))
-                images = product.get('image', [])
-                if not isinstance(images, list):
-                    images = [images]
-                for image in images:
-                    image = image.get('url', image.get('contentUrl')) if isinstance(image, dict) else image
-                    if not isinstance(image, str):
-                        continue
-                    image = urllib.parse.urljoin(url, image)
-                    if urllib.parse.urlsplit(image).hostname != host:
-                        print('External image host requires separate access/robots verification:', image)
-                        continue
-                    if not robots.can_fetch(user_agent, image):
-                        continue
-                    found = db.execute('SELECT path FROM images WHERE url=?', (image,)).fetchone()
-                    if not found:
-                        data, mime = fetch(image)
-                        if not mime.startswith('image/'):
-                            raise ValueError('Expected image: ' + image)
-                        suffix = {'image/jpeg': '.jpg', 'image/png': '.png', 'image/webp': '.webp', 'image/svg+xml': '.svg'}.get(mime, '.img')
-                        path = Path('images') / (hashlib.sha256(image.encode()).hexdigest() + suffix)
-                        (output / path).write_bytes(data)
-                        db.execute('INSERT INTO images VALUES (?,?)', (image, str(path)))
-                    db.execute('INSERT OR IGNORE INTO product_images VALUES (?,?,?)', (url, name, image))
-                total += 1
-            db.commit()
-    print(f'Collected {total} product records into {output / "catalog.sqlite"}')
-    if not total:
-        raise RuntimeError('No Product JSON-LD found; inspect website structure before claiming collection works')
+    now = datetime.now(timezone.utc)
+    products = load_products(args.database)
+    # Fetch fresh evidence on EVERY normal invocation. No cached-trend fallback.
+    news = search_news(now)
+    product, theme, claim, matched, scores = choose_product(products, news, args.product)
+    args.output.mkdir(parents=True, exist_ok=True)
+    import tempfile
+    directory = Path(tempfile.mkdtemp(prefix=now.strftime('%Y%m%dT%H%M%SZ-'), dir=args.output))
+    render(product, theme, claim, directory/'instagram.png', args.font)
+    report = {'created_at': now.isoformat(), 'window_start': (now-timedelta(days=7)).isoformat(), 'query': QUERY,
+              'product': product['name'], 'claim': claim, 'theme': theme, 'theme_news_counts': scores,
+              'matched_news': matched, 'news': news,
+              'limitations': 'Segnali editoriali dalle notizie, non misure di viralità social. Grafica tipografica senza foto prodotto.'}
+    (directory/'research.json').write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8')
+    caption = f"{claim}\n\n{product['name']} — IOMA Paris\n\n#IOMAParis #Skincare #BeautyRoutine"
+    (directory/'caption.txt').write_text(caption, encoding='utf-8')
+    print(f'Grafica Instagram 1080×1350: {directory / "instagram.png"}')
+    print(f'Fonti recenti: {len(news)}; notizie associate al tema: {len(matched)}')
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--base-url', default='https://ioma-paris.com')
-    parser.add_argument('--output', default='data')
-    parser.add_argument('--url', action='append', default=[])
-    parser.add_argument('--max-pages', type=int, default=300)
-    parser.add_argument('--delay', type=float, default=1.5)
+    parser.add_argument('--database', type=Path, default=ROOT/'data/catalog.sqlite')
+    parser.add_argument('--output', type=Path, default=ROOT/'output')
+    parser.add_argument('--product', help='Parte del nome per scegliere il prodotto')
+    parser.add_argument('--font', help='Percorso di un font TrueType')
     args = parser.parse_args()
-    if args.max_pages < 1:
-        parser.error('--max-pages must be positive')
-    run(args)
+    try:
+        run(args)
+    except Exception as error:
+        parser.exit(1, f'Errore: {error}\n')
 
 
 if __name__ == '__main__':

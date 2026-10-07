@@ -1,23 +1,35 @@
 # AGENT_BEAUTY
 
-Agente Python per raccogliere dati pubblici dei prodotti IOMA in SQLite e scaricare le immagini associate. Richiede Python 3.10+; nessuna dipendenza esterna.
+Agente per creare post Instagram usando i prodotti del database locale. Non cerca né scarica prodotti dal sito IOMA.
 
 ## Avvio
 
-```sh
-python agent.py --output data --max-pages 300
-```
-
-Il programma legge robots.txt e le sitemap, cerca dati strutturati Product JSON-LD nelle pagine e salva nome, SKU, descrizione e JSON originale in `data/catalog.sqlite`. Le immagini sono in `data/images`; le tabelle `images` e `product_images` conservano URL e collegamenti ai prodotti. Non scarica schede PDF né presume che tutte le pagine contengano dati strutturati.
-
-Le richieste sono distanziate di almeno un secondo. Se robots.txt non è accessibile, il programma si ferma. Le immagini su domini esterni vengono segnalate e saltate finché accesso e regole di raccolta non sono verificati. Un errore di rete interrompe la raccolta: i record già confermati restano nel database e il comando può essere rilanciato.
-
-## Verifica
+Richiede Python 3.10+.
 
 ```sh
-python -m unittest discover -s tests -v
+python3 -m pip install -r requirements.txt
+python3 agent.py
 ```
 
-I test verificano estrazione JSON-LD e schema SQLite. La raccolta sul sito reale **non è ancora verificata**: nell'ambiente cloud il proxy ha restituito 403. Abilitare `ioma-paris.com` e `www.ioma-paris.com` nelle impostazioni di rete, quindi ripetere l'avvio. La struttura effettiva del sito potrebbe richiedere adattamenti.
+A ogni avvio ricerca online notizie beauty degli ultimi **sette giorni** tramite Google News RSS e verifica la data di pubblicazione. Conta i titoli associati a glow o skincare/renew, sceglie un prodotto del catalogo e compone uno sfondo coordinato con un claim italiano derivato dalla descrizione del prodotto. Non inventa trend quando la ricerca fallisce. Si tratta di segnali editoriali, non di statistiche di viralità Instagram/TikTok.
 
-Il limite riguarda le pagine esaminate, non il numero di prodotti. Aumentare `--max-pages` se necessario. Il database locale non è un servizio database gestito e i dati sono esclusi da Git.
+Ogni esecuzione riuscita crea una cartella distinta sotto `output/` con:
+
+- `instagram.png`: grafica 1080×1350 pronta per il feed, con claim, nome e linea prodotto.
+- `caption.txt`: testo da accompagnare al post.
+- `research.json`: query, finestra temporale, titoli, fonti e ragione dell'abbinamento.
+
+Le grafiche sono tipografiche, con sfondo a gradiente coordinato: **non includono foto della confezione**, perché gli allegati della chat non sono disponibili come file. Non pubblica automaticamente su Instagram.
+
+## Catalogo
+
+Il database è `data/catalog.sqlite`. Se manca (ad esempio su un nuovo clone), viene inizializzato dal file `catalog_seed.sql`, contenente i tre prodotti forniti: Crème Sublime Revitalisante, CC Gel e Crème Généreuse Contour des Yeux. Un database esistente viene letto senza sostituirlo. Prezzi, descrizioni e claim sono quelli salvati, non vengono aggiornati online. Per nuovi prodotti, aggiungere nel JSON del database `editorial.theme` (`glow` o `renew`) e `editorial.claim_it` con un claim verificato sulla scheda.
+
+```sh
+python3 agent.py --product 'CC Gel'
+python3 agent.py --database data/catalog.sqlite --output output
+python3 agent.py --font /percorso/font.ttf
+python3 -m unittest discover -s tests -v
+```
+
+È necessario un font TrueType: normalmente `DejaVuSans.ttf`; se non presente, specificare `--font`. L'accesso HTTPS a `news.google.com` è indispensabile. Se il proxy blocca la richiesta, il programma termina con errore senza presentare una grafica come basata su trend aggiornati. Nell'ambiente cloud abilitare il dominio nelle impostazioni. Per installare Pillow servono `pypi.org` e `files.pythonhosted.org`.
