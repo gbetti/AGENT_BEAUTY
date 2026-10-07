@@ -11,6 +11,7 @@ import xml.etree.ElementTree as ET
 from campaign import campaign_copy, render_campaign
 from presentation import create_presentation
 from research import is_beauty_headline
+from creative import campaign_plan, recent_campaigns
 
 ROOT = Path(__file__).resolve().parent
 QUERY = '(beauty OR skincare) (trend OR glow OR hydration OR longevity) when:7d'
@@ -140,7 +141,12 @@ def run(args):
     # Fresh evidence on EVERY invocation. No cached or invented trend fallback.
     news = search_news(now)
     product, theme, claim, matched, scores = choose_product(products, news, args.product)
-    headline, cta = campaign_copy(product, getattr(args, 'headline', None), getattr(args, 'cta', None))
+    # Validate supplied text before preparing output or selecting any new setting.
+    if getattr(args,'headline',None) is not None or getattr(args,'cta',None) is not None:
+        campaign_copy(product,getattr(args,'headline',None),getattr(args,'cta',None))
+    creative = campaign_plan(product,news,recent_campaigns(args.database),
+                             getattr(args,'headline',None),getattr(args,'cta',None))
+    headline,cta = creative['headline'],creative['cta']
     import tempfile
     import uuid
     import shutil
@@ -152,10 +158,11 @@ def run(args):
     working = Path(tempfile.mkdtemp(prefix='.campaign-', dir=args.output))
     published = False
     try:
-        graphics = render_campaign(product, headline, cta, working, args.font)
+        graphics = render_campaign(product, headline, cta, working, args.font,scene=creative['scene'])
         report = {'created_at': now.isoformat(), 'window_start': (now-timedelta(days=7)).isoformat(),
                   'query': QUERY, 'product': product['name'], 'product_id': product['id'],
                   'headline': headline, 'cta': cta, 'source_claim': claim, 'theme': theme,
+                  'creative': creative,
                   'theme_news_counts': scores, 'matched_news': matched, 'news': news,
                   'product_image': {'project_path': product['data'].get('local_image_path'),
                                     'source_url': product['images'][0]['source_url']},
@@ -163,7 +170,7 @@ def run(args):
                                       'path': str((directory/info['path'].name).resolve())}
                                for kind, info in graphics.items()},
                   'limitations': 'Segnali editoriali dalle notizie, non misure di viralità social.'}
-        presentation = create_presentation(product, report, graphics['feed']['path'],
+        presentation = create_presentation(product, report,{kind:info['path'] for kind,info in graphics.items()},
                                            working/'presentazione.pptx',
                                            getattr(args, 'platform', 'instagram'))
         report['presentation'] = {**{k: v for k, v in presentation.items() if k != 'path'},
@@ -197,7 +204,7 @@ def main():
     parser.add_argument('--headline', help='Headline italiana esatta, massimo 4 parole, identica nei tre formati')
     parser.add_argument('--cta', help='Testo italiano esatto del pulsante, identico nei tre formati')
     parser.add_argument('--platform', choices=['instagram', 'facebook'], default='instagram',
-                        help='Cornice del post nella presentazione (default: instagram)')
+                        help='Primo mockup del feed; il PowerPoint include sempre Instagram, Facebook, Story e web')
     args = parser.parse_args()
     try:
         run(args)

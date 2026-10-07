@@ -13,6 +13,7 @@ from campaign import FORMATS, campaign_copy, render_campaign, packshot_layer
 from presentation import create_presentation, weekly_highlights
 from pptx import Presentation
 from pptx.enum.shapes import MSO_SHAPE_TYPE
+from creative import campaign_plan, ANGLES
 
 
 class AgentTests(unittest.TestCase):
@@ -170,7 +171,7 @@ class AgentTests(unittest.TestCase):
             self.assertEqual(list(output.iterdir()), [existing])
             with sqlite3.connect(args.database) as db:
                 self.assertEqual(db.execute('SELECT COUNT(*) FROM generations').fetchone()[0], 0)
-            def partial_export(*values):
+            def partial_export(*values,**options):
                 (values[3]/'feed.png').write_bytes(b'partial')
                 raise OSError('Errore di esportazione del secondo formato')
             with patch('agent.search_news', return_value=news), patch('agent.render_campaign', side_effect=partial_export):
@@ -201,18 +202,25 @@ class AgentTests(unittest.TestCase):
             for target in folders:
                 self.assertEqual({p.name for p in target.iterdir()},
                                  {'feed.png','story.png','banner.png','presentazione.pptx'})
-                self.assertEqual(len(Presentation(target/'presentazione.pptx').slides), 3)
+                self.assertEqual(len(Presentation(target/'presentazione.pptx').slides), 6)
             with sqlite3.connect(args.database) as db:
                 rows = db.execute('SELECT research_json FROM generations').fetchall()
                 self.assertEqual(len(rows),2)
                 for row in rows:
                     report = json.loads(row[0])
                     self.assertEqual(set(report['graphics']), set(FORMATS))
-                    self.assertEqual(report['headline'], 'Leviga le rughe')
+                    self.assertLessEqual(len(report['headline'].split()),4)
+                    self.assertEqual(report['creative']['trend_id'],'hydration')
                     self.assertIn('Leviga rughe e linee sottili del contorno occhi.',
                                   report['presentation']['caption'])
                     self.assertIn('#ContornoOcchi', report['presentation']['hashtags'])
-                    self.assertEqual(report['presentation']['slides'], 3)
+                    self.assertEqual(report['presentation']['slides'], 6)
+                    self.assertEqual(set(report['presentation']['mockups']),
+                                     {'instagram_feed','facebook_feed','instagram_story','facebook_story','web_banner'})
+                first_report,second_report=[json.loads(row[0]) for row in rows]
+                self.assertNotEqual(first_report['creative']['scene']['id'],second_report['creative']['scene']['id'])
+                self.assertNotEqual(first_report['headline'],second_report['headline'])
+                self.assertNotEqual(first_report['creative']['objective'],second_report['creative']['objective'])
 
     def test_powerpoint_contains_product_dated_sources_and_original_feed(self):
         report = {'window_start':'2026-09-30T12:00:00+00:00',
@@ -233,13 +241,16 @@ class AgentTests(unittest.TestCase):
                        'published_at':'2026-10-07T11:00:00+00:00'}]}
         with tempfile.TemporaryDirectory() as folder:
             product = load_products(Path(folder)/'db.sqlite')[0]
-            feed = Path(folder)/'feed.png'
-            Image.new('RGB', FORMATS['feed'], (156,120,90)).save(feed)
+            graphics = {}
+            for kind,size in FORMATS.items():
+                graphics[kind]=Path(folder)/(kind+'.png')
+                Image.new('RGB',size,(156,120,90)).save(graphics[kind])
+            feed=graphics['feed']
             for platform in ('instagram','facebook'):
                 with self.subTest(platform=platform):
-                    result = create_presentation(product, report, feed, Path(folder)/(platform+'.pptx'), platform)
+                    result = create_presentation(product, report, graphics, Path(folder)/(platform+'.pptx'), platform)
                     deck = Presentation(result['path'])
-                    self.assertEqual(len(deck.slides),3)
+                    self.assertEqual(len(deck.slides),6)
                     text = ['\n'.join(shape.text for shape in slide.shapes if shape.has_text_frame)
                             for slide in deck.slides]
                     self.assertIn(product['name'],text[0])
@@ -256,6 +267,15 @@ class AgentTests(unittest.TestCase):
                     self.assertIn(result['caption'],text[2])
                     self.assertIn(' '.join(result['hashtags']),text[2])
                     self.assertIn(platform.title(),text[2])
+                    self.assertIn('Facebook' if platform=='instagram' else 'Instagram',text[3])
+                    self.assertIn('Instagram',text[4])
+                    self.assertIn('Facebook',text[4])
+                    self.assertIn('beauty-journal.example',text[5])
+                    for index,kind in [(2,'feed'),(3,'feed'),(4,'story'),(5,'banner')]:
+                        pictures=[shape for shape in deck.slides[index].shapes if shape.shape_type==MSO_SHAPE_TYPE.PICTURE]
+                        picture=next(shape for shape in pictures if shape.image.blob==graphics[kind].read_bytes())
+                        self.assertEqual((picture.crop_left,picture.crop_top,picture.crop_right,picture.crop_bottom),(0,0,0,0))
+                        self.assertAlmostEqual(picture.width/picture.height,FORMATS[kind][0]/FORMATS[kind][1],places=5)
                     picture = next(shape for shape in deck.slides[2].shapes
                                    if shape.shape_type==MSO_SHAPE_TYPE.PICTURE and shape.image.blob==feed.read_bytes())
                     self.assertAlmostEqual(picture.width/picture.height,4/5,places=5)
@@ -277,7 +297,7 @@ class AgentTests(unittest.TestCase):
             previous = output/'previous.pptx';previous.write_bytes(b'keep')
             args = Namespace(database=Path(folder)/'db.sqlite',output=output,
                              product='CC Gel',font=None,headline=None,cta=None)
-            def fake_graphics(product, headline, cta, directory, font):
+            def fake_graphics(product, headline, cta, directory, font,scene=None):
                 result = {}
                 for kind,size in FORMATS.items():
                     path = directory/(kind+'.png');Image.new('RGB',size).save(path)
@@ -295,3 +315,42 @@ class AgentTests(unittest.TestCase):
             self.assertEqual(previous.read_bytes(),b'keep')
             with sqlite3.connect(args.database) as db:
                 self.assertEqual(db.execute('SELECT COUNT(*) FROM generations').fetchone()[0],0)
+
+    def test_creative_plan_connects_news_claim_and_varying_settings(self):
+        with tempfile.TemporaryDirectory() as folder:
+            products=load_products(Path(folder)/'db.sqlite')
+            cases=[(products[0],'Natural glow skincare trend','natural_glow'),
+                   (products[1],'Skin barrier hydration trend','hydration'),
+                   (products[2],'K-beauty skincare rituals','kbeauty_ritual')]
+            for product,title,topic in cases:
+                history=[]
+                news=[{'title':title,'url':'https://example.com/source','published_at':'2026-10-07T10:00:00+00:00'}]
+                for invocation in range(5):
+                    creative=campaign_plan(product,news,history)
+                    self.assertEqual(creative['trend_id'],topic)
+                    self.assertEqual(creative['evidence'],news)
+                    self.assertIn(product['data']['editorial']['claim_it'],creative['caption'])
+                    self.assertIn(creative['scene']['id'],ANGLES[topic]['scenes'])
+                    if history:
+                        self.assertNotEqual(creative['scene']['id'],history[0]['creative']['scene']['id'])
+                        self.assertNotEqual(creative['headline'],history[0]['creative']['headline'])
+                    history.insert(0,{'product_id':product['id'],'creative':creative})
+            override=campaign_plan(products[0],news,[],'È luce naturale!','Scopri di più')
+            self.assertEqual(override['headline'],'È luce naturale!')
+            self.assertEqual(override['cta'],'Scopri di più')
+
+    def test_light_and_dark_scenes_export_legible_safe_graphics(self):
+        with tempfile.TemporaryDirectory() as folder:
+            product=load_products(Path(folder)/'db.sqlite')[0]
+            scenes=json.loads((Path(__file__).resolve().parents[1]/'assets/backgrounds/scenes.json').read_text())
+            photo=packshot_layer(product['images'][0]['path'])
+            for identifier in ('sunlit-vanity','aqua-spa','violet-evening'):
+                scene=next(s for s in scenes if s['id']==identifier)
+                target=Path(folder)/identifier;target.mkdir()
+                with patch('campaign.packshot_layer',return_value=photo):
+                    result=render_campaign(product,'Team incarnato naturale?','Scopri il tuo glow',target,scene=scene)
+                for info in result.values():
+                    for element in info['elements']:
+                        if element['kind'] in ('headline','cta'):
+                            self.assertGreaterEqual(element['contrast_ratio'],4.5)
+                self.assertLessEqual(result['feed']['text_area_ratio'],.20)

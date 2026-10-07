@@ -1,0 +1,121 @@
+[
+  {
+    "id": "sunlit-vanity",
+    "name": "Vanity nella luce del mattino",
+    "path": "assets/backgrounds/scenes/sunlit-vanity.png",
+    "light": true,
+    "setting": "Travertino, lino e riflessi pesca; incarnato naturale e glow quotidiano.",
+    "sha256": "037e4ffdde857011e91baf18584bd6d0baa5bbe7e175c8357de1392ee199bd41",
+    "size": [
+      1024,
+      1536
+    ],
+    "origin": "AI-generated photographic setting. Original product and official logo are composited separately.",
+    "portrait_anchor": [
+      700,
+      1070
+    ]
+  },
+  {
+    "id": "pearl-glass",
+    "name": "Studio di vetro perlato",
+    "path": "assets/backgrounds/scenes/pearl-glass.png",
+    "light": true,
+    "setting": "Vetro satinato e luce champagne; luminosità e cura essenziale.",
+    "sha256": "962993943adf56e9be56206664f7c4863b5b4fbdd87d2beb3ef9b74a8dc1d134",
+    "size": [
+      1024,
+      1536
+    ],
+    "origin": "AI-generated photographic setting. Original product and official logo are composited separately.",
+    "portrait_anchor": [
+      700,
+      1150
+    ]
+  },
+  {
+    "id": "aqua-spa",
+    "name": "Spa con riflessi d'acqua",
+    "path": "assets/backgrounds/scenes/aqua-spa.png",
+    "light": true,
+    "setting": "Acqua e ceramica chiara; idratazione e rituale di cura.",
+    "sha256": "10de0f13963f5723fe3ccb5b2eb71d6b8e2f12d473d5fe2022654c3d78be13ab",
+    "size": [
+      1024,
+      1536
+    ],
+    "origin": "AI-generated photographic setting. Original product and official logo are composited separately.",
+    "portrait_anchor": [
+      700,
+      1060
+    ]
+  },
+  {
+    "id": "mint-ritual",
+    "name": "Rituale in uno studio verde giada",
+    "path": "assets/backgrounds/scenes/mint-ritual.png",
+    "light": true,
+    "setting": "Vetro verde giada e luce diffusa; rituali quotidiani ispirati alla K-beauty.",
+    "sha256": "c30f4614a7b391b2b8b35398575671f254ccd866486f6e8dfe4acaccbdb15488",
+    "size": [
+      1024,
+      1536
+    ],
+    "origin": "AI-generated photographic setting. Original product and official logo are composited separately.",
+    "portrait_anchor": [
+      700,
+      1142
+    ]
+  },
+  {
+    "id": "violet-evening",
+    "name": "Rituale serale in seta viola",
+    "path": "assets/backgrounds/scenes/violet-evening.png",
+    "light": false,
+    "setting": "Seta prugna e metallo; cura serale e anti-age.",
+    "sha256": "2718c838caebe1b6125c070862c4853106250f4fbd83283f03aa0752f2e43295",
+    "size": [
+      1024,
+      1536
+    ],
+    "origin": "AI-generated photographic setting. Original product and official logo are composited separately.",
+    "portrait_anchor": [
+      700,
+      1040
+    ]
+  },
+  {
+    "id": "botanical-stone",
+    "name": "Giardino di pietra e luce",
+    "path": "assets/backgrounds/scenes/botanical-stone.png",
+    "light": true,
+    "setting": "Pietra chiara e ombre botaniche; calma e cura. Non rappresenta ingredienti del prodotto.",
+    "sha256": "4face2611b7ba0fe04e5b9d377d2aa0a9e0a619ba1ad9d577c894f6843db0943",
+    "size": [
+      1024,
+      1536
+    ],
+    "origin": "AI-generated photographic setting. Original product and official logo are composited separately.",
+    "portrait_anchor": [
+      700,
+      1140
+    ]
+  },
+  {
+    "id": "silk-mocha",
+    "name": "Seta e pietra color moka",
+    "path": "assets/backgrounds/ioma-campaign.png",
+    "light": false,
+    "setting": "Seta e travertino; rituale nutriente e anti-age.",
+    "sha256": "ab73c84aaa7aa3517ad96adef1f522cc29071fb090df58598f372fd7e1d266ef",
+    "size": [
+      1122,
+      1402
+    ],
+    "origin": "AI-generated photographic setting. Original product and official logo are composited separately.",
+    "portrait_anchor": [
+      700,
+      1140
+    ]
+  }
+]

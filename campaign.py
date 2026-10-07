@@ -159,15 +159,51 @@ def draw_cta(image, text, box, ink, fill, font_path, maximum, minimum, padding):
             'font_size': size, 'weight': 'regular', 'contrast_ratio': contrast(ink, fill)}
 
 
-def background(size):
-    with Image.open(BACKGROUND_PATH) as original:
-        image = ImageOps.fit(original.convert('RGB'), size).convert('RGBA')
+def background(size, scene=None):
+    path = ROOT/scene['path'] if scene else BACKGROUND_PATH
+    with Image.open(path) as original:
+        original=original.convert('RGB')
+        if scene:
+            # Align each photographed support plane with the product's baseline.
+            original=ImageOps.fit(original,PORTRAIT_SIZE,method=Image.Resampling.LANCZOS)
+            centering=(.5,.5)
+            if size == LANDSCAPE_SIZE:
+                anchor_y=scene.get('portrait_anchor',[700,1140])[1]
+                centering=(.5,max(0,min(1,(anchor_y*1.5-930)/(1536*1.5-1024))))
+            image=ImageOps.fit(original,size,method=Image.Resampling.LANCZOS,centering=centering).convert('RGBA')
+        else:
+            image = ImageOps.fit(original, size).convert('RGBA')
     corners = [image.getpixel(p)[:3] for p in [(0, 0), (size[0]-1, 0), (0, size[1]-1), (size[0]-1, size[1]-1)]]
     white = all(min(color) >= 248 for color in corners)
+    if scene:
+        return image, bool(scene['light'])
     if not white:
         # At most ~100 RGB even over a white highlight: readable warm-white text.
         image.alpha_composite(Image.new('RGBA', size, (18, 12, 8, 164)))
     return image, white
+
+
+def protect_text_field(image, box, ink, light):
+    """Preserve the setting; soften only the area that needs readable typography."""
+    try:
+        text_contrast(image, box, ink)
+        return
+    except ValueError:
+        pass
+    tint = (255,249,240) if light else (18,12,8)
+    for opacity in (155,205,240):
+        mask = Image.new('L',image.size)
+        left,top,right,bottom = box
+        ImageDraw.Draw(mask).rectangle((left-120,top-120,right+120,bottom+120),fill=opacity)
+        mask = mask.filter(ImageFilter.GaussianBlur(36))
+        overlay = Image.new('RGBA',image.size,tint+(0,));overlay.putalpha(mask)
+        image.alpha_composite(overlay)
+        try:
+            text_contrast(image,box,ink)
+            return
+        except ValueError:
+            continue
+    raise ValueError('Il testo non è leggibile sull’ambientazione selezionata.')
 
 
 def logo_layer(width, white):
@@ -193,9 +229,9 @@ def composite_product(image, photo, box):
     image.alpha_composite(resized, (left,top))
 
 
-def master(product_photo, headline, cta, landscape=False, font_path=None, include_product=True):
+def master(product_photo, headline, cta, landscape=False, font_path=None, include_product=True, scene=None):
     size = LANDSCAPE_SIZE if landscape else PORTRAIT_SIZE
-    image, white_background = background(size)
+    image, white_background = background(size,scene)
     ink = (24, 18, 14) if white_background else (255, 249, 240)
     button_fill = ink
     button_ink = (255, 249, 240) if white_background else (24, 18, 14)
@@ -212,6 +248,13 @@ def master(product_photo, headline, cta, landscape=False, font_path=None, includ
         cta_box = (292, 1250, 732, 1335)
         photo_limit, center_x, bottom = (480, 600), 700, 1140
         headline_sizes, cta_sizes, padding = (84, 54), (36, 28), 26
+    if scene:
+        anchor_x,anchor_y=scene.get('portrait_anchor',[700,1140])
+        if landscape:
+            center_x=round(anchor_x*1.5)
+        else:
+            center_x,bottom=anchor_x,anchor_y
+            photo_limit=(480,min(600,bottom-520))
     # The product and the background are the SAME source assets in all formats.
     photo = product_photo.copy()
     photo.thumbnail(photo_limit, Image.Resampling.LANCZOS)
@@ -224,6 +267,8 @@ def master(product_photo, headline, cta, landscape=False, font_path=None, includ
         image.alpha_composite(photo, xy)
     elements.append({'kind': 'product', 'box': (xy[0], xy[1], xy[0]+photo.width, xy[1]+photo.height)})
     logo = logo_layer(logo_width, not white_background)
+    protect_text_field(image, (*logo_xy,logo_xy[0]+logo.width,logo_xy[1]+logo.height), ink,white_background)
+    protect_text_field(image,headline_box,ink,white_background)
     image.alpha_composite(logo, logo_xy)
     elements.append({'kind': 'logo', 'box': (*logo_xy, logo_xy[0]+logo.width, logo_xy[1]+logo.height)})
     elements.append(draw_headline(image, headline, headline_box, ink, font_path, *headline_sizes))
@@ -262,20 +307,20 @@ def check_layout(kind, elements):
     return ratio
 
 
-def render_campaign(product, headline, cta, directory, font_path=None):
+def render_campaign(product, headline, cta, directory, font_path=None, scene=None):
     if not product.get('images'):
         raise RuntimeError('Nessuna foto collegata al prodotto nel database: '+product['name'])
     photo_path = Path(product['images'][0]['path'])
     if not photo_path.is_file():
         raise RuntimeError('Foto prodotto non trovata: '+str(photo_path))
-    for asset in (BACKGROUND_PATH, LOGO_PATH):
+    for asset in (ROOT/scene['path'] if scene else BACKGROUND_PATH, LOGO_PATH):
         if not asset.is_file():
             raise RuntimeError('Asset grafico non trovato: '+str(asset))
     if not headline.strip() or len(headline.split()) > 4:
         raise ValueError('Headline richiesta: massimo 4 parole, identiche in tutte le grafiche.')
     photo = packshot_layer(photo_path)
     # Keep the packshot as a separate original layer while adapting the masters.
-    portrait, portrait_elements, _ = master(photo, headline, cta, font_path=font_path, include_product=False)
+    portrait, portrait_elements, _ = master(photo, headline, cta, font_path=font_path, include_product=False, scene=scene)
     # Nothing important in the first/last 6%, and protect the actual 8.33% crop too.
     for element in portrait_elements:
         if element['box'][1] < PORTRAIT_SIZE[1]*0.06 or element['box'][3] > PORTRAIT_SIZE[1]*0.94:
@@ -290,7 +335,7 @@ def render_campaign(product, headline, cta, directory, font_path=None):
     story.paste(resized.crop((0, 1470, 1080, 1620)).transpose(Image.Transpose.FLIP_TOP_BOTTOM), (0, 1770))
     story_elements = transform(portrait_elements, 1080/1024, 1620/1536, oy=150)
     landscape, landscape_elements, white = master(photo, headline, cta, landscape=True,
-                                                 font_path=font_path, include_product=False)
+                                                 font_path=font_path, include_product=False, scene=scene)
     banner = landscape.crop(BANNER_CROP).resize(FORMATS['banner'], Image.Resampling.LANCZOS)
     banner_elements = transform(landscape_elements, 300/1229, 250/1024, ox=-154*300/1229)
     for image, elements in [(feed, feed_elements), (story, story_elements), (banner, banner_elements)]:
