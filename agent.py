@@ -1,4 +1,4 @@
-"""Create a coordinated feed, story and display campaign from the local catalog."""
+"""Create three coordinated graphics and a PowerPoint from the local catalog."""
 import argparse
 from datetime import datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
@@ -9,6 +9,8 @@ import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
 from campaign import campaign_copy, render_campaign
+from presentation import create_presentation
+from research import is_beauty_headline
 
 ROOT = Path(__file__).resolve().parent
 QUERY = '(beauty OR skincare) (trend OR glow OR hydration OR longevity) when:7d'
@@ -96,7 +98,7 @@ def parse_news(raw, now):
             continue
         title = item.findtext('title', '').strip()
         url = item.findtext('link', '').strip()
-        if not title or not url.startswith('https://') or url in seen or not cutoff <= published <= now:
+        if not title or not is_beauty_headline(title) or not url.startswith('https://') or url in seen or not cutoff <= published <= now:
             continue
         seen.add(url)
         found.append({'title': title, 'url': url, 'publisher': item.findtext('source', ''), 'published_at': published.isoformat()})
@@ -161,7 +163,12 @@ def run(args):
                                       'path': str((directory/info['path'].name).resolve())}
                                for kind, info in graphics.items()},
                   'limitations': 'Segnali editoriali dalle notizie, non misure di viralità social.'}
-        # Keep research inside SQLite; export exactly three images for the user.
+        presentation = create_presentation(product, report, graphics['feed']['path'],
+                                           working/'presentazione.pptx',
+                                           getattr(args, 'platform', 'instagram'))
+        report['presentation'] = {**{k: v for k, v in presentation.items() if k != 'path'},
+                                  'path': str((directory/'presentazione.pptx').resolve())}
+        # Commit all three images and the PowerPoint together, with their evidence.
         with sqlite3.connect(args.database) as db:
             db.execute('INSERT INTO generations VALUES(?,?,?,?,?)',
                        (generation_id, now.isoformat(), product['id'], str((directory/'feed.png').resolve()),
@@ -175,6 +182,7 @@ def run(args):
             shutil.rmtree(directory)
         raise
     result = {kind: directory/(kind+'.png') for kind in graphics}
+    result['presentation'] = directory/'presentazione.pptx'
     for path in result.values():
         print(path.resolve())
     return result
@@ -188,6 +196,8 @@ def main():
     parser.add_argument('--font', help='Percorso di un font TrueType (un unico peso personalizzato)')
     parser.add_argument('--headline', help='Headline italiana esatta, massimo 4 parole, identica nei tre formati')
     parser.add_argument('--cta', help='Testo italiano esatto del pulsante, identico nei tre formati')
+    parser.add_argument('--platform', choices=['instagram', 'facebook'], default='instagram',
+                        help='Cornice del post nella presentazione (default: instagram)')
     args = parser.parse_args()
     try:
         run(args)

@@ -10,6 +10,9 @@ from argparse import Namespace
 from PIL import Image, ImageChops, ImageDraw
 from agent import load_products, parse_news, run
 from campaign import FORMATS, campaign_copy, render_campaign, packshot_layer
+from presentation import create_presentation, weekly_highlights
+from pptx import Presentation
+from pptx.enum.shapes import MSO_SHAPE_TYPE
 
 
 class AgentTests(unittest.TestCase):
@@ -20,6 +23,7 @@ class AgentTests(unittest.TestCase):
         <item><title>Old</title><link>https://example.com/old</link><pubDate>Wed, 23 Sep 2026 10:00:00 GMT</pubDate></item>
         <item><title>Future</title><link>https://example.com/future</link><pubDate>Wed, 14 Oct 2026 10:00:00 GMT</pubDate></item>
         <item><title>No date</title><link>https://example.com/invalid</link></item>
+        <item><title>George returns home from Eton</title><link>https://example.com/off-topic</link><pubDate>Wed, 07 Oct 2026 11:00:00 GMT</pubDate></item>
         </channel></rss>'''
         rows = parse_news(xml, datetime(2026, 10, 7, 12, tzinfo=timezone.utc))
         self.assertEqual([r['title'] for r in rows], ['Glow skincare'])
@@ -182,7 +186,7 @@ class AgentTests(unittest.TestCase):
                     run(args)
             self.assertFalse(args.output.exists())
 
-    def test_each_launch_searches_and_outputs_only_three_images(self):
+    def test_each_launch_searches_and_exports_three_images_and_powerpoint(self):
         with tempfile.TemporaryDirectory() as folder:
             args = Namespace(database=Path(folder)/'db.sqlite', output=Path(folder)/'out', product='Contour', font=None,
                              headline=None, cta=None)
@@ -195,7 +199,9 @@ class AgentTests(unittest.TestCase):
             folders = list(args.output.iterdir())
             self.assertEqual(len(folders), 2)
             for target in folders:
-                self.assertEqual({p.name for p in target.iterdir()}, {'feed.png','story.png','banner.png'})
+                self.assertEqual({p.name for p in target.iterdir()},
+                                 {'feed.png','story.png','banner.png','presentazione.pptx'})
+                self.assertEqual(len(Presentation(target/'presentazione.pptx').slides), 3)
             with sqlite3.connect(args.database) as db:
                 rows = db.execute('SELECT research_json FROM generations').fetchall()
                 self.assertEqual(len(rows),2)
@@ -203,3 +209,89 @@ class AgentTests(unittest.TestCase):
                     report = json.loads(row[0])
                     self.assertEqual(set(report['graphics']), set(FORMATS))
                     self.assertEqual(report['headline'], 'Leviga le rughe')
+                    self.assertIn('Leviga rughe e linee sottili del contorno occhi.',
+                                  report['presentation']['caption'])
+                    self.assertIn('#ContornoOcchi', report['presentation']['hashtags'])
+                    self.assertEqual(report['presentation']['slides'], 3)
+
+    def test_powerpoint_contains_product_dated_sources_and_original_feed(self):
+        report = {'window_start':'2026-09-30T12:00:00+00:00',
+                  'created_at':'2026-10-07T12:00:00+00:00',
+                  'headline':'Un incarnato luminoso', 'cta':'Scopri il prodotto',
+                  'source_claim':'Un incarnato luminoso, dalla coprenza naturale.',
+                  'news':[
+                      {'title':'Natural glow skincare trend', 'url':'https://example.com/glow',
+                       'publisher':'Beauty Journal', 'published_at':'2026-10-07T10:00:00+00:00'},
+                      {'title':'Skin barrier and hydration', 'url':'https://example.com/barrier',
+                       'publisher':'Skin Journal', 'published_at':'2026-10-06T10:00:00+00:00'},
+                      {'title':'Skin longevity news', 'url':'https://example.com/renew',
+                       'publisher':'Care Journal', 'published_at':'2026-10-05T10:00:00+00:00'},
+                      {'title':'Old glow news', 'url':'https://example.com/old',
+                       'published_at':'2026-09-23T10:00:00+00:00'},
+                      {'title':'No date', 'url':'https://example.com/no-date'},
+                      {'title':'George returns home from Eton', 'url':'https://example.com/off-topic',
+                       'published_at':'2026-10-07T11:00:00+00:00'}]}
+        with tempfile.TemporaryDirectory() as folder:
+            product = load_products(Path(folder)/'db.sqlite')[0]
+            feed = Path(folder)/'feed.png'
+            Image.new('RGB', FORMATS['feed'], (156,120,90)).save(feed)
+            for platform in ('instagram','facebook'):
+                with self.subTest(platform=platform):
+                    result = create_presentation(product, report, feed, Path(folder)/(platform+'.pptx'), platform)
+                    deck = Presentation(result['path'])
+                    self.assertEqual(len(deck.slides),3)
+                    text = ['\n'.join(shape.text for shape in slide.shapes if shape.has_text_frame)
+                            for slide in deck.slides]
+                    self.assertIn(product['name'],text[0])
+                    self.assertIn('30/09/2026 — 07/10/2026',text[1])
+                    self.assertNotIn('Old glow news',text[1])
+                    self.assertNotIn('No date',text[1])
+                    self.assertNotIn('George returns home',text[1])
+                    self.assertEqual(len(result['trends']),3)
+                    for article in report['news'][:3]:
+                        self.assertIn(article['title'],text[1])
+                        links = [run.hyperlink.address for shape in deck.slides[1].shapes if shape.has_text_frame
+                                 for paragraph in shape.text_frame.paragraphs for run in paragraph.runs]
+                        self.assertIn(article['url'],links)
+                    self.assertIn(result['caption'],text[2])
+                    self.assertIn(' '.join(result['hashtags']),text[2])
+                    self.assertIn(platform.title(),text[2])
+                    picture = next(shape for shape in deck.slides[2].shapes
+                                   if shape.shape_type==MSO_SHAPE_TYPE.PICTURE and shape.image.blob==feed.read_bytes())
+                    self.assertAlmostEqual(picture.width/picture.height,4/5,places=5)
+                    self.assertEqual((picture.crop_left,picture.crop_top,picture.crop_right,picture.crop_bottom),
+                                     (0,0,0,0))
+                    for slide in deck.slides:
+                        for shape in slide.shapes:
+                            self.assertGreaterEqual(shape.left,0)
+                            self.assertGreaterEqual(shape.top,0)
+                            self.assertLessEqual(shape.left+shape.width,deck.slide_width)
+                            self.assertLessEqual(shape.top+shape.height,deck.slide_height)
+            report['news'] = report['news'][3:]
+            with self.assertRaisesRegex(ValueError,'Nessuna fonte datata'):
+                weekly_highlights(report)
+
+    def test_powerpoint_failure_removes_all_partial_exports(self):
+        with tempfile.TemporaryDirectory() as folder:
+            output = Path(folder)/'out';output.mkdir()
+            previous = output/'previous.pptx';previous.write_bytes(b'keep')
+            args = Namespace(database=Path(folder)/'db.sqlite',output=output,
+                             product='CC Gel',font=None,headline=None,cta=None)
+            def fake_graphics(product, headline, cta, directory, font):
+                result = {}
+                for kind,size in FORMATS.items():
+                    path = directory/(kind+'.png');Image.new('RGB',size).save(path)
+                    result[kind] = {'path':path,'size':size}
+                return result
+            def fail_presentation(product,report,feed,destination,platform):
+                destination.write_bytes(b'partial deck')
+                raise OSError('PowerPoint non esportato')
+            with patch('agent.search_news',return_value=[{'title':'Glow trend'}]), \
+                    patch('agent.render_campaign',side_effect=fake_graphics), \
+                    patch('agent.create_presentation',side_effect=fail_presentation):
+                with self.assertRaisesRegex(OSError,'PowerPoint non esportato'):
+                    run(args)
+            self.assertEqual(list(output.iterdir()),[previous])
+            self.assertEqual(previous.read_bytes(),b'keep')
+            with sqlite3.connect(args.database) as db:
+                self.assertEqual(db.execute('SELECT COUNT(*) FROM generations').fetchone()[0],0)
