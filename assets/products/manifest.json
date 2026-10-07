@@ -2,40 +2,67 @@
   {
     "product_id": "urn:agent-beauty:manual:ioma:creme-sublime-revitalisante",
     "name": "Crème Sublime Revitalisante – Soin anti-âge expert",
-    "path": "assets/products/creme-sublime-revitalisante.jpg",
-    "source_url": "https://ioma-paris.com/cdn/shop/files/creme-sublime-revitalisante-creme-anti-age-packshot-IOMA.jpg?v=1782462754&width=1000",
+    "path": "assets/products/creme-sublime-revitalisante-2000.jpg",
+    "source_url": "https://ioma-paris.com/cdn/shop/files/creme-sublime-revitalisante-creme-anti-age-packshot-IOMA.jpg?v=1782462754&width=2000",
     "source_page": "https://ioma-paris.com/products/creme-sublime-revitalisante",
-    "sha256": "a2f3028bc6e6047573af5131eb10d5737c754a6f8194e8c5decff07816bad7da",
+    "sha256": "0ca24806cf6f9243e025efb6327451d004c5c7ad466927d739ca73c319def84d",
     "size": [
-      1000,
-      1000
+      2000,
+      2000
     ],
-    "origin": "Official IOMA packshot corresponding to the user-provided product photo"
+    "origin": "Official IOMA packshot corresponding to the user-provided product photo",
+    "original_1000px_version": {
+      "path": "assets/products/creme-sublime-revitalisante.jpg",
+      "source_url": "https://ioma-paris.com/cdn/shop/files/creme-sublime-revitalisante-creme-anti-age-packshot-IOMA.jpg?v=1782462754&width=1000",
+      "sha256": "a2f3028bc6e6047573af5131eb10d5737c754a6f8194e8c5decff07816bad7da",
+      "size": [
+        1000,
+        1000
+      ]
+    }
   },
   {
     "product_id": "urn:agent-beauty:manual:ioma:cc-gel",
     "name": "CC Gel – Crème Soin Teinté Eclat Parfait",
-    "path": "assets/products/cc-gel.jpg",
-    "source_url": "https://ioma-paris.com/cdn/shop/files/cc-gel-soin-teinte-eclat-parfait-cc-creme-packshot-IOMA.jpg?v=1782400396&width=1000",
+    "path": "assets/products/cc-gel-2000.jpg",
+    "source_url": "https://ioma-paris.com/cdn/shop/files/cc-gel-soin-teinte-eclat-parfait-cc-creme-packshot-IOMA.jpg?v=1782400396&width=2000",
     "source_page": "https://ioma-paris.com/products/cc-gel-soin-teinte-eclat-parfait",
-    "sha256": "4e5a06b8077b23ab89f52bea7dc54d70c26cf7b804c72d892549835a9c6be731",
+    "sha256": "b8dc7dd13d7bfdb699517a0657bd68654f10fbc30e012f132183c180166b9d5b",
     "size": [
-      1000,
-      1000
+      2000,
+      2000
     ],
-    "origin": "Official IOMA packshot corresponding to the user-provided product photo"
+    "origin": "Official IOMA packshot corresponding to the user-provided product photo",
+    "original_1000px_version": {
+      "path": "assets/products/cc-gel.jpg",
+      "source_url": "https://ioma-paris.com/cdn/shop/files/cc-gel-soin-teinte-eclat-parfait-cc-creme-packshot-IOMA.jpg?v=1782400396&width=1000",
+      "sha256": "4e5a06b8077b23ab89f52bea7dc54d70c26cf7b804c72d892549835a9c6be731",
+      "size": [
+        1000,
+        1000
+      ]
+    }
   },
   {
     "product_id": "urn:agent-beauty:manual:ioma:creme-genereuse-contour-des-yeux",
     "name": "Crème Généreuse Contour des Yeux",
-    "path": "assets/products/creme-genereuse-contour-des-yeux.jpg",
-    "source_url": "https://ioma-paris.com/cdn/shop/files/creme-genereuse-contour-des-yeux-contour-des-yeux-anti-age-packshot-IOMA.jpg?v=1782401105&width=1000",
+    "path": "assets/products/creme-genereuse-contour-des-yeux-2000.jpg",
+    "source_url": "https://ioma-paris.com/cdn/shop/files/creme-genereuse-contour-des-yeux-contour-des-yeux-anti-age-packshot-IOMA.jpg?v=1782401105&width=2000",
     "source_page": "https://ioma-paris.com/products/creme-genereuse-contour-des-yeux",
-    "sha256": "a1dd87f81872dd509b13dbb9205817829fc4143db7ab97412af99c7ca1c979b0",
+    "sha256": "21cab74f7f12d4639d5a085a929ec1270c1d347fff1b3e86f4373b631c313a3d",
     "size": [
-      1000,
-      1000
+      2000,
+      2000
     ],
-    "origin": "Official IOMA packshot corresponding to the user-provided product photo"
+    "origin": "Official IOMA packshot corresponding to the user-provided product photo",
+    "original_1000px_version": {
+      "path": "assets/products/creme-genereuse-contour-des-yeux.jpg",
+      "source_url": "https://ioma-paris.com/cdn/shop/files/creme-genereuse-contour-des-yeux-contour-des-yeux-anti-age-packshot-IOMA.jpg?v=1782401105&width=1000",
+      "sha256": "a1dd87f81872dd509b13dbb9205817829fc4143db7ab97412af99c7ca1c979b0",
+      "size": [
+        1000,
+        1000
+      ]
+    }
   }
 ]

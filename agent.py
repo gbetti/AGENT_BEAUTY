@@ -66,16 +66,18 @@ def load_products(path):
     with sqlite3.connect(f'{path.resolve().as_uri()}?mode=ro', uri=True) as db:
         products = []
         for url, name, description, raw in db.execute('SELECT page_url,name,description,json_ld FROM products ORDER BY name'):
+            data = json.loads(raw)
             images = []
             for source_url, image_path in db.execute(
                     'SELECT i.url,i.path FROM images i JOIN product_images pi ON pi.image_url=i.url '
-                    'WHERE pi.page_url=? AND pi.name=? ORDER BY i.url', (url, name)):
+                    'WHERE pi.page_url=? AND pi.name=? ORDER BY (i.url=?) DESC,i.url',
+                    (url, name, data.get('image_source_url', ''))):
                 local_path = ROOT / image_path
                 if not local_path.is_file():
                     local_path = path.parent / image_path
                 images.append({'source_url': source_url, 'path': str(local_path.resolve())})
             products.append({'id': url, 'name': name, 'description': description,
-                             'data': json.loads(raw), 'images': images})
+                             'data': data, 'images': images})
     if not products:
         raise RuntimeError('Il catalogo è vuoto. Inserisci un prodotto nel database.')
     return products

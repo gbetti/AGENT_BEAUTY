@@ -7,7 +7,7 @@ import unittest
 from unittest.mock import patch
 from argparse import Namespace
 
-from PIL import Image, ImageChops
+from PIL import Image, ImageChops, ImageDraw
 from agent import load_products, parse_news, run
 from campaign import FORMATS, campaign_copy, render_campaign, packshot_layer
 
@@ -95,6 +95,45 @@ class AgentTests(unittest.TestCase):
             difference = ImageChops.difference(actual, fitted.convert('RGB'))
             difference.paste((0,0,0), mask=ImageChops.invert(opaque))
             self.assertIsNone(difference.getbbox())
+
+    def test_high_resolution_photo_is_preferred_to_older_database_link(self):
+        with tempfile.TemporaryDirectory() as folder:
+            products = load_products(Path(folder)/'catalog.sqlite')
+            for product in products:
+                self.assertIn('width=2000', product['images'][0]['source_url'])
+                with Image.open(product['images'][0]['path']) as photo:
+                    self.assertEqual(photo.size, (2000,2000))
+                self.assertTrue(any('width=1000' in image['source_url'] for image in product['images']))
+
+    def test_white_fringe_removed_without_erasing_white_print(self):
+        with tempfile.TemporaryDirectory() as folder:
+            source = Image.new('RGB',(180,260),'white')
+            drawing = ImageDraw.Draw(source)
+            drawing.rectangle((45,20,135,240), fill=(245,245,245))
+            drawing.rectangle((46,21,134,239), fill=(150,100,60))
+            drawing.rectangle((65,105,115,150), fill='white')
+            path = Path(folder)/'fringe.png';source.save(path)
+            layer = packshot_layer(path)
+            row = [layer.getpixel((x,layer.height//4)) for x in range(layer.width)]
+            self.assertFalse(any(min(pixel[:3]) >= 240 and pixel[3] > 128 for pixel in row))
+            self.assertEqual(layer.getpixel((layer.width//2,layer.height//2)), (255,255,255,255))
+
+    def test_exports_sample_original_photo_once_at_final_resolution(self):
+        with tempfile.TemporaryDirectory() as folder:
+            product = load_products(Path(folder)/'catalog.sqlite')[0]
+            result = render_campaign(product, *campaign_copy(product), Path(folder))
+            photo = packshot_layer(product['images'][0]['path'])
+            for kind, info in result.items():
+                with self.subTest(format=kind):
+                    box = next(e['box'] for e in info['elements'] if e['kind']=='product')
+                    left, top, right, bottom = [round(value) for value in box]
+                    expected = photo.resize((right-left,bottom-top),Image.Resampling.LANCZOS)
+                    with Image.open(info['path']) as image:
+                        actual = image.crop((left,top,right,bottom)).convert('RGB')
+                    opaque = expected.getchannel('A').point(lambda value: 255 if value==255 else 0)
+                    difference = ImageChops.difference(actual,expected.convert('RGB'))
+                    difference.paste((0,0,0), mask=ImageChops.invert(opaque))
+                    self.assertIsNone(difference.getbbox())
 
     def test_white_banner_has_one_pixel_border(self):
         with tempfile.TemporaryDirectory() as folder:

@@ -39,14 +39,17 @@ def packshot_layer(photo_path):
         photo = source.convert('RGB')
     minimum = ImageChops.darker(photo.getchannel('R'),
                                ImageChops.darker(photo.getchannel('G'), photo.getchannel('B')))
-    exterior = minimum.point(lambda value: 255 if value >= 250 else 0)
+    # JPEG compression makes exterior white vary slightly around the silhouette.
+    exterior = minimum.point(lambda value: 255 if value >= 245 else 0)
     for corner in [(0, 0), (photo.width-1, 0), (0, photo.height-1),
                    (photo.width-1, photo.height-1)]:
         if exterior.getpixel(corner) == 255:
             ImageDraw.floodfill(exterior, corner, 128)
     alpha = exterior.point(lambda value: 0 if value == 128 else 255)
-    alpha = alpha.filter(ImageFilter.MinFilter(3)).filter(ImageFilter.MaxFilter(3))
-    alpha = alpha.filter(ImageFilter.GaussianBlur(0.4))
+    # Trim the contaminated white rim instead of regrowing it with MaxFilter.
+    # This is a two-pixel correction on the high-resolution source only.
+    alpha = alpha.filter(ImageFilter.MedianFilter(5)).filter(ImageFilter.MinFilter(5))
+    alpha = alpha.filter(ImageFilter.GaussianBlur(1.0))
     result = photo.convert('RGBA')
     result.putalpha(alpha)
     bounds = alpha.getbbox()
@@ -178,7 +181,19 @@ def logo_layer(width, white):
     return logo
 
 
-def master(product_photo, headline, cta, landscape=False, font_path=None):
+def composite_product(image, photo, box):
+    """Sample the original cutout once, directly to final export dimensions."""
+    left, top, right, bottom = [round(value) for value in box]
+    resized = photo.resize((right-left, bottom-top), Image.Resampling.LANCZOS)
+    center_x = (left+right)/2
+    shadow = Image.new('RGBA', image.size)
+    ImageDraw.Draw(shadow).ellipse((center_x-resized.width*.4, bottom-5,
+                                  center_x+resized.width*.4, bottom+12), fill=(20,12,5,95))
+    image.alpha_composite(shadow.filter(ImageFilter.GaussianBlur(7)))
+    image.alpha_composite(resized, (left,top))
+
+
+def master(product_photo, headline, cta, landscape=False, font_path=None, include_product=True):
     size = LANDSCAPE_SIZE if landscape else PORTRAIT_SIZE
     image, white_background = background(size)
     ink = (24, 18, 14) if white_background else (255, 249, 240)
@@ -201,11 +216,12 @@ def master(product_photo, headline, cta, landscape=False, font_path=None):
     photo = product_photo.copy()
     photo.thumbnail(photo_limit, Image.Resampling.LANCZOS)
     xy = (center_x-photo.width//2, bottom-photo.height)
-    shadow = Image.new('RGBA', image.size)
-    ImageDraw.Draw(shadow).ellipse((center_x-photo.width*0.4, bottom-5,
-                                  center_x+photo.width*0.4, bottom+12), fill=(20, 12, 5, 95))
-    image.alpha_composite(shadow.filter(ImageFilter.GaussianBlur(7)))
-    image.alpha_composite(photo, xy)
+    if include_product:
+        shadow = Image.new('RGBA', image.size)
+        ImageDraw.Draw(shadow).ellipse((center_x-photo.width*0.4, bottom-5,
+                                      center_x+photo.width*0.4, bottom+12), fill=(20, 12, 5, 95))
+        image.alpha_composite(shadow.filter(ImageFilter.GaussianBlur(7)))
+        image.alpha_composite(photo, xy)
     elements.append({'kind': 'product', 'box': (xy[0], xy[1], xy[0]+photo.width, xy[1]+photo.height)})
     logo = logo_layer(logo_width, not white_background)
     image.alpha_composite(logo, logo_xy)
@@ -258,7 +274,8 @@ def render_campaign(product, headline, cta, directory, font_path=None):
     if not headline.strip() or len(headline.split()) > 4:
         raise ValueError('Headline richiesta: massimo 4 parole, identiche in tutte le grafiche.')
     photo = packshot_layer(photo_path)
-    portrait, portrait_elements, _ = master(photo, headline, cta, font_path=font_path)
+    # Keep the packshot as a separate original layer while adapting the masters.
+    portrait, portrait_elements, _ = master(photo, headline, cta, font_path=font_path, include_product=False)
     # Nothing important in the first/last 6%, and protect the actual 8.33% crop too.
     for element in portrait_elements:
         if element['box'][1] < PORTRAIT_SIZE[1]*0.06 or element['box'][3] > PORTRAIT_SIZE[1]*0.94:
@@ -272,9 +289,13 @@ def render_campaign(product, headline, cta, directory, font_path=None):
     story.paste(resized, (0, 150))
     story.paste(resized.crop((0, 1470, 1080, 1620)).transpose(Image.Transpose.FLIP_TOP_BOTTOM), (0, 1770))
     story_elements = transform(portrait_elements, 1080/1024, 1620/1536, oy=150)
-    landscape, landscape_elements, white = master(photo, headline, cta, landscape=True, font_path=font_path)
+    landscape, landscape_elements, white = master(photo, headline, cta, landscape=True,
+                                                 font_path=font_path, include_product=False)
     banner = landscape.crop(BANNER_CROP).resize(FORMATS['banner'], Image.Resampling.LANCZOS)
     banner_elements = transform(landscape_elements, 300/1229, 250/1024, ox=-154*300/1229)
+    for image, elements in [(feed, feed_elements), (story, story_elements), (banner, banner_elements)]:
+        product_box = next(element['box'] for element in elements if element['kind']=='product')
+        composite_product(image, photo, product_box)
     if white:
         ImageDraw.Draw(banner).rectangle((0, 0, 299, 249), outline=(70, 70, 70), width=1)
     output = {}

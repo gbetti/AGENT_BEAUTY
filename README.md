@@ -45,7 +45,7 @@ Di default sono usati DejaVu Sans Bold e DejaVu Sans Regular. `--font` usa un so
 
 ## Asset e database
 
-I packshot originali sono in `assets/products/`, collegati al catalogo tramite `images` e `product_images`. Gli originali restano invariati: nella composizione viene rimosso soltanto il bianco esterno e il packshot viene ridimensionato. La confezione e le scritte non sono rigenerate con IA.
+I packshot originali sono in `assets/products/`, collegati al catalogo tramite `images` e `product_images`. La composizione preferisce i packshot ufficiali a 2000×2000 pixel; le precedenti versioni a 1000 pixel restano archiviate. Gli originali restano invariati: nella composizione viene rimosso soltanto il bianco esterno e corretta la frangia chiara del bordo. Il packshot resta separato dal master e viene ridimensionato una sola volta, direttamente alla dimensione di esportazione di ciascun formato. La confezione e le scritte non sono rigenerate con IA.
 
 Il logo ufficiale è in `assets/brand/ioma-logo.png`. Il fondo fotografico di seta e pietra, creato con il generatore di immagini, è in `assets/backgrounds/ioma-campaign.png`. I master di lavoro vengono composti in memoria alle dimensioni indicate: non si rigenera uno sfondo remoto a ogni avvio e non servono API di generazione a pagamento. Il prodotto è ricomposto per il banner, senza ritagliare un post verticale con testi diventati minuscoli.
 
