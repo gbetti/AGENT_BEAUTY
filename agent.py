@@ -1,4 +1,4 @@
-"""Create Instagram artwork from the local catalog and fresh beauty news."""
+"""Create a coordinated feed, story and display campaign from the local catalog."""
 import argparse
 from datetime import datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
@@ -8,10 +8,9 @@ import sqlite3
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
+from campaign import campaign_copy, render_campaign
 
 ROOT = Path(__file__).resolve().parent
-BACKGROUND_PATH = ROOT / 'assets/backgrounds/ioma-campaign.png'
-LOGO_PATH = ROOT / 'assets/brand/ioma-logo.png'
 QUERY = '(beauty OR skincare) (trend OR glow OR hydration OR longevity) when:7d'
 THEMES = {
     'glow': {'keywords': ('glow', 'radiance', 'luminos', 'makeup', 'make-up', 'tinted', 'skin tint', 'teint'), 'label': 'Il tuo momento glow', 'colors': ((247, 233, 221), (205, 170, 144))},
@@ -131,130 +130,52 @@ def choose_product(products, news, requested=None):
     return product, theme, claim, matched, scores
 
 
-def packshot_layer(photo_path):
-    """Remove only connected white background; keep the original asset unchanged."""
-    from PIL import Image, ImageChops, ImageDraw, ImageFilter
-    with Image.open(photo_path) as source:
-        photo = source.convert('RGB')
-    minimum = ImageChops.darker(photo.getchannel('R'),
-                               ImageChops.darker(photo.getchannel('G'), photo.getchannel('B')))
-    exterior = minimum.point(lambda value: 255 if value >= 250 else 0)
-    for corner in [(0, 0), (photo.width-1, 0), (0, photo.height-1),
-                   (photo.width-1, photo.height-1)]:
-        if exterior.getpixel(corner) == 255:
-            ImageDraw.floodfill(exterior, corner, 128)
-    alpha = exterior.point(lambda value: 0 if value == 128 else 255)
-    # Remove isolated edge speckles from JPEG compression and antialias the cutout.
-    alpha = alpha.filter(ImageFilter.MinFilter(3)).filter(ImageFilter.MaxFilter(3))
-    alpha = alpha.filter(ImageFilter.GaussianBlur(0.4))
-    result = photo.convert('RGBA')
-    result.putalpha(alpha)
-    bounds = alpha.getbbox()
-    if bounds is None:
-        raise RuntimeError('La foto non contiene un packshot visibile.')
-    return result.crop(bounds)
-
-
-def render(product, theme, claim, path, font_path=None):
-    from PIL import Image, ImageDraw, ImageFont, ImageOps, ImageFilter, ImageChops
-    if not product.get('images'):
-        raise RuntimeError('Nessuna foto collegata al prodotto nel database: ' + product['name'])
-    photo_path = Path(product['images'][0]['path'])
-    if not photo_path.is_file():
-        raise RuntimeError('Foto prodotto non trovata: ' + str(photo_path))
-    for asset in (BACKGROUND_PATH, LOGO_PATH):
-        if not asset.is_file():
-            raise RuntimeError('Asset grafico non trovato: ' + str(asset))
-    def font(size):
-        try:
-            return ImageFont.truetype(font_path or 'DejaVuSerif.ttf', size)
-        except OSError:
-            raise RuntimeError('Font non disponibile: usa --font /percorso/font.ttf')
-    with Image.open(BACKGROUND_PATH) as original_background:
-        image = ImageOps.fit(original_background.convert('RGB'), (1080, 1350)).convert('RGBA')
-    # Composite the real packshot, rather than asking a model to recreate it.
-    photo = packshot_layer(photo_path)
-    photo.thumbnail((430, 800), Image.Resampling.LANCZOS)
-    shadow = Image.new('RGBA', image.size)
-    ImageDraw.Draw(shadow).ellipse((810-photo.width*0.4, 998,
-                                  810+photo.width*0.4, 1020), fill=(35, 24, 15, 95))
-    image.alpha_composite(shadow.filter(ImageFilter.GaussianBlur(8)))
-    image.alpha_composite(photo, (810-photo.width//2, 1010-photo.height))
-    # Preserve the official wordmark's alpha silhouette; use its white brand variant.
-    with Image.open(LOGO_PATH) as original_logo:
-        original_logo = original_logo.convert('RGBA')
-        logo = Image.new('RGBA', original_logo.size, (255, 255, 255, 0))
-        logo.putalpha(ImageChops.multiply(original_logo.getchannel('A'),
-                                          ImageOps.invert(original_logo.convert('L'))))
-    logo.thumbnail((280, 117), Image.Resampling.LANCZOS)
-    image.alpha_composite(logo, (82, 90))
-    draw = ImageDraw.Draw(image)
-    ink = (255, 249, 240)
-    def wrapped(text, face, max_width):
-        lines = []
-        current = ''
-        for word in text.split():
-            trial = (current + ' ' + word).strip()
-            if draw.textlength(trial, font=face) > max_width and current:
-                lines.append(current)
-                current = word
-            else:
-                current = trial
-        if current:
-            lines.append(current)
-        return lines
-    def block(text, y, size, max_width=470):
-        face = font(size)
-        lines = wrapped(text, face, max_width)
-        for line in lines:
-            draw.text((82, y), line, font=face, fill=ink,
-                      stroke_width=1, stroke_fill=(88, 66, 53))
-            y += int(size * 1.35)
-        return y
-    claim_size = 56
-    while claim_size >= 36:
-        lines = wrapped(claim, font(claim_size), 470)
-        if len(lines) * int(claim_size*1.35) <= 330:
-            break
-        claim_size -= 2
-    else:
-        raise RuntimeError('Claim troppo lungo per la foto: abbrevia il claim editoriale.')
-    block(claim, 470, claim_size)
-    y = block(product['name'], 1010, 23)
-    properties = product['data'].get('additionalProperty', [])
-    line = next((p['value'] for p in properties if p.get('name') == 'Gamme'), '')
-    block(line, y+22, 19)
-    image.convert('RGB').save(path, format='PNG')
-
-
 def run(args):
     now = datetime.now(timezone.utc)
     products = load_products(args.database)
-    # Fetch fresh evidence on EVERY normal invocation. No cached-trend fallback.
+    # Fresh evidence on EVERY invocation. No cached or invented trend fallback.
     news = search_news(now)
     product, theme, claim, matched, scores = choose_product(products, news, args.product)
-    args.output.mkdir(parents=True, exist_ok=True)
+    headline, cta = campaign_copy(product, getattr(args, 'headline', None), getattr(args, 'cta', None))
+    import tempfile
     import uuid
+    import shutil
+    args.output.mkdir(parents=True, exist_ok=True)
     generation_id = now.strftime('%Y%m%dT%H%M%SZ-') + uuid.uuid4().hex[:8]
-    image_path = args.output / ('ioma-' + generation_id + '.png')
-    render(product, theme, claim, image_path, args.font)
-    report = {'created_at': now.isoformat(), 'window_start': (now-timedelta(days=7)).isoformat(), 'query': QUERY,
-              'product': product['name'], 'claim': claim, 'theme': theme, 'theme_news_counts': scores,
-              'matched_news': matched, 'news': news,
-              'product_image': {'project_path': product['data'].get('local_image_path'),
-                                'source_url': product['images'][0]['source_url']},
-              'limitations': 'Segnali editoriali dalle notizie, non misure di viralità social.'}
-    # Keep evidence internally: the user-facing output is one finished image only.
+    directory = args.output / ('ioma-' + generation_id)
+    if directory.exists():
+        raise FileExistsError('La cartella della campagna esiste già: nessun file è stato sostituito.')
+    working = Path(tempfile.mkdtemp(prefix='.campaign-', dir=args.output))
+    published = False
     try:
+        graphics = render_campaign(product, headline, cta, working, args.font)
+        report = {'created_at': now.isoformat(), 'window_start': (now-timedelta(days=7)).isoformat(),
+                  'query': QUERY, 'product': product['name'], 'product_id': product['id'],
+                  'headline': headline, 'cta': cta, 'source_claim': claim, 'theme': theme,
+                  'theme_news_counts': scores, 'matched_news': matched, 'news': news,
+                  'product_image': {'project_path': product['data'].get('local_image_path'),
+                                    'source_url': product['images'][0]['source_url']},
+                  'graphics': {kind: {**{k: v for k, v in info.items() if k != 'path'},
+                                      'path': str((directory/info['path'].name).resolve())}
+                               for kind, info in graphics.items()},
+                  'limitations': 'Segnali editoriali dalle notizie, non misure di viralità social.'}
+        # Keep research inside SQLite; export exactly three images for the user.
         with sqlite3.connect(args.database) as db:
             db.execute('INSERT INTO generations VALUES(?,?,?,?,?)',
-                       (generation_id, now.isoformat(), product['id'], str(image_path.resolve()),
+                       (generation_id, now.isoformat(), product['id'], str((directory/'feed.png').resolve()),
                         json.dumps(report, ensure_ascii=False)))
+            working.rename(directory)
+            published = True
     except Exception:
-        image_path.unlink(missing_ok=True)
+        shutil.rmtree(working, ignore_errors=True)
+        # This directory belongs to this invocation, never to an earlier campaign.
+        if published and directory.exists():
+            shutil.rmtree(directory)
         raise
-    print(image_path.resolve())
-    return image_path
+    result = {kind: directory/(kind+'.png') for kind in graphics}
+    for path in result.values():
+        print(path.resolve())
+    return result
 
 
 def main():
@@ -262,7 +183,9 @@ def main():
     parser.add_argument('--database', type=Path, default=ROOT/'data/catalog.sqlite')
     parser.add_argument('--output', type=Path, default=ROOT/'output')
     parser.add_argument('--product', help='Parte del nome per scegliere il prodotto')
-    parser.add_argument('--font', help='Percorso di un font TrueType')
+    parser.add_argument('--font', help='Percorso di un font TrueType (un unico peso personalizzato)')
+    parser.add_argument('--headline', help='Headline italiana esatta, massimo 4 parole, identica nei tre formati')
+    parser.add_argument('--cta', help='Testo italiano esatto del pulsante, identico nei tre formati')
     args = parser.parse_args()
     try:
         run(args)

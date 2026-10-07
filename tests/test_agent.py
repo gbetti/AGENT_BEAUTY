@@ -1,12 +1,15 @@
 from datetime import datetime, timezone
 from pathlib import Path
-import tempfile
+import json
 import sqlite3
+import tempfile
 import unittest
 from unittest.mock import patch
 from argparse import Namespace
+
 from PIL import Image, ImageChops
-from agent import load_products, parse_news, choose_product, render, run, packshot_layer
+from agent import load_products, parse_news, run
+from campaign import FORMATS, campaign_copy, render_campaign, packshot_layer
 
 
 class AgentTests(unittest.TestCase):
@@ -21,69 +24,143 @@ class AgentTests(unittest.TestCase):
         rows = parse_news(xml, datetime(2026, 10, 7, 12, tzinfo=timezone.utc))
         self.assertEqual([r['title'] for r in rows], ['Glow skincare'])
 
-    def test_catalog_initialized_once_and_rendered(self):
+    def test_all_catalog_products_render_three_safe_formats(self):
         with tempfile.TemporaryDirectory() as folder:
             path = Path(folder)/'catalog.sqlite'
             products = load_products(path)
             self.assertEqual(len(products), 3)
-            for item in products:
-                self.assertEqual(len(item['images']), 1)
-                self.assertTrue(Path(item['images'][0]['path']).is_file())
             original = path.read_bytes()
             self.assertEqual(load_products(path), products)
             self.assertEqual(path.read_bytes(), original)
-            product, theme, claim, matched, scores = choose_product(products, [{'title': 'The glow skincare trend'}])
-            self.assertIn('CC Gel', product['name'])
-            self.assertEqual(theme, 'glow')
-            render(product, theme, claim, Path(folder)/'post.png')
-            with Image.open(Path(folder)/'post.png') as image:
-                self.assertEqual(image.size, (1080, 1350))
-                self.assertEqual(image.format, 'PNG')
-                photo = packshot_layer(product['images'][0]['path'])
-                photo.thumbnail((430, 800), Image.Resampling.LANCZOS)
-                left, top = 810-photo.width//2, 1010-photo.height
-                actual = image.crop((left, top, left+photo.width, top+photo.height))
-                opaque = photo.getchannel('A').point(lambda value: 255 if value == 255 else 0)
-                difference = ImageChops.difference(actual, photo.convert('RGB'))
-                difference.paste((0, 0, 0), mask=ImageChops.invert(opaque))
-                # The original product pixels, including its printed label,
-                # survive compositing onto the photographic background.
-                self.assertIsNone(difference.getbbox())
+            for index, product in enumerate(products):
+                with self.subTest(product=product['name']):
+                    target = Path(folder)/str(index)
+                    target.mkdir()
+                    headline, cta = campaign_copy(product)
+                    result = render_campaign(product, headline, cta, target)
+                    self.assertEqual(set(result), set(FORMATS))
+                    self.assertEqual({p.name for p in target.iterdir()}, {'feed.png','story.png','banner.png'})
+                    for kind, size in FORMATS.items():
+                        with Image.open(result[kind]['path']) as image:
+                            self.assertEqual(image.size, size)
+                            self.assertEqual(image.format, 'PNG')
+                        elements = result[kind]['elements']
+                        self.assertEqual({e['kind'] for e in elements}, {'product','logo','headline','cta'})
+                        self.assertEqual(next(e['text'] for e in elements if e['kind']=='headline'), headline)
+                        self.assertEqual(next(e['text'] for e in elements if e['kind']=='cta'), cta)
+                        for element in elements:
+                            if element['kind'] in ('headline','cta'):
+                                self.assertGreaterEqual(element['contrast_ratio'],4.5)
+                        margin_top = size[1]*(0.13 if kind=='story' else 0.05)
+                        margin_bottom = size[1]*(0.82 if kind=='story' else 0.95)
+                        for element in elements:
+                            x1,y1,x2,y2 = element['box']
+                            self.assertGreaterEqual(x1, size[0]*0.05)
+                            self.assertLessEqual(x2, size[0]*0.95)
+                            self.assertGreaterEqual(y1, margin_top)
+                            self.assertLessEqual(y2, margin_bottom)
+                    self.assertLessEqual(result['feed']['text_area_ratio'], 0.20)
+                    self.assertEqual(result['feed']['source_size'], (1024,1536))
+                    self.assertEqual(result['story']['source_size'], (1024,1536))
+                    self.assertEqual(result['banner']['source_size'], (1536,1024))
+                    headline_element = next(e for e in result['story']['elements'] if e['kind']=='headline')
+                    self.assertLessEqual(headline_element['box'][3], 1920*.13 + (1920*.82-1920*.13)/3)
 
-    def test_missing_product_photo_is_reported(self):
+    def test_exact_italian_copy_and_reject_long_banner_headline(self):
         with tempfile.TemporaryDirectory() as folder:
             product = load_products(Path(folder)/'catalog.sqlite')[0]
-            product['images'][0]['path'] = str(Path(folder)/'missing.jpg')
-            with self.assertRaisesRegex(RuntimeError, 'Foto prodotto non trovata'):
-                render(product, 'glow', 'Un incarnato luminoso.', Path(folder)/'post.png')
-            self.assertFalse((Path(folder)/'post.png').exists())
+            headline, cta = campaign_copy(product, 'È luce naturale!', 'Scopri di più')
+            result = render_campaign(product, headline, cta, Path(folder))
+            for info in result.values():
+                title = next(e for e in info['elements'] if e['kind']=='headline')
+                button = next(e for e in info['elements'] if e['kind']=='cta')
+                self.assertEqual(' '.join(title['lines']), 'È luce naturale!')
+                self.assertEqual(button['lines'], ['Scopri di più'])
+            with self.assertRaisesRegex(ValueError, 'massimo 4 parole'):
+                campaign_copy(product, 'Una headline con troppe parole qui', cta)
 
-    def test_network_failure_does_not_create_trend_artwork(self):
+    def test_original_packshot_pixels_survive_banner_composition(self):
         with tempfile.TemporaryDirectory() as folder:
-            args = Namespace(database=Path(folder)/'db.sqlite', output=Path(folder)/'output', product=None, font=None)
+            product = load_products(Path(folder)/'catalog.sqlite')[0]
+            headline, cta = campaign_copy(product)
+            # Inspect the native master before downsampling: exact original pixel fidelity.
+            from campaign import master
+            photo = packshot_layer(product['images'][0]['path'])
+            image, elements, _ = master(photo, headline, cta, landscape=True)
+            fitted = photo.copy()
+            fitted.thumbnail((330,600), Image.Resampling.LANCZOS)
+            box = next(e['box'] for e in elements if e['kind']=='product')
+            actual = image.crop(box).convert('RGB')
+            opaque = fitted.getchannel('A').point(lambda value: 255 if value==255 else 0)
+            difference = ImageChops.difference(actual, fitted.convert('RGB'))
+            difference.paste((0,0,0), mask=ImageChops.invert(opaque))
+            self.assertIsNone(difference.getbbox())
+
+    def test_white_banner_has_one_pixel_border(self):
+        with tempfile.TemporaryDirectory() as folder:
+            product = load_products(Path(folder)/'catalog.sqlite')[0]
+            white = Path(folder)/'white.png'
+            Image.new('RGB',(1536,1024),'white').save(white)
+            target = Path(folder)/'out';target.mkdir()
+            with patch('campaign.BACKGROUND_PATH', white):
+                result = render_campaign(product, *campaign_copy(product), target)
+            with Image.open(result['banner']['path']) as image:
+                self.assertEqual(image.getpixel((0,100)), (70,70,70))
+                self.assertEqual(image.getpixel((1,100)), (255,255,255))
+
+    def test_failure_preserves_prior_campaign_and_exports_no_partial_set(self):
+        with tempfile.TemporaryDirectory() as folder:
+            output = Path(folder)/'out';output.mkdir()
+            existing = output/'previous.png';existing.write_bytes(b'preserve')
+            args = Namespace(database=Path(folder)/'db.sqlite', output=output, product=None, font=None,
+                             headline='Una headline con troppe parole', cta=None)
+            news = [{'title':'Glow skincare trend'}]
+            with patch('agent.search_news', return_value=news):
+                with self.assertRaisesRegex(ValueError, 'massimo 4 parole'):
+                    run(args)
+            self.assertEqual(list(output.iterdir()), [existing])
+            self.assertEqual(existing.read_bytes(), b'preserve')
+            args.headline = None
+            with patch('agent.search_news', return_value=news), patch('campaign.LOGO_PATH', Path(folder)/'missing.png'):
+                with self.assertRaisesRegex(RuntimeError, 'Asset grafico non trovato'):
+                    run(args)
+            self.assertEqual(list(output.iterdir()), [existing])
+            with sqlite3.connect(args.database) as db:
+                self.assertEqual(db.execute('SELECT COUNT(*) FROM generations').fetchone()[0], 0)
+            def partial_export(*values):
+                (values[3]/'feed.png').write_bytes(b'partial')
+                raise OSError('Errore di esportazione del secondo formato')
+            with patch('agent.search_news', return_value=news), patch('agent.render_campaign', side_effect=partial_export):
+                with self.assertRaisesRegex(OSError, 'secondo formato'):
+                    run(args)
+            self.assertEqual(list(output.iterdir()), [existing])
+
+    def test_network_failure_exports_nothing(self):
+        with tempfile.TemporaryDirectory() as folder:
+            args = Namespace(database=Path(folder)/'db.sqlite', output=Path(folder)/'out', product=None, font=None)
             with patch('agent.search_news', side_effect=RuntimeError('blocked')):
                 with self.assertRaisesRegex(RuntimeError, 'blocked'):
                     run(args)
             self.assertFalse(args.output.exists())
 
-    def test_each_run_searches_and_creates_distinct_output(self):
+    def test_each_launch_searches_and_outputs_only_three_images(self):
         with tempfile.TemporaryDirectory() as folder:
-            args = Namespace(database=Path(folder)/'db.sqlite', output=Path(folder)/'output', product='Contour', font=None)
-            news = [{'title':'Skin barrier trend', 'url':'https://example.com', 'publisher':'Example', 'published_at':'2026-10-07T10:00:00+00:00'}]
+            args = Namespace(database=Path(folder)/'db.sqlite', output=Path(folder)/'out', product='Contour', font=None,
+                             headline=None, cta=None)
+            news = [{'title':'Skin barrier trend','url':'https://example.com','published_at':'2026-10-07T10:00:00+00:00'}]
             with patch('agent.search_news', return_value=news) as search:
-                run(args)
-                run(args)
+                first = run(args)
+                second = run(args)
             self.assertEqual(search.call_count, 2)
-            files = list(args.output.iterdir())
-            self.assertEqual(len(files), 2)
-            self.assertTrue(all(path.is_file() and path.suffix == '.png' for path in files))
+            self.assertNotEqual(first, second)
+            folders = list(args.output.iterdir())
+            self.assertEqual(len(folders), 2)
+            for target in folders:
+                self.assertEqual({p.name for p in target.iterdir()}, {'feed.png','story.png','banner.png'})
             with sqlite3.connect(args.database) as db:
-                self.assertEqual(db.execute('SELECT COUNT(*) FROM generations').fetchone()[0], 2)
-
-    def test_missing_logo_is_reported(self):
-        with tempfile.TemporaryDirectory() as folder:
-            product = load_products(Path(folder)/'catalog.sqlite')[0]
-            with patch('agent.LOGO_PATH', Path(folder)/'missing.png'):
-                with self.assertRaisesRegex(RuntimeError, 'Asset grafico non trovato'):
-                    render(product, 'glow', 'Un incarnato luminoso.', Path(folder)/'post.png')
-            self.assertFalse((Path(folder)/'post.png').exists())
+                rows = db.execute('SELECT research_json FROM generations').fetchall()
+                self.assertEqual(len(rows),2)
+                for row in rows:
+                    report = json.loads(row[0])
+                    self.assertEqual(set(report['graphics']), set(FORMATS))
+                    self.assertEqual(report['headline'], 'Leviga le rughe')
