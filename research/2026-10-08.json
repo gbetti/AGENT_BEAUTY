@@ -24,6 +24,10 @@
       "summary": {
         "fr": "COSRX : offre des 6–7 octobre centrée sur peptides et soin de la barrière. Promotion terminée.",
         "it": "COSRX: promozione del 6–7 ottobre su peptidi e cura della barriera. Offerta conclusa."
+      },
+      "display_title": {
+        "fr": "COSRX : offre Prime Big Deal Days",
+        "it": "COSRX: offerta Prime Big Deal Days"
       }
     },
     {
@@ -45,6 +49,10 @@
       "summary": {
         "fr": "BYOMA : peptides + tri-céramides.",
         "it": "BYOMA: peptidi + tri-ceramidi."
+      },
+      "display_title": {
+        "fr": "Nouveautés beauté de septembre",
+        "it": "Novità beauty di settembre"
       }
     },
     {
@@ -67,6 +75,10 @@
       "summary": {
         "fr": "CeraVe, Hong Kong : campagne annoncée active sept.–nov., Reels courts et découverte produit. Article du 24 septembre.",
         "it": "CeraVe, Hong Kong: campagna annunciata attiva sett.–nov., Reel brevi e scoperta prodotto. Articolo del 24 settembre."
+      },
+      "display_title": {
+        "fr": "CeraVe Hong Kong : la campagne « anti-publicité »",
+        "it": "CeraVe Hong Kong: la campagna «anti-pubblicità»"
       }
     }
   ],
@@ -87,6 +99,84 @@
       "audience": "Ipotesi di pubblico: persone che cercano nutrimento, comfort e compattezza.",
       "activation": "Feed: due attivi, due richiami visivi. Story: domanda « Barriera o compattezza? ». Reel da testare: 6–10 s, texture poi formula. Banner: scoperta del trattamento.",
       "measurement": "Testare « barriera » contro « compattezza » con pubblico e budget uguali. Confrontare clic e visite alla scheda prodotto."
+    }
+  },
+  "google_trends": {
+    "category_id": 143,
+    "markets": {
+      "fr": {
+        "geo": "FR",
+        "top": [
+          "parfum",
+          "sephora",
+          "ongle",
+          "nocibe",
+          "ongles",
+          "yves rocher",
+          "maquillage",
+          "dior",
+          "parfum homme",
+          "parfum femme",
+          "vichy",
+          "guerlain",
+          "mascara",
+          "chanel",
+          "caudalie",
+          "nyx",
+          "nocibé",
+          "avene",
+          "garnier",
+          "loreal",
+          "marionnaud"
+        ],
+        "rising": [
+          "mugler",
+          "juliette has a gun",
+          "divain parfum",
+          "loreal friends and family",
+          "stick teint lancome"
+        ],
+        "interpretation": "Proposition IOMA : affiner la recherche autour du soin visage avant de choisir des mots-clés d’acquisition."
+      },
+      "it": {
+        "geo": "IT",
+        "top": [
+          "profumo",
+          "crema",
+          "unghie",
+          "profumi",
+          "sephora",
+          "fondotinta",
+          "profumo uomo",
+          "profumo donna",
+          "mascara",
+          "chanel",
+          "la roche posay",
+          "bionike",
+          "cerave",
+          "blush",
+          "fragrantica",
+          "guerlain",
+          "kiko",
+          "caudalie",
+          "rhode",
+          "skincare",
+          "garnier",
+          "yodeyma",
+          "avene"
+        ],
+        "rising": [
+          "zara saffron & orange flowers edp 100ml",
+          "nivea labbra",
+          "cosmesi decorativa",
+          "cicaplast baume b5 la roche posay",
+          "medicube zero pore",
+          "medicube",
+          "smalto per unghie",
+          "braun luce pulsata"
+        ],
+        "interpretation": "Proposta IOMA: collegare « crema » a nutrimento e compattezza, poi misurare l’interesse sui contenuti dedicati."
+      }
     }
   }
 }

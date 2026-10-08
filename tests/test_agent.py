@@ -14,6 +14,7 @@ from editorial import BRIEFS, LANGUAGES, campaign_plan
 from studio import render_campaign, validate
 from pptx import Presentation
 from weekly import load_brief, select_ingredients
+from google_trends import select_queries, research_trends, week_window
 
 ROOT=Path(__file__).resolve().parents[1]
 
@@ -21,6 +22,14 @@ def weekly_fixture():
     brief=json.loads((ROOT/'research/2026-10-08.json').read_text())
     for source in brief['sources']: source['in_week']=source['id']!='cerave'
     return brief
+
+def trends_fixture():
+    now=datetime(2026,10,8,12,tzinfo=timezone.utc)
+    brief=weekly_fixture();results={}
+    for lang,geo in [('fr','FR'),('it','IT')]:
+        packet=json.loads((ROOT/'research/google-trends/2026-10-01_2026-10-07'/(geo+'.json')).read_text())
+        results[lang]={'data':select_queries(packet,brief['google_trends']['markets'][lang],now),'evidence':packet}
+    return results
 
 def ingredient_fixture():
     return json.loads((ROOT/'assets/ingredients.json').read_text())['creme-sublime-revitalisante'][:2]
@@ -113,11 +122,12 @@ class AgentTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             args=Namespace(database=Path(folder)/'db.sqlite',output=Path(folder)/'out',product='Sublime')
             news=[{'title':'Skin barrier skincare trend','published_at':datetime.now(timezone.utc).isoformat(),'url':'https://example.com/skin'}]
-            with patch('agent.search_news',return_value=news) as search, patch('agent.load_brief',side_effect=lambda *a:weekly_fixture()) as weekly_search, patch('agent.select_ingredients',side_effect=lambda *a:ingredient_fixture()) as formula:
+            with patch('agent.search_news',return_value=news) as search, patch('agent.load_brief',side_effect=lambda *a:weekly_fixture()) as weekly_search, patch('agent.select_ingredients',side_effect=lambda *a:ingredient_fixture()) as formula, patch('agent.research_trends',side_effect=lambda *a:trends_fixture()) as trends:
                 first=run(args);second=run(args)
             self.assertEqual(search.call_count,2)
             self.assertEqual(weekly_search.call_count,2)
             self.assertEqual(formula.call_count,2)
+            self.assertEqual(trends.call_count,2)
             self.assertNotEqual(first,second)
             for d in args.output.iterdir():
                 self.assertEqual({p.name for p in d.iterdir()},{'fr','it'})
@@ -125,9 +135,16 @@ class AgentTests(unittest.TestCase):
                                  {lang+'/'+kind+'.png' for lang in LANGUAGES for kind in FORMATS} | {lang+'/presentazione.pptx' for lang in LANGUAGES})
                 for lang in LANGUAGES:
                     deck=Presentation(d/lang/'presentazione.pptx')
-                    self.assertEqual(len(deck.slides),2)
+                    self.assertEqual(len(deck.slides),4)
                     links={shape.click_action.hyperlink.address for slide in deck.slides for shape in slide.shapes if shape.has_text_frame and shape.click_action.hyperlink.address}
                     self.assertTrue({s['url'] for s in weekly_fixture()['sources']}<=links)
+                    google=trends_fixture()[lang]['data']
+                    self.assertIn(google['source_url'],links)
+                    page_text=' '.join(sh.text for sh in deck.slides[2].shapes if sh.has_text_frame)
+                    self.assertIn('France' if lang=='fr' else 'Italia',page_text)
+                    for row in google['top']+google['rising']:self.assertIn(row['query'],page_text)
+                    article_links={r.hyperlink.address for sh in deck.slides[3].shapes if sh.has_text_frame for p in sh.text_frame.paragraphs for r in p.runs if r.hyperlink.address}
+                    self.assertTrue({s['url'] for s in weekly_fixture()['sources']}<=article_links)
             with sqlite3.connect(args.database) as db:
                 rows=db.execute('SELECT research_json FROM generations').fetchall()
             self.assertEqual(len(rows),2)
@@ -145,7 +162,7 @@ class AgentTests(unittest.TestCase):
                 (directory/'feed.png').write_bytes(b'partial')
                 if copy['language']=='it': raise ValueError('Italian failure')
                 return {'feed':{'path':directory/'feed.png'}}
-            with patch('agent.search_news',return_value=[{'title':'Skincare hydration'}]), patch('agent.load_brief',return_value=weekly_fixture()), patch('agent.select_ingredients',return_value=ingredient_fixture()), patch('agent.render_campaign',side_effect=partial):
+            with patch('agent.search_news',return_value=[{'title':'Skincare hydration'}]), patch('agent.load_brief',return_value=weekly_fixture()), patch('agent.select_ingredients',return_value=ingredient_fixture()), patch('agent.research_trends',return_value=trends_fixture()), patch('agent.render_campaign',side_effect=partial):
                 with self.assertRaisesRegex(ValueError,'Italian failure'): run(args)
             self.assertEqual(list(args.output.iterdir()),[prior])
             with sqlite3.connect(args.database) as db:
@@ -172,7 +189,7 @@ class AgentTests(unittest.TestCase):
                 path.write_bytes(b'deck fixture')
                 if lang=='it':raise ValueError('Italian deck failure')
                 return {'path':str(path),'slides':2}
-            with patch('agent.search_news',return_value=[{'title':'Skincare hydration'}]), patch('agent.load_brief',return_value=weekly_fixture()), patch('agent.select_ingredients',return_value=ingredient_fixture()), patch('agent.render_campaign',side_effect=graphics), patch('agent.create_presentation',side_effect=deck):
+            with patch('agent.search_news',return_value=[{'title':'Skincare hydration'}]), patch('agent.load_brief',return_value=weekly_fixture()), patch('agent.select_ingredients',return_value=ingredient_fixture()), patch('agent.research_trends',return_value=trends_fixture()), patch('agent.render_campaign',side_effect=graphics), patch('agent.create_presentation',side_effect=deck):
                 with self.assertRaisesRegex(ValueError,'Italian deck failure'):run(args)
             self.assertEqual(list(args.output.iterdir()),[prior])
             with sqlite3.connect(args.database) as db:
@@ -230,3 +247,48 @@ class WeeklyEvidenceTests(unittest.TestCase):
         with patch('weekly.fetch_text',return_value=inci):
             with self.assertRaisesRegex(ValueError,'due ingredienti'):
                 select_ingredients(product,brief,'https://example.com/product',self.now)
+
+
+class GoogleTrendsTests(unittest.TestCase):
+    now=datetime(2026,10,8,12,tzinfo=timezone.utc)
+
+    def packet(self,geo='FR'):
+        return json.loads((ROOT/'research/google-trends/2026-10-01_2026-10-07'/(geo+'.json')).read_text())
+
+    def test_completed_week_excludes_today_and_handles_year_boundary(self):
+        self.assertEqual(week_window(self.now),('2026-10-01','2026-10-07'))
+        self.assertEqual(week_window(datetime(2027,1,3,tzinfo=timezone.utc)),('2026-12-27','2027-01-02'))
+
+    def test_selection_keeps_google_spelling_scores_and_original_ranks(self):
+        result=select_queries(self.packet(),weekly_fixture()['google_trends']['markets']['fr'],self.now)
+        self.assertEqual([r['query'] for r in result['top']],['parfum','sephora','ongle','nocibe','yves rocher'])
+        self.assertEqual([r['value'] for r in result['top']],[100,43,23,21,15])
+        self.assertEqual([r['source_rank'] for r in result['top']],[1,2,3,4,7])
+        self.assertEqual([r['value'] for r in result['rising']],[700,350,50])
+        self.assertNotIn('parking',str(result))
+
+    def test_wrong_market_week_category_and_seed_are_rejected(self):
+        for field,value in [('geo','IT'),('period_start','2026-09-24'),('category_id',44),('seed_keyword','skincare')]:
+            packet=self.packet();packet[field]=value
+            with self.subTest(field=field),self.assertRaises(ValueError):
+                select_queries(packet,weekly_fixture()['google_trends']['markets']['fr'],self.now)
+        packet=self.packet();packet['widget_request']['trendinessSettings']['compareTime']='2026-09-01 2026-09-07'
+        with self.assertRaises(ValueError):select_queries(packet,weekly_fixture()['google_trends']['markets']['fr'],self.now)
+
+    def test_missing_keyword_expired_capture_and_invalid_score_fail_closed(self):
+        for mutation in ('missing','expired','score'):
+            packet=self.packet()
+            if mutation=='missing':packet['response']['default']['rankedList'][0]['rankedKeyword']=[]
+            elif mutation=='expired':packet['retrieved_at']='2026-10-06T00:00:00+00:00'
+            else:packet['response']['default']['rankedList'][0]['rankedKeyword'][0]['value']=101
+            with self.subTest(mutation=mutation),self.assertRaises(ValueError):
+                select_queries(packet,weekly_fixture()['google_trends']['markets']['fr'],self.now)
+
+    def test_each_language_uses_its_own_market(self):
+        with patch('google_trends.fetch_market',side_effect=lambda geo,*args:self.packet(geo)) as fetch:
+            result=research_trends(weekly_fixture(),self.now)
+        self.assertEqual(fetch.call_count,2)
+        self.assertEqual(result['fr']['data']['geo'],'FR')
+        self.assertEqual(result['it']['data']['geo'],'IT')
+        self.assertEqual(result['it']['data']['top'][1]['query'],'crema')
+        self.assertEqual(result['it']['data']['top'][1]['value'],89)

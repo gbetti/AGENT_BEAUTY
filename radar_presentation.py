@@ -1,4 +1,4 @@
-"""Two-page bilingual editorial brief: weekly evidence, then IOMA activation."""
+"""Editorial briefing: weekly signals, IOMA, Google queries, clickable sources."""
 from datetime import datetime
 from io import BytesIO
 import json
@@ -60,6 +60,58 @@ def page(deck,number,lang,period):
     return slide
 
 
+def article_sources(deck,brief,lang,period):
+    fr=lang=='fr'
+    slide=page(deck,4,lang,period)
+    text(slide,'Articles & sources' if fr else 'Articoli e fonti',.6,1.15,12.1,.65,size=34,serif=True)
+    text(slide,'Ouvrir les publications citées dans ce radar' if fr else 'Apri le pubblicazioni citate nel radar',.6,1.87,12,.4,size=15,color=MUTED)
+    names={'editorial':('ARTICLE ÉDITORIAL','ARTICOLO EDITORIALE'),
+           'advertising_campaign':('PRESSE MARKETING · CAMPAGNE','STAMPA MARKETING · CAMPAGNA'),
+           'brand_promotion':('COMMUNIQUÉ DE MARQUE','COMUNICATO DEL MARCHIO')}
+    order={'editorial':0,'advertising_campaign':1,'brand_promotion':2}
+    for index,source in enumerate(sorted(brief['sources'],key=lambda s:order[s['kind']])):
+        y=2.65+index*1.24
+        date=datetime.fromisoformat(source['published_at']).strftime('%d.%m.%Y')
+        text(slide,source['publisher']+'  ·  '+date+'  ·  '+names[source['kind']][0 if fr else 1],.6,y,12.1,.3,size=11,color=MUTED)
+        title=source.get('display_title',{}).get(lang,source['title'])
+        text(slide,title,.6,y+.34,9.5,.58,size=23,serif=True)
+        label=('Lire le communiqué' if source['kind']=='brand_promotion' else 'Lire l’article') if fr else ('Leggi il comunicato' if source['kind']=='brand_promotion' else 'Leggi l’articolo')
+        shape=text(slide,label,10.2,y+.39,2.5,.4,size=12,link=source['url'])
+        for p in shape.text_frame.paragraphs:
+            for run in p.runs:
+                run.hyperlink.address=source['url'];run.font.underline=True
+        rule(slide,.6,y+1.04,12.1)
+    text(slide,'Date de publication indiquée ; période des campagnes précisée en page 1.' if fr else 'Data di pubblicazione indicata; periodo delle campagne precisato a pagina 1.',.6,6.6,12,.35,size=11,color=MUTED)
+    slide.notes_slide.notes_text_frame.text=json.dumps(brief['sources'],ensure_ascii=False,indent=2)
+
+
+def google_queries(deck,brief,lang):
+    fr=lang=='fr';result=brief['google_trends_results'][lang]
+    data=result['data']
+    period=' — '.join(datetime.fromisoformat(data[key]).strftime('%d.%m.%Y') for key in ('period_start','period_end'))
+    slide=page(deck,3,lang,period)
+    text(slide,'Les recherches beauté sur Google' if fr else 'Le ricerche beauty su Google',.6,1.15,12.1,.65,size=32,serif=True)
+    text(slide,'France · Soins du visage et du corps · Recherche Web' if fr else 'Italia · Cura di viso e corpo · Ricerca Web',.6,1.87,12,.4,size=15,color=MUTED)
+    text(slide,'REQUÊTES PRINCIPALES · INDICE 0–100' if fr else 'QUERY PRINCIPALI · INDICE 0–100',.6,2.55,6.2,.33,size=12)
+    text(slide,'EN CROISSANCE · SÉLECTION BEAUTÉ' if fr else 'IN CRESCITA · SELEZIONE BEAUTY',7.2,2.55,5.5,.33,size=12)
+    rule(slide,.6,2.99,5.7);rule(slide,7.2,2.99,5.5)
+    for index,row in enumerate(data['top']):
+        y=3.17+index*.51
+        text(slide,row['query'],.6,y,4.7,.39,size=19)
+        text(slide,str(row['value']),5.45,y,.85,.37,size=17)
+    for index,row in enumerate(data['rising']):
+        y=3.17+index*.8
+        text(slide,row['query'],7.2,y,3.8,.68,size=15)
+        value=('Percée' if fr else 'Impennata') if row['breakout'] else '+'+str(row['value'])+' %'
+        text(slide,value,11.15,y,1.55,.45,size=14)
+    comparison='–'.join(datetime.fromisoformat(data[key]).strftime('%d.%m.%Y') for key in ('comparison_start','comparison_end'))
+    text(slide,('Indice relatif, pas un volume. Croissance vs ' if fr else 'Indice relativo, non volume. Crescita rispetto al ')+comparison+'.',.6,5.88,12.1,.32,size=11,color=MUTED)
+    text(slide,data['interpretation'],.6,6.3,12.1,.48,size=13)
+    text(slide,'Google Trends · ouvrir les données' if fr else 'Google Trends · apri i dati',.6,6.84,4.5,.23,size=10,color=MUTED,link=data['source_url'])
+    text(slide,'Sélection pertinente ; ordre Google conservé. Méthode ↗' if fr else 'Selezione pertinente; ordine Google conservato. Metodo ↗',5.4,6.84,7.3,.23,size=10,color=MUTED,link=data['method_url'])
+    slide.notes_slide.notes_text_frame.text=json.dumps(result,ensure_ascii=False,indent=2)
+
+
 def create_presentation(product,report,graphics,destination,lang):
     brief=report['weekly'];ingredients=report['ingredients'];copy=report['localizations'][lang]
     fr=lang=='fr'
@@ -108,5 +160,8 @@ def create_presentation(product,report,graphics,destination,lang):
     text(slide,strategy['measurement'],4.22,6.32,8.02,.63,size=12,color=MUTED)
     text(slide,'Formule & INCI IOMA' if fr else 'Formula e INCI IOMA',.6,6.76,3.2,.24,size=10,color=MUTED,link=report['creative']['source'])
     slide.notes_slide.notes_text_frame.text=json.dumps({'ingredients':ingredients,'caption':copy['caption'],'strategy':strategy,'source':report['creative']['source']},ensure_ascii=False,indent=2)
+    google_queries(deck,brief,lang)
+    article_sources(deck,brief,lang,start+' — '+end)
     deck.save(destination)
-    return {'path':str(destination),'slides':2,'language':lang,'source_urls':[s['url'] for s in brief['sources']]}
+    return {'path':str(destination),'slides':4,'language':lang,
+            'source_urls':[s['url'] for s in brief['sources']]+[brief['google_trends_results'][lang]['data']['source_url']]}

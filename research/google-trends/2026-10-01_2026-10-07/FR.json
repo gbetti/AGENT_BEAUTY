@@ -1,0 +1,295 @@
+{
+  "retrieved_at": "2026-10-08T10:40:27.503584+00:00",
+  "geo": "FR",
+  "language": "fr",
+  "period_start": "2026-10-01",
+  "period_end": "2026-10-07",
+  "category_id": 143,
+  "category_name": "Face & Body Care",
+  "search_property": "web",
+  "timezone": "UTC",
+  "seed_keyword": "",
+  "source_url": "https://trends.google.com/trends/explore?cat=143&date=2026-10-01+2026-10-07&geo=FR&hl=fr",
+  "widget_request": {
+    "restriction": {
+      "geo": {
+        "country": "FR"
+      },
+      "time": "2026-10-01 2026-10-07",
+      "originalTimeRangeForExploreUrl": "2026-10-01 2026-10-07"
+    },
+    "keywordType": "QUERY",
+    "metric": [
+      "TOP",
+      "RISING"
+    ],
+    "trendinessSettings": {
+      "compareTime": "2026-09-24 2026-09-30"
+    },
+    "requestOptions": {
+      "property": "",
+      "backend": "IZG",
+      "category": 143
+    },
+    "language": "fr",
+    "userCountryCode": "US",
+    "userConfig": {
+      "userType": "USER_TYPE_SCRAPER"
+    }
+  },
+  "response": {
+    "default": {
+      "rankedList": [
+        {
+          "rankedKeyword": [
+            {
+              "query": "parfum",
+              "value": 100,
+              "formattedValue": "100",
+              "hasData": true,
+              "link": "/trends/explore?q=parfum&date=2026-10-01+2026-10-07&geo=FR"
+            },
+            {
+              "query": "sephora",
+              "value": 43,
+              "formattedValue": "43",
+              "hasData": true,
+              "link": "/trends/explore?q=sephora&date=2026-10-01+2026-10-07&geo=FR"
+            },
+            {
+              "query": "ongle",
+              "value": 23,
+              "formattedValue": "23",
+              "hasData": true,
+              "link": "/trends/explore?q=ongle&date=2026-10-01+2026-10-07&geo=FR"
+            },
+            {
+              "query": "nocibe",
+              "value": 21,
+              "formattedValue": "21",
+              "hasData": true,
+              "link": "/trends/explore?q=nocibe&date=2026-10-01+2026-10-07&geo=FR"
+            },
+            {
+              "query": "pied",
+              "value": 20,
+              "formattedValue": "20",
+              "hasData": true,
+              "link": "/trends/explore?q=pied&date=2026-10-01+2026-10-07&geo=FR"
+            },
+            {
+              "query": "parking",
+              "value": 18,
+              "formattedValue": "18",
+              "hasData": true,
+              "link": "/trends/explore?q=parking&date=2026-10-01+2026-10-07&geo=FR"
+            },
+            {
+              "query": "yves rocher",
+              "value": 15,
+              "formattedValue": "15",
+              "hasData": true,
+              "link": "/trends/explore?q=yves+rocher&date=2026-10-01+2026-10-07&geo=FR"
+            },
+            {
+              "query": "maquillage",
+              "value": 15,
+              "formattedValue": "15",
+              "hasData": true,
+              "link": "/trends/explore?q=maquillage&date=2026-10-01+2026-10-07&geo=FR"
+            },
+            {
+              "query": "dior",
+              "value": 13,
+              "formattedValue": "13",
+              "hasData": true,
+              "link": "/trends/explore?q=dior&date=2026-10-01+2026-10-07&geo=FR"
+            },
+            {
+              "query": "parfum homme",
+              "value": 12,
+              "formattedValue": "12",
+              "hasData": true,
+              "link": "/trends/explore?q=parfum+homme&date=2026-10-01+2026-10-07&geo=FR"
+            },
+            {
+              "query": "parfum femme",
+              "value": 11,
+              "formattedValue": "11",
+              "hasData": true,
+              "link": "/trends/explore?q=parfum+femme&date=2026-10-01+2026-10-07&geo=FR"
+            },
+            {
+              "query": "vichy",
+              "value": 11,
+              "formattedValue": "11",
+              "hasData": true,
+              "link": "/trends/explore?q=vichy&date=2026-10-01+2026-10-07&geo=FR"
+            },
+            {
+              "query": "guerlain",
+              "value": 10,
+              "formattedValue": "10",
+              "hasData": true,
+              "link": "/trends/explore?q=guerlain&date=2026-10-01+2026-10-07&geo=FR"
+            },
+            {
+              "query": "mascara",
+              "value": 9,
+              "formattedValue": "9",
+              "hasData": true,
+              "link": "/trends/explore?q=mascara&date=2026-10-01+2026-10-07&geo=FR"
+            },
+            {
+              "query": "chanel",
+              "value": 8,
+              "formattedValue": "8",
+              "hasData": true,
+              "link": "/trends/explore?q=chanel&date=2026-10-01+2026-10-07&geo=FR"
+            },
+            {
+              "query": "caudalie",
+              "value": 8,
+              "formattedValue": "8",
+              "hasData": true,
+              "link": "/trends/explore?q=caudalie&date=2026-10-01+2026-10-07&geo=FR"
+            },
+            {
+              "query": "dermatologue",
+              "value": 7,
+              "formattedValue": "7",
+              "hasData": true,
+              "link": "/trends/explore?q=dermatologue&date=2026-10-01+2026-10-07&geo=FR"
+            },
+            {
+              "query": "nyx",
+              "value": 7,
+              "formattedValue": "7",
+              "hasData": true,
+              "link": "/trends/explore?q=nyx&date=2026-10-01+2026-10-07&geo=FR"
+            },
+            {
+              "query": "amazon",
+              "value": 7,
+              "formattedValue": "7",
+              "hasData": true,
+              "link": "/trends/explore?q=amazon&date=2026-10-01+2026-10-07&geo=FR"
+            },
+            {
+              "query": "nocibé",
+              "value": 7,
+              "formattedValue": "7",
+              "hasData": true,
+              "link": "/trends/explore?q=nocib%C3%A9&date=2026-10-01+2026-10-07&geo=FR"
+            },
+            {
+              "query": "lip",
+              "value": 6,
+              "formattedValue": "6",
+              "hasData": true,
+              "link": "/trends/explore?q=lip&date=2026-10-01+2026-10-07&geo=FR"
+            },
+            {
+              "query": "avene",
+              "value": 6,
+              "formattedValue": "6",
+              "hasData": true,
+              "link": "/trends/explore?q=avene&date=2026-10-01+2026-10-07&geo=FR"
+            },
+            {
+              "query": "garnier",
+              "value": 6,
+              "formattedValue": "6",
+              "hasData": true,
+              "link": "/trends/explore?q=garnier&date=2026-10-01+2026-10-07&geo=FR"
+            },
+            {
+              "query": "loreal",
+              "value": 6,
+              "formattedValue": "6",
+              "hasData": true,
+              "link": "/trends/explore?q=loreal&date=2026-10-01+2026-10-07&geo=FR"
+            },
+            {
+              "query": "marionnaud",
+              "value": 6,
+              "formattedValue": "6",
+              "hasData": true,
+              "link": "/trends/explore?q=marionnaud&date=2026-10-01+2026-10-07&geo=FR"
+            }
+          ]
+        },
+        {
+          "rankedKeyword": [
+            {
+              "query": "pemphigus paranéoplasique",
+              "value": 21000,
+              "formattedValue": "Record",
+              "link": "/trends/explore?q=pemphigus+paran%C3%A9oplasique&date=2026-10-01+2026-10-07&geo=FR"
+            },
+            {
+              "query": "jeremy gilbert",
+              "value": 5100,
+              "formattedValue": "Record",
+              "link": "/trends/explore?q=jeremy+gilbert&date=2026-10-01+2026-10-07&geo=FR"
+            },
+            {
+              "query": "la-roche-sur-yon.com",
+              "value": 3550,
+              "formattedValue": "+3 550 %",
+              "link": "/trends/explore?q=la-roche-sur-yon.com&date=2026-10-01+2026-10-07&geo=FR"
+            },
+            {
+              "query": "poisson chauve souris à lèvres rouges",
+              "value": 2150,
+              "formattedValue": "+2 150 %",
+              "link": "/trends/explore?q=poisson+chauve+souris+%C3%A0+l%C3%A8vres+rouges&date=2026-10-01+2026-10-07&geo=FR"
+            },
+            {
+              "query": "thierry mugler",
+              "value": 800,
+              "formattedValue": "+800 %",
+              "link": "/trends/explore?q=thierry+mugler&date=2026-10-01+2026-10-07&geo=FR"
+            },
+            {
+              "query": "poisson chauve-souris à lèvre rouge",
+              "value": 750,
+              "formattedValue": "+750 %",
+              "link": "/trends/explore?q=poisson+chauve-souris+%C3%A0+l%C3%A8vre+rouge&date=2026-10-01+2026-10-07&geo=FR"
+            },
+            {
+              "query": "loreal friends and family",
+              "value": 700,
+              "formattedValue": "+700 %",
+              "link": "/trends/explore?q=loreal+friends+and+family&date=2026-10-01+2026-10-07&geo=FR"
+            },
+            {
+              "query": "stick teint lancome",
+              "value": 350,
+              "formattedValue": "+350 %",
+              "link": "/trends/explore?q=stick+teint+lancome&date=2026-10-01+2026-10-07&geo=FR"
+            },
+            {
+              "query": "poisson chauve souris a levre rouge",
+              "value": 170,
+              "formattedValue": "+170 %",
+              "link": "/trends/explore?q=poisson+chauve+souris+a+levre+rouge&date=2026-10-01+2026-10-07&geo=FR"
+            },
+            {
+              "query": "hazel eyes",
+              "value": 70,
+              "formattedValue": "+70 %",
+              "link": "/trends/explore?q=hazel+eyes&date=2026-10-01+2026-10-07&geo=FR"
+            },
+            {
+              "query": "divain parfum",
+              "value": 50,
+              "formattedValue": "+50 %",
+              "link": "/trends/explore?q=divain+parfum&date=2026-10-01+2026-10-07&geo=FR"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,307 @@
+{
+  "retrieved_at": "2026-10-08T10:40:28.439828+00:00",
+  "geo": "IT",
+  "language": "it",
+  "period_start": "2026-10-01",
+  "period_end": "2026-10-07",
+  "category_id": 143,
+  "category_name": "Face & Body Care",
+  "search_property": "web",
+  "timezone": "UTC",
+  "seed_keyword": "",
+  "source_url": "https://trends.google.com/trends/explore?cat=143&date=2026-10-01+2026-10-07&geo=IT&hl=it",
+  "widget_request": {
+    "restriction": {
+      "geo": {
+        "country": "IT"
+      },
+      "time": "2026-10-01 2026-10-07",
+      "originalTimeRangeForExploreUrl": "2026-10-01 2026-10-07"
+    },
+    "keywordType": "QUERY",
+    "metric": [
+      "TOP",
+      "RISING"
+    ],
+    "trendinessSettings": {
+      "compareTime": "2026-09-24 2026-09-30"
+    },
+    "requestOptions": {
+      "property": "",
+      "backend": "IZG",
+      "category": 143
+    },
+    "language": "it",
+    "userCountryCode": "US",
+    "userConfig": {
+      "userType": "USER_TYPE_SCRAPER"
+    }
+  },
+  "response": {
+    "default": {
+      "rankedList": [
+        {
+          "rankedKeyword": [
+            {
+              "query": "profumo",
+              "value": 100,
+              "formattedValue": "100",
+              "hasData": true,
+              "link": "/trends/explore?q=profumo&date=2026-10-01+2026-10-07&geo=IT"
+            },
+            {
+              "query": "crema",
+              "value": 89,
+              "formattedValue": "89",
+              "hasData": true,
+              "link": "/trends/explore?q=crema&date=2026-10-01+2026-10-07&geo=IT"
+            },
+            {
+              "query": "unghie",
+              "value": 53,
+              "formattedValue": "53",
+              "hasData": true,
+              "link": "/trends/explore?q=unghie&date=2026-10-01+2026-10-07&geo=IT"
+            },
+            {
+              "query": "profumi",
+              "value": 34,
+              "formattedValue": "34",
+              "hasData": true,
+              "link": "/trends/explore?q=profumi&date=2026-10-01+2026-10-07&geo=IT"
+            },
+            {
+              "query": "sephora",
+              "value": 28,
+              "formattedValue": "28",
+              "hasData": true,
+              "link": "/trends/explore?q=sephora&date=2026-10-01+2026-10-07&geo=IT"
+            },
+            {
+              "query": "amazon",
+              "value": 14,
+              "formattedValue": "14",
+              "hasData": true,
+              "link": "/trends/explore?q=amazon&date=2026-10-01+2026-10-07&geo=IT"
+            },
+            {
+              "query": "profumo uomo",
+              "value": 13,
+              "formattedValue": "13",
+              "hasData": true,
+              "link": "/trends/explore?q=profumo+uomo&date=2026-10-01+2026-10-07&geo=IT"
+            },
+            {
+              "query": "profumo donna",
+              "value": 11,
+              "formattedValue": "11",
+              "hasData": true,
+              "link": "/trends/explore?q=profumo+donna&date=2026-10-01+2026-10-07&geo=IT"
+            },
+            {
+              "query": "dior",
+              "value": 11,
+              "formattedValue": "11",
+              "hasData": true,
+              "link": "/trends/explore?q=dior&date=2026-10-01+2026-10-07&geo=IT"
+            },
+            {
+              "query": "mascara",
+              "value": 11,
+              "formattedValue": "11",
+              "hasData": true,
+              "link": "/trends/explore?q=mascara&date=2026-10-01+2026-10-07&geo=IT"
+            },
+            {
+              "query": "braun",
+              "value": 10,
+              "formattedValue": "10",
+              "hasData": true,
+              "link": "/trends/explore?q=braun&date=2026-10-01+2026-10-07&geo=IT"
+            },
+            {
+              "query": "chanel",
+              "value": 8,
+              "formattedValue": "8",
+              "hasData": true,
+              "link": "/trends/explore?q=chanel&date=2026-10-01+2026-10-07&geo=IT"
+            },
+            {
+              "query": "gabriele sabatini",
+              "value": 7,
+              "formattedValue": "7",
+              "hasData": true,
+              "link": "/trends/explore?q=gabriele+sabatini&date=2026-10-01+2026-10-07&geo=IT"
+            },
+            {
+              "query": "la roche posay",
+              "value": 7,
+              "formattedValue": "7",
+              "hasData": true,
+              "link": "/trends/explore?q=la+roche+posay&date=2026-10-01+2026-10-07&geo=IT"
+            },
+            {
+              "query": "bionike",
+              "value": 6,
+              "formattedValue": "6",
+              "hasData": true,
+              "link": "/trends/explore?q=bionike&date=2026-10-01+2026-10-07&geo=IT"
+            },
+            {
+              "query": "cerave",
+              "value": 6,
+              "formattedValue": "6",
+              "hasData": true,
+              "link": "/trends/explore?q=cerave&date=2026-10-01+2026-10-07&geo=IT"
+            },
+            {
+              "query": "fragrantica",
+              "value": 5,
+              "formattedValue": "5",
+              "hasData": true,
+              "link": "/trends/explore?q=fragrantica&date=2026-10-01+2026-10-07&geo=IT"
+            },
+            {
+              "query": "guerlain",
+              "value": 5,
+              "formattedValue": "5",
+              "hasData": true,
+              "link": "/trends/explore?q=guerlain&date=2026-10-01+2026-10-07&geo=IT"
+            },
+            {
+              "query": "kiko",
+              "value": 5,
+              "formattedValue": "5",
+              "hasData": true,
+              "link": "/trends/explore?q=kiko&date=2026-10-01+2026-10-07&geo=IT"
+            },
+            {
+              "query": "caudalie",
+              "value": 5,
+              "formattedValue": "5",
+              "hasData": true,
+              "link": "/trends/explore?q=caudalie&date=2026-10-01+2026-10-07&geo=IT"
+            },
+            {
+              "query": "rhode",
+              "value": 5,
+              "formattedValue": "5",
+              "hasData": true,
+              "link": "/trends/explore?q=rhode&date=2026-10-01+2026-10-07&geo=IT"
+            },
+            {
+              "query": "meteo",
+              "value": 5,
+              "formattedValue": "5",
+              "hasData": true,
+              "link": "/trends/explore?q=meteo&date=2026-10-01+2026-10-07&geo=IT"
+            },
+            {
+              "query": "garnier",
+              "value": 5,
+              "formattedValue": "5",
+              "hasData": true,
+              "link": "/trends/explore?q=garnier&date=2026-10-01+2026-10-07&geo=IT"
+            },
+            {
+              "query": "yodeyma",
+              "value": 4,
+              "formattedValue": "4",
+              "hasData": true,
+              "link": "/trends/explore?q=yodeyma&date=2026-10-01+2026-10-07&geo=IT"
+            },
+            {
+              "query": "avene",
+              "value": 4,
+              "formattedValue": "4",
+              "hasData": true,
+              "link": "/trends/explore?q=avene&date=2026-10-01+2026-10-07&geo=IT"
+            }
+          ]
+        },
+        {
+          "rankedKeyword": [
+            {
+              "query": "gabriele sabatini",
+              "value": 63950,
+              "formattedValue": "Impennata",
+              "link": "/trends/explore?q=gabriele+sabatini&date=2026-10-01+2026-10-07&geo=IT"
+            },
+            {
+              "query": "jeremy gilbert",
+              "value": 4250,
+              "formattedValue": "+4.250%",
+              "link": "/trends/explore?q=jeremy+gilbert&date=2026-10-01+2026-10-07&geo=IT"
+            },
+            {
+              "query": "nivea labbra",
+              "value": 2350,
+              "formattedValue": "+2.350%",
+              "link": "/trends/explore?q=nivea+labbra&date=2026-10-01+2026-10-07&geo=IT"
+            },
+            {
+              "query": "whatsapp web",
+              "value": 160,
+              "formattedValue": "+160%",
+              "link": "/trends/explore?q=whatsapp+web&date=2026-10-01+2026-10-07&geo=IT"
+            },
+            {
+              "query": "cicaplast baume b5 la roche posay",
+              "value": 150,
+              "formattedValue": "+150%",
+              "link": "/trends/explore?q=cicaplast+baume+b5+la+roche+posay&date=2026-10-01+2026-10-07&geo=IT"
+            },
+            {
+              "query": "hazel eyes",
+              "value": 100,
+              "formattedValue": "+100%",
+              "link": "/trends/explore?q=hazel+eyes&date=2026-10-01+2026-10-07&geo=IT"
+            },
+            {
+              "query": "amazon prime",
+              "value": 100,
+              "formattedValue": "+100%",
+              "link": "/trends/explore?q=amazon+prime&date=2026-10-01+2026-10-07&geo=IT"
+            },
+            {
+              "query": "medicube zero pore",
+              "value": 80,
+              "formattedValue": "+80%",
+              "link": "/trends/explore?q=medicube+zero+pore&date=2026-10-01+2026-10-07&geo=IT"
+            },
+            {
+              "query": "libero mail",
+              "value": 70,
+              "formattedValue": "+70%",
+              "link": "/trends/explore?q=libero+mail&date=2026-10-01+2026-10-07&geo=IT"
+            },
+            {
+              "query": "medicube",
+              "value": 70,
+              "formattedValue": "+70%",
+              "link": "/trends/explore?q=medicube&date=2026-10-01+2026-10-07&geo=IT"
+            },
+            {
+              "query": "braun luce pulsata",
+              "value": 60,
+              "formattedValue": "+60%",
+              "link": "/trends/explore?q=braun+luce+pulsata&date=2026-10-01+2026-10-07&geo=IT"
+            },
+            {
+              "query": "basalioma naso",
+              "value": 40,
+              "formattedValue": "+40%",
+              "link": "/trends/explore?q=basalioma+naso&date=2026-10-01+2026-10-07&geo=IT"
+            },
+            {
+              "query": "meteo di domani",
+              "value": 40,
+              "formattedValue": "+40%",
+              "link": "/trends/explore?q=meteo+di+domani&date=2026-10-01+2026-10-07&geo=IT"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

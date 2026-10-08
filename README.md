@@ -1,7 +1,7 @@
 # IOMA — Beauty Radar
 
 L’agente prepara **sei grafiche e due PowerPoint**: francese e italiano,
-ciascuno con feed, story, banner e presentazione editoriale di due slide. La direzione attuale usa fotografia di prodotto originale,
+ciascuno con feed, story, banner e presentazione editoriale di quattro slide. La direzione attuale usa fotografia di prodotto originale,
 logo centrato in alto, Cormorant Garamond per i titoli e una composizione
 specifica per ciascun formato.
 
@@ -18,11 +18,11 @@ Ogni esecuzione crea una nuova cartella `output/ioma-<data>-<id>/`:
 fr/feed.png      1080×1350
 fr/story.png     1080×1920
 fr/banner.png    300×250
-fr/presentazione.pptx    2 slide
+fr/presentazione.pptx    4 slide
 it/feed.png      1080×1350
 it/story.png     1080×1920
 it/banner.png    300×250
-it/presentazione.pptx    2 slide
+it/presentazione.pptx    4 slide
 ```
 
 Solo francese e italiano. Caption, fonti, concept e controlli restano nel database
@@ -62,6 +62,10 @@ centrato, fondo avorio, titoli redazionali, testi modificabili e fonti cliccabil
    documentata. Articoli editoriali, promozioni e campagne restano distinti.
 2. Prodotto IOMA, collegamento con i segnali osservati, pubblico ipotizzato,
    proposta di attivazione social e confronto misurabile tra due messaggi.
+3. Ricerche Google della settimana: Francia nel file francese, Italia in quello
+   italiano, con query principali e query in crescita in due colonne separate.
+4. Articoli e fonti: titolo, testata, data e link «Leggi l’articolo»; i comunicati
+   dei marchi sono identificati separatamente.
 
 Le fonti complete e la caption sono anche nelle note. Per mantenere i font
 modificabili identici su un altro computer, installare Cormorant Garamond e
@@ -83,6 +87,27 @@ Il registro corrente copre Crème Sublime: ceramidi e peptide RIGIN™. Gli altr
 prodotti del catalogo richiedono un registro ingredienti e un brief verificati
 prima di usare questo nuovo flusso.
 
+## Google Trends
+
+`google_trends.py` interroga Google Trends a ogni esecuzione. Usa gli ultimi
+sette giorni UTC completati (esclude la giornata in corso), ricerca Web,
+categoria Google 143 «Face & Body Care», senza keyword iniziale. La terza
+slide indica il perimetro, la settimana e un link diretto ai dati.
+
+Il pool di query revisionate nel brief mantiene solo termini pertinenti al
+beauty: conserva
+ortografia, ordine e valori originali, senza accorpare singolari/plurali o
+rinormalizzare i punteggi. Gli indici TOP 0–100 sono relativi al mercato;
+le percentuali RISING confrontano i sette giorni precedenti. Non sono volumi
+assoluti e i punteggi di Francia e Italia non si confrontano direttamente.
+
+Le risposte originali sono nelle note delle slide e nel report SQLite. Gli
+snapshot verificati di questa revisione sono in `research/google-trends/`.
+Niente classifiche inventate: errori di accesso, dati scaduti, scope diverso
+o meno di cinque query TOP / tre RISING pertinenti bloccano la generazione.
+La selezione usa solo query presenti nel campione corrente. Quando il
+brief viene aggiornato, rivedere anche le selezioni nei dati della settimana.
+
 ## Ricerca e qualità
 
 A ogni avvio si cerca nuovamente nelle notizie degli ultimi sette giorni.
@@ -99,7 +124,7 @@ toccare i file precedenti.
 **I controlli tecnici non certificano la qualità pubblicitaria.** Il flusso
 assistito descritto in `AGENTS.md` richiede di aprire tutti i PNG e verificarli
 anche a dimensione smartphone; eventuali difetti vengono corretti prima della
-consegna. Anche le quattro slide vengono aperte e controllate dopo il rendering.
+consegna. Anche le otto slide vengono aperte e controllate dopo il rendering.
 Il programma registra inizialmente `visual_review: pending`.
 La revisione annota osservazioni e hash dei file esaminati. Non esiste una
 pubblicazione automatica sui social.

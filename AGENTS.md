@@ -1,7 +1,7 @@
 # IOMA Beauty Radar — production créative
 
 Current scope: exactly French and Italian; three PNG formats per language:
-feed 1080×1350, story 1080×1920, banner 300×250, plus one two-slide
+feed 1080×1350, story 1080×1920, banner 300×250, plus one four-slide
 PowerPoint per language. No English, Chinese, ZIP or extra delivery files.
 
 ## Before making a campaign
@@ -21,6 +21,15 @@ PowerPoint per language. No English, Chinese, ZIP or extra delivery files.
 - First slide: this week's skincare signals, ingredients, and documented
   advertising/promotion activity. Second slide: IOMA product, why its formula
   connects to those signals, proposed social activation and a measurable test.
+- Third slide: Google Trends query data, France in French and Italy in Italian.
+  Use seven completed UTC days, the Face & Body Care category (143), Web search,
+  no seed query. Show top relative scores separately from rising percentages.
+  Never call index scores search volumes or compare FR/IT scores directly.
+  Keep source spelling, values and order; disclose the editorial relevance filter.
+  Archive raw responses; reject stale/mismatched scopes or insufficient relevant
+  queries. Use present queries from the reviewed pool, preserving source order.
+- Fourth slide: visible article titles, publisher, publication date, and explicit
+  clickable reading links. Separate editorial/trade articles from brand releases.
 - Keep an editorial layout: ivory background, dark text, restrained rules,
   generous margins, top-centered IOMA logo. Include source dates and hyperlinks.
 - Separate editorial coverage, brand promotions and advertising campaigns.

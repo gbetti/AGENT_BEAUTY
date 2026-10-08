@@ -1,4 +1,4 @@
-"""Create French and Italian editorial graphics and two-page weekly PowerPoints."""
+"""Create French and Italian graphics and weekly PowerPoints with Google Trends."""
 import argparse
 from datetime import datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
@@ -14,6 +14,7 @@ from editorial import LANGUAGES, campaign_plan
 from creative import recent_campaigns
 from weekly import load_brief, select_ingredients
 from radar_presentation import create_presentation
+from google_trends import research_trends
 
 ROOT = Path(__file__).resolve().parent
 QUERY = '(beauty OR skincare) (trend OR glow OR hydration OR longevity) when:7d'
@@ -147,6 +148,7 @@ def run(args):
     product, theme, claim, matched, scores = choose_product(eligible, news, args.product)
     creative = campaign_plan(product, recent_campaigns(args.database))
     ingredients = select_ingredients(product, weekly, creative['source'], now)
+    weekly['google_trends_results'] = research_trends(weekly, now)
     return export_campaign(args, now, product, theme, claim, matched, scores, news,
                            weekly, creative, ingredients)
 
