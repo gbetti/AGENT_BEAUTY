@@ -1,4 +1,4 @@
-"""Create three coordinated graphics and a PowerPoint from the local catalog."""
+"""Create six editorial graphics: French and Italian feed, story and banner."""
 import argparse
 from datetime import datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
@@ -8,11 +8,10 @@ import sqlite3
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
-from campaign import campaign_copy, render_campaign
-from presentation import create_presentation
+from studio import render_campaign
 from research import is_beauty_headline
-from localization import LANGUAGES, localize
-from creative import campaign_plan, recent_campaigns
+from editorial import LANGUAGES, campaign_plan
+from creative import recent_campaigns
 
 ROOT = Path(__file__).resolve().parent
 QUERY = '(beauty OR skincare) (trend OR glow OR hydration OR longevity) when:7d'
@@ -142,12 +141,7 @@ def run(args):
     # Fresh evidence on EVERY invocation. No cached or invented trend fallback.
     news = search_news(now)
     product, theme, claim, matched, scores = choose_product(products, news, args.product)
-    # Validate supplied text before preparing output or selecting any new setting.
-    if getattr(args,'headline',None) is not None or getattr(args,'cta',None) is not None:
-        campaign_copy(product,getattr(args,'headline',None),getattr(args,'cta',None))
-    creative = campaign_plan(product,news,recent_campaigns(args.database),
-                             getattr(args,'headline',None),getattr(args,'cta',None))
-    headline,cta = creative['headline'],creative['cta']
+    creative = campaign_plan(product, recent_campaigns(args.database))
     import tempfile
     import uuid
     import shutil
@@ -159,40 +153,27 @@ def run(args):
     working = Path(tempfile.mkdtemp(prefix='.campaign-', dir=args.output))
     published = False
     try:
-        base_creative = creative
-        languages = getattr(args, 'languages', LANGUAGES)
-        if len(set(languages)) != len(languages) or not languages:
-            raise ValueError('Selezionare lingue distinte.')
+        languages = LANGUAGES
         localized_reports = {}
         for language in languages:
-            creative = localize(base_creative, product, language)
-            headline, cta = creative['headline'], creative['cta']
+            copy = creative['copies'][language]
             locale_working = working/language
-            locale_directory = directory/language
             locale_working.mkdir()
-            graphics = render_campaign(product, headline, cta, locale_working, args.font,scene=creative['scene'])
-            report = {'created_at': now.isoformat(), 'window_start': (now-timedelta(days=7)).isoformat(),
-                      'query': QUERY, 'product': product['name'], 'product_id': product['id'],
-                      'headline': headline, 'cta': cta, 'source_claim': creative['claim'], 'theme': theme,
-                      'creative': creative,
-                      'theme_news_counts': scores, 'matched_news': matched, 'news': news,
-                      'product_image': {'project_path': product['data'].get('local_image_path'),
-                                        'source_url': product['images'][0]['source_url']},
-                      'graphics': {kind: {**{k: v for k, v in info.items() if k != 'path'},
-                                          'path': str((locale_directory/info['path'].name).resolve())}
-                                   for kind, info in graphics.items()},
-                      'limitations': 'Segnali editoriali dalle notizie, non misure di viralità social.'}
-            presentation = create_presentation(product, report,{kind:info['path'] for kind,info in graphics.items()},
-                                               locale_working/'presentazione.pptx',
-                                               getattr(args, 'platform', 'instagram'))
-            report['presentation'] = {**{k: v for k, v in presentation.items() if k != 'path'},
-                                      'path': str((locale_directory/'presentazione.pptx').resolve())}
-            localized_reports[language] = report
-        report = dict(localized_reports.get('it', next(iter(localized_reports.values()))))
-        report['creative'] = base_creative
-        report['headline'] = base_creative['headline']
-        report['localizations'] = localized_reports
-        # Commit all three images and the PowerPoint together, with their evidence.
+            graphics = render_campaign(product, copy, locale_working, creative['scene'])
+            localized_reports[language] = {
+                **copy,
+                'graphics': {kind: {**{k: v for k, v in info.items() if k != 'path'},
+                                    'path': str((directory/language/info['path'].name).resolve())}
+                             for kind, info in graphics.items()}}
+        report = {'created_at': now.isoformat(), 'window_start': (now-timedelta(days=7)).isoformat(),
+                  'query': QUERY, 'product': product['name'], 'product_id': product['id'],
+                  'creative': creative, 'source_claim': claim, 'theme': theme,
+                  'theme_news_counts': scores, 'matched_news': matched, 'news': news,
+                  'localizations': localized_reports,
+                  'quality': {'technical_checks': 'passed', 'visual_review': 'pending',
+                              'publication_status': 'not_published'},
+                  'limitations': 'News headlines inform product selection only. Public copy uses product claims.'}
+        # All six images and history are committed together; never expose a partial set.
         with sqlite3.connect(args.database) as db:
             db.execute('INSERT INTO generations VALUES(?,?,?,?,?)',
                        (generation_id, now.isoformat(), product['id'], str((directory/languages[0]/'feed.png').resolve()),
@@ -208,7 +189,6 @@ def run(args):
     result = {language: {kind: directory/language/(kind+'.png') for kind in graphics}
               for language in languages}
     for language in languages:
-        result[language]['presentation'] = directory/language/'presentazione.pptx'
         for path in result[language].values():
             print(path.resolve())
     return result
@@ -219,13 +199,6 @@ def main():
     parser.add_argument('--database', type=Path, default=ROOT/'data/catalog.sqlite')
     parser.add_argument('--output', type=Path, default=ROOT/'output')
     parser.add_argument('--product', help='Parte del nome per scegliere il prodotto')
-    parser.add_argument('--font', help='Percorso di un font TrueType (un unico peso personalizzato)')
-    parser.add_argument('--headline', help='Headline italiana esatta, massimo 4 parole, identica nei tre formati')
-    parser.add_argument('--cta', help='Testo italiano esatto del pulsante, identico nei tre formati')
-    parser.add_argument('--platform', choices=['instagram', 'facebook'], default='instagram',
-                        help='Primo mockup del feed; il PowerPoint include sempre Instagram, Facebook, Story e web')
-    parser.add_argument('--languages', nargs='+', choices=LANGUAGES, default=list(LANGUAGES),
-                        help='Lingue da esportare (default: it fr en zh; cinese semplificato)')
     args = parser.parse_args()
     try:
         run(args)
