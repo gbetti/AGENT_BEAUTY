@@ -72,6 +72,42 @@ def validate(kind,elements):
     return rectangle_union_area([e['box'] for e in elements if e['kind']!='product'])/(width*height)
 
 
+def ingredient_callouts(image, ingredients, language, kind, product_box):
+    """Label the formula without drawing over the original packaging pixels."""
+    if len(ingredients)!=2:
+        raise ValueError('Servono esattamente due ingredienti verificati.')
+    l,t,r,b=product_box
+    draw=ImageDraw.Draw(image)
+    elements=[]
+    for index,ingredient in enumerate(ingredients):
+        if kind=='banner':
+            label=draw_text(image,ingredient['short'][language],17,146+index*28,130,12,'ingredient',align='left')
+            y=(label['box'][1]+label['box'][3])/2
+            start=(label['box'][2]+8,y);end=(l-5,y-9)
+            if start[0]+10>=end[0]: raise ValueError('Richiamo ingrediente troppo largo nel banner.')
+            thickness,head=1,4
+        else:
+            left=index==0
+            y=t+(b-t)*(.35 if left else .73)
+            center=164 if left else 916
+            label=draw_text(image,ingredient['label'][language],center,y-68,220,28,'ingredient')
+            start=(label['box'][2]+10,y-15) if left else (label['box'][0]-10,y-15)
+            end=(l-7,y+15) if left else (r+7,y+15)
+            if (left and start[0]>=end[0]) or (not left and start[0]<=end[0]):
+                raise ValueError('Spazio insufficiente per la freccia ingrediente.')
+            thickness,head=2,9
+        draw.line((start,end),fill=INK,width=thickness)
+        angle=math.atan2(end[1]-start[1],end[0]-start[0])
+        wings=[(end[0]-head*math.cos(angle+a),end[1]-head*math.sin(angle+a)) for a in (-.48,.48)]
+        draw.line((wings[0],end,wings[1]),fill=INK,width=thickness)
+        points=[start,end]+wings
+        elements.append({**label,'ingredient_id':ingredient['id']})
+        elements.append({'kind':'arrow','ingredient_id':ingredient['id'],'start':start,'end':end,
+                         'box':[min(p[0] for p in points),min(p[1] for p in points),
+                                max(p[0] for p in points),max(p[1] for p in points)]})
+    return elements
+
+
 def render_campaign(product, copy, directory, scene):
     path=ROOT/scene['path']
     if hashlib.sha256(path.read_bytes()).hexdigest()!=scene['sha256']:
@@ -96,7 +132,7 @@ def render_campaign(product, copy, directory, scene):
             name_top,name_size=1480,28
         else:
             logo_top,logo_width=16,65
-            headline_top,headline_size=81,26
+            headline_top,headline_size=(59,26) if copy.get('ingredients') else (81,26)
             product_x,baseline,limits=222,207,(122,130)
         elements=[]
         logo=logo_layer(logo_width,False)
@@ -107,7 +143,10 @@ def render_campaign(product, copy, directory, scene):
         elements.append(draw_text(image,copy['headline'],width/2 if kind!='banner' else 17,
                                   headline_top,width*.86 if kind!='banner' else 143,
                                   headline_size,'headline',serif=True,align='center' if kind!='banner' else 'left'))
-        elements.append(shadow_and_product(image,photo,product_x,baseline,limits))
+        product_element=shadow_and_product(image,photo,product_x,baseline,limits)
+        elements.append(product_element)
+        if copy.get('ingredients'):
+            elements.extend(ingredient_callouts(image,copy['ingredients'],copy['language'],kind,product_element['box']))
         if kind!='banner':
             elements.append(draw_text(image,copy['product_name'],width/2,name_top,width*.86,name_size,'product_name'))
         else:

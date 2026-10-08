@@ -1,0 +1,92 @@
+{
+  "reviewed_at": "2026-10-08T09:57:48+00:00",
+  "sources": [
+    {
+      "id": "cosrx",
+      "title": "COSRX fall skincare promotion",
+      "url": "https://www.prnewsthailand.com/prnewswire/en/view/72075",
+      "publisher": "COSRX / PR Newswire",
+      "published_at": "2026-10-02T00:00:00+00:00",
+      "kind": "brand_promotion",
+      "brand": "COSRX",
+      "event_start": "2026-10-06",
+      "event_end": "2026-10-07",
+      "topics": [
+        "peptides",
+        "ceramides",
+        "barrier"
+      ],
+      "evidence_terms": [
+        "Peptide",
+        "Ceramide",
+        "October 6"
+      ],
+      "summary": {
+        "fr": "COSRX : offre des 6–7 octobre centrée sur peptides et soin de la barrière. Promotion terminée.",
+        "it": "COSRX: promozione del 6–7 ottobre su peptidi e cura della barriera. Offerta conclusa."
+      }
+    },
+    {
+      "id": "byoma",
+      "title": "September beauty launches reviewed",
+      "url": "https://www.marieclaire.com/beauty/best-new-beauty-products-september-2026/",
+      "publisher": "Marie Claire",
+      "published_at": "2026-10-02T18:01:50+00:00",
+      "kind": "editorial",
+      "brand": "BYOMA",
+      "topics": [
+        "peptides",
+        "ceramides"
+      ],
+      "evidence_terms": [
+        "Byoma",
+        "tri-ceramide"
+      ],
+      "summary": {
+        "fr": "BYOMA : peptides + tri-céramides.",
+        "it": "BYOMA: peptidi + tri-ceramidi."
+      }
+    },
+    {
+      "id": "cerave",
+      "title": "CeraVe Hong Kong campaign",
+      "url": "https://www.marketing-interactive.com/cerave-hk-ditches-the-hard-sell-to-win-over-genz",
+      "publisher": "Marketing-Interactive",
+      "published_at": "2026-09-24T00:00:00+00:00",
+      "kind": "advertising_campaign",
+      "brand": "CeraVe",
+      "event_start": "2026-09-01",
+      "event_end": "2026-11-30",
+      "topics": [
+        "social_creative"
+      ],
+      "evidence_terms": [
+        "September to November 2026",
+        "six-second Reels"
+      ],
+      "summary": {
+        "fr": "CeraVe, Hong Kong : campagne annoncée active sept.–nov., Reels courts et découverte produit. Article du 24 septembre.",
+        "it": "CeraVe, Hong Kong: campagna annunciata attiva sett.–nov., Reel brevi e scoperta prodotto. Articolo del 24 settembre."
+      }
+    }
+  ],
+  "product_key": "creme-sublime-revitalisante",
+  "insight": {
+    "fr": "Faire comprendre la formule : barrière cutanée et fermeté, en deux actifs lisibles.",
+    "it": "Rendere comprensibile la formula: barriera cutanea e compattezza, con due attivi leggibili."
+  },
+  "strategy": {
+    "fr": {
+      "positioning": "Crème Sublime associe nutrition et fermeté. Céramides : barrière cutanée. Peptide RIGIN™ : fermeté. Cette lecture de la formule relie le soin aux actifs cités cette semaine.",
+      "audience": "Hypothèse de cible : personnes recherchant nutrition, confort et fermeté.",
+      "activation": "Feed : deux actifs, deux repères visuels. Story : question « Barrière ou fermeté ? ». Reel à tester : 6–10 s, texture puis formule. Bannière : découverte du soin.",
+      "measurement": "Tester le message « barrière » face à « fermeté » avec la même audience et le même budget. Comparer clics et visites de la fiche produit."
+    },
+    "it": {
+      "positioning": "Crème Sublime unisce nutrimento e compattezza. Ceramidi: barriera cutanea. Peptide RIGIN™: compattezza. Questa lettura della formula collega il prodotto agli attivi citati questa settimana.",
+      "audience": "Ipotesi di pubblico: persone che cercano nutrimento, comfort e compattezza.",
+      "activation": "Feed: due attivi, due richiami visivi. Story: domanda « Barriera o compattezza? ». Reel da testare: 6–10 s, texture poi formula. Banner: scoperta del trattamento.",
+      "measurement": "Testare « barriera » contro « compattezza » con pubblico e budget uguali. Confrontare clic e visite alla scheda prodotto."
+    }
+  }
+}

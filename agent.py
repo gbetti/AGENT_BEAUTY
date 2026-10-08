@@ -1,4 +1,4 @@
-"""Create six editorial graphics: French and Italian feed, story and banner."""
+"""Create French and Italian editorial graphics and two-page weekly PowerPoints."""
 import argparse
 from datetime import datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
@@ -12,6 +12,8 @@ from studio import render_campaign
 from research import is_beauty_headline
 from editorial import LANGUAGES, campaign_plan
 from creative import recent_campaigns
+from weekly import load_brief, select_ingredients
+from radar_presentation import create_presentation
 
 ROOT = Path(__file__).resolve().parent
 QUERY = '(beauty OR skincare) (trend OR glow OR hydration OR longevity) when:7d'
@@ -140,8 +142,20 @@ def run(args):
     products = load_products(args.database)
     # Fresh evidence on EVERY invocation. No cached or invented trend fallback.
     news = search_news(now)
-    product, theme, claim, matched, scores = choose_product(products, news, args.product)
+    weekly = load_brief(getattr(args, 'research', ROOT/'research/2026-10-08.json'), now)
+    eligible = [p for p in products if p['id'].split(':')[-1] == weekly['product_key']]
+    product, theme, claim, matched, scores = choose_product(eligible, news, args.product)
     creative = campaign_plan(product, recent_campaigns(args.database))
+    ingredients = select_ingredients(product, weekly, creative['source'], now)
+    return export_campaign(args, now, product, theme, claim, matched, scores, news,
+                           weekly, creative, ingredients)
+
+
+def export_campaign(args, now, product, theme, claim, matched, scores, news,
+                    weekly, creative, ingredients):
+    """Render previously verified evidence; no source fetching or delivery here."""
+    for copy in creative['copies'].values():
+        copy['ingredients'] = ingredients
     import tempfile
     import uuid
     import shutil
@@ -168,12 +182,20 @@ def run(args):
         report = {'created_at': now.isoformat(), 'window_start': (now-timedelta(days=7)).isoformat(),
                   'query': QUERY, 'product': product['name'], 'product_id': product['id'],
                   'creative': creative, 'source_claim': claim, 'theme': theme,
+                  'weekly': weekly, 'ingredients': ingredients,
                   'theme_news_counts': scores, 'matched_news': matched, 'news': news,
                   'localizations': localized_reports,
                   'quality': {'technical_checks': 'passed', 'visual_review': 'pending',
                               'publication_status': 'not_published'},
-                  'limitations': 'News headlines inform product selection only. Public copy uses product claims.'}
-        # All six images and history are committed together; never expose a partial set.
+                  'limitations': 'Weekly sources guide editorial ingredient selection, not concentration ranking. '
+                                 'Advertising coverage is not proof of current paid delivery or budgets. '
+                                 'Public copy uses documented IOMA claims.'}
+        for language in languages:
+            graphics_paths = {kind: working/language/(kind+'.png') for kind in ('feed','story','banner')}
+            presentation = create_presentation(product, report, graphics_paths, working/language/'presentazione.pptx', language)
+            presentation['path'] = str((directory/language/'presentazione.pptx').resolve())
+            report['localizations'][language]['presentation'] = presentation
+        # All six images, both decks and history are committed together.
         with sqlite3.connect(args.database) as db:
             db.execute('INSERT INTO generations VALUES(?,?,?,?,?)',
                        (generation_id, now.isoformat(), product['id'], str((directory/languages[0]/'feed.png').resolve()),
@@ -189,6 +211,7 @@ def run(args):
     result = {language: {kind: directory/language/(kind+'.png') for kind in graphics}
               for language in languages}
     for language in languages:
+        result[language]['presentation'] = directory/language/'presentazione.pptx'
         for path in result[language].values():
             print(path.resolve())
     return result
@@ -199,6 +222,7 @@ def main():
     parser.add_argument('--database', type=Path, default=ROOT/'data/catalog.sqlite')
     parser.add_argument('--output', type=Path, default=ROOT/'output')
     parser.add_argument('--product', help='Parte del nome per scegliere il prodotto')
+    parser.add_argument('--research', type=Path, default=ROOT/'research/2026-10-08.json', help='Brief settimanale verificato nelle ultime 36 ore')
     args = parser.parse_args()
     try:
         run(args)

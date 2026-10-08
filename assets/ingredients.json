@@ -1,0 +1,62 @@
+{
+  "creme-sublime-revitalisante": [
+    {
+      "id": "ceramides",
+      "label": {
+        "fr": "Céramides",
+        "it": "Ceramidi"
+      },
+      "short": {
+        "fr": "Céramides",
+        "it": "Ceramidi"
+      },
+      "inci": [
+        "CERAMIDE NP",
+        "CERAMIDE AP"
+      ],
+      "priority": 100,
+      "role": {
+        "fr": "Barrière cutanée",
+        "it": "Barriera cutanea"
+      }
+    },
+    {
+      "id": "peptides",
+      "label": {
+        "fr": "Peptide\nRIGIN™",
+        "it": "Peptide\nRIGIN™"
+      },
+      "short": {
+        "fr": "Peptide RIGIN™",
+        "it": "Peptide RIGIN™"
+      },
+      "inci": [
+        "PALMITOYL TETRAPEPTIDE-7"
+      ],
+      "priority": 95,
+      "role": {
+        "fr": "Fermeté",
+        "it": "Compattezza"
+      }
+    },
+    {
+      "id": "glycerin",
+      "label": {
+        "fr": "Glycérine",
+        "it": "Glicerina"
+      },
+      "short": {
+        "fr": "Glycérine",
+        "it": "Glicerina"
+      },
+      "inci": [
+        "GLYCERIN"
+      ],
+      "priority": 60,
+      "role": {
+        "fr": "Hydratation",
+        "it": "Idratazione"
+      }
+    }
+  ]
+}
