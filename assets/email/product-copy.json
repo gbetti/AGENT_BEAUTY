@@ -1,0 +1,65 @@
+{
+  "creme-sublime-revitalisante": {
+    "product_url": "https://ioma-paris.com/products/creme-sublime-revitalisante",
+    "fr": {
+      "title": "Crème Sublime Revitalisante",
+      "subjects": ["Et si votre routine devenait sublime ?", "Votre peau demande plus de confort ?", "Le geste expert de votre routine"],
+      "preheader": "Un soin expert pour nourrir votre peau et renforcer sa barrière cutanée.",
+      "lead": "Votre peau mérite un geste essentiel.",
+      "body": "La Crème Sublime Revitalisante nourrit en profondeur, renforce la barrière cutanée et aide à retrouver une peau plus ferme.",
+      "closing": "Faites place à votre nouveau rituel.",
+      "cta": "Découvrir le soin"
+    },
+    "it": {
+      "title": "Crème Sublime Revitalisante",
+      "subjects": ["E se il tuo rituale diventasse sublime?", "La tua pelle cerca più comfort?", "Il gesto esperto del tuo rituale"],
+      "preheader": "Un trattamento per nutrire la pelle e rafforzare la barriera cutanea.",
+      "lead": "La tua pelle merita un gesto essenziale.",
+      "body": "Crème Sublime Revitalisante nutre in profondità, rafforza la barriera cutanea e aiuta a ritrovare una pelle più soda.",
+      "closing": "Fai spazio al tuo nuovo rituale.",
+      "cta": "Scopri il trattamento"
+    }
+  },
+  "cc-gel": {
+    "product_url": "https://ioma-paris.com/products/cc-gel-soin-teinte-eclat-parfait",
+    "fr": {
+      "title": "CC Gel",
+      "subjects": ["Et si votre glow restait naturel ?", "Votre teint, en toute légèreté", "Un geste pour révéler votre éclat"],
+      "preheader": "Une couvrance naturelle, une teinte universelle, un teint lumineux.",
+      "lead": "Laissez votre éclat prendre sa place.",
+      "body": "CC Gel associe couvrance naturelle, hydratation et protection. Sa teinte universelle s’adapte à toutes les carnations pour un teint lissé et unifié.",
+      "closing": "Votre prochain geste bonne mine commence ici.",
+      "cta": "Découvrir CC Gel"
+    },
+    "it": {
+      "title": "CC Gel",
+      "subjects": ["E se il tuo glow restasse naturale?", "Il tuo incarnato, con leggerezza", "Un gesto per rivelare la tua luce"],
+      "preheader": "Coprenza naturale, una tonalità universale e un incarnato luminoso.",
+      "lead": "Lascia spazio alla tua luminosità.",
+      "body": "CC Gel unisce coprenza naturale, idratazione e protezione. La tonalità universale si adatta a tutte le carnagioni per un incarnato levigato e uniforme.",
+      "closing": "Il tuo prossimo gesto di bellezza inizia qui.",
+      "cta": "Scopri CC Gel"
+    }
+  },
+  "creme-genereuse-contour-des-yeux": {
+    "product_url": "https://ioma-paris.com/products/creme-genereuse-contour-des-yeux",
+    "fr": {
+      "title": "Crème Généreuse Contour des Yeux",
+      "subjects": ["Et si tout commençait par le regard ?", "Le détail qui change votre rituel", "Votre regard mérite son propre soin"],
+      "preheader": "Un soin ciblé pour lisser les rides et ridules du contour des yeux.",
+      "lead": "Un petit geste. Une vraie place dans votre routine.",
+      "body": "La Crème Généreuse Contour des Yeux lisse les rides et ridules et aide à prévenir leur apparition. La peau de cette zone gagne en fermeté.",
+      "closing": "Donnez au contour de vos yeux son soin expert.",
+      "cta": "Découvrir le soin"
+    },
+    "it": {
+      "title": "Crème Généreuse Contour des Yeux",
+      "subjects": ["E se tutto iniziasse dallo sguardo?", "Il dettaglio che cambia il tuo rituale", "Il tuo sguardo merita un gesto dedicato"],
+      "preheader": "Un trattamento mirato per levigare rughe e linee sottili del contorno occhi.",
+      "lead": "Un piccolo gesto. Uno spazio nel tuo rituale.",
+      "body": "Crème Généreuse Contour des Yeux leviga rughe e linee sottili e aiuta a prevenirne la comparsa. La pelle di questa zona acquista compattezza.",
+      "closing": "Dedica al contorno occhi il suo trattamento esperto.",
+      "cta": "Scopri il trattamento"
+    }
+  }
+}

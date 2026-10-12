@@ -118,7 +118,7 @@ class AgentTests(unittest.TestCase):
             self.assertNotEqual(first['variant'],second['variant'])
             self.assertNotEqual(first['scene']['id'],second['scene']['id'])
 
-    def test_six_images_two_decks_and_fresh_research_each_run(self):
+    def test_six_images_two_decks_two_emails_and_fresh_research_each_run(self):
         with tempfile.TemporaryDirectory() as folder:
             args=Namespace(database=Path(folder)/'db.sqlite',output=Path(folder)/'out',product='Sublime')
             news=[{'title':'Skin barrier skincare trend','published_at':datetime.now(timezone.utc).isoformat(),'url':'https://example.com/skin'}]
@@ -132,7 +132,9 @@ class AgentTests(unittest.TestCase):
             for d in args.output.iterdir():
                 self.assertEqual({p.name for p in d.iterdir()},{'fr','it'})
                 self.assertEqual({str(p.relative_to(d)) for p in d.rglob('*') if p.is_file()},
-                                 {lang+'/'+kind+'.png' for lang in LANGUAGES for kind in FORMATS} | {lang+'/presentazione.pptx' for lang in LANGUAGES})
+                                 {lang+'/'+kind+'.png' for lang in LANGUAGES for kind in FORMATS} |
+                                 {lang+'/'+name for lang in LANGUAGES
+                                  for name in ('presentazione.pptx','email.html','email.eml','email-logo.png')})
                 for lang in LANGUAGES:
                     deck=Presentation(d/lang/'presentazione.pptx')
                     self.assertEqual(len(deck.slides),4)
@@ -153,6 +155,15 @@ class AgentTests(unittest.TestCase):
                 self.assertEqual(set(report['localizations']),{'fr','it'})
                 self.assertEqual(report['quality']['visual_review'],'pending')
                 self.assertEqual(report['quality']['publication_status'],'not_published')
+                for language in LANGUAGES:
+                    email=report['localizations'][language]['email']
+                    self.assertEqual(email['language'],language)
+                    self.assertEqual(email['image_path'],report['localizations'][language]['graphics']['feed']['path'])
+                    self.assertFalse(email['sent'])
+            first_report,second_report=[json.loads(r[0]) for r in rows]
+            for language in LANGUAGES:
+                self.assertNotEqual(first_report['localizations'][language]['email']['subject'],
+                                    second_report['localizations'][language]['email']['subject'])
 
     def test_second_language_failure_rolls_back_all_new_files_and_history(self):
         with tempfile.TemporaryDirectory() as folder:

@@ -2,7 +2,9 @@
 
 Current scope: exactly French and Italian; three PNG formats per language:
 feed 1080×1350, story 1080×1920, banner 300×250, plus one four-slide
-PowerPoint per language. No English, Chinese, ZIP or extra delivery files.
+PowerPoint and coordinated email per language. The email outputs are
+`email.html`, `email.eml` and its original `email-logo.png`; it uses the same
+`feed.png` unchanged. No English, Chinese, ZIP or unrelated delivery files.
 
 ## Before making a campaign
 - Read `editorial.py`, the selected official product page, and the product asset manifest.
@@ -57,9 +59,25 @@ Record the reviewed file SHA-256s and actual observations in the generation's
 `quality` object in SQLite. Never infer aesthetic approval from geometry tests.
 No user confirmation is required to do this review and correction work.
 
+## Coordinated email
+- Generate the email after the campaign exports in each of the same two languages.
+- Use the campaign feed PNG without regeneration, cropping or recompression.
+- Follow the supplied IOMA email style: centered original logo, large hero,
+  concise product-specific copy and one CTA. Subject max 55 characters,
+  preheader max 100, commercial body max 70 words. Curiosity hooks must not
+  invent reviews, discounts, scarcity, ingredient claims or clinical results.
+- Use documented catalog benefits. Email examples inform style, not claims.
+- Review the HTML at desktop and phone width, and verify the MIME draft
+  contains the exact source PNG bytes. Do not send messages to recipients.
+- HTML is a Klaviyo template: publish its assets at the configured HTTPS base
+  before import. Leave per-recipient unsubscribe resolution to the ESP.
+  The standalone MIME draft uses embedded images and defaults to a mailto
+  unsubscribe request to the IOMA contact address; it is not sent automatically.
+
 ## Delivery
 Use verified accessible GitHub links in this established repository workflow;
 cloud `/workspace` paths did not work for this user. Verify remote files before
-claiming delivery. Store the eight files under a new dated directory in `posts/`;
-do not overwrite prior campaigns. Publishing assets to the repository is not
+claiming delivery. Store the eight campaign files and six email files together
+under a new dated directory in `posts/`; do not overwrite prior campaigns.
+Publishing assets to the repository is not
 publishing them on social media. Do not claim a social post was published.

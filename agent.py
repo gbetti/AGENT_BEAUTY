@@ -1,4 +1,4 @@
-"""Create French and Italian graphics and weekly PowerPoints with Google Trends."""
+"""Create French and Italian graphics, weekly PowerPoints and coordinated emails."""
 import argparse
 from datetime import datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
@@ -15,6 +15,7 @@ from creative import recent_campaigns
 from weekly import load_brief, select_ingredients
 from radar_presentation import create_presentation
 from google_trends import research_trends
+from newsletter import create_email
 
 ROOT = Path(__file__).resolve().parent
 QUERY = '(beauty OR skincare) (trend OR glow OR hydration OR longevity) when:7d'
@@ -197,7 +198,19 @@ def export_campaign(args, now, product, theme, claim, matched, scores, news,
             presentation = create_presentation(product, report, graphics_paths, working/language/'presentazione.pptx', language)
             presentation['path'] = str((directory/language/'presentazione.pptx').resolve())
             report['localizations'][language]['presentation'] = presentation
-        # All six images, both decks and history are committed together.
+        history = recent_campaigns(args.database)
+        assets_base = getattr(args, 'email_assets_url', None)
+        for language in languages:
+            email_report = {**report, 'headline': localized_reports[language]['headline']}
+            newsletter = create_email(product, email_report, working/language/'feed.png', working/language,
+                                      language=language, history=history,
+                                      subject=getattr(args, 'email_subject_'+language, None),
+                                      assets_url=assets_base.rstrip('/')+'/'+language if assets_base else None,
+                                      unsubscribe_url=getattr(args, 'email_unsubscribe_url', None))
+            report['localizations'][language]['email'] = {
+                key: str((directory/language/value.name).resolve()) if isinstance(value,Path) else value
+                for key,value in newsletter.items()}
+        # Graphics, decks, coordinated emails and history are committed together.
         with sqlite3.connect(args.database) as db:
             db.execute('INSERT INTO generations VALUES(?,?,?,?,?)',
                        (generation_id, now.isoformat(), product['id'], str((directory/languages[0]/'feed.png').resolve()),
@@ -214,6 +227,8 @@ def export_campaign(args, now, product, theme, claim, matched, scores, news,
               for language in languages}
     for language in languages:
         result[language]['presentation'] = directory/language/'presentazione.pptx'
+        result[language]['email'] = directory/language/'email.html'
+        result[language]['email_draft'] = directory/language/'email.eml'
         for path in result[language].values():
             print(path.resolve())
     return result
@@ -225,6 +240,12 @@ def main():
     parser.add_argument('--output', type=Path, default=ROOT/'output')
     parser.add_argument('--product', help='Parte del nome per scegliere il prodotto')
     parser.add_argument('--research', type=Path, default=ROOT/'research/2026-10-08.json', help='Brief settimanale verificato nelle ultime 36 ore')
+    parser.add_argument('--email-subject-fr', help='Oggetto francese esatto dell’email, massimo 55 caratteri')
+    parser.add_argument('--email-subject-it', help='Oggetto italiano esatto dell’email, massimo 55 caratteri')
+    parser.add_argument('--email-assets-url',
+                        help='Base HTTPS degli asset: ogni lingua usa <base>/<lingua>/feed.png ed email-logo.png')
+    parser.add_argument('--email-unsubscribe-url',
+                        help='URL HTTPS di disiscrizione; l’HTML usa il tag Klaviyo quando non specificato')
     args = parser.parse_args()
     try:
         run(args)

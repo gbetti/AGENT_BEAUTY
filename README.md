@@ -1,7 +1,7 @@
 # IOMA — Beauty Radar
 
-L’agente prepara **sei grafiche e due PowerPoint**: francese e italiano,
-ciascuno con feed, story, banner e presentazione editoriale di quattro slide. La direzione attuale usa fotografia di prodotto originale,
+L’agente prepara **sei grafiche, due PowerPoint e due email coordinate**: francese e italiano,
+ciascuno con feed, story, banner, presentazione editoriale di quattro slide e newsletter. La direzione attuale usa fotografia di prodotto originale,
 logo centrato in alto, Cormorant Garamond per i titoli e una composizione
 specifica per ciascun formato.
 
@@ -19,14 +19,68 @@ fr/feed.png      1080×1350
 fr/story.png     1080×1920
 fr/banner.png    300×250
 fr/presentazione.pptx    4 slide
+fr/email.html           template responsive
+fr/email.eml            bozza con immagini incorporate
+fr/email-logo.png       logo originale per l’HTML
 it/feed.png      1080×1350
 it/story.png     1080×1920
 it/banner.png    300×250
 it/presentazione.pptx    4 slide
+it/email.html           template responsive
+it/email.eml            bozza con immagini incorporate
+it/email-logo.png       logo originale per l’HTML
 ```
 
 Solo francese e italiano. Caption, fonti, concept e controlli restano nel database
 `data/catalog.sqlite`, tabella `generations`, campo `research_json`.
+
+## Email coordinata
+
+Dopo gli asset, `newsletter.py` crea un’email per ogni lingua. Riutilizza
+**esattamente il PNG del feed**: niente rigenerazione, ritaglio o ricompressione.
+Il layout segue le email IOMA fornite: logo centrale, immagine protagonista,
+testo breve centrato e un solo pulsante scuro. L’immagine conserva i propri
+colori e la propria tipografia; i testi dell’email usano titoli serif e corpo
+leggibile, con margini generosi.
+
+Gli oggetti usano curiosità e benefici documentati, senza recensioni,
+scarsità, sconti o risultati clinici inventati. Massimo 55 caratteri per
+l’oggetto, 100 per il preheader e 70 parole commerciali. Alla successiva
+campagna dello stesso prodotto l’oggetto cambia. I testi in
+`assets/email/product-copy.json` derivano dai benefici del catalogo:
+gli esempi inoltrati guidano lo stile, non aggiungono claim ad altri prodotti.
+Se cambia il claim di catalogo, anche il brief email deve essere aggiornato.
+
+`email.eml` è una **bozza non inviata**: mittente IOMA, destinatario vuoto,
+oggetto, testo semplice e HTML. Feed e logo sono incorporati via CID con i
+byte originali; si apre offline. Di default la disiscrizione è una richiesta
+via email a `contact@ioma-paris.com`. Non avviene alcun invio automatico.
+
+`email.html` contiene il preheader nascosto e l’oggetto nel titolo HTML.
+Usa tabelle e stili inline, immagini fluide, media query per mobile e
+pulsante VML per Outlook. Le immagini sono relative nella versione locale;
+per importarlo in Klaviyo, indicare una base HTTPS con gli asset pubblicati:
+
+```sh
+python agent.py --product 'Sublime' --research research/brief-aggiornato.json \
+  --email-assets-url 'https://cdn.example.com/campagna' \
+  --email-subject-fr 'Et si votre routine devenait sublime ?' \
+  --email-subject-it 'E se il tuo rituale diventasse sublime?'
+```
+
+Per ogni lingua il template punta a `<base>/fr/feed.png` e
+`<base>/fr/email-logo.png` oppure agli equivalenti `it/`. Klaviyo risolve
+`{% unsubscribe_link %}` per ogni destinatario; con
+`--email-unsubscribe-url 'https://example.com/preferenze'` si può indicare
+il link del proprio sistema di invio. I link prodotto includono parametri
+UTM. Gli indirizzi personalizzati e i link di tracking degli esempi inoltrati
+non vengono copiati nel progetto.
+
+Oggetto, preheader, testo, percorsi e hash del feed vengono salvati in
+`research_json.localizations.<lingua>.email`. Se un’email fallisce, tutta
+la nuova campagna viene annullata insieme alle grafiche e ai PowerPoint.
+La verifica di esportazione e della resa locale non equivale a una prova
+di consegna o di rendering in tutti i client di posta.
 
 ## Direzione artistica e copy
 
