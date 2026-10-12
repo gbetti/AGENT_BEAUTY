@@ -64,7 +64,11 @@ No user confirmation is required to do this review and correction work.
 - Use the campaign feed PNG without regeneration, cropping or recompression.
 - Follow the supplied IOMA email style: centered original logo, large hero,
   concise product-specific copy and one CTA. Subject max 55 characters,
-  preheader max 100, commercial body max 70 words. Curiosity hooks must not
+  preheader max 100, commercial body max 70 words. Structure the commercial
+  copy as five short statements: curiosity hook, three benefit statements,
+  and a conditional explanation of whom the product suits. Allow natural
+  wrapping on phones; do not force five physical lines on every screen.
+  Curiosity hooks must not
   invent reviews, discounts, scarcity, ingredient claims or clinical results.
 - Use documented catalog benefits. Email examples inform style, not claims.
 - Review the HTML at desktop and phone width, and verify the MIME draft

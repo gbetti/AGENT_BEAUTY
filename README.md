@@ -44,7 +44,10 @@ colori e la propria tipografia; i testi dell’email usano titoli serif e corpo
 leggibile, con margini generosi.
 
 Gli oggetti usano curiosità e benefici documentati, senza recensioni,
-scarsità, sconti o risultati clinici inventati. Massimo 55 caratteri per
+scarsità, sconti o risultati clinici inventati. Il testo commerciale ha
+cinque frasi brevi: apertura curiosa, tre benefici documentati e una chiusura
+che spiega per quali esigenze il prodotto è adatto. I benefici sono su righe
+distinte, con a capo naturali su mobile. Massimo 55 caratteri per
 l’oggetto, 100 per il preheader e 70 parole commerciali. Alla successiva
 campagna dello stesso prodotto l’oggetto cambia. I testi in
 `assets/email/product-copy.json` derivano dai benefici del catalogo:

@@ -79,6 +79,9 @@ def email_html(content, image_source, logo_source, width, height, unsubscribe):
     labels = LABELS[content['language']]
     # Klaviyo evaluates the tag before delivery; keep its quotes and spaces intact.
     unsub = unsubscribe if unsubscribe == '{% unsubscribe_link %}' else e(unsubscribe)
+    benefits = '\n'.join(
+        f'<p style="margin:0 0 12px;font:16px/1.6 Arial,Helvetica,sans-serif;">{e(line)}</p>'
+        for line in content['body'].splitlines() if line.strip())
     return f'''<!doctype html>
 <html lang="{e(content['language'])}" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -99,7 +102,7 @@ def email_html(content, image_source, logo_source, width, height, unsubscribe):
 <tr><td class="copy" align="center" style="padding:34px 44px 38px;background-color:#FCFAF6;">
 <h1 class="product-title" style="margin:0 0 20px;font:normal 30px/1.2 Georgia,'Times New Roman',serif;color:#191919;">{e(content['title'])}</h1>
 <p style="margin:0 0 12px;font:600 16px/1.6 Arial,Helvetica,sans-serif;">{e(content['lead'])}</p>
-<p style="margin:0 0 12px;font:16px/1.6 Arial,Helvetica,sans-serif;">{e(content['body'])}</p>
+{benefits}
 <p style="margin:0 0 26px;font:16px/1.6 Arial,Helvetica,sans-serif;">{e(content['closing'])}</p>
 <!--[if mso]><v:roundrect href="{e(content['product_url'])}" style="height:48px;v-text-anchor:middle;width:270px;" arcsize="0%" strokecolor="#191919" fillcolor="#191919"><w:anchorlock/><center style="color:#FFFFFF;font-family:Arial,sans-serif;font-size:13px;font-weight:bold;">{e(content['cta'].upper())}</center></v:roundrect><![endif]-->
 <!--[if !mso]><!--><a href="{e(content['product_url'])}" style="display:inline-block;background-color:#191919;color:#FFFFFF;padding:16px 28px;font:600 13px/16px Arial,Helvetica,sans-serif;letter-spacing:1px;text-decoration:none;text-align:center;">{e(content['cta'].upper())}</a><!--<![endif]-->
