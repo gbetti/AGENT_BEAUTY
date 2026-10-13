@@ -9,8 +9,12 @@ specifica per ciascun formato.
 
 ```sh
 python -m pip install -r requirements.txt
-python agent.py --product 'Sublime' --research research/2026-10-08.json
+python agent.py --product 'Sublime' --research research/brief-aggiornato.json
 ```
+
+`brief-aggiornato.json` è il brief della settimana preparato e revisionato
+secondo le regole sotto. Il file `research/2026-10-08.json` è un esempio
+storico: dopo 36 ore non si può usarlo per una nuova campagna.
 
 Ogni esecuzione crea una nuova cartella `output/ioma-<data>-<id>/`:
 
@@ -33,6 +37,50 @@ it/email-logo.png       logo originale per l’HTML
 
 Solo francese e italiano. Caption, fonti, concept e controlli restano nel database
 `data/catalog.sqlite`, tabella `generations`, campo `research_json`.
+
+## Tre agenti, un solo avvio
+
+`agent.py` avvia `BeautyCoordinator`, che passa un brief strutturato tra
+tre componenti Python specializzati, nello stesso progetto:
+
+| Agente | Compito | Cosa passa al successivo |
+| --- | --- | --- |
+| **Trend Beauty** — `agents/trends.py` | Cerca notizie degli ultimi 7 giorni, ricontrolla il brief revisionato, distingue articoli/promozioni/campagne e seleziona il prodotto dal database. | `TrendBrief`: prodotto originale, claim di catalogo, fonti, tema e date. |
+| **Keyword & Domanda** — `agents/keywords.py` | Interroga Google Trends per Francia e Italia; conserva TOP, RISING, date, valori e risposte originali. | `KeywordBrief`: dati per mercato e ipotesi di messaggio da verificare. |
+| **Creative Studio** — `agents/assets.py` | Verifica gli ingredienti, unisce i due brief e prepara grafiche, PowerPoint ed email nelle due lingue. | Asset e `CampaignBrief`, registrati insieme nel database. |
+
+```mermaid
+flowchart LR
+  A[Un comando] --> C[Coordinatore]
+  C --> T[Trend Beauty]
+  T --> K[Keyword e domanda]
+  K --> S[Creative Studio]
+  S --> O[Feed · Story · Banner · PPT · Email]
+  DB[(Catalogo e foto originali)] --> T
+  DB --> S
+```
+
+Il terminale mostra quale agente è in corso, completato o fallito. Se uno
+fallisce, i successivi non partono; un errore creativo annulla tutti i nuovi
+export. I file precedenti rimangono disponibili. L’errore indica il nome
+dell’agente e la causa; le evidenze non vengono sostituite con dati inventati.
+
+Nel report SQLite, `agent_pipeline` registra i tre passaggi e i relativi
+orari; `campaign_brief` documenta il prodotto, il claim, le foto, gli attivi,
+il setting, i titoli e le keyword passate al creativo. I dati originali delle
+ricerche restano in `weekly.google_trends_results`. Le keyword guidano la
+lettura strategica del PowerPoint; i claim e i titoli pubblici rimangono
+quelli verificati per il prodotto. Non si inserisce automaticamente una
+query popolare nel claim.
+
+Le classi hanno un metodo `run` e si possono sostituire indipendentemente
+nel coordinatore, per esempio durante un test o un’integrazione futura.
+Non occorrono tre server, tre database o nuove dipendenze. Sono componenti
+Python con regole editoriali e provider reali di ricerca, senza un modello
+linguistico collegato in questa versione. Questa separazione **non elimina**
+la revisione del brief entro 36 ore, la verifica degli ingredienti per ogni
+prodotto o il controllo visivo finale. Veo, invio email, pubblicazione Meta
+e gestione del budget richiedono ancora integrazioni dedicate.
 
 ## Email coordinata
 
@@ -193,5 +241,6 @@ python -m unittest discover -s tests -v
 
 `campaign.py`, `creative.py`, `localization.py` e `presentation.py` mantengono
 funzioni storiche per riprodurre le campagne archiviate. Il punto di ingresso
-attuale `agent.py` usa `editorial.py`, `studio.py`, `weekly.py` e `radar_presentation.py`; nessun export storico viene
+attuale `agent.py` usa `coordinator.py` e i tre componenti in `agents/`,
+che riutilizzano `editorial.py`, `studio.py`, `weekly.py` e `radar_presentation.py`; nessun export storico viene
 aggiunto alle nuove consegne.

@@ -122,7 +122,7 @@ class AgentTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             args=Namespace(database=Path(folder)/'db.sqlite',output=Path(folder)/'out',product='Sublime')
             news=[{'title':'Skin barrier skincare trend','published_at':datetime.now(timezone.utc).isoformat(),'url':'https://example.com/skin'}]
-            with patch('agent.search_news',return_value=news) as search, patch('agent.load_brief',side_effect=lambda *a:weekly_fixture()) as weekly_search, patch('agent.select_ingredients',side_effect=lambda *a:ingredient_fixture()) as formula, patch('agent.research_trends',side_effect=lambda *a:trends_fixture()) as trends:
+            with patch('agents.trends.search_news',return_value=news) as search, patch('agents.trends.load_brief',side_effect=lambda *a:weekly_fixture()) as weekly_search, patch('agents.assets.select_ingredients',side_effect=lambda *a:ingredient_fixture()) as formula, patch('agents.keywords.research_trends',side_effect=lambda *a:trends_fixture()) as trends:
                 first=run(args);second=run(args)
             self.assertEqual(search.call_count,2)
             self.assertEqual(weekly_search.call_count,2)
@@ -155,6 +155,12 @@ class AgentTests(unittest.TestCase):
                 self.assertEqual(set(report['localizations']),{'fr','it'})
                 self.assertEqual(report['quality']['visual_review'],'pending')
                 self.assertEqual(report['quality']['publication_status'],'not_published')
+                self.assertEqual([s['agent'] for s in report['agent_pipeline']['stages']],
+                                 ['trends','keywords','assets'])
+                self.assertTrue(all(s['status']=='completed' for s in report['agent_pipeline']['stages']))
+                self.assertEqual(report['campaign_brief']['product_id'],report['product_id'])
+                self.assertEqual(report['campaign_brief']['source_claim'],report['source_claim'])
+                self.assertEqual(report['campaign_brief']['keyword_analysis']['it']['top'][1]['query'],'crema')
                 for language in LANGUAGES:
                     email=report['localizations'][language]['email']
                     self.assertEqual(email['language'],language)
@@ -173,8 +179,8 @@ class AgentTests(unittest.TestCase):
                 (directory/'feed.png').write_bytes(b'partial')
                 if copy['language']=='it': raise ValueError('Italian failure')
                 return {'feed':{'path':directory/'feed.png'}}
-            with patch('agent.search_news',return_value=[{'title':'Skincare hydration'}]), patch('agent.load_brief',return_value=weekly_fixture()), patch('agent.select_ingredients',return_value=ingredient_fixture()), patch('agent.research_trends',return_value=trends_fixture()), patch('agent.render_campaign',side_effect=partial):
-                with self.assertRaisesRegex(ValueError,'Italian failure'): run(args)
+            with patch('agents.trends.search_news',return_value=[{'title':'Skincare hydration'}]), patch('agents.trends.load_brief',return_value=weekly_fixture()), patch('agents.assets.select_ingredients',return_value=ingredient_fixture()), patch('agents.keywords.research_trends',return_value=trends_fixture()), patch('agents.assets.render_campaign',side_effect=partial):
+                with self.assertRaisesRegex(RuntimeError,'Italian failure'): run(args)
             self.assertEqual(list(args.output.iterdir()),[prior])
             with sqlite3.connect(args.database) as db:
                 self.assertEqual(db.execute('SELECT COUNT(*) FROM generations').fetchone()[0],0)
@@ -182,7 +188,7 @@ class AgentTests(unittest.TestCase):
     def test_network_failure_exports_nothing(self):
         with tempfile.TemporaryDirectory() as folder:
             args=Namespace(database=Path(folder)/'db.sqlite',output=Path(folder)/'out',product=None)
-            with patch('agent.search_news',side_effect=RuntimeError('Network unavailable')):
+            with patch('agents.trends.search_news',side_effect=RuntimeError('Network unavailable')):
                 with self.assertRaises(RuntimeError): run(args)
             self.assertFalse(args.output.exists())
 
@@ -200,8 +206,8 @@ class AgentTests(unittest.TestCase):
                 path.write_bytes(b'deck fixture')
                 if lang=='it':raise ValueError('Italian deck failure')
                 return {'path':str(path),'slides':2}
-            with patch('agent.search_news',return_value=[{'title':'Skincare hydration'}]), patch('agent.load_brief',return_value=weekly_fixture()), patch('agent.select_ingredients',return_value=ingredient_fixture()), patch('agent.research_trends',return_value=trends_fixture()), patch('agent.render_campaign',side_effect=graphics), patch('agent.create_presentation',side_effect=deck):
-                with self.assertRaisesRegex(ValueError,'Italian deck failure'):run(args)
+            with patch('agents.trends.search_news',return_value=[{'title':'Skincare hydration'}]), patch('agents.trends.load_brief',return_value=weekly_fixture()), patch('agents.assets.select_ingredients',return_value=ingredient_fixture()), patch('agents.keywords.research_trends',return_value=trends_fixture()), patch('agents.assets.render_campaign',side_effect=graphics), patch('agents.assets.create_presentation',side_effect=deck):
+                with self.assertRaisesRegex(RuntimeError,'Italian deck failure'):run(args)
             self.assertEqual(list(args.output.iterdir()),[prior])
             with sqlite3.connect(args.database) as db:
                 self.assertEqual(db.execute('SELECT COUNT(*) FROM generations').fetchone()[0],0)

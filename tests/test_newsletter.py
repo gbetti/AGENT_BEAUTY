@@ -110,14 +110,14 @@ class NewsletterTests(unittest.TestCase):
         def failed_email(product,report,feed,directory,**options):
             (directory/'email.html').write_text('partial')
             raise OSError('Email non esportata')
-        with patch('agent.search_news',return_value=[{'title':'Beauty hydration trend'}]), \
-                patch('agent.load_brief',return_value=weekly_fixture()), \
-                patch('agent.select_ingredients',return_value=ingredient_fixture()), \
-                patch('agent.research_trends',return_value=trends_fixture()), \
-                patch('agent.render_campaign',side_effect=graphics), \
-                patch('agent.create_presentation',side_effect=presentation), \
-                patch('agent.create_email',side_effect=failed_email):
-            with self.assertRaisesRegex(OSError,'Email non esportata'):
+        with patch('agents.trends.search_news',return_value=[{'title':'Beauty hydration trend'}]), \
+                patch('agents.trends.load_brief',return_value=weekly_fixture()), \
+                patch('agents.assets.select_ingredients',return_value=ingredient_fixture()), \
+                patch('agents.keywords.research_trends',return_value=trends_fixture()), \
+                patch('agents.assets.render_campaign',side_effect=graphics), \
+                patch('agents.assets.create_presentation',side_effect=presentation), \
+                patch('agents.assets.create_email',side_effect=failed_email):
+            with self.assertRaisesRegex(RuntimeError,'Email non esportata'):
                 run(args)
         self.assertEqual(list(output.iterdir()),[previous])
         self.assertEqual(previous.read_bytes(),b'keep')

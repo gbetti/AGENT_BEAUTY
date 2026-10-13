@@ -6,6 +6,19 @@ PowerPoint and coordinated email per language. The email outputs are
 `email.html`, `email.eml` and its original `email-logo.png`; it uses the same
 `feed.png` unchanged. No English, Chinese, ZIP or unrelated delivery files.
 
+## Three-agent architecture
+- `agent.py` is the existing CLI; `coordinator.py` executes Trend Beauty,
+  Keyword & Domanda and Creative Studio in order. Their implementations live
+  in `agents/trends.py`, `agents/keywords.py` and `agents/assets.py`.
+- Use the handoff contracts in `agents/contracts.py`; do not mutate upstream
+  evidence or attach keyword data to another product/run. `catalog.py` owns
+  local product loading and links to original photographs.
+- Keep pipeline metadata and the shared campaign brief in the same SQLite
+  generation transaction as all exports. A failed agent must prevent
+  downstream work; retain the original cause and identify the failing agent.
+- These are specialized Python components, not independent LLM services.
+  The split does not remove fresh reviewed research or visual review requirements.
+
 ## Before making a campaign
 - Read `editorial.py`, the selected official product page, and the product asset manifest.
 - Keep official product photography, label, shape and logo unchanged. Generated
