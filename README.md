@@ -82,6 +82,28 @@ la revisione del brief entro 36 ore, la verifica degli ingredienti per ogni
 prodotto o il controllo visivo finale. Veo, invio email, pubblicazione Meta
 e gestione del budget richiedono ancora integrazioni dedicate.
 
+## Eseguire soltanto l’agente keyword
+
+Dalla cartella del progetto, dopo avere preparato il brief aggiornato:
+
+```sh
+python -m agents.keywords --research research/brief-aggiornato.json
+```
+
+Il comando verifica il brief, legge il prodotto dal catalogo e interroga
+Google Trends per Francia e Italia. Mostra le query TOP e RISING nel
+terminale e salva dati, date, link e risposte originali in un nuovo file
+`output/keywords/keywords-<data>-<id>.json`. Non avvia Trend Beauty o
+Creative Studio, non crea asset e non aggiunge una campagna allo storico.
+La verifica delle pagine del brief resta necessaria; non viene rifatta la
+ricerca RSS. `--database` seleziona un catalogo diverso e
+`--output risultati/keyword` cambia la cartella dei report.
+
+La selezione delle query nel brief deve essere pertinente alla settimana
+corrente. L’esempio dell’8 ottobre rimane storico: non cambiarne soltanto
+la data. Un errore di accesso, un brief scaduto o dati insufficienti
+terminano il comando con stato 1 senza creare un nuovo report.
+
 ## Email coordinata
 
 Dopo gli asset, `newsletter.py` crea un’email per ogni lingua. Riutilizza

@@ -18,6 +18,11 @@ PowerPoint and coordinated email per language. The email outputs are
   downstream work; retain the original cause and identify the failing agent.
 - These are specialized Python components, not independent LLM services.
   The split does not remove fresh reviewed research or visual review requirements.
+- `python -m agents.keywords --research <current-brief>` runs keyword research
+  independently from RSS discovery and creative exports. It verifies the same
+  reviewed evidence, reads the local catalog and archives a separate JSON report
+  under `output/keywords/`; it must not insert a creative generation or overwrite
+  earlier reports. This research-only output is separate from campaign delivery.
 
 ## Before making a campaign
 - Read `editorial.py`, the selected official product page, and the product asset manifest.
