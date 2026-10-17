@@ -59,8 +59,12 @@ non volumi. Le crescite confrontano il 3–9 ottobre. I dati originali sono
 [archiviati qui](../../research/google-trends/2026-10-10_2026-10-16/).
 La comunicazione dei concorrenti guida gli spunti editoriali, non i claim IOMA.
 
-L’HTML usa gli asset HTTPS di questa cartella ed è predisposto per Klaviyo; il servizio
+L’HTML usa gli asset HTTPS di questa cartella sul ramo di revisione
+`codex/ioma-eye-contour-2026-10-17` ed è predisposto per Klaviyo; il servizio
 risolve la disiscrizione per ciascun destinatario. La bozza EML incorpora esattamente
 il PNG del feed e il logo, si apre offline e ha il destinatario vuoto.
 Le email non sono state inviate e i contenuti non sono stati pubblicati sui social.
 Per scaricare un file da GitHub, aprirlo e usare **Download raw file**.
+
+Se il ramo di revisione viene eliminato dopo il merge, aggiornare la base URL
+delle immagini dell’HTML a `main` oppure al CDN definitivo prima dell’invio.

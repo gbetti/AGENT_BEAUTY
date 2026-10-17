@@ -10,14 +10,14 @@
       "fr/banner.png": "4b20ddf48b1457aa5d87698f5aa027747766d91943d1c501b73482b839642d97",
       "fr/email-logo.png": "aa3a56e843be2f5a52b8862d35a4284f6192294fe3664694c8f54450947ddd1f",
       "fr/email.eml": "7ce8dcdb4130a754f01cab7be164c5ae0fba26346dc9dc6470e4560c8eb67054",
-      "fr/email.html": "f3726c26de13a844e34dd3888404c63b8a833bf99213d4176402dbd10ee7bf17",
+      "fr/email.html": "3baf84b1acd82af732b8e5a9251e607496fd6b52fc94d6d4f0683b2de566c3c1",
       "fr/feed.png": "99cc2aacddef68c266f0df6b686d16cf1f18db1a87b30008509b14a9cc4e1dfb",
       "fr/presentazione.pptx": "75adaa98daf7a846beaa9322c75f59acd9177186371f0342f126c3761875e418",
       "fr/story.png": "4586fecff2c8712b51a141d64f2daa08a88afe67044e10dae14ea56a43a131cc",
       "it/banner.png": "99000e83097a11d3e16022661a726794e4df27c01091d0d50342889bbac1664c",
       "it/email-logo.png": "aa3a56e843be2f5a52b8862d35a4284f6192294fe3664694c8f54450947ddd1f",
       "it/email.eml": "db6d46298547488bd9e54faea8cda32edd317da16b7474a6a72603dee647fd87",
-      "it/email.html": "df8f1e2915ee1062f3a12a6e142e0d260bf625c3e2d8dcf044c3873134105fa9",
+      "it/email.html": "47644d00d2f97ebe4a4562187cb92f198906f3b5eecc57c01f69af5d80f4dadc",
       "it/feed.png": "09350d08dd43b25aa61aa38da85bcdad017d6bbe555e7e8896972d6eaaa12e2c",
       "it/presentazione.pptx": "b9ea7c18a9d1081568e7283adc41ef93eae96b3ac01a2833d7e6b490f76043fe",
       "it/story.png": "dfdaeb58e26a1a44798b4787304cc631e30b908672ef81d14cf128c1647d1430"
@@ -98,7 +98,13 @@
           }
         ]
       }
-    ]
+    ],
+    "delivery": {
+      "branch": "codex/ioma-eye-contour-2026-10-17",
+      "default_branch": "pending_review",
+      "email_assets_base": "https://raw.githubusercontent.com/gbetti/AGENT_BEAUTY/codex/ioma-eye-contour-2026-10-17/posts/2026-10-17-contour-yeux",
+      "note": "Only hosted asset URLs changed to the review branch; same HTML layout, copy and image bytes."
+    }
   },
   "sources": [
     {
