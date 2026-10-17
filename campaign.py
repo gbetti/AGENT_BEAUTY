@@ -52,7 +52,8 @@ def packshot_layer(photo_path):
     alpha = alpha.filter(ImageFilter.GaussianBlur(1.0))
     result = photo.convert('RGBA')
     result.putalpha(alpha)
-    bounds = alpha.getbbox()
+    # Ignore nearly transparent blur padding when placing the base on the floor.
+    bounds = alpha.point(lambda value:255 if value>=128 else 0).getbbox()
     if bounds is None:
         raise RuntimeError('La foto non contiene un packshot visibile.')
     return result.crop(bounds)

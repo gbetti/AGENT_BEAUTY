@@ -58,5 +58,53 @@
         "it": "Idratazione"
       }
     }
+  ],
+  "creme-genereuse-contour-des-yeux": [
+    {
+      "id": "peptides",
+      "label": {
+        "fr": "Peptides",
+        "it": "Peptidi"
+      },
+      "short": {
+        "fr": "Peptides",
+        "it": "Peptidi"
+      },
+      "inci": [
+        "DIPEPTIDE DIAMINOBUTYROYL BENZYLAMIDE DIACETATE",
+        "ACETYL HEXAPEPTIDE-8",
+        "TRIPEPTIDE-1"
+      ],
+      "priority": 100,
+      "role": {
+        "fr": "Lissage et fermeté",
+        "it": "Levigatezza e compattezza"
+      },
+      "official_actives": [
+        "SYN-AKE™",
+        "ARGIRELINE",
+        "KOLLAREN™"
+      ]
+    },
+    {
+      "id": "vitamin-e",
+      "label": {
+        "fr": "Vitamine E",
+        "it": "Vitamina E"
+      },
+      "short": {
+        "fr": "Vitamine E",
+        "it": "Vitamina E"
+      },
+      "inci": [
+        "TOCOPHERYL ACETATE",
+        "TOCOPHEROL"
+      ],
+      "priority": 90,
+      "role": {
+        "fr": "Hydratation",
+        "it": "Idratazione"
+      }
+    }
   ]
 }

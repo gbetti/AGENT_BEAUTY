@@ -33,6 +33,13 @@ PowerPoint and coordinated email per language. The email outputs are
 - Keep the IOMA logo at the top center, inside each format's safe area.
 - Use deliberate editorial typography and native layouts per format.
 - No large button in feed/story; their call to action belongs in the caption.
+- New campaigns use `studio-ivory` / `studio-pearl`: smooth empty text fields,
+  no fabric, ingredient props or pre-rendered bottle shadows. Use the manifest's
+  native format crops and floor anchor; the product base must sit below the
+  start of the support plane. Check actual copy areas for contrast and texture.
+- Cast shadows use the product's alpha silhouette and the background's documented
+  light direction. Contact occlusion follows its base footprint, without a gap;
+  the cast shadow softens and fades away from contact. Keep label pixels intact.
 
 ## Weekly evidence and PowerPoint
 - Refresh a dated research brief in `research/` for each requested campaign.
@@ -59,8 +66,10 @@ PowerPoint and coordinated email per language. The email outputs are
   Select ingredients present in the official INCI and relevant to recent
   sources. Use `assets/ingredients.json`; do not borrow competitor ingredients.
   Editorial priority is not a claim about ingredient concentration.
-- The current verified registry/weekly brief supports Crème Sublime. Add
-  product-specific evidence before extending this mode to other products.
+- The verified ingredient registry supports Crème Sublime and Crème Généreuse
+  Contour des Yeux (peptides and vitamin E). Each still needs a current,
+  product-specific brief. The eye formula has no terminal PARFUM: stop its
+  official INCI at the list boundary, never at reviews or related products.
 
 ## Visual completion is mandatory
 Running tests is not visual approval. Open all six final exports. Inspect:

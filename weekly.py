@@ -49,21 +49,37 @@ def load_brief(path,now):
     return brief
 
 
+def extract_inci(text):
+    """Bound the official comma-separated list, including formulas without parfum."""
+    upper=text.upper()
+    start=re.search(r'\b(?:AQUA\s*\(WATER\)|WATER\s*\(AQUA\))\s*,',upper)
+    if not start:
+        raise ValueError('INCI ufficiale non individuabile: verificare la scheda.')
+    tail=upper[start.start():]
+    # Older pages end at PARFUM; fragrance-free formulas end at the full stop.
+    parfum=tail.find('PARFUM (FRAGRANCE)')
+    stop=tail.find('.')
+    endings=[end for end in (parfum+len('PARFUM (FRAGRANCE)') if parfum>=0 else -1,stop) if end>=0]
+    if not endings:
+        raise ValueError('Fine dell’INCI non individuabile: verificare la scheda.')
+    tokens={token.strip() for token in tail[:min(endings)].split(',')}
+    if len(tokens)<2 or any(not re.fullmatch(r'[A-Z0-9 ()/+\-]+',token) for token in tokens):
+        raise ValueError('Formato INCI inatteso: verificare la scheda.')
+    return tokens
+
+
 def select_ingredients(product,brief,source_url,now):
     key=product['id'].split(':')[-1]
     if key!=brief['product_key']: raise ValueError('Il brief settimanale riguarda un altro prodotto.')
     candidates=json.loads((ROOT/'assets/ingredients.json').read_text()).get(key,[])
     text=fetch_text(source_url)
     # Limit identity matching to the official INCI list, not reviews or related products.
-    upper=text.upper()
-    start=upper.find('AQUA (WATER)')
-    if start<0: start=upper.find('WATER (AQUA)')
-    end=upper.find('PARFUM (FRAGRANCE)',start)
-    if start<0 or end<start: raise ValueError('INCI ufficiale non individuabile: verificare la scheda.')
-    inci={token.strip() for token in upper[start:end].split(',')}
+    inci=extract_inci(text)
     ranked=[]
     for candidate in candidates:
-        evidence=[s['id'] for s in brief['sources'] if s['in_week'] and candidate['id'] in s.get('topics',[])]
+        topics=candidate.get('research_topics',[candidate['id']])
+        evidence=[s['id'] for s in brief['sources'] if s['in_week'] and
+                  any(topic in s.get('topics',[]) for topic in topics)]
         if evidence and all(token in inci for token in candidate['inci']):
             ranked.append({**candidate,'source_ids':evidence,'source_url':source_url,'verified_at':now.isoformat()})
     ranked.sort(key=lambda c:(len(c['source_ids']),c['priority']),reverse=True)
