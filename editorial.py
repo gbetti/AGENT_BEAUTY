@@ -16,7 +16,7 @@ BRIEFS = {
   'caption': {
    'fr': 'La nutrition et la fermeté, dans un même soin.\n\nCrème Sublime Revitalisante nourrit la peau en profondeur et contribue à une peau plus ferme. Sa texture riche et fondante transforme l’application en un moment de soin.\n\nDécouvrez Crème Sublime Revitalisante sur ioma-paris.com.\n\n#IOMAParis #CrèmeSublimeRevitalisante #SoinVisage',
    'it': 'Nutrimento e compattezza, in un unico trattamento.\n\nCrème Sublime Revitalisante nutre la pelle in profondità e contribuisce a renderla più soda. La sua texture ricca e fondente trasforma l’applicazione in un momento di cura.\n\nScopri Crème Sublime Revitalisante su ioma-paris.com.\n\n#IOMAParis #CrèmeSublimeRevitalisante #Skincare'},
-  'scenes': ['silk-ivory', 'silk-pearl'],
+  'scenes': ['studio-ivory', 'studio-pearl'],
  },
  'cc-gel': {
   'name': 'CC Gel',
@@ -27,18 +27,18 @@ BRIEFS = {
                 {'fr': 'Un teint\nlumineux.', 'it': 'Un incarnato\nluminoso.'}],
   'caption': {'fr': 'Un teint lumineux, une couvrance naturelle.\n\nCC Gel accompagne votre routine avec un fini naturel et lumineux.\n\nDécouvrez CC Gel sur ioma-paris.com.\n\n#IOMAParis #CCGel #Éclat',
               'it': 'Un incarnato luminoso, una coprenza naturale.\n\nCC Gel accompagna la tua routine con un risultato naturale e luminoso.\n\nScopri CC Gel su ioma-paris.com.\n\n#IOMAParis #CCGel #IncarnatoLuminoso'},
-  'scenes': ['silk-pearl', 'silk-ivory'],
+  'scenes': ['studio-pearl', 'studio-ivory'],
  },
  'creme-genereuse-contour-des-yeux': {
   'name': 'Crème Généreuse\nContour des Yeux',
   'claim_it': 'Leviga rughe e linee sottili del contorno occhi.',
   'source': 'https://ioma-paris.com/products/creme-genereuse-contour-des-yeux',
   'category': {'fr': 'SOIN DU CONTOUR DES YEUX', 'it': 'TRATTAMENTO CONTORNO OCCHI'},
-  'headlines': [{'fr': 'Lisser.\nDéfroisser.', 'it': 'Levigare.\nDistendere.'},
+  'headlines': [{'fr': 'Lisser.\nRaffermir.', 'it': 'Levigare.\nRassodare.'},
                 {'fr': 'Cibler les\nridules.', 'it': 'Linee sottili.\nCura mirata.'}],
   'caption': {'fr': 'Un soin dédié au contour des yeux.\n\nCrème Généreuse Contour des Yeux lisse les rides et les ridules de cette zone délicate.\n\nDécouvrez le soin sur ioma-paris.com.\n\n#IOMAParis #ContourDesYeux #SoinVisage',
               'it': 'Un trattamento dedicato al contorno occhi.\n\nCrème Généreuse Contour des Yeux leviga rughe e linee sottili di questa zona delicata.\n\nScopri il trattamento su ioma-paris.com.\n\n#IOMAParis #ContornoOcchi #Skincare'},
-  'scenes': ['silk-ivory', 'silk-pearl'],
+  'scenes': ['studio-pearl', 'studio-ivory'],
  },
 }
 
@@ -63,4 +63,5 @@ def campaign_plan(product, history):
                      'caption': brief['caption'][lang]} for lang in LANGUAGES}
     return {'variant': variant, 'scene': scene, 'copies': copies, 'source': brief['source'],
             'source_claim_it': brief['claim_it'], 'editorial_basis': 'documented_product_benefit',
-            'art_direction': 'Soft studio light, restrained silk, original packshot, editorial typography.'}
+            'art_direction': 'Quiet studio plate, protected copy space, continuous support plane, '
+                             'upper-left softbox and silhouette-based contact/cast shadows; original packshot.'}

@@ -67,15 +67,17 @@ def article_sources(deck,brief,lang,period):
     text(slide,'Ouvrir les publications citées dans ce radar' if fr else 'Apri le pubblicazioni citate nel radar',.6,1.87,12,.4,size=15,color=MUTED)
     names={'editorial':('ARTICLE ÉDITORIAL','ARTICOLO EDITORIALE'),
            'advertising_campaign':('PRESSE MARKETING · CAMPAGNE','STAMPA MARKETING · CAMPAGNA'),
-           'brand_promotion':('COMMUNIQUÉ DE MARQUE','COMUNICATO DEL MARCHIO')}
+           'brand_promotion':('CONTENU DE MARQUE','CONTENUTO DEL MARCHIO')}
     order={'editorial':0,'advertising_campaign':1,'brand_promotion':2}
     for index,source in enumerate(sorted(brief['sources'],key=lambda s:order[s['kind']])):
         y=2.65+index*1.24
         date=datetime.fromisoformat(source['published_at']).strftime('%d.%m.%Y')
+        if source.get('date_kind')=='updated':
+            date=('Mis à jour ' if fr else 'Aggiornato ')+date
         text(slide,source['publisher']+'  ·  '+date+'  ·  '+names[source['kind']][0 if fr else 1],.6,y,12.1,.3,size=11,color=MUTED)
         title=source.get('display_title',{}).get(lang,source['title'])
         text(slide,title,.6,y+.34,9.5,.58,size=23,serif=True)
-        label=('Lire le communiqué' if source['kind']=='brand_promotion' else 'Lire l’article') if fr else ('Leggi il comunicato' if source['kind']=='brand_promotion' else 'Leggi l’articolo')
+        label=('Lire le contenu' if source['kind']=='brand_promotion' else 'Lire l’article') if fr else ('Leggi il contenuto' if source['kind']=='brand_promotion' else 'Leggi l’articolo')
         shape=text(slide,label,10.2,y+.39,2.5,.4,size=12,link=source['url'])
         for p in shape.text_frame.paragraphs:
             for run in p.runs:
@@ -128,7 +130,8 @@ def create_presentation(product,report,graphics,destination,lang):
     for x,title in zip(columns,headings):
         text(slide,title,x,2.62,3.83,.38,size=12);rule(slide,x,3.13,3.83)
     labels=' + '.join(i['label'][lang].replace('\n',' ') for i in ingredients)
-    text(slide,'Barrière & fermeté' if fr else 'Barriera & compattezza',.6,3.36,3.83,.75,size=26,serif=True)
+    signal=brief.get('signal_title',{}).get(lang,'Barrière & fermeté' if fr else 'Barriera & compattezza')
+    text(slide,signal,.6,3.36,3.83,.75,size=26,serif=True)
     text(slide,brief['insight'][lang],.6,4.24,3.83,1.18,size=17)
     editorial=next((s for s in brief['sources'] if s['kind']=='editorial'),None)
     if editorial:
@@ -147,7 +150,7 @@ def create_presentation(product,report,graphics,destination,lang):
     slide.notes_slide.notes_text_frame.text=json.dumps(brief,ensure_ascii=False,indent=2)
 
     slide=page(deck,2,lang,start+' — '+end)
-    text(slide,copy['product_name'],.6,1.13,12.1,.62,size=32,serif=True)
+    text(slide,copy['product_name'].replace('\n',' '),.6,1.13,12.1,.62,size=32,serif=True)
     text(slide,'Des tendances aux réseaux sociaux' if fr else 'Dai trend ai contenuti social',.6,1.87,12,.4,size=15,color=MUTED)
     image(slide,graphics['feed'],.6,2.53,3.2,4)
     strategy=brief['strategy'][lang]

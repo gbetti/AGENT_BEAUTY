@@ -95,7 +95,9 @@ def select_queries(packet,selection,now):
         # queries from the reviewed relevance pool; never substitute a value.
         result[metric] = rows[:5 if metric=='top' else 3]
     if len(result['top'])!=5 or len(result['rising'])!=3:
-        raise ValueError('Il layout richiede cinque query principali e tre in crescita.')
+        raise ValueError(f"{selection['geo']}: il layout richiede cinque query principali e tre in crescita "
+                         f"(presenti TOP={len(result['top'])}, RISING={len(result['rising'])}). "
+                         'Rivedere il pool sul campione corrente senza inventare query o valori.')
     result['interpretation'] = selection['interpretation']
     result['comparison_start']=comparison_start
     result['comparison_end']=comparison_end

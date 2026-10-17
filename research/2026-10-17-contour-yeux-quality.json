@@ -1,0 +1,295 @@
+{
+  "generation_id": "20261017T103817Z-3535d3f8",
+  "product_id": "urn:agent-beauty:manual:ioma:creme-genereuse-contour-des-yeux",
+  "quality": {
+    "technical_checks": "passed",
+    "visual_review": "passed",
+    "publication_status": "not_published",
+    "reviewed_at": "2026-10-17T10:41:53.284299+00:00",
+    "reviewed_sha256": {
+      "fr/banner.png": "4b20ddf48b1457aa5d87698f5aa027747766d91943d1c501b73482b839642d97",
+      "fr/email-logo.png": "aa3a56e843be2f5a52b8862d35a4284f6192294fe3664694c8f54450947ddd1f",
+      "fr/email.eml": "7ce8dcdb4130a754f01cab7be164c5ae0fba26346dc9dc6470e4560c8eb67054",
+      "fr/email.html": "f3726c26de13a844e34dd3888404c63b8a833bf99213d4176402dbd10ee7bf17",
+      "fr/feed.png": "99cc2aacddef68c266f0df6b686d16cf1f18db1a87b30008509b14a9cc4e1dfb",
+      "fr/presentazione.pptx": "75adaa98daf7a846beaa9322c75f59acd9177186371f0342f126c3761875e418",
+      "fr/story.png": "4586fecff2c8712b51a141d64f2daa08a88afe67044e10dae14ea56a43a131cc",
+      "it/banner.png": "99000e83097a11d3e16022661a726794e4df27c01091d0d50342889bbac1664c",
+      "it/email-logo.png": "aa3a56e843be2f5a52b8862d35a4284f6192294fe3664694c8f54450947ddd1f",
+      "it/email.eml": "db6d46298547488bd9e54faea8cda32edd317da16b7474a6a72603dee647fd87",
+      "it/email.html": "df8f1e2915ee1062f3a12a6e142e0d260bf625c3e2d8dcf044c3873134105fa9",
+      "it/feed.png": "09350d08dd43b25aa61aa38da85bcdad017d6bbe555e7e8896972d6eaaa12e2c",
+      "it/presentazione.pptx": "b9ea7c18a9d1081568e7283adc41ef93eae96b3ac01a2833d7e6b490f76043fe",
+      "it/story.png": "dfdaeb58e26a1a44798b4787304cc631e30b908672ef81d14cf128c1647d1430"
+    },
+    "observations": {
+      "graphics": "Opened all six exports: feed and story at 360 px width, banners at native 300×250. Original silver/white labels unchanged; no visible cutout fringe. Baseline touches the soft contact shadow; cast shadow falls right and fades. Two ingredient arrows per format, no collisions or clipped type. Ivory copy areas are clear and low-detail.",
+      "presentations": "Both four-slide decks rendered with local Cormorant Garamond and DejaVu Sans. All eight slides opened. Product title, text, source dates and hyperlinks readable; changed source labels re-rendered and checked. Google Trends indices and rising percentages kept distinct.",
+      "emails": "FR/IT HTML opened in Chromium at 800 and 390 px. Both images loaded; no horizontal overflow; five statements wrap naturally; one CTA. MIME feed payload equals the PNG byte for byte; no recipient or sending.",
+      "limitations": "Browser previews do not certify every email client. Research reviewed on 2026-10-17; future runs require fresh evidence within 36 hours. Repository delivery is separate from social publication."
+    },
+    "test_results": {
+      "existing_suite": "38 tests passed",
+      "new_grounding_and_inci_tests": "5 tests passed",
+      "after_keyword_diagnostic_change": "10 targeted tests passed"
+    },
+    "email_viewports": [
+      {
+        "lang": "fr",
+        "view": "desktop",
+        "width": 800,
+        "scrollWidth": 800,
+        "images": [
+          {
+            "complete": true,
+            "width": 280
+          },
+          {
+            "complete": true,
+            "width": 1080
+          }
+        ]
+      },
+      {
+        "lang": "fr",
+        "view": "mobile",
+        "width": 390,
+        "scrollWidth": 390,
+        "images": [
+          {
+            "complete": true,
+            "width": 280
+          },
+          {
+            "complete": true,
+            "width": 1080
+          }
+        ]
+      },
+      {
+        "lang": "it",
+        "view": "desktop",
+        "width": 800,
+        "scrollWidth": 800,
+        "images": [
+          {
+            "complete": true,
+            "width": 280
+          },
+          {
+            "complete": true,
+            "width": 1080
+          }
+        ]
+      },
+      {
+        "lang": "it",
+        "view": "mobile",
+        "width": 390,
+        "scrollWidth": 390,
+        "images": [
+          {
+            "complete": true,
+            "width": 280
+          },
+          {
+            "complete": true,
+            "width": 1080
+          }
+        ]
+      }
+    ],
+    "delivery": {
+      "branch": "main",
+      "default_branch": "approved_for_merge",
+      "email_assets_base": "https://raw.githubusercontent.com/gbetti/AGENT_BEAUTY/main/posts/2026-10-17-contour-yeux",
+      "note": "User approved integration into main. Only the hosted image URLs changed from the review branch to main; HTML layout, copy and image bytes are unchanged."
+    }
+  },
+  "sources": [
+    {
+      "id": "gh-october",
+      "title": "15 New Beauty Products Our Pros Are Obsessed With For October",
+      "url": "https://www.goodhousekeeping.com/beauty/a74108402/best-new-beauty-products-october-2026/",
+      "publisher": "Good Housekeeping",
+      "published_at": "2026-10-14T14:58:40+00:00",
+      "kind": "editorial",
+      "topics": [
+        "seasonal_comfort"
+      ],
+      "evidence_terms": [
+        "Oct 14, 2026",
+        "multitasking",
+        "softening skincare"
+      ],
+      "summary": {
+        "fr": "Good Housekeeping : soins polyvalents et confort pour l’automne.",
+        "it": "Good Housekeeping: trattamenti versatili e comfort per l’autunno."
+      },
+      "display_title": {
+        "fr": "Les 15 nouveautés beauté d’octobre",
+        "it": "Le 15 novità beauty di ottobre"
+      },
+      "in_week": true,
+      "checked_at": "2026-10-17T10:38:17.386610+00:00",
+      "content_sha256": "8a791c2194b4adaec1f919da3d99d8bc4d2b640219e73385514359c9c20a3d05"
+    },
+    {
+      "id": "arpy-eye",
+      "title": "peptide eye cream: what’s in it, and how and when to use it",
+      "url": "https://arpyskin.com/blogs/guides/peptide-eye-cream",
+      "publisher": "arpy",
+      "published_at": "2026-10-15T00:00:00+00:00",
+      "kind": "brand_promotion",
+      "brand": "arpy",
+      "topics": [
+        "peptides",
+        "vitamin-e"
+      ],
+      "evidence_terms": [
+        "October 15, 2026",
+        "peptides",
+        "tocopherol: vitamin E"
+      ],
+      "summary": {
+        "fr": "arpy : contenu de marque du 15 octobre sur les peptides du contour des yeux. Ce n’est pas une annonce payante vérifiée.",
+        "it": "arpy: contenuto del marchio del 15 ottobre sui peptidi nel contorno occhi. Non è una campagna paid verificata."
+      },
+      "display_title": {
+        "fr": "Peptides & contour des yeux : guide de marque",
+        "it": "Peptidi e contorno occhi: guida del marchio"
+      },
+      "in_week": true,
+      "checked_at": "2026-10-17T10:38:17.386610+00:00",
+      "content_sha256": "cbce1db860363e11a140b43e6a35d78827f99db36beb09fcab1693894ec6d93d"
+    },
+    {
+      "id": "cerave",
+      "title": "CeraVe Hong Kong campaign",
+      "url": "https://www.marketing-interactive.com/cerave-hk-ditches-the-hard-sell-to-win-over-genz",
+      "publisher": "Marketing-Interactive",
+      "published_at": "2026-09-24T00:00:00+00:00",
+      "kind": "advertising_campaign",
+      "brand": "CeraVe",
+      "event_start": "2026-09-01",
+      "event_end": "2026-11-30",
+      "topics": [
+        "social_creative"
+      ],
+      "evidence_terms": [
+        "September to November 2026",
+        "six-second Reels"
+      ],
+      "summary": {
+        "fr": "CeraVe, Hong Kong : campagne prévue sept.–nov. 2026, dont Reels de 6 s. Article du 24 septembre.",
+        "it": "CeraVe, Hong Kong: campagna prevista sett.–nov. 2026, con Reel da 6 s. Articolo del 24 settembre."
+      },
+      "display_title": {
+        "fr": "CeraVe Hong Kong : la campagne « anti-publicité »",
+        "it": "CeraVe Hong Kong: la campagna «anti-pubblicità»"
+      },
+      "in_week": false,
+      "checked_at": "2026-10-17T10:38:17.386610+00:00",
+      "content_sha256": "ba64e8691ba4a188b671d479a1553dda3e3d8e75bcb171aa48d65b9470addc6c"
+    }
+  ],
+  "ingredients": [
+    {
+      "id": "peptides",
+      "label": {
+        "fr": "Peptides",
+        "it": "Peptidi"
+      },
+      "short": {
+        "fr": "Peptides",
+        "it": "Peptidi"
+      },
+      "inci": [
+        "DIPEPTIDE DIAMINOBUTYROYL BENZYLAMIDE DIACETATE",
+        "ACETYL HEXAPEPTIDE-8",
+        "TRIPEPTIDE-1"
+      ],
+      "priority": 100,
+      "role": {
+        "fr": "Lissage et fermeté",
+        "it": "Levigatezza e compattezza"
+      },
+      "official_actives": [
+        "SYN-AKE™",
+        "ARGIRELINE",
+        "KOLLAREN™"
+      ],
+      "source_ids": [
+        "arpy-eye"
+      ],
+      "source_url": "https://ioma-paris.com/products/creme-genereuse-contour-des-yeux",
+      "verified_at": "2026-10-17T10:38:17.386610+00:00"
+    },
+    {
+      "id": "vitamin-e",
+      "label": {
+        "fr": "Vitamine E",
+        "it": "Vitamina E"
+      },
+      "short": {
+        "fr": "Vitamine E",
+        "it": "Vitamina E"
+      },
+      "inci": [
+        "TOCOPHERYL ACETATE",
+        "TOCOPHEROL"
+      ],
+      "priority": 90,
+      "role": {
+        "fr": "Hydratation",
+        "it": "Idratazione"
+      },
+      "source_ids": [
+        "arpy-eye"
+      ],
+      "source_url": "https://ioma-paris.com/products/creme-genereuse-contour-des-yeux",
+      "verified_at": "2026-10-17T10:38:17.386610+00:00"
+    }
+  ],
+  "scene": {
+    "id": "studio-ivory",
+    "path": "assets/backgrounds/editorial/studio-ivory.png",
+    "sha256": "5ede3b5467c72962f4b2fd8311c0679f6b784b8d53d020617c76e9aeaca873a3",
+    "origin": "AI-generated empty photographic cyclorama. No product, label, ingredients or text generated.",
+    "floor_start": 0.7,
+    "format_crops": {
+      "feed": [
+        0,
+        0.15,
+        1,
+        1
+      ],
+      "story": [
+        0,
+        0.3,
+        1,
+        1
+      ],
+      "banner": [
+        0,
+        0.4,
+        1,
+        1
+      ]
+    },
+    "lighting": {
+      "source": "large upper-left softbox",
+      "cast_direction": [
+        0.22,
+        0.07
+      ],
+      "color": [
+        62,
+        54,
+        46
+      ]
+    },
+    "max_copy_detail": 3.0,
+    "art_direction": "Smooth negative space for logo, headline and ingredient labels; continuous matte floor. No props, folds, podiums or pre-rendered product shadows."
+  }
+}

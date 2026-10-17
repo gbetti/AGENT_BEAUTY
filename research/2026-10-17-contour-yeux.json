@@ -1,0 +1,159 @@
+{
+  "reviewed_at": "2026-10-17T10:35:12.424880+00:00",
+  "product_key": "creme-genereuse-contour-des-yeux",
+  "sources": [
+    {
+      "id": "gh-october",
+      "title": "15 New Beauty Products Our Pros Are Obsessed With For October",
+      "url": "https://www.goodhousekeeping.com/beauty/a74108402/best-new-beauty-products-october-2026/",
+      "publisher": "Good Housekeeping",
+      "published_at": "2026-10-14T14:58:40+00:00",
+      "kind": "editorial",
+      "topics": [
+        "seasonal_comfort"
+      ],
+      "evidence_terms": [
+        "Oct 14, 2026",
+        "multitasking",
+        "softening skincare"
+      ],
+      "summary": {
+        "fr": "Good Housekeeping : soins polyvalents et confort pour l’automne.",
+        "it": "Good Housekeeping: trattamenti versatili e comfort per l’autunno."
+      },
+      "display_title": {
+        "fr": "Les 15 nouveautés beauté d’octobre",
+        "it": "Le 15 novità beauty di ottobre"
+      }
+    },
+    {
+      "id": "arpy-eye",
+      "title": "peptide eye cream: what’s in it, and how and when to use it",
+      "url": "https://arpyskin.com/blogs/guides/peptide-eye-cream",
+      "publisher": "arpy",
+      "published_at": "2026-10-15T00:00:00+00:00",
+      "kind": "brand_promotion",
+      "brand": "arpy",
+      "topics": [
+        "peptides",
+        "vitamin-e"
+      ],
+      "evidence_terms": [
+        "October 15, 2026",
+        "peptides",
+        "tocopherol: vitamin E"
+      ],
+      "summary": {
+        "fr": "arpy : contenu de marque du 15 octobre sur les peptides du contour des yeux. Ce n’est pas une annonce payante vérifiée.",
+        "it": "arpy: contenuto del marchio del 15 ottobre sui peptidi nel contorno occhi. Non è una campagna paid verificata."
+      },
+      "display_title": {
+        "fr": "Peptides & contour des yeux : guide de marque",
+        "it": "Peptidi e contorno occhi: guida del marchio"
+      }
+    },
+    {
+      "id": "cerave",
+      "title": "CeraVe Hong Kong campaign",
+      "url": "https://www.marketing-interactive.com/cerave-hk-ditches-the-hard-sell-to-win-over-genz",
+      "publisher": "Marketing-Interactive",
+      "published_at": "2026-09-24T00:00:00+00:00",
+      "kind": "advertising_campaign",
+      "brand": "CeraVe",
+      "event_start": "2026-09-01",
+      "event_end": "2026-11-30",
+      "topics": [
+        "social_creative"
+      ],
+      "evidence_terms": [
+        "September to November 2026",
+        "six-second Reels"
+      ],
+      "summary": {
+        "fr": "CeraVe, Hong Kong : campagne prévue sept.–nov. 2026, dont Reels de 6 s. Article du 24 septembre.",
+        "it": "CeraVe, Hong Kong: campagna prevista sett.–nov. 2026, con Reel da 6 s. Articolo del 24 settembre."
+      },
+      "display_title": {
+        "fr": "CeraVe Hong Kong : la campagne « anti-publicité »",
+        "it": "CeraVe Hong Kong: la campagna «anti-pubblicità»"
+      }
+    }
+  ],
+  "signal_title": {
+    "fr": "Le soin ciblé",
+    "it": "La cura mirata"
+  },
+  "insight": {
+    "fr": "Angle proposé : associer le confort de la routine à un soin ciblé pour les rides du regard.",
+    "it": "Angolo proposto: unire il comfort della routine a un trattamento mirato per le rughe del contorno occhi."
+  },
+  "strategy": {
+    "fr": {
+      "positioning": "Crème Généreuse lisse les rides et aide à raffermir le contour des yeux. Peptides et vitamine E : présents dans son INCI et cités dans le récent contenu arpy.",
+      "audience": "Hypothèse de cible : personnes recherchant un soin ciblé pour les rides du contour des yeux.",
+      "activation": "Feed : bénéfice + deux actifs lisibles. Story : focus sur le geste. Reel à tester : 6–10 s, packshot puis texture. Bannière : découverte du soin.",
+      "measurement": "Tester « lisser les ridules » face à « raffermir » à audience et budget égaux. Comparer clics et visites produit."
+    },
+    "it": {
+      "positioning": "Crème Généreuse leviga le rughe e aiuta a rassodare il contorno occhi. Peptidi e vitamina E: presenti nel suo INCI e citati nel recente contenuto arpy.",
+      "audience": "Ipotesi di pubblico: persone che cercano una cura mirata per le rughe del contorno occhi.",
+      "activation": "Feed: beneficio e due attivi leggibili. Story: focus sul gesto. Reel da testare: 6–10 s, packshot e texture. Banner: scoperta del trattamento.",
+      "measurement": "Testare « levigare le linee sottili » contro « rassodare » con pubblico e budget uguali. Confrontare clic e visite prodotto."
+    }
+  },
+  "google_trends": {
+    "category_id": 143,
+    "markets": {
+      "fr": {
+        "geo": "FR",
+        "top": [
+          "crème",
+          "yves rocher",
+          "vichy",
+          "guerlain",
+          "chanel",
+          "caudalie",
+          "lancome",
+          "la roche posay",
+          "avene"
+        ],
+        "rising": [
+          "joyca parfum",
+          "parfum joyca",
+          "sephora macon",
+          "musc ravageur",
+          "vernis rouge",
+          "anti cerne essence",
+          "amouage decision",
+          "essence maquillage"
+        ],
+        "interpretation": "Sélection de marques beauté et soins. Les hausses ne prouvent pas un intérêt accru pour le contour des yeux IOMA."
+      },
+      "it": {
+        "geo": "IT",
+        "top": [
+          "crema",
+          "crema viso",
+          "crema idratante",
+          "roche posay",
+          "contorno occhi",
+          "bionike",
+          "cerave",
+          "la roche posay",
+          "skincare",
+          "acne",
+          "avene",
+          "caudalie"
+        ],
+        "rising": [
+          "olio di oliva crema notte 50 ml",
+          "crema idratante viso",
+          "ascella",
+          "crema idratante",
+          "inglot"
+        ],
+        "interpretation": "Selezione skincare e cura corpo: le crescite non misurano un aumento dell’interesse per il contorno occhi IOMA."
+      }
+    }
+  }
+}

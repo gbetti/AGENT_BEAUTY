@@ -172,10 +172,21 @@ il banner ha una CTA testuale discreta. I titoli non vengono rimpiccioliti
 silenziosamente se non entrano: occorre rivedere il copy.
 
 I fondali fotografici sono in `assets/backgrounds/editorial/`, con provenienza
-e hash in `editorial-scenes.json`. I due setting di seta usano luce diffusa
-compatibile con i packshot. Vengono alternati senza ripetere l’ultima scena;
+e hash in `editorial-scenes.json`. Le nuove scene `studio-ivory` e `studio-pearl`
+riservano aree uniformi a logo, titolo e ingredienti. Il piano di appoggio resta
+visibile nei tre formati grazie a ritagli e coordinate documentati nel manifest.
+Le scene storiche di seta rimangono disponibili per riprodurre gli archivi.
+I nuovi fondali vengono alternati senza ripetere l’ultima scena;
 anche le due varianti di titolo del prodotto alternano tra le esecuzioni.
 Nuove ambientazioni vanno aggiunte soltanto dopo un controllo visivo nei tre formati.
+
+L’ombra proiettata segue la sagoma reale del packshot e la luce del fondale;
+diventa più morbida e meno densa lontano dalla base. L’ombra di contatto segue
+la larghezza della base, senza margini trasparenti che facciano galleggiare il
+flacone. Il layout usa più altezza per i flaconi sottili. Oltre al contrasto,
+l’agente verifica che non ci siano dettagli eccessivi dietro ai testi; controlli
+e parametri dell’ombra vengono salvati nel report. La revisione visiva resta
+obbligatoria: nessun controllo numerico certifica da solo una resa perfetta.
 
 I font sono inclusi con licenza in `assets/fonts/`. La foto del prodotto,
 la sua etichetta e il marchio non vengono rigenerati dall’IA.
@@ -210,9 +221,23 @@ una verifica di erogazione paid o spesa pubblicitaria.
 I due richiami con freccia nei PNG provengono dall’INCI ufficiale e dai temi
 presenti nelle fonti recenti. L’agente si ferma se non trova due corrispondenze.
 La priorità è editoriale, non un’affermazione sulla concentrazione in formula.
-Il registro corrente copre Crème Sublime: ceramidi e peptide RIGIN™. Gli altri
-prodotti del catalogo richiedono un registro ingredienti e un brief verificati
-prima di usare questo nuovo flusso.
+Il registro corrente copre Crème Sublime (ceramidi e peptide RIGIN™) e
+Crème Généreuse Contour des Yeux (peptidi e vitamina E), verificati nelle
+rispettive schede IOMA. Il lettore INCI riconosce anche le formule senza
+PARFUM finale e non prende ingredienti dalle recensioni. Gli altri prodotti
+richiedono un registro ingredienti e un brief verificati prima di usare il flusso.
+
+Campagna contorno occhi del 17 ottobre 2026:
+
+```sh
+python agent.py --product 'Généreuse' --research research/2026-10-17-contour-yeux.json
+```
+
+Questo brief fotografa le fonti lette il 17 ottobre: dopo 36 ore va aggiornato
+insieme al pool Google Trends. Le query possono variare anche nella stessa
+giornata; il messaggio di errore ora indica mercato e numero di corrispondenze.
+La presentazione usa titoli strategici specifici del prodotto e distingue il
+blog di un marchio da una campagna pubblicitaria documentata.
 
 ## Google Trends
 

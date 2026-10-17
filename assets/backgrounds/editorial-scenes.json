@@ -10,5 +10,87 @@
     "path": "assets/backgrounds/editorial/silk-pearl.png",
     "sha256": "5cea89bcb505d1a16052e53a8e01fb2e2ae523a9216043bbff72755dfb1a0ec4",
     "origin": "AI-generated photographic background; no product or lettering generated."
+  },
+  {
+    "id": "studio-ivory",
+    "path": "assets/backgrounds/editorial/studio-ivory.png",
+    "sha256": "5ede3b5467c72962f4b2fd8311c0679f6b784b8d53d020617c76e9aeaca873a3",
+    "origin": "AI-generated empty photographic cyclorama. No product, label, ingredients or text generated.",
+    "floor_start": 0.7,
+    "format_crops": {
+      "feed": [
+        0,
+        0.15,
+        1,
+        1
+      ],
+      "story": [
+        0,
+        0.3,
+        1,
+        1
+      ],
+      "banner": [
+        0,
+        0.4,
+        1,
+        1
+      ]
+    },
+    "lighting": {
+      "source": "large upper-left softbox",
+      "cast_direction": [
+        0.22,
+        0.07
+      ],
+      "color": [
+        62,
+        54,
+        46
+      ]
+    },
+    "max_copy_detail": 3.0,
+    "art_direction": "Smooth negative space for logo, headline and ingredient labels; continuous matte floor. No props, folds, podiums or pre-rendered product shadows."
+  },
+  {
+    "id": "studio-pearl",
+    "path": "assets/backgrounds/editorial/studio-pearl.png",
+    "sha256": "8e83cd5aee23bdcaa75f8935f446e7904e9780c2bf2e1689aa9b11565036bdd5",
+    "origin": "AI-generated empty photographic cyclorama. No product, label, ingredients or text generated.",
+    "floor_start": 0.78,
+    "format_crops": {
+      "feed": [
+        0,
+        0.15,
+        1,
+        1
+      ],
+      "story": [
+        0,
+        0.3,
+        1,
+        1
+      ],
+      "banner": [
+        0,
+        0.4,
+        1,
+        1
+      ]
+    },
+    "lighting": {
+      "source": "large upper-left softbox",
+      "cast_direction": [
+        0.22,
+        0.07
+      ],
+      "color": [
+        53,
+        51,
+        64
+      ]
+    },
+    "max_copy_detail": 3.0,
+    "art_direction": "Smooth negative space for logo, headline and ingredient labels; continuous matte floor. No props, folds, podiums or pre-rendered product shadows."
   }
 ]
