@@ -64,5 +64,18 @@
         1000
       ]
     }
+  },
+  {
+    "product_id": "urn:agent-beauty:manual:ioma:serum-hydratant-optimum",
+    "name": "Sérum Hydratant Optimum",
+    "path": "assets/products/serum-hydratant-optimum.jpg",
+    "source_url": "https://cdn.shopify.com/s/files/1/0663/1745/1420/files/serum-hydratant-optimum-800x800-1.jpg?v=1735121324",
+    "source_page": "https://ioma-paris.com/products/serum-hydratant-optimum",
+    "sha256": "54c51b468aa6335dc17d132d545627c89c534fadf145ae4ad8dab8f48c6d7f9e",
+    "size": [
+      800,
+      800
+    ],
+    "origin": "Official IOMA product image retrieved for the third Instagram product selected on 2026-10-22."
   }
 ]

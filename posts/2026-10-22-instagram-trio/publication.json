@@ -1,0 +1,101 @@
+{
+  "created_at": "2026-10-21T22:46:27.516567+00:00",
+  "user_date": "2026-10-22",
+  "timezone": "Europe/Paris",
+  "instagram_username": "gb77ita",
+  "instagram_user_id": "17841464260421573",
+  "scope": "Exactly three additional French Instagram feed posts, per current user request. No weekly trend claims, email, presentation or stories requested.",
+  "existing_media_id": "17914666347467428",
+  "third_product_reason": "Eye contour already published. Choose an additional product: hydrating serum.",
+  "sources_reviewed_at": "2026-10-21T22:46:27.516592+00:00",
+  "posts": [
+    {
+      "slug": "creme-sublime",
+      "name": "Crème Sublime Revitalisante",
+      "source_photo": "assets/products/creme-sublime-revitalisante-2000.jpg",
+      "ingredients": [
+        "CERAMIDE NP",
+        "CERAMIDE AP",
+        "PALMITOYL TETRAPEPTIDE-7"
+      ],
+      "headline": "Ce n’est pas sublime ?",
+      "caption": "Ce n’est pas sublime ? ✨\n\nUn moment pour soi, un soin pour sa peau.\n\nCrème Sublime Revitalisante nourrit la peau en profondeur, renforce la barrière cutanée et aide à retrouver une peau plus ferme. Sa texture riche et fondante accompagne votre rituel, matin et/ou soir, selon vos besoins.\n\nVotre moment soin préféré : au réveil ou en fin de journée ?\n\nDécouvrez Crème Sublime Revitalisante sur ioma-paris.com.\n\n#IOMAParis #CremeSublime #SoinVisage #RoutineBeaute #Fermete",
+      "alt_text": "Publicité IOMA sur fond ivoire avec un mannequin féminin aux cheveux bruns, le pot de Crème Sublime Revitalisante et le titre « Ce n’est pas sublime ? ». Deux flèches indiquent Céramides et Peptide RIGIN™.",
+      "source_url": "https://ioma-paris.com/products/creme-sublime-revitalisante",
+      "source_photo_sha256": "0ca24806cf6f9243e025efb6327451d004c5c7ad466927d739ca73c319def84d",
+      "image_sha256": "8f9cc510a0f6efe7b33bd26e494ca72dd7cd848cc5d80519176ad33c21abe8fd",
+      "image_file": "posts/2026-10-22-instagram-trio/creme-sublime/feed.jpg",
+      "status": "prepared",
+      "image_generation": "Image generation with official packshot and brand logo references; fictional model on Crème Sublime."
+    },
+    {
+      "slug": "cc-gel",
+      "name": "CC Gel",
+      "source_photo": "assets/products/cc-gel-2000.jpg",
+      "ingredients": [
+        "GLYCERIN",
+        "CI 77492 (IRON OXIDES)",
+        "CI 77491 (IRON OXIDES)",
+        "CI 77499 (IRON OXIDES)"
+      ],
+      "headline": "L’éclat. Tout naturellement.",
+      "caption": "L’éclat. Tout naturellement. ✨\n\nEnvie d’un teint unifié au fini naturel ?\n\nCC Gel associe une texture fraîche et légère à des pigments micro-encapsulés pour un effet bonne mine et une couvrance naturelle. Un geste soin et teint à intégrer à votre routine.\n\nEnregistrez ce post pour retrouver cette idée de routine.\n\nCC Gel est actuellement indisponible sur ioma-paris.com. Consultez sa fiche sur le site pour suivre sa disponibilité.\n\n#IOMAParis #CCGel #TeintNaturel #BonneMine #SoinTeinte",
+      "alt_text": "Publicité IOMA sur fond beige et ivoire. Le tube CC Gel est posé verticalement sous le titre « L’éclat. Tout naturellement. ». Deux flèches indiquent Pigments micro-encapsulés et Glycérine.",
+      "source_url": "https://ioma-paris.com/products/cc-gel-soin-teinte-eclat-parfait",
+      "source_photo_sha256": "b8dc7dd13d7bfdb699517a0657bd68654f10fbc30e012f132183c180166b9d5b",
+      "image_sha256": "8b7aef148330601a2099a56cd4af25879782827b5aaf42ed97ac8ba04289c7e6",
+      "image_file": "posts/2026-10-22-instagram-trio/cc-gel/feed.jpg",
+      "status": "prepared",
+      "image_generation": "Image generation with official packshot and brand logo references; fictional model on Crème Sublime."
+    },
+    {
+      "slug": "serum-hydratant-optimum",
+      "name": "Sérum Hydratant Optimum",
+      "source_photo": "assets/products/serum-hydratant-optimum.jpg",
+      "ingredients": [
+        "SODIUM HYALURONATE",
+        "XYLITYLGLUCOSIDE",
+        "ANHYDROXYLITOL",
+        "XYLITOL"
+      ],
+      "headline": "Et si votre peau avait soif ?",
+      "caption": "Et si votre peau avait soif ? 💧\n\nQuand la peau manque de confort, l’hydratation mérite toute votre attention.\n\nSérum Hydratant Optimum désaltère la peau et aide à atténuer les ridules de déshydratation. La peau retrouve souplesse, éclat et confort.\n\nLe geste à retenir : appliquez-le sur le visage et le cou nettoyés, matin et soir, avant votre crème.\n\nDécouvrez Sérum Hydratant Optimum sur ioma-paris.com.\n\n#IOMAParis #SerumHydratant #Hydratation #RoutineVisage #PeauDeshydratee",
+      "alt_text": "Publicité IOMA sur fond blanc perlé aux nuances bleues. Un flacon de Sérum Hydratant Optimum sous le titre « Et si votre peau avait soif ? ». Deux flèches indiquent Acide hyaluronique et AQUAXYL™.",
+      "source_url": "https://ioma-paris.com/products/serum-hydratant-optimum",
+      "source_photo_sha256": "54c51b468aa6335dc17d132d545627c89c534fadf145ae4ad8dab8f48c6d7f9e",
+      "image_sha256": "d741e3d627024c78769d13712ea560c5180fd00ea8f3836fde5c20eb18e146cb",
+      "image_file": "posts/2026-10-22-instagram-trio/serum-hydratant-optimum/feed.jpg",
+      "status": "prepared",
+      "image_generation": "Image generation with official packshot and brand logo references; fictional model on Crème Sublime."
+    }
+  ],
+  "quality": {
+    "reviewed_at": "2026-10-21T22:47:15.127132+00:00",
+    "reviewed_sizes": [
+      "1080x1350",
+      "360x450"
+    ],
+    "observations": [
+      "All three full images and mobile previews visually inspected.",
+      "French spelling, supplied Crème Sublime headline, accents and ingredient annotations are readable.",
+      "Each image has two labeled arrows; no overlaps or clipped text.",
+      "Product labels and shapes checked visually against official photographs; generated compositions are not pixel-identity verified.",
+      "Products are grounded with visible contact shadows; top-centered IOMA branding.",
+      "Crème Sublime features a fictional adult model; no testimonial or before/after claim."
+    ],
+    "files": [
+      {
+        "path": "posts/2026-10-22-instagram-trio/creme-sublime/feed.jpg",
+        "sha256": "8f9cc510a0f6efe7b33bd26e494ca72dd7cd848cc5d80519176ad33c21abe8fd"
+      },
+      {
+        "path": "posts/2026-10-22-instagram-trio/cc-gel/feed.jpg",
+        "sha256": "8b7aef148330601a2099a56cd4af25879782827b5aaf42ed97ac8ba04289c7e6"
+      },
+      {
+        "path": "posts/2026-10-22-instagram-trio/serum-hydratant-optimum/feed.jpg",
+        "sha256": "d741e3d627024c78769d13712ea560c5180fd00ea8f3836fde5c20eb18e146cb"
+      }
+    ]
+  }
+}

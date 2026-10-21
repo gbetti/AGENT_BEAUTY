@@ -1,0 +1,40 @@
+{
+  "reviewed_at": "2026-10-21T22:46:27.516592+00:00",
+  "scope": "Exactly three additional French Instagram feed posts, per current user request. No weekly trend claims, email, presentation or stories requested.",
+  "product_sources": [
+    {
+      "product": "Crème Sublime Revitalisante",
+      "url": "https://ioma-paris.com/products/creme-sublime-revitalisante",
+      "verified_inci": [
+        "CERAMIDE NP",
+        "CERAMIDE AP",
+        "PALMITOYL TETRAPEPTIDE-7"
+      ]
+    },
+    {
+      "product": "CC Gel",
+      "url": "https://ioma-paris.com/products/cc-gel-soin-teinte-eclat-parfait",
+      "verified_inci": [
+        "GLYCERIN",
+        "CI 77492 (IRON OXIDES)",
+        "CI 77491 (IRON OXIDES)",
+        "CI 77499 (IRON OXIDES)"
+      ]
+    },
+    {
+      "product": "Sérum Hydratant Optimum",
+      "url": "https://ioma-paris.com/products/serum-hydratant-optimum",
+      "verified_inci": [
+        "SODIUM HYALURONATE",
+        "XYLITYLGLUCOSIDE",
+        "ANHYDROXYLITOL",
+        "XYLITOL"
+      ]
+    }
+  ],
+  "availability": {
+    "cc-gel": "Official site showed En rupture at review; caption explicitly says currently unavailable."
+  },
+  "claims_policy": "Only documented cosmetic benefits; no new efficacy statistics, trends or testimonials.",
+  "visual_provenance": "Generated compositions using official product and logo reference images."
+}

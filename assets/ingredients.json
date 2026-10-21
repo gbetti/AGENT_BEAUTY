@@ -106,5 +106,89 @@
         "it": "Idratazione"
       }
     }
+  ],
+  "cc-gel": [
+    {
+      "id": "micro-encapsulated-pigments",
+      "label": {
+        "fr": "Pigments\nmicro-encapsulés",
+        "it": "Pigmenti\nmicroincapsulati"
+      },
+      "short": {
+        "fr": "Pigments micro-encapsulés",
+        "it": "Pigmenti microincapsulati"
+      },
+      "inci": [
+        "CI 77492 (IRON OXIDES)",
+        "CI 77491 (IRON OXIDES)",
+        "CI 77499 (IRON OXIDES)"
+      ],
+      "priority": 100,
+      "role": {
+        "fr": "Teint unifié",
+        "it": "Incarnato uniforme"
+      }
+    },
+    {
+      "id": "glycerin",
+      "label": {
+        "fr": "Glycérine",
+        "it": "Glicerina"
+      },
+      "short": {
+        "fr": "Glycérine",
+        "it": "Glicerina"
+      },
+      "inci": [
+        "GLYCERIN"
+      ],
+      "priority": 90,
+      "role": {
+        "fr": "Hydratation",
+        "it": "Idratazione"
+      }
+    }
+  ],
+  "serum-hydratant-optimum": [
+    {
+      "id": "hyaluronic-acid",
+      "label": {
+        "fr": "Acide hyaluronique",
+        "it": "Acido ialuronico"
+      },
+      "short": {
+        "fr": "Acide hyaluronique",
+        "it": "Acido ialuronico"
+      },
+      "inci": [
+        "SODIUM HYALURONATE"
+      ],
+      "priority": 100,
+      "role": {
+        "fr": "Hydratation",
+        "it": "Idratazione"
+      }
+    },
+    {
+      "id": "aquaxyl",
+      "label": {
+        "fr": "AQUAXYL™",
+        "it": "AQUAXYL™"
+      },
+      "short": {
+        "fr": "AQUAXYL™",
+        "it": "AQUAXYL™"
+      },
+      "inci": [
+        "XYLITYLGLUCOSIDE",
+        "ANHYDROXYLITOL",
+        "XYLITOL"
+      ],
+      "priority": 90,
+      "role": {
+        "fr": "Hydratation",
+        "it": "Idratazione"
+      }
+    }
   ]
 }
