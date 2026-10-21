@@ -111,4 +111,29 @@ cloud `/workspace` paths did not work for this user. Verify remote files before
 claiming delivery. Store the eight campaign files and six email files together
 under a new dated directory in `posts/`; do not overwrite prior campaigns.
 Publishing assets to the repository is not
-publishing them on social media. Do not claim a social post was published.
+publishing them on social media. Claim publication only after a confirmed
+Instagram API response or a reconciled PUBLISHED container state.
+
+## Instagram publishing
+- `python -m agents.publisher` is the dedicated feed publisher; it is not an
+  automatic fourth stage of creative generation. Follow `INSTAGRAM.md`.
+- Use Instagram Login with a Business/Creator account. Read the access token
+  only from the execution environment; never put credentials in chat, public
+  manifests, Git, asset URLs or diagnostic output.
+- Select one language and an explicit target username. Check the authenticated
+  username against that target before every publication.
+- Prepare only visually reviewed generations with matching source SHA-256s.
+  A separate 1080×1350 JPEG is an Instagram transport derivative: preserve the
+  original campaign PNGs and email bytes. Store the derivative and portable
+  manifest under `publishing/`, without overwriting older preparations.
+- Verify the public JPEG URL returns the prepared bytes without authentication.
+  Do not claim that a local preview establishes Meta's ability to fetch it.
+- Keep one durable `data/instagram.sqlite` register across invocations. Commit
+  the publishing state before calling media_publish. Never automatically resend
+  an uncertain write or erase the register to bypass duplicate protection.
+- `connect` and `check` are read-only API operations. The `publish` command
+  performs the real social action. Use it only for the user-authorized profile,
+  language and post; this request authorizes the French eye-cream feed on
+  @gb77ita once its account authorization is available.
+- Unit tests mock Meta. Report real account connection and publication separately
+  from test results. An unavailable permalink does not negate a confirmed post.

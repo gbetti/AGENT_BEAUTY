@@ -79,8 +79,25 @@ Non occorrono tre server, tre database o nuove dipendenze. Sono componenti
 Python con regole editoriali e provider reali di ricerca, senza un modello
 linguistico collegato in questa versione. Questa separazione **non elimina**
 la revisione del brief entro 36 ore, la verifica degli ingredienti per ogni
-prodotto o il controllo visivo finale. Veo, invio email, pubblicazione Meta
-e gestione del budget richiedono ancora integrazioni dedicate.
+prodotto o il controllo visivo finale. Veo, invio email e gestione del budget
+richiedono ancora integrazioni dedicate.
+
+## Pubblicare su Instagram
+
+`agents/publisher.py` aggiunge la pubblicazione di un feed già revisionato,
+con la sua caption, tramite l’API ufficiale Instagram Login. È pronto il post
+francese del contorno occhi destinato a **@gb77ita**. Per inviarlo occorre
+collegare il profilo Business/Creator con il segreto `INSTAGRAM_ACCESS_TOKEN`.
+
+```sh
+python -m agents.publisher connect --username gb77ita
+```
+
+Il modulo verifica il profilo, prepara un JPEG dal PNG originale e registra
+l’esito in SQLite per evitare invii duplicati. `check` verifica senza pubblicare;
+`publish` esegue l’invio. La generazione creativa non pubblica automaticamente.
+
+[Collegamento Meta e comandi del post francese](INSTAGRAM.md).
 
 ## Eseguire soltanto l’agente keyword
 
