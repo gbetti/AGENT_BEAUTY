@@ -134,7 +134,8 @@ class AgentTests(unittest.TestCase):
                 self.assertEqual({str(p.relative_to(d)) for p in d.rglob('*') if p.is_file()},
                                  {lang+'/'+kind+'.png' for lang in LANGUAGES for kind in FORMATS} |
                                  {lang+'/'+name for lang in LANGUAGES
-                                  for name in ('presentazione.pptx','email.html','email.eml','email-logo.png')})
+                                  for name in ('presentazione.pptx','email.html','email.eml','email-logo.png')} |
+                                 ({lang+'/reel.mp4' for lang in LANGUAGES} if d == second['fr']['feed'].parent.parent else set()))
                 for lang in LANGUAGES:
                     deck=Presentation(d/lang/'presentazione.pptx')
                     self.assertEqual(len(deck.slides),4)

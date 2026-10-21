@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 import sys
 
-from instagram import InstagramClient, load_post, prepare_post, verify_public_image
+from instagram import InstagramClient, load_post, prepare_post, prepare_reel, verify_public_image, verify_public_video
 from instagram_approval import offer_post, reply_to_offer
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -21,6 +21,7 @@ def main(argv=None):
     prepare.add_argument('--language', choices=('fr', 'it'), required=True)
     prepare.add_argument('--username', required=True)
     prepare.add_argument('--output', type=Path, required=True)
+    prepare.add_argument('--kind', choices=('feed', 'reel'), default='feed')
     for name, help_text in [('check', 'Controlla post, profilo e URL senza pubblicare'),
                             ('offer', 'Mostra il post e salva la domanda SÌ/NO'),
                             ('publish', 'Mostra il post e pubblica soltanto dopo la risposta SÌ')]:
@@ -37,7 +38,8 @@ def main(argv=None):
     args = parser.parse_args(argv)
     try:
         if args.command == 'prepare':
-            path = prepare_post(args.database, args.generation, args.language, args.username, args.output)
+            prepare = prepare_reel if args.kind == 'reel' else prepare_post
+            path = prepare(args.database, args.generation, args.language, args.username, args.output)
             print(f'Preparato, non pubblicato: {path}')
         elif args.command == 'connect':
             client = InstagramClient.from_environment()
@@ -53,7 +55,10 @@ def main(argv=None):
             client = InstagramClient.from_environment()
             if args.command == 'check':
                 profile = client.profile(post['username'])
-                verify_public_image(args.image_url, post['image_sha256'])
+                if post.get('kind') == 'reel':
+                    verify_public_video(args.image_url, post['video_sha256'])
+                else:
+                    verify_public_image(args.image_url, post['image_sha256'])
                 print(json.dumps({'status': 'checked_not_published', 'profile': profile,
                                   'language': post['language'], 'caption': post['caption']},
                                  ensure_ascii=False, indent=2))

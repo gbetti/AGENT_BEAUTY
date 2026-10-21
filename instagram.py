@@ -251,7 +251,9 @@ def verify_public_video(url, expected_hash):
     https_url(url)
     with build_opener(NoRedirect()).open(Request(url), timeout=45) as response:
         raw = response.read(24_000_001)
-        if response.headers.get_content_type() != 'video/mp4' or digest(raw) != expected_hash:
+        # Immutable file hosts may serve MP4 as octet-stream. Exact bytes and
+        # ffprobe validation below remain mandatory; HTML is never accepted.
+        if response.headers.get_content_type() not in ('video/mp4', 'application/octet-stream') or digest(raw) != expected_hash:
             raise InstagramError('Il video pubblico non coincide con il Reel revisionato.')
     with tempfile.NamedTemporaryFile(suffix='.mp4') as temporary:
         temporary.write(raw)

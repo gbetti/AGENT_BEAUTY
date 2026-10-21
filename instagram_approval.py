@@ -6,7 +6,7 @@ import unicodedata
 import uuid
 
 from instagram import (InstagramClient, InstagramError, digest, load_post,
-                       publication_store, publish_post, username, verify_public_image)
+                       publication_store, publish_post, username, verify_public_image, verify_public_video)
 
 
 def publication_question(target, language):
@@ -34,12 +34,15 @@ def approval_table(db):
     db.commit()
 
 
-def offer_post(post_path, image_url, state_path, client, *, check_image=verify_public_image):
+def offer_post(post_path, image_url, state_path, client, *, check_image=verify_public_image, check_video=verify_public_video):
     """Only read Meta and the public image; never create a media container."""
     post_path = Path(post_path).resolve()
     post = load_post(post_path)
     account = client.profile(post['username'])
-    check_image(image_url, post['image_sha256'])
+    if post.get('kind') == 'reel':
+        check_video(image_url, post['video_sha256'])
+    else:
+        check_image(image_url, post['image_sha256'])
     content_hash = fingerprint(post)
     with publication_store(state_path) as db:
         approval_table(db)
@@ -60,7 +63,7 @@ def offer_post(post_path, image_url, state_path, client, *, check_image=verify_p
             db.execute('UPDATE instagram_approvals SET post_path=? WHERE id=?', (str(post_path), row['id']))
             db.commit()
         return {'request_id': row['id'], 'status': row['status'],
-                'question': publication_question(post['username'], post['language']),
+                'question': publication_question(post['username'], post['language']).replace('questo feed', 'questo Reel' if post.get('kind') == 'reel' else 'questo feed'),
                 'username': post['username'], 'language': post['language'],
                 'image_url': row['image_url'], 'caption': post['caption']}
 
