@@ -1,0 +1,15 @@
+{
+  "account_id": "17841464260421573",
+  "generation_id": "20261017T103817Z-3535d3f8",
+  "language": "fr",
+  "source_sha256": "99cc2aacddef68c266f0df6b686d16cf1f18db1a87b30008509b14a9cc4e1dfb",
+  "status": "published",
+  "media_id": "17914666347467428",
+  "permalink": "https://www.instagram.com/p/DexcJYEgdJL/",
+  "updated_at": "2026-10-21T22:05:22.176924+00:00",
+  "username": "gb77ita",
+  "user_confirmation": "SI",
+  "confirmed_at": "2026-10-21T22:05:14.125070+00:00",
+  "verification": "Confirmed by media_publish response and a subsequent GET of the media ID, caption, type and permalink.",
+  "note": "Publication receipt only. Keep the durable SQLite register; this file does not replace duplicate protection or authorize future posts."
+}

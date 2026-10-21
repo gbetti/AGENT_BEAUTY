@@ -149,8 +149,11 @@ Instagram API response or a reconciled PUBLISHED container state.
   request bound to the reviewed post, public URL and verified account. `respond`
   performs the real social action only on SI/SÌ. `publish` asks in a terminal;
   without an interactive terminal it saves the question without sending.
-- @gb77ita is the current default profile. The previously prepared French eye
-  cream post also needs a specific SI/SÌ under the user's current instructions.
+- @gb77ita is the current default profile. The French eye cream feed was
+  published after an explicit SI on 2026-10-22 (Europe/Paris):
+  https://www.instagram.com/p/DexcJYEgdJL/ . Its receipt is in
+  `publishing/2026-10-17-contour-yeux-fr/publication.json`; do not publish it again
+  from a fresh register. Every new post needs its own SI/SÌ.
   Never invent an affirmative answer or bypass the confirmation via the
   low-level publisher. Changed content requires a new preview and question.
 - Unit tests mock Meta. Report real account connection and publication separately

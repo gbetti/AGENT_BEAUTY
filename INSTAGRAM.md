@@ -5,8 +5,12 @@ API with Instagram Login**. Il post preparato è quello francese della Crème
 Généreuse Contour des Yeux, destinato a **@gb77ita**. L’autorizzazione del profilo
 è configurata: il 21 ottobre 2026 l’API ha riconosciuto @gb77ita come
 `MEDIA_CREATOR` e ha restituito la quota di pubblicazione. Sono stati verificati
-anche URL pubblico e hash del JPEG. Queste verifiche non pubblicano un post;
-l’invio reale richiede la risposta SÌ al contenuto mostrato.
+anche URL pubblico e hash del JPEG. Il **22 ottobre 2026 (Europe/Paris)**,
+dopo il SÌ dell’utente, il feed francese è stato
+[pubblicato su Instagram](https://www.instagram.com/p/DexcJYEgdJL/).
+Una successiva lettura API ha confermato ID `17914666347467428`, caption e permalink.
+La [ricevuta](publishing/2026-10-17-contour-yeux-fr/publication.json) documenta
+questo invio; ogni nuovo contenuto richiede una nuova risposta SÌ.
 
 ## Collegare @gb77ita una volta
 
@@ -46,7 +50,7 @@ Riferimenti ufficiali: [avvio e generazione del token](https://developers.facebo
 [permessi Instagram Login](https://www.postman.com/meta/instagram/folder/6raa77c/instagram-api-with-instagram-login),
 [pubblicazione](https://developers.facebook.com/docs/instagram-platform/instagram-api-with-instagram-login/content-publishing/).
 
-## Il post francese già pronto
+## Il post francese pubblicato
 
 Il manifest è [`publishing/2026-10-17-contour-yeux-fr/post.json`](publishing/2026-10-17-contour-yeux-fr/post.json).
 Contiene profilo, lingua, caption, riferimento al PNG revisionato e hash dei file.
@@ -75,7 +79,8 @@ registra e mostra una domanda per ciascuna lingua. L’agente completa i control
 e prepara l’offerta prima di chiedere il consenso, senza chiedere all’utente di
 eseguire i comandi o di certificare la revisione visiva.
 
-Per mostrare il post già pronto e salvare la domanda senza inviare nulla:
+Per mostrare un post preparato e salvare la domanda senza inviare nulla
+(l’esempio seguente si riferisce al post storico già pubblicato):
 
 ```bash
 python -m agents.publisher offer \
@@ -182,5 +187,8 @@ I test del publisher e delle conferme usano risposte Meta simulate: coprono
 SÌ/NO, assenza di risposta, cambio del contenuto o account, ripresa dopo timeout,
 invii duplicati e comandi interattivi/non interattivi. Il collegamento reale,
 la quota API e il JPEG pubblico sono stati verificati separatamente il
-21 ottobre 2026. Il test completo con un post reale resta subordinato al SÌ
-dell’utente; Meta può ancora rifiutare un invio per permessi o limiti dell’app.
+21 ottobre 2026. Dopo la conferma esplicita, il 22 ottobre (Europe/Paris) è riuscita
+anche la pubblicazione reale del feed francese. Sono passati i 78 test della
+suite completa e, dopo gli ultimi tre casi aggiunti, tutti i 38 test Instagram
+(81 casi distinti verificati). La lettura API del post pubblicato ha confermato
+la caption approvata. I token possono comunque scadere o essere revocati.

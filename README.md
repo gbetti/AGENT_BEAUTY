@@ -85,8 +85,9 @@ richiedono ancora integrazioni dedicate.
 ## Pubblicare su Instagram
 
 `agents/publisher.py` aggiunge la pubblicazione di un feed già revisionato,
-con la sua caption, tramite l’API ufficiale Instagram Login. È pronto il post
-francese del contorno occhi destinato a **@gb77ita**. Il collegamento reale al
+con la sua caption, tramite l’API ufficiale Instagram Login. Il post francese
+del contorno occhi è stato [pubblicato su @gb77ita](https://www.instagram.com/p/DexcJYEgdJL/)
+il 22 ottobre 2026 (Europe/Paris), dopo il SÌ dell’utente. Il collegamento reale al
 profilo Creator e la lettura della quota API sono stati verificati il 21 ottobre
 2026 con il segreto `INSTAGRAM_ACCESS_TOKEN`; il token deve restare valido.
 
