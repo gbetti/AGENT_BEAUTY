@@ -55,7 +55,7 @@ Dalla cartella del progetto, dopo il collegamento:
 ```bash
 python -m agents.publisher check \
   --post publishing/2026-10-17-contour-yeux-fr/post.json \
-  --image-url 'https://raw.githubusercontent.com/gbetti/AGENT_BEAUTY/codex/instagram-publishing-2026-10-21/publishing/2026-10-17-contour-yeux-fr/feed.jpg'
+  --image-url 'https://raw.githubusercontent.com/gbetti/AGENT_BEAUTY/3c85f1886ec5939d26343b58ef613fcc7bb02e5e/publishing/2026-10-17-contour-yeux-fr/feed.jpg'
 ```
 
 Questo comando controlla il profilo e scarica il JPEG pubblico **senza token**:
@@ -68,7 +68,7 @@ Per pubblicare realmente il post, esegui:
 ```bash
 python -m agents.publisher publish \
   --post publishing/2026-10-17-contour-yeux-fr/post.json \
-  --image-url 'https://raw.githubusercontent.com/gbetti/AGENT_BEAUTY/codex/instagram-publishing-2026-10-21/publishing/2026-10-17-contour-yeux-fr/feed.jpg'
+  --image-url 'https://raw.githubusercontent.com/gbetti/AGENT_BEAUTY/3c85f1886ec5939d26343b58ef613fcc7bb02e5e/publishing/2026-10-17-contour-yeux-fr/feed.jpg'
 ```
 
 Il comando invia il JPEG e la caption francese, attende che il contenitore sia
@@ -132,3 +132,11 @@ al posto del nome del ramo. I token non vanno inclusi negli URL degli asset.
 
 Non occorre rigenerare una campagna già revisionata per pubblicarla. Una nuova
 campagna continua invece a richiedere ricerca aggiornata e revisione completa.
+
+## Verifica dell’integrazione
+
+Il 21 ottobre 2026 sono passati tutti i 64 test del progetto, inclusi 21 test
+del publisher con risposte Meta simulate. Verificati anche il manifest da una
+cartella diversa senza il database originale e la resa visiva del JPEG.
+Questi controlli non equivalgono a un collegamento o a un invio reale: per quelli
+serve il token dell’account autorizzato.
