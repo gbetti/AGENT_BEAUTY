@@ -85,5 +85,59 @@
       "closing": "Fa per te se cerchi una cura anti-age mirata per lo sguardo.",
       "cta": "Scopri il trattamento"
     }
+  },
+  "shampooing-soin-hydratant-anti-casse": {
+    "product_url": "https://ioma-paris.com/products/shampooing-soin-hydratant-anti-casse",
+    "fr": {
+      "title": "Shampooing Soin Hydratant Anti-Casse",
+      "subjects": [
+        "Et si votre routine commençait par les cheveux ?",
+        "Un nouveau geste pour vos longueurs"
+      ],
+      "preheader": "Un soin IOMA Haircare pour des cheveux plus doux et plus résistants.",
+      "lead": "Et si votre routine prenait soin de vos cheveux ?",
+      "body": "Le shampooing aide à lutter contre la casse.\nIl hydrate le cuir chevelu.\nIl élimine les impuretés.",
+      "closing": "Pour vous, si vos cheveux sont fragiles et manquent de souplesse.",
+      "cta": "Découvrir le soin"
+    },
+    "it": {
+      "title": "Shampooing Soin Hydratant Anti-Casse",
+      "subjects": [
+        "E se il rituale iniziasse dai capelli?",
+        "Un nuovo gesto per le tue lunghezze"
+      ],
+      "preheader": "Un trattamento IOMA Haircare per capelli più morbidi e resistenti.",
+      "lead": "E se il tuo rituale si prendesse cura dei capelli?",
+      "body": "Lo shampoo aiuta a contrastare la rottura.\nIdrata il cuoio capelluto.\nElimina le impurità.",
+      "closing": "Fa per te se i tuoi capelli sono fragili e poco morbidi.",
+      "cta": "Scopri il trattamento"
+    }
+  },
+  "apres-shampooing-reparateur": {
+    "product_url": "https://ioma-paris.com/products/apres-shampooing-reparateur",
+    "fr": {
+      "title": "Après-Shampooing Réparateur",
+      "subjects": [
+        "Et si votre routine commençait par les cheveux ?",
+        "Un nouveau geste pour vos longueurs"
+      ],
+      "preheader": "Un soin IOMA Haircare pour des cheveux plus doux et plus résistants.",
+      "lead": "Et si votre routine prenait soin de vos cheveux ?",
+      "body": "Le soin répare visiblement les cheveux endommagés.\nIl laisse les longueurs plus douces.\nSa formule aide à réduire les frisottis.",
+      "closing": "Pour vous, si vos cheveux sont abîmés et ont besoin de douceur.",
+      "cta": "Découvrir le soin"
+    },
+    "it": {
+      "title": "Après-Shampooing Réparateur",
+      "subjects": [
+        "E se il rituale iniziasse dai capelli?",
+        "Un nuovo gesto per le tue lunghezze"
+      ],
+      "preheader": "Un trattamento IOMA Haircare per capelli più morbidi e resistenti.",
+      "lead": "E se il tuo rituale si prendesse cura dei capelli?",
+      "body": "Il balsamo ripara visibilmente i capelli danneggiati.\nLascia le lunghezze più morbide.\nLa formula aiuta a ridurre l’effetto crespo.",
+      "closing": "Fa per te se i tuoi capelli sono danneggiati e cercano morbidezza.",
+      "cta": "Scopri il trattamento"
+    }
   }
 }

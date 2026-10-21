@@ -6,7 +6,8 @@ from pathlib import Path
 import sqlite3
 
 from agents.contracts import CampaignBrief
-from agents.trends import QUERY
+from agents.trends import QUERY, HAIR_QUERY
+from catalog import load_products
 from creative import recent_campaigns
 from editorial import LANGUAGES, campaign_plan
 from newsletter import create_email
@@ -25,7 +26,10 @@ class AssetsAgent:
         product = trends.product
         if trends.source_claim != product['data']['editorial']['claim_it']:
             raise ValueError('Il claim del brief trend non corrisponde al catalogo.')
-        creative = campaign_plan(product, recent_campaigns(args.database))
+        creative = campaign_plan(product, recent_campaigns(args.database, limit=-1),
+                                 mode=getattr(args, 'creative_mode', 'auto'),
+                                 products=load_products(args.database),
+                                 pack_keys=getattr(args, 'pack_products', ()) or ())
         ingredients = select_ingredients(product, trends.weekly, creative['source'], now)
         # Keep both upstream results intact; the creative agent works on its own copy.
         weekly = deepcopy(trends.weekly)
@@ -79,7 +83,8 @@ def export_campaign(args, now, product, theme, claim, matched, scores, news,
                                     'path': str((directory/language/info['path'].name).resolve())}
                              for kind, info in graphics.items()}}
         report = {'created_at': now.isoformat(), 'window_start': (now-timedelta(days=7)).isoformat(),
-                  'query': QUERY, 'product': product['name'], 'product_id': product['id'],
+                  'query': HAIR_QUERY if product['data'].get('editorial', {}).get('theme') == 'hair' else QUERY,
+                  'product': product['name'], 'product_id': product['id'],
                   'creative': creative, 'source_claim': claim, 'theme': theme,
                   'weekly': weekly, 'ingredients': ingredients,
                   'theme_news_counts': scores, 'matched_news': matched, 'news': news,

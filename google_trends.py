@@ -8,6 +8,7 @@ from urllib.request import Request, build_opener, HTTPCookieProcessor
 
 BASE = 'https://trends.google.com'
 METHOD_URL = 'https://support.google.com/trends/answer/4355000'
+CATEGORIES = {143: 'Face & Body Care', 146: 'Hair Care'}
 
 
 def week_window(now):
@@ -42,14 +43,14 @@ def fetch_market(geo, language, category, now):
         'req':json.dumps(widget['request'],separators=(',',':'))}))
     return {'retrieved_at':now.isoformat(),'geo':geo,'language':language,
             'period_start':start,'period_end':end,'category_id':category,
-            'category_name':'Face & Body Care','search_property':'web',
+            'category_name':CATEGORIES[category],'search_property':'web',
             'timezone':'UTC','seed_keyword':'',
             'source_url':BASE+'/trends/explore?'+urlencode({
                 'cat':category,'date':period,'geo':geo,'hl':language}),
             'widget_request':widget['request'],'response':response}
 
 
-def select_queries(packet,selection,now):
+def select_queries(packet,selection,now,category=143):
     """Keep source order and values; never rank a hand-picked comparison as top searches."""
     start,end = week_window(now)
     if (packet['period_start'],packet['period_end']) != (start,end):
@@ -64,7 +65,8 @@ def select_queries(packet,selection,now):
     comparison_end=(first-timedelta(days=1)).isoformat()
     if (packet['geo'] != selection['geo'] or restriction['geo']['country'] != selection['geo']
             or restriction['time'] != start+' '+end
-            or req['requestOptions']['category'] != 143 or packet['category_id'] != 143
+            or category not in CATEGORIES
+            or req['requestOptions']['category'] != category or packet['category_id'] != category
             or req['requestOptions']['property'] != '' or packet['search_property'] != 'web'
             or packet.get('seed_keyword') != '' or packet.get('timezone') != 'UTC'
             or req.get('trendinessSettings',{}).get('compareTime') != comparison_start+' '+comparison_end
@@ -110,10 +112,10 @@ def select_queries(packet,selection,now):
 
 def research_trends(brief,now):
     config = brief['google_trends']
-    if config['category_id']!=143 or set(config['markets'])!={'fr','it'}:
+    if config['category_id'] not in CATEGORIES or set(config['markets'])!={'fr','it'}:
         raise ValueError('Configurazione Google Trends non valida.')
     result = {}
     for lang,selection in config['markets'].items():
         packet = fetch_market(selection['geo'],lang,config['category_id'],now)
-        result[lang] = {'data':select_queries(packet,selection,now),'evidence':packet}
+        result[lang] = {'data':select_queries(packet,selection,now,config['category_id']),'evidence':packet}
     return result

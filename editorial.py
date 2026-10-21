@@ -41,9 +41,11 @@ BRIEFS = {
   'scenes': ['studio-pearl', 'studio-ivory'],
  },
 }
+BRIEFS.update(json.loads((ROOT/'assets/catalog/creative-briefs.json').read_text(encoding='utf-8'))
+              if (ROOT/'assets/catalog/creative-briefs.json').is_file() else {})
 
 
-def campaign_plan(product, history):
+def campaign_plan(product, history, *, mode='auto', products=(), pack_keys=()):
     key = product['id'].split(':')[-1]
     if key not in BRIEFS:
         raise ValueError('Manca un brief editoriale verificato per '+product['name'])
@@ -61,7 +63,21 @@ def campaign_plan(product, history):
                      'category': brief['category'][lang], 'product_name': brief['name'],
                      'cta': 'Découvrir' if lang == 'fr' else 'Scopri',
                      'caption': brief['caption'][lang]} for lang in LANGUAGES}
+    from art_direction import plan_direction
+    direction = plan_direction(product, history, mode=mode, products=products, pack_keys=pack_keys)
+    scene = {**scene, 'design': direction, 'id': direction['id']}
+    if direction['mode'] == 'pack':
+        for lang in LANGUAGES:
+            trio = len(direction['products']) == 3
+            copies[lang]['headline'] = ('Le rituel.\nÀ trois.' if trio else 'Le rituel.\nEn duo.') if lang == 'fr' else (
+                'Il rituale.\nIn tre.' if trio else 'Il rituale.\nIn due.')
+            names = ' + '.join(p['name'] for p in direction['products'])
+            copies[lang]['product_name'] = 'IOMA Haircare' if direction['family'] == 'hair' else 'IOMA Paris'
+            copies[lang]['caption'] += ('\n\nComposition proposée : ' if lang == 'fr' else '\n\nComposizione proposta: ') + names + '.'
+            copies[lang]['caption'] += (' Une association de produits, sans offre promotionnelle.' if lang == 'fr'
+                                        else ' Un abbinamento di prodotti, senza offerta promozionale.')
     return {'variant': variant, 'scene': scene, 'copies': copies, 'source': brief['source'],
+            'content_mode': direction['mode'], 'design_id': direction['id'],
             'source_claim_it': brief['claim_it'], 'editorial_basis': 'documented_product_benefit',
             'art_direction': 'Quiet studio plate, protected copy space, continuous support plane, '
                              'upper-left softbox and silhouette-based contact/cast shadows; original packshot.'}

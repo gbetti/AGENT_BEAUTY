@@ -56,6 +56,7 @@ class AgentTests(unittest.TestCase):
         scenes=json.loads((ROOT/'assets/backgrounds/editorial-scenes.json').read_text())
         with tempfile.TemporaryDirectory() as folder:
             products=load_products(Path(folder)/'db.sqlite')
+            products=[p for p in products if p['id'].rsplit(':',1)[-1] in BRIEFS]
             for product in products:
                 photo=packshot_layer(product['images'][0]['path'])
                 brief=BRIEFS[product['id'].split(':')[-1]]
@@ -86,7 +87,7 @@ class AgentTests(unittest.TestCase):
 
     def test_packshot_label_pixels_are_preserved_at_final_size(self):
         with tempfile.TemporaryDirectory() as folder:
-            product=load_products(Path(folder)/'db.sqlite')[-1]
+            product=next(p for p in load_products(Path(folder)/'db.sqlite') if p['id'].endswith(':creme-sublime-revitalisante'))
             plan=campaign_plan(product,[])
             plan['copies']['fr']['ingredients']=ingredient_fixture()
             photo=packshot_layer(product['images'][0]['path'])
@@ -104,7 +105,7 @@ class AgentTests(unittest.TestCase):
 
     def test_changed_claim_and_missing_brief_fail_closed(self):
         with tempfile.TemporaryDirectory() as folder:
-            product=load_products(Path(folder)/'db.sqlite')[0]
+            product=next(p for p in load_products(Path(folder)/'db.sqlite') if p['id'].endswith(':creme-sublime-revitalisante'))
             product['data']['editorial']['claim_it']='Unverified new claim'
             with self.assertRaisesRegex(ValueError,'claim'): campaign_plan(product,[])
             product['id']='unknown'
@@ -112,7 +113,7 @@ class AgentTests(unittest.TestCase):
 
     def test_consecutive_campaigns_change_scene_and_copy(self):
         with tempfile.TemporaryDirectory() as folder:
-            product=load_products(Path(folder)/'db.sqlite')[-1]
+            product=next(p for p in load_products(Path(folder)/'db.sqlite') if p['id'].endswith(':creme-sublime-revitalisante'))
             first=campaign_plan(product,[])
             second=campaign_plan(product,[{'product_id':product['id'],'creative':first}])
             self.assertNotEqual(first['variant'],second['variant'])
@@ -304,6 +305,16 @@ class GoogleTrendsTests(unittest.TestCase):
             else:packet['response']['default']['rankedList'][0]['rankedKeyword'][0]['value']=101
             with self.subTest(mutation=mutation),self.assertRaises(ValueError):
                 select_queries(packet,weekly_fixture()['google_trends']['markets']['fr'],self.now)
+
+    def test_hair_queries_require_the_explicit_hair_category(self):
+        packet=self.packet()
+        packet['category_id']=146
+        packet['category_name']='Hair Care'
+        packet['widget_request']['requestOptions']['category']=146
+        selection=weekly_fixture()['google_trends']['markets']['fr']
+        self.assertEqual(select_queries(packet,selection,self.now,category=146)['category_id'],146)
+        with self.assertRaisesRegex(ValueError,'Perimetro'):
+            select_queries(packet,selection,self.now)
 
     def test_each_language_uses_its_own_market(self):
         with patch('google_trends.fetch_market',side_effect=lambda geo,*args:self.packet(geo)) as fetch:

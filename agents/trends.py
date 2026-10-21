@@ -11,7 +11,10 @@ from weekly import load_brief
 
 ROOT = Path(__file__).resolve().parents[1]
 QUERY = '(beauty OR skincare) (trend OR glow OR hydration OR longevity) when:7d'
+HAIR_QUERY = '(haircare OR scalp OR shampoo) (trend OR hydration OR breakage) when:7d'
 THEMES = {
+    'hair': {'keywords': ('hair', 'scalp', 'cheveu', 'capill', 'capell', 'shampoo', 'breakage'),
+             'label': 'Forza e cura dei capelli', 'colors': ((242, 235, 223), (188, 159, 111))},
     'glow': {'keywords': ('glow', 'radiance', 'luminos', 'makeup', 'make-up', 'tinted', 'skin tint', 'teint'), 'label': 'Il tuo momento glow', 'colors': ((247, 233, 221), (205, 170, 144))},
     'renew': {'keywords': ('longevity', 'aging', 'ageing', 'collagen', 'collag', 'barrier', 'barriera', 'hydrat', 'idrat', 'firm'), 'label': 'Dedicati un rituale di cura', 'colors': ((233, 237, 229), (161, 185, 169))},
 }
@@ -37,8 +40,8 @@ def parse_news(raw, now):
     return sorted(found, key=lambda x: x['published_at'], reverse=True)
 
 
-def search_news(now):
-    query = urllib.parse.urlencode({'q': QUERY, 'hl': 'it', 'gl': 'IT', 'ceid': 'IT:it'})
+def search_news(now, query=QUERY):
+    query = urllib.parse.urlencode({'q': query, 'hl': 'it', 'gl': 'IT', 'ceid': 'IT:it'})
     req = urllib.request.Request('https://news.google.com/rss/search?' + query, headers={'User-Agent': 'AgentBeauty/2.0'})
     with urllib.request.urlopen(req, timeout=30) as response:
         news = parse_news(response.read(), now)
@@ -70,8 +73,9 @@ def choose_product(products, news, requested=None):
 class TrendAgent:
     def run(self, products, args, now):
         # Fresh discovery on every invocation; reviewed evidence is still required.
-        news = search_news(now)
         weekly = load_brief(getattr(args, 'research', ROOT/'research/2026-10-08.json'), now)
         eligible = [p for p in products if p['id'].split(':')[-1] == weekly['product_key']]
+        hair = any(p['data'].get('editorial', {}).get('theme') == 'hair' for p in eligible)
+        news = search_news(now, query=HAIR_QUERY) if hair else search_news(now)
         product, theme, claim, matched, scores = choose_product(eligible, news, args.product)
         return TrendBrief(now, product, theme, claim, news, matched, scores, weekly)

@@ -33,10 +33,18 @@ PowerPoint and coordinated email per language. The email outputs are
 - Keep the IOMA logo at the top center, inside each format's safe area.
 - Use deliberate editorial typography and native layouts per format.
 - No large button in feed/story; their call to action belongs in the caption.
-- New campaigns use `studio-ivory` / `studio-pearl`: smooth empty text fields,
-  no fabric, ingredient props or pre-rendered bottle shadows. Use the manifest's
-  native format crops and floor anchor; the product base must sit below the
-  start of the support plane. Check actual copy areas for contrast and texture.
+- New campaigns rotate `product` → `model` → `pack` with `--creative-mode auto`.
+  `art_direction.py` varies palette, architectural motif and lighting field;
+  compare the actual background hash against the full campaign history and do
+  not reuse it. Save seed, palette, motif, assets and mode in the creative brief.
+  Maintain smooth copy space and a continuous support plane. Original archived
+  studio plates remain reproducible; they are not the only new background choices.
+- `model` uses the checked fictional adult portrait in `assets/models/manifest.json`;
+  it is an editorial image, never a customer, testimonial or treatment result.
+  `pack` uses two or three different original products in the same skin/hair
+  family. Do not invent a bundle price, combined efficacy or a special offer.
+  Show the exact composition in the caption. Add new portraits only with provenance
+  and visual review; never generate or alter product labels.
 - Cast shadows use the product's alpha silhouette and the background's documented
   light direction. Contact occlusion follows its base footprint, without a gap;
   the cast shadow softens and fades away from contact. Keep label pixels intact.
@@ -49,7 +57,8 @@ PowerPoint and coordinated email per language. The email outputs are
   advertising/promotion activity. Second slide: IOMA product, why its formula
   connects to those signals, proposed social activation and a measurable test.
 - Third slide: Google Trends query data, France in French and Italy in Italian.
-  Use seven completed UTC days, the Face & Body Care category (143), Web search,
+  Use seven completed UTC days, Face & Body Care (143) for skincare or Hair Care
+  (146) for hair products, Web search,
   no seed query. Show top relative scores separately from rising percentages.
   Never call index scores search volumes or compare FR/IT scores directly.
   Keep source spelling, values and order; disclose the editorial relevance filter.
@@ -62,7 +71,10 @@ PowerPoint and coordinated email per language. The email outputs are
 - Separate editorial coverage, brand promotions and advertising campaigns.
   Older campaigns may appear only with a documented active date range and
   their original article date. Mark ended promotions; never invent ad spend.
-- Each visual must show exactly two labeled arrows toward the product.
+- Product-only visuals show exactly two labeled arrows toward the product.
+  Portrait and pack layouts keep the image clear; verified ingredient information
+  stays in the research brief and PowerPoint rather than forcing arrows over faces
+  or assigning the main product's formula to all items in a pack.
   Select ingredients present in the official INCI and relevant to recent
   sources. Use `assets/ingredients.json`; do not borrow competitor ingredients.
   Editorial priority is not a claim about ingredient concentration.
@@ -70,6 +82,26 @@ PowerPoint and coordinated email per language. The email outputs are
   Contour des Yeux (peptides and vitamin E). Each still needs a current,
   product-specific brief. The eye formula has no terminal PARFUM: stop its
   official INCI at the list boundary, never at reviews or related products.
+- The shampoo and repairing conditioner also have reviewed bilingual copy,
+  email content and ingredient registries. Their INCI is scoped to the official
+  composition accordion: PARFUM may appear mid-list and is not an end marker.
+
+## Public catalog and customer reviews
+- `python catalog_sync.py` refreshes all public products, FR/IT descriptions,
+  composition/details, variants/prices, original photos and paginated Judge.me
+  reviews. `assets/catalog/ioma.json` seeds both new and existing SQLite catalogs.
+  Preserve existing generations, reviewed claims and Instagram publishing state.
+- Store review scores, text, dates, public display names, source and completeness
+  separately in `product_reviews`. Opinions are not verified efficacy claims.
+  Missing or partial review access is not zero reviews and never counts as complete.
+- The current snapshot covers 63 sitemap products and 2,461 public reviews.
+  Only products with reviewed creative briefs can enter campaign production;
+  importing a product does not invent its Italian advertising copy or research.
+- The user's shampoo price (25 EUR / 200 ml) is a supplied reference. The live
+  storefront price collected on 2026-10-22 is 24.90 EUR; preserve both sources.
+- `preview_creatives.py` produces clearly marked design previews to inspect
+  layouts without inventing fresh weekly research. These are not publication
+  offers and must not bypass normal campaign review and SI/NO confirmation.
 
 ## Visual completion is mandatory
 Running tests is not visual approval. Open all six final exports. Inspect:

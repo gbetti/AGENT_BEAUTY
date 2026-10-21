@@ -28,6 +28,10 @@ def main():
     parser.add_argument('--database', type=Path, default=ROOT/'data/catalog.sqlite')
     parser.add_argument('--output', type=Path, default=ROOT/'output')
     parser.add_argument('--product', help='Parte del nome per scegliere il prodotto')
+    parser.add_argument('--creative-mode', choices=('auto', 'product', 'model', 'pack'), default='auto',
+                        help='Rotazione automatica: prodotto, modella, pack; oppure scegli un formato')
+    parser.add_argument('--pack-products', nargs='+', metavar='PRODUCT_KEY',
+                        help='Chiavi dei prodotti da affiancare al protagonista; stesso ambito viso/capelli')
     parser.add_argument('--instagram-username', default='gb77ita',
                         help='Profilo proposto per la conferma di ogni feed (predefinito: gb77ita)')
     parser.add_argument('--research', type=Path, default=ROOT/'research/2026-10-08.json', help='Brief settimanale verificato nelle ultime 36 ore')

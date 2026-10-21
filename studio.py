@@ -25,7 +25,7 @@ def draw_text(image, value, center, top, width, size, kind, serif=False, align='
         raise ValueError(f'{kind}: testo troppo largo; rivedere il copy per questo formato.')
     draw = ImageDraw.Draw(image)
     boxes, ratios = [], []
-    step = round(size*1.02 if serif else size*1.4)
+    step = round(size*1.12 if serif else size*1.4)
     for i, line in enumerate(lines):
         x = center-f.getlength(line)/2 if align=='center' else center
         y = top+i*step
@@ -41,6 +41,11 @@ def draw_text(image, value, center, top, width, size, kind, serif=False, align='
 
 def background_plate(background, scene, kind, size):
     """Crop the empty plate per format, keeping a real floor below the product."""
+    if scene.get('design'):
+        from art_direction import draw_background
+        return draw_background(scene['design'], size), {
+            'floor_start_y': round(size[1]*.68), 'light_direction': scene['lighting']['cast_direction'],
+            'design_id': scene['design']['id']}
     crop = scene.get('format_crops', {}).get(kind)
     if crop:
         left, top, right, bottom = [round(v*d) for v,d in
@@ -143,7 +148,7 @@ def validate(kind,elements):
                 raise ValueError(f'{kind}: sovrapposizione tra {a["kind"]} e {b["kind"]}.')
     if kind!='banner' and any(e['kind']=='cta' for e in elements):
         raise ValueError('Feed e story non devono contenere pulsanti o CTA.')
-    return rectangle_union_area([e['box'] for e in elements if e['kind']!='product'])/(width*height)
+    return rectangle_union_area([e['box'] for e in elements if e['kind'] not in ('product', 'model')])/(width*height)
 
 
 def ingredient_callouts(image, ingredients, language, kind, product_box):
@@ -183,6 +188,9 @@ def ingredient_callouts(image, ingredients, language, kind, product_box):
 
 
 def render_campaign(product, copy, directory, scene):
+    if scene.get('design', {}).get('mode') in ('model', 'pack'):
+        from variety_studio import render_variety
+        return render_variety(product, copy, directory, scene)
     path=ROOT/scene['path']
     if hashlib.sha256(path.read_bytes()).hexdigest()!=scene['sha256']:
         raise ValueError('Il fondale è cambiato: verificare e aggiornare il manifest.')
@@ -207,7 +215,7 @@ def render_campaign(product, copy, directory, scene):
             product_x,baseline,limits=540,1380,(520,600)
             name_top,name_size=1480,28
             if photo.width/photo.height < .55:
-                baseline,limits=1400,(450,700)
+                baseline,limits=1430,(450,700)
         else:
             logo_top,logo_width=16,65
             headline_top,headline_size=(59,26) if copy.get('ingredients') else (81,26)

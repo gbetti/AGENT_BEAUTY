@@ -1,0 +1,156 @@
+{
+  "product": "Ma crème Jour",
+  "source_url": "https://ioma-paris.com/products/ma-creme-jour",
+  "collected_at": "2026-10-21T22:19:38.733793+00:00",
+  "status": "complete",
+  "reported_count": 13,
+  "average": "4.85",
+  "items": [
+    {
+      "id": "c481575f-118f-4f03-ae8a-d4958e0b9233",
+      "rating": 5,
+      "title": "",
+      "body": "Produit très efficace conforme à mes attentes",
+      "author": "Angélina B.",
+      "created_at": "2025-02-26T19:56:50.945Z",
+      "verified_buyer": true,
+      "source_product_title": "Ma crème Jour",
+      "from_group": false
+    },
+    {
+      "id": "de8b3544-e8d0-472f-b632-39e12eb1ab27",
+      "rating": 5,
+      "title": "",
+      "body": "Ma crème Jour",
+      "author": "FLORENCE L.",
+      "created_at": "2024-02-12T23:00:00.000Z",
+      "verified_buyer": true,
+      "source_product_title": "Ma crème Jour",
+      "from_group": false
+    },
+    {
+      "id": "0ffe088a-761d-45db-9183-e739ed08c9de",
+      "rating": 5,
+      "title": "Ma crème Jour",
+      "body": "Crème doudou parfaitement adaptée à ma peau",
+      "author": "Gisèle F.",
+      "created_at": "2024-02-03T23:00:00.000Z",
+      "verified_buyer": true,
+      "source_product_title": "Ma crème Jour",
+      "from_group": false
+    },
+    {
+      "id": "b4a2f532-9998-4984-b8f3-67012493c174",
+      "rating": 5,
+      "title": "Ma crème Jour",
+      "body": "Ma crème doudou. Parfaite pour ma peau.",
+      "author": "Gisèle F.",
+      "created_at": "2023-04-24T22:00:00.000Z",
+      "verified_buyer": true,
+      "source_product_title": "Ma crème Jour",
+      "from_group": false
+    },
+    {
+      "id": "fdbcbc40-89df-471e-bbd8-71423f58093a",
+      "rating": 4,
+      "title": "Ma crème Jour",
+      "body": "Un petit peu cher pas évident de faire le diagnostic de ma peau",
+      "author": "Jean-marc c.",
+      "created_at": "2022-12-11T23:00:00.000Z",
+      "verified_buyer": true,
+      "source_product_title": "Ma crème Jour",
+      "from_group": false
+    },
+    {
+      "id": "d2bc517a-3308-490b-ac24-fc1b2f6be871",
+      "rating": 5,
+      "title": "Ma crème Jour",
+      "body": "Un confort sans égal, hydratation parfaite",
+      "author": "Gisèle F.",
+      "created_at": "2022-07-13T22:00:00.000Z",
+      "verified_buyer": true,
+      "source_product_title": "Ma crème Jour",
+      "from_group": false
+    },
+    {
+      "id": "5a5ebdab-a00e-462f-8d14-884a7d8c03f9",
+      "rating": 5,
+      "title": "Ma crème Jour",
+      "body": "Très bien, crème très fluide agréable à appliquer, hydratation +++",
+      "author": "Virginie",
+      "created_at": "2022-04-27T22:00:00.000Z",
+      "verified_buyer": true,
+      "source_product_title": "Ma crème Jour",
+      "from_group": false
+    },
+    {
+      "id": "344f3803-dd59-4650-84ab-26ad75ca4bf5",
+      "rating": 5,
+      "title": "Ma crème Jour",
+      "body": "creme personnalisée dont j'ai l'habitude et suis satisfaite",
+      "author": "Agnès J.",
+      "created_at": "2022-02-23T23:00:00.000Z",
+      "verified_buyer": true,
+      "source_product_title": "Ma crème Jour",
+      "from_group": false
+    },
+    {
+      "id": "c343c9a6-712f-4e41-b86a-bab556f96b29",
+      "rating": 5,
+      "title": "Ma crème Jour",
+      "body": "CREME TOUJOURS AUSSI PARFAITE ET EFFICACE !!!",
+      "author": "Émilie M.",
+      "created_at": "2021-09-19T22:00:00.000Z",
+      "verified_buyer": true,
+      "source_product_title": "Ma crème Jour",
+      "from_group": false
+    },
+    {
+      "id": "60bcfa09-4316-462c-9163-5bb4ea774ba6",
+      "rating": 4,
+      "title": "Ma crème Jour",
+      "body": "J'aime bien! seulement je dois avoir une teste c'est pas possible an hollande a cette moment",
+      "author": "Patty S.",
+      "created_at": "2021-06-23T22:00:00.000Z",
+      "verified_buyer": true,
+      "source_product_title": "Ma crème Jour",
+      "from_group": false
+    },
+    {
+      "id": "c56fe22c-9469-41c4-9369-1e6337e74fa4",
+      "rating": 5,
+      "title": "Ma crème Jour",
+      "body": "La texture de la creme est vraiment très agréable . néanmoins , le.prix est très élevé",
+      "author": "laila r.",
+      "created_at": "2020-12-11T23:00:00.000Z",
+      "verified_buyer": true,
+      "source_product_title": "Ma crème Jour",
+      "from_group": false
+    },
+    {
+      "id": "999c72d1-a28a-467c-9d22-162c9061d47b",
+      "rating": 5,
+      "title": "",
+      "body": "Ma crème Jour",
+      "author": "Maria J.L.",
+      "created_at": "2020-06-21T22:00:00.000Z",
+      "verified_buyer": true,
+      "source_product_title": "Ma crème Jour",
+      "from_group": false
+    },
+    {
+      "id": "8b5bbf29-fdca-4a74-83f6-4c86f9e92df8",
+      "rating": 5,
+      "title": "",
+      "body": "Ma crème Jour",
+      "author": "Doris T.D.",
+      "created_at": "2020-01-06T23:00:00.000Z",
+      "verified_buyer": true,
+      "source_product_title": "Ma crème Jour",
+      "from_group": false
+    }
+  ],
+  "page_urls": [],
+  "reason": null,
+  "policy": "Opinioni dei clienti, non prove di efficacia o claim ufficiali."
+}

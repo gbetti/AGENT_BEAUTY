@@ -93,7 +93,9 @@ def google_queries(deck,brief,lang):
     period=' — '.join(datetime.fromisoformat(data[key]).strftime('%d.%m.%Y') for key in ('period_start','period_end'))
     slide=page(deck,3,lang,period)
     text(slide,'Les recherches beauté sur Google' if fr else 'Le ricerche beauty su Google',.6,1.15,12.1,.65,size=32,serif=True)
-    text(slide,'France · Soins du visage et du corps · Recherche Web' if fr else 'Italia · Cura di viso e corpo · Ricerca Web',.6,1.87,12,.4,size=15,color=MUTED)
+    category = ('Soins des cheveux' if fr else 'Cura dei capelli') if data['category_id'] == 146 else (
+        'Soins du visage et du corps' if fr else 'Cura di viso e corpo')
+    text(slide,('France · '+category+' · Recherche Web') if fr else ('Italia · '+category+' · Ricerca Web'),.6,1.87,12,.4,size=15,color=MUTED)
     text(slide,'REQUÊTES PRINCIPALES · INDICE 0–100' if fr else 'QUERY PRINCIPALI · INDICE 0–100',.6,2.55,6.2,.33,size=12)
     text(slide,'EN CROISSANCE · SÉLECTION BEAUTÉ' if fr else 'IN CRESCITA · SELEZIONE BEAUTY',7.2,2.55,5.5,.33,size=12)
     rule(slide,.6,2.99,5.7);rule(slide,7.2,2.99,5.5)
@@ -123,7 +125,8 @@ def create_presentation(product,report,graphics,destination,lang):
     deck.core_properties.title='IOMA Beauty Radar — '+lang.upper()
     deck.core_properties.author='IOMA Paris'
     slide=page(deck,1,lang,start+' — '+end)
-    text(slide,'La semaine skincare' if fr else 'La settimana skincare',.6,1.15,12.1,.65,size=34,serif=True)
+    topic = 'haircare' if product['data'].get('editorial', {}).get('theme') == 'hair' else 'skincare'
+    text(slide,('La semaine ' if fr else 'La settimana ')+topic,.6,1.15,12.1,.65,size=34,serif=True)
     text(slide,'Signaux éditoriaux, actifs et campagnes observées' if fr else 'Segnali editoriali, attivi e campagne osservate',.6,1.87,12,.4,size=15,color=MUTED)
     columns=[.6,4.73,8.86]
     headings=['01  SKINCARE','02  INGRÉDIENTS' if fr else '02  INGREDIENTI','03  PUBLICITÉ & PROMOTIONS' if fr else '03  PUBBLICITÀ & PROMOZIONI']

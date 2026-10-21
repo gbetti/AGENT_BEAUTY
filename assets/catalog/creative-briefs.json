@@ -1,0 +1,56 @@
+{
+  "shampooing-soin-hydratant-anti-casse": {
+    "name": "Shampooing Soin Hydratant\nAnti-Casse",
+    "claim_it": "Aiuta a contrastare la rottura dei capelli e idrata il cuoio capelluto.",
+    "source": "https://ioma-paris.com/products/shampooing-soin-hydratant-anti-casse",
+    "category": {
+      "fr": "HYDRATATION & RÉSISTANCE",
+      "it": "IDRATAZIONE & RESISTENZA"
+    },
+    "headlines": [
+      {
+        "fr": "Hydrater.\nRenforcer.",
+        "it": "Idratare.\nRinforzare."
+      },
+      {
+        "fr": "Plus forts.\nPlus souples.",
+        "it": "Più forti.\nPiù morbidi."
+      }
+    ],
+    "caption": {
+      "fr": "Hydratation et résistance, dès le shampooing.\n\nLe Shampooing Soin Hydratant Anti-Casse aide à lutter contre la casse, hydrate le cuir chevelu et élimine les impuretés. Pour des cheveux plus forts, plus résistants et plus souples.\n\nDécouvrez le soin sur ioma-paris.com.\n\n#IOMAParis #IOMAHaircare #SoinCapillaire",
+      "it": "Idratazione e resistenza, già dallo shampoo.\n\nShampooing Soin Hydratant Anti-Casse aiuta a contrastare la rottura dei capelli, idrata il cuoio capelluto ed elimina le impurità. Per capelli più forti, resistenti e morbidi.\n\nScopri il trattamento su ioma-paris.com.\n\n#IOMAParis #IOMAHaircare #CuraDeiCapelli"
+    },
+    "scenes": [
+      "studio-ivory",
+      "studio-pearl"
+    ]
+  },
+  "apres-shampooing-reparateur": {
+    "name": "Après-Shampooing\nRéparateur",
+    "claim_it": "Ripara visibilmente i capelli danneggiati e li rende più morbidi.",
+    "source": "https://ioma-paris.com/products/apres-shampooing-reparateur",
+    "category": {
+      "fr": "RÉPARATION & DOUCEUR",
+      "it": "RIPARAZIONE & MORBIDEZZA"
+    },
+    "headlines": [
+      {
+        "fr": "Réparer.\nAdoucir.",
+        "it": "Riparare.\nPiù morbidi."
+      },
+      {
+        "fr": "Douceur.\nSouplesse.",
+        "it": "Lunghezze.\nPiù morbide."
+      }
+    ],
+    "caption": {
+      "fr": "Un soin dédié aux cheveux abîmés.\n\nL’Après-Shampooing Réparateur répare visiblement les cheveux endommagés et affaiblis, pour un toucher plus doux jusqu’aux pointes. Sa formule nourrit la fibre et aide à réduire les frisottis.\n\nDécouvrez le soin sur ioma-paris.com.\n\n#IOMAParis #IOMAHaircare #SoinCapillaire",
+      "it": "Un trattamento dedicato ai capelli danneggiati.\n\nAprès-Shampooing Réparateur ripara visibilmente i capelli danneggiati e indeboliti, per una maggiore morbidezza fino alle punte. La formula nutre la fibra e aiuta a ridurre l’effetto crespo.\n\nScopri il trattamento su ioma-paris.com.\n\n#IOMAParis #IOMAHaircare #CuraDeiCapelli"
+    },
+    "scenes": [
+      "studio-ivory",
+      "studio-pearl"
+    ]
+  }
+}

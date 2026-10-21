@@ -106,5 +106,103 @@
         "it": "Idratazione"
       }
     }
+  ],
+  "shampooing-soin-hydratant-anti-casse": [
+    {
+      "id": "sunflower",
+      "label": {
+        "fr": "Tournesol",
+        "it": "Girasole"
+      },
+      "short": {
+        "fr": "Tournesol",
+        "it": "Girasole"
+      },
+      "inci": [
+        "HELIANTHUS ANNUUS (SUNFLOWER) SEED OIL"
+      ],
+      "priority": 90,
+      "research_topics": [
+        "sunflower",
+        "haircare",
+        "scalp"
+      ],
+      "role": {
+        "fr": "Soin capillaire",
+        "it": "Cura dei capelli"
+      }
+    },
+    {
+      "id": "pentavitin",
+      "label": {
+        "fr": "Pentavitin®",
+        "it": "Pentavitin®"
+      },
+      "short": {
+        "fr": "Pentavitin®",
+        "it": "Pentavitin®"
+      },
+      "inci": [
+        "SACCHARIDE ISOMERATE"
+      ],
+      "priority": 90,
+      "research_topics": [
+        "pentavitin",
+        "hydration",
+        "scalp"
+      ],
+      "role": {
+        "fr": "Soin capillaire",
+        "it": "Cura dei capelli"
+      }
+    }
+  ],
+  "apres-shampooing-reparateur": [
+    {
+      "id": "argan",
+      "label": {
+        "fr": "Argan",
+        "it": "Argan"
+      },
+      "short": {
+        "fr": "Argan",
+        "it": "Argan"
+      },
+      "inci": [
+        "ARGANIA SPINOSA KERNEL OIL"
+      ],
+      "priority": 90,
+      "research_topics": [
+        "argan",
+        "haircare"
+      ],
+      "role": {
+        "fr": "Soin capillaire",
+        "it": "Cura dei capelli"
+      }
+    },
+    {
+      "id": "coconut",
+      "label": {
+        "fr": "Coco",
+        "it": "Cocco"
+      },
+      "short": {
+        "fr": "Coco",
+        "it": "Cocco"
+      },
+      "inci": [
+        "COCOS NUCIFERA (COCONUT) OIL"
+      ],
+      "priority": 90,
+      "research_topics": [
+        "coconut",
+        "haircare"
+      ],
+      "role": {
+        "fr": "Soin capillaire",
+        "it": "Cura dei capelli"
+      }
+    }
   ]
 }

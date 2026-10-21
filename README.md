@@ -38,6 +38,64 @@ it/email-logo.png       logo originale per l’HTML
 Solo francese e italiano. Caption, fonti, concept e controlli restano nel database
 `data/catalog.sqlite`, tabella `generations`, campo `research_json`.
 
+## Varietà delle creatività
+
+Ogni campagna alterna automaticamente **prodotto singolo → modella → pack**.
+Gli sfondi cambiano palette, forme architettoniche e campo di luce; il programma
+confronta l’hash del fondale con tutto lo storico per non riutilizzarlo. Il seed
+salvato permette di riprodurre il design. Sono composizioni grafiche generate
+dal renderer; la foto editoriale della modella proviene dal manifest dedicato.
+
+```sh
+python agent.py --product 'Shampooing Soin Hydratant Anti-Casse' \
+  --research research/brief-capelli-aggiornato.json --creative-mode auto
+```
+
+`--creative-mode product`, `model` o `pack` sceglie un tipo preciso. Il pack
+affianca due o tre prodotti originali dello stesso ambito; con
+`--creative-mode pack --pack-products apres-shampooing-reparateur` si sceglie
+l’abbinamento per lo shampoo. Il prezzo di un eventuale cofanetto e gli effetti
+combinati non vengono inventati. La modella è un ritratto generato, senza
+attribuirle una recensione o un risultato del trattamento.
+
+[Anteprime dei tre layout, in francese e italiano](designs/2026-10-22-variety/README.md).
+Per produrre altre **anteprime tecniche**, senza nuova ricerca o pubblicazione:
+
+```sh
+python preview_creatives.py --output output/anteprime-nuove
+```
+
+La campagna completa richiede sempre ricerca attuale, revisione visiva e conferma
+SÌ/NO. I brief per i capelli usano la categoria Google Trends **Hair Care (146)**;
+le campagne viso/corpo mantengono **Face & Body Care (143)**.
+
+## Catalogo IOMA e recensioni
+
+Il catalogo contiene **63 articoli**, tutti quelli presenti nella sitemap
+pubblica verificata il 22 ottobre 2026: prodotti, routine, cofanetti e altri
+articoli del negozio. Sono incluse descrizioni francesi e italiane, dettagli,
+composizione, foto originali, varianti, prezzi e **2.461 recensioni pubbliche**
+con testo, voto, data e fonte. Ogni prodotto conserva media e numero di recensioni
+dichiarati dal widget; i commenti restano opinioni dei clienti.
+
+```sh
+python catalog_sync.py
+```
+
+Il comando pagina il catalogo e il widget pubblico Judge.me, aggiorna
+`assets/catalog/ioma.json` e il database. Lo snapshot viene applicato anche
+alle copie esistenti del database, senza duplicare i tre prodotti originari
+né cancellare campagne o stato Instagram. Le recensioni sono nella tabella
+`product_reviews`; dati ufficiali e prezzi sono in `products.json_ld.official`.
+Un errore di accesso alle recensioni viene indicato come parziale/non disponibile.
+
+Sono pronti anche brief creativi ed email per **Shampooing Soin Hydratant Anti-Casse**
+e **Après-Shampooing Réparateur**, scelto come secondo prodotto da abbinare.
+Gli altri articoli sono consultabili nel database; prima di usarli per nuove
+campagne occorre aggiungere copy e ingredienti revisionati. Il prezzo dello
+shampoo rilevato sul sito è **24,90 €**; il riferimento fornito dall’utente di
+**25,00 € per 200 ml** resta conservato separatamente.
+
 ## Tre agenti, un solo avvio
 
 `agent.py` avvia `BeautyCoordinator`, che passa un brief strutturato tra
@@ -186,7 +244,8 @@ di consegna o di rendering in tutti i client di posta.
 
 ## Direzione artistica e copy
 
-`editorial.py` contiene brief bilingui per i tre prodotti del catalogo. Per
+`editorial.py` e `assets/catalog/creative-briefs.json` contengono brief bilingui
+per i tre prodotti originali e i due nuovi prodotti per capelli. Per
 Crème Sublime la direzione mette al centro nutrimento e compattezza. I titoli
 sono specifici del beneficio, non frasi generiche sul rituale. Le traduzioni
 sono scritte per ciascuna lingua; nome del prodotto e packaging restano quelli
@@ -200,14 +259,12 @@ ombre di contatto e diffuse separate. Feed e story non contengono pulsanti;
 il banner ha una CTA testuale discreta. I titoli non vengono rimpiccioliti
 silenziosamente se non entrano: occorre rivedere il copy.
 
-I fondali fotografici sono in `assets/backgrounds/editorial/`, con provenienza
-e hash in `editorial-scenes.json`. Le nuove scene `studio-ivory` e `studio-pearl`
-riservano aree uniformi a logo, titolo e ingredienti. Il piano di appoggio resta
-visibile nei tre formati grazie a ritagli e coordinate documentati nel manifest.
-Le scene storiche di seta rimangono disponibili per riprodurre gli archivi.
-I nuovi fondali vengono alternati senza ripetere l’ultima scena;
-anche le due varianti di titolo del prodotto alternano tra le esecuzioni.
-Nuove ambientazioni vanno aggiunte soltanto dopo un controllo visivo nei tre formati.
+I fondali fotografici storici sono in `assets/backgrounds/editorial/`, con
+provenienza e hash in `editorial-scenes.json`. Le nuove campagne usano le palette
+e le forme variabili di `art_direction.py`, con spazio per i testi e un piano
+continuo sotto i prodotti. `variety_studio.py` compone ritratto e pack nei tre
+formati. Anche le varianti di titolo alternano tra le esecuzioni. Ogni nuova
+composizione richiede comunque un controllo visivo.
 
 L’ombra proiettata segue la sagoma reale del packshot e la luce del fondale;
 diventa più morbida e meno densa lontano dalla base. L’ombra di contatto segue
@@ -247,13 +304,17 @@ Una campagna raccontata prima della settimana può apparire se la finestra
 pubblicata risulta ancora attiva, dichiarando la data dell’articolo. Non è
 una verifica di erogazione paid o spesa pubblicitaria.
 
-I due richiami con freccia nei PNG provengono dall’INCI ufficiale e dai temi
+I due richiami con freccia nei PNG con prodotto singolo provengono dall’INCI ufficiale e dai temi
 presenti nelle fonti recenti. L’agente si ferma se non trova due corrispondenze.
 La priorità è editoriale, non un’affermazione sulla concentrazione in formula.
 Il registro corrente copre Crème Sublime (ceramidi e peptide RIGIN™) e
 Crème Généreuse Contour des Yeux (peptidi e vitamina E), verificati nelle
-rispettive schede IOMA. Il lettore INCI riconosce anche le formule senza
-PARFUM finale e non prende ingredienti dalle recensioni. Gli altri prodotti
+rispettive schede IOMA. Copre anche lo shampoo (girasole e Pentavitin®) e il
+balsamo riparatore (argan e cocco). Il lettore delle formule per capelli usa
+la sezione composizione, conservando anche gli ingredienti dopo PARFUM;
+non prende ingredienti dalle recensioni. Nei layout modella/pack gli attivi
+restano nel brief e nel PowerPoint, senza frecce sui volti o sugli altri prodotti.
+Gli altri prodotti
 richiedono un registro ingredienti e un brief verificati prima di usare il flusso.
 
 Campagna contorno occhi del 17 ottobre 2026:
@@ -272,7 +333,8 @@ blog di un marchio da una campagna pubblicitaria documentata.
 
 `google_trends.py` interroga Google Trends a ogni esecuzione. Usa gli ultimi
 sette giorni UTC completati (esclude la giornata in corso), ricerca Web,
-categoria Google 143 «Face & Body Care», senza keyword iniziale. La terza
+categoria Google 143 «Face & Body Care» oppure 146 «Hair Care» per i capelli,
+senza keyword iniziale. La terza
 slide indica il perimetro, la settimana e un link diretto ai dati.
 
 Il pool di query revisionate nel brief mantiene solo termini pertinenti al
