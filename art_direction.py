@@ -36,7 +36,10 @@ def pack_product(product):
 
 
 def plan_direction(product, history, *, mode='auto', products=(), pack_keys=()):
-    previous = next((r['creative'] for r in history if r.get('creative')), {})
+    # Inspiration/review use product imagery; they must not consume the
+    # product → model → pack rotation of claim campaigns.
+    previous = next((r['creative'] for r in history if r.get('creative') and
+                     r['creative'].get('editorial_mode') not in ('inspiration', 'review')), {})
     last_mode = previous.get('content_mode')
     if mode == 'auto':
         mode = MODES[(MODES.index(last_mode)+1) % len(MODES)] if last_mode in MODES else 'product'

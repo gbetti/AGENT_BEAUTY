@@ -4,7 +4,7 @@ import unittest
 from unittest.mock import Mock, patch
 
 from authorized_batch import publish_authorized
-from editorial_modes import sourced_review
+from editorial_modes import sourced_review, apply_editorial_mode
 from email_delivery import DeliveryError, delivery_policy
 from gmail_delivery import build_requests
 from instagram import InstagramError, publish_post
@@ -82,3 +82,26 @@ class EmailLinkTests(unittest.TestCase):
         self.assertIn(self.report['instagram_url'],message.get_body(preferencelist=('plain',)).get_content())
         self.report['instagram_url']='https://example.com/fake'
         with self.assertRaises(ValueError):create_email(self.product,self.report,self.feed,self.root)
+
+
+class EditorialEvidenceTests(unittest.TestCase):
+    setUp=test_newsletter.NewsletterTests.setUp
+
+    def test_inspiration_uses_verified_ingredient_and_omits_seo_claim(self):
+        creative={'scene':{'design':{}}, 'copies':{'fr':{},'it':{}}}
+        self.product['name'] += ' - Soin anti-âge expert'
+        ingredient={'id':'glycerin','short':{'fr':'Glycérine','it':'Glicerina'}}
+        result=apply_editorial_mode(creative,self.product,[],mode='inspiration',ingredients=[ingredient])
+        for copy in result['copies'].values():
+            self.assertNotIn('anti-âge',copy['product_name'])
+            self.assertNotIn('peptid',copy['caption'])
+        self.assertIn('glycérine',result['copies']['fr']['caption'])
+        with self.assertRaises(ValueError):
+            apply_editorial_mode(creative,self.product,[],mode='inspiration')
+
+    def test_customer_quote_cannot_be_assigned_to_another_product(self):
+        with self.assertRaises(ValueError):
+            sourced_review(self.product,'d46393fd-32f8-4ced-81cc-8486bde8fa6f')
+        review=sourced_review(self.product,'a1aaeb60-4682-42bc-ab7b-b5e7afbb568f')
+        self.assertEqual(review['body'],'Texture très agréable')
+        self.assertEqual(review['rating'],5)

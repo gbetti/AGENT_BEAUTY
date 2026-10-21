@@ -34,3 +34,20 @@ def publish_authorized(grant_path, slot, post_path, media_url, state, client, **
             db.execute('INSERT INTO authorized_batch_slots VALUES(?,?,?,?)', (grant['id'], slot, fingerprint, grant_hash))
         db.commit()
     return publish_post(post, media_url, state, client, **kwargs)
+
+
+if __name__ == '__main__':
+    import argparse
+    from instagram import InstagramClient
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--grant',type=Path,required=True)
+    parser.add_argument('--slot',type=int,required=True)
+    parser.add_argument('--post',type=Path,required=True)
+    parser.add_argument('--media-url',required=True)
+    parser.add_argument('--state',type=Path,default=Path('data/instagram.sqlite'))
+    args=parser.parse_args()
+    try:
+        print(json.dumps(publish_authorized(args.grant,args.slot,args.post,args.media_url,args.state,
+                                           InstagramClient.from_environment()),indent=2))
+    except Exception as error:
+        parser.exit(1,f'Instagram: {error}\n')

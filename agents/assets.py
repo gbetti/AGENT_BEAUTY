@@ -32,10 +32,10 @@ class AssetsAgent:
                                  products=load_products(args.database),
                                  pack_keys=getattr(args, 'pack_products', ()) or ())
         from editorial_modes import apply_editorial_mode
+        ingredients = select_ingredients(product, trends.weekly, creative['source'], now)
         creative = apply_editorial_mode(creative, product, recent_campaigns(args.database, limit=-1),
             mode=getattr(args, 'editorial_mode', 'auto'), review_id=getattr(args, 'review_id', None),
-            theme=getattr(args, 'inspiration_theme', 'ingredients'))
-        ingredients = select_ingredients(product, trends.weekly, creative['source'], now)
+            theme=getattr(args, 'inspiration_theme', 'ingredients'), ingredients=ingredients)
         # Keep both upstream results intact; the creative agent works on its own copy.
         weekly = deepcopy(trends.weekly)
         weekly['google_trends_results'] = deepcopy(keywords.markets)

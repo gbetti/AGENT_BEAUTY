@@ -116,3 +116,16 @@ Documentazione Microsoft:
 [allegati](https://learn.microsoft.com/en-us/graph/api/message-post-attachments),
 [invio](https://learn.microsoft.com/en-us/graph/api/message-send),
 [ID immutabili](https://learn.microsoft.com/en-us/graph/outlook-immutable-id).
+
+## Destinatari privati e collegamento Instagram
+
+La configurazione locale `data/email-settings.json`, ignorata da Git, può definire
+`recipients` come lista esatta di indirizzi autorizzati. Il pacchetto MIME, la
+prenotazione e la ricevuta sono vincolati alla stessa lista. Non sono aggiunti CC
+né BCC. Verificare i destinatari nella configurazione privata quando si trasferisce
+l’agente su un altro ambiente; non pubblicare gli indirizzi dei collaboratori nel PR.
+
+Le nuove campagne aspettano la pubblicazione Instagram per includere il permalink
+reale in HTML e testo semplice. L’intestazione conserva il solo logo originale,
+senza sottotitolo; il visual non contiene loghi aggiunti. Le campagne animate
+allegano anche il file MP4 originale, oltre ai sette file previsti per lingua.

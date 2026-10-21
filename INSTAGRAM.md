@@ -192,3 +192,25 @@ anche la pubblicazione reale del feed francese. Sono passati i 78 test della
 suite completa e, dopo gli ultimi tre casi aggiunti, tutti i 38 test Instagram
 (81 casi distinti verificati). La lettura API del post pubblicato ha confermato
 la caption approvata. I token possono comunque scadere o essere revocati.
+
+## Rotazione editoriale e Reel
+
+`agent.py --editorial-mode auto` alterna claim documentato, ispirazione e recensione
+attribuita. Le immagini social non aggiungono il logo. L’ispirazione genera anche
+`reel.mp4`: sei secondi, H264, 1080×1920, pattern animato dietro il prodotto originale.
+La modalità ingredienti usa soltanto ingredienti verificati nella formula. I claim
+mantengono la propria rotazione prodotto/modella/pack; gli altri post non la consumano.
+
+Dopo la revisione dei PNG e del video, preparare con `agents.publisher prepare
+--kind reel`; `check`, `offer` e `respond` supportano lo stesso manifest e verificano
+il video pubblico. Il Reel viene condiviso anche nel feed. Il normale consenso per
+singolo post resta attivo. Un’autorizzazione esplicita dell’utente per un lotto limitato
+può invece usare `python authorized_batch.py --grant <file privato> --slot <1–5>
+--post <manifest> --media-url <URL pubblico>`. Non creare una concessione senza una
+richiesta esplicita: limite, profilo, lingua, scadenza e ogni contenuto sono vincolati
+nel registro persistente. Un errore o timeout non libera una posizione già usata.
+
+Dopo la pubblicazione, `campaign_delivery.finalize_published_emails` legge la ricevuta
+persistente della stessa generazione e inserisce il permalink nelle due email.
+Rivedere le email modificate e aggiornare i loro hash prima di inviarle. Non usare
+un URL di anteprima o di un altro post. I nuovi invii richiedono questo collegamento.

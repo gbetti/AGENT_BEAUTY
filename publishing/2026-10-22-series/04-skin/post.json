@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "generation_id": "20261021T233712Z-9041ea3e",
+  "language": "fr",
+  "username": "gb77ita",
+  "kind": "reel",
+  "caption": "Peau sèche, mixte ou grasse : chaque routine commence par l’écoute de sa peau. Un instant pour observer ses envies, ses habitudes, son propre rythme.\n\nEn image : Crème Sublime Revitalisante.\n\nAnimation graphique d’inspiration. Aucun résultat de soin représenté.\n\n#IOMAParis #RituelDeSoin #Skincare",
+  "caption_sha256": "0084094cf0628c57c934506ccceac26000275db51c7f8c3e3d5e15df97d3957c",
+  "source_image": "../../../posts/2026-10-22-series/04-skin/ioma-20261021T233712Z-9041ea3e/fr/feed.png",
+  "source_sha256": "57d8b756e925e39bc41af7de6b2c0c501f6c01d42f19a1c062d4f90de958501b",
+  "image": "feed.jpg",
+  "image_sha256": "8a753b8546ba4a0003d79e8d6af82c145bf406400377fab13f423f1f41e521f5",
+  "review": {
+    "technical_checks": "passed",
+    "visual_review": "passed",
+    "reviewed_source_sha256": "57d8b756e925e39bc41af7de6b2c0c501f6c01d42f19a1c062d4f90de958501b",
+    "reviewed_at": "2026-10-21T23:54:17.290694+00:00",
+    "reviewed_video_sha256": "0eb90d8b1f0851681a651a969d10d2ae3314022ac95a18eec0df5820df27c4c4"
+  },
+  "video": "reel.mp4",
+  "video_sha256": "0eb90d8b1f0851681a651a969d10d2ae3314022ac95a18eec0df5820df27c4c4"
+}
