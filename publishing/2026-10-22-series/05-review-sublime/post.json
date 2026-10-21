@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "generation_id": "20261021T233736Z-0d9fd64a",
+  "language": "fr",
+  "username": "gb77ita",
+  "kind": "feed",
+  "caption": "« Texture très agréable » — 5/5.\n\nLes petits détails font le rituel. Merci pour ce retour.\n\nCrème Sublime Revitalisante\nAvis du 25.02.2024 · ioma-paris.com\nOpinion individuelle, pas une promesse de résultat.\nhttps://ioma-paris.com/products/creme-sublime-revitalisante\n\n#IOMAParis #RituelDeSoin #Skincare",
+  "caption_sha256": "2b0b8d33b79e9b86201082b6f8b63cb66c80768d288d6866485441c2a17c9a37",
+  "source_image": "../../../posts/2026-10-22-series/05-review-sublime/ioma-20261021T233736Z-0d9fd64a/fr/feed.png",
+  "source_sha256": "a1c80a779008c13e7334c632645480bcc12f9ecca65c33dacbcc5de0d4f4c106",
+  "image": "feed.jpg",
+  "image_sha256": "3f0575d5bb4d9cd980dd60ff0dba601ead82b1a2b271a459efff4bd8eb4099e4",
+  "review": {
+    "technical_checks": "passed",
+    "visual_review": "passed",
+    "reviewed_source_sha256": "a1c80a779008c13e7334c632645480bcc12f9ecca65c33dacbcc5de0d4f4c106",
+    "reviewed_at": "2026-10-21T23:54:46.297146+00:00"
+  }
+}
