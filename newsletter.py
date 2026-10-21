@@ -57,6 +57,12 @@ def campaign_email_copy(product, report, language='fr', history=(), subject=None
     content['subject'] = subject if subject is not None else subjects[
         (subjects.index(previous) + 1) % len(subjects) if previous in subjects else 0]
     content['language'] = language
+    if report.get('instagram_url'):
+        link = https_url(report['instagram_url'])
+        parsed_link = urlsplit(link)
+        if parsed_link.hostname not in ('instagram.com', 'www.instagram.com') or not parsed_link.path.startswith(('/p/', '/reel/')):
+            raise ValueError('Serve il permalink del post Instagram pubblicato.')
+        content['instagram_url'] = link
     for field, maximum in [('subject', 55), ('preheader', 100)]:
         value = content[field]
         if not value.strip() or len(value) > maximum or '\r' in value or '\n' in value:
@@ -82,6 +88,10 @@ def email_html(content, image_source, logo_source, width, height, unsubscribe):
     benefits = '\n'.join(
         f'<p style="margin:0 0 12px;font:16px/1.6 Arial,Helvetica,sans-serif;">{e(line)}</p>'
         for line in content['body'].splitlines() if line.strip())
+    instagram = ''
+    if content.get('instagram_url'):
+        label = 'Voir le post Instagram' if content['language'] == 'fr' else 'Guarda il post Instagram'
+        instagram = f'<p style="margin:24px 0 0;font:14px/1.5 Arial,sans-serif;"><a href="{e(content["instagram_url"])}" style="color:#191919;text-decoration:underline;">{label}</a></p>'
     return f'''<!doctype html>
 <html lang="{e(content['language'])}" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -96,7 +106,7 @@ def email_html(content, image_source, logo_source, width, height, unsubscribe):
 <table role="presentation" class="shell" width="600" cellpadding="0" cellspacing="0" style="width:100%;max-width:600px;background-color:#FFFFFF;">
 <tr><td align="center" style="padding:28px 24px 20px;">
 <a href="{e(content['product_url'])}" style="text-decoration:none;"><img src="{e(logo_source)}" width="164" alt="IOMA Paris" style="width:164px;max-width:100%;height:auto;"></a>
-<p style="margin:12px 0 0;font:10px Arial,Helvetica,sans-serif;letter-spacing:2.5px;color:#645D54;">{e(labels['expertise'])}</p></td></tr>
+</td></tr>
 <tr><td style="padding:0;"><a href="{e(content['product_url'])}" style="text-decoration:none;">
 <img src="{e(image_source)}" width="600" height="{round(600*height/width)}" alt="{e(content['title'])} — {e(content['campaign_headline'])}" style="width:100%;max-width:600px;height:auto;"></a></td></tr>
 <tr><td class="copy" align="center" style="padding:34px 44px 38px;background-color:#FCFAF6;">
@@ -106,6 +116,7 @@ def email_html(content, image_source, logo_source, width, height, unsubscribe):
 <p style="margin:0 0 26px;font:16px/1.6 Arial,Helvetica,sans-serif;">{e(content['closing'])}</p>
 <!--[if mso]><v:roundrect href="{e(content['product_url'])}" style="height:48px;v-text-anchor:middle;width:270px;" arcsize="0%" strokecolor="#191919" fillcolor="#191919"><w:anchorlock/><center style="color:#FFFFFF;font-family:Arial,sans-serif;font-size:13px;font-weight:bold;">{e(content['cta'].upper())}</center></v:roundrect><![endif]-->
 <!--[if !mso]><!--><a href="{e(content['product_url'])}" style="display:inline-block;background-color:#191919;color:#FFFFFF;padding:16px 28px;font:600 13px/16px Arial,Helvetica,sans-serif;letter-spacing:1px;text-decoration:none;text-align:center;">{e(content['cta'].upper())}</a><!--<![endif]-->
+{instagram}
 </td></tr>
 <tr><td align="center" style="padding:24px 24px 28px;border-top:1px solid #EAE4DC;">
 <p style="margin:0 0 7px;font:600 11px/1.5 Arial,Helvetica,sans-serif;letter-spacing:1.5px;">IOMA PARIS</p>
@@ -154,6 +165,8 @@ def create_email(product, report, feed, directory, *, language='fr', history=(),
     message['List-Unsubscribe']='<'+draft_unsubscribe+'>'
     plain='\n\n'.join(content[k] for k in ('title','lead','body','closing'))
     plain+='\n\n'+content['cta']+' : '+content['product_url']
+    if content.get('instagram_url'):
+        plain+='\n\nInstagram : '+content['instagram_url']
     plain+='\n\nIOMA PARIS · 87 Rue Réaumur · 75002 Paris\n'+LABELS[language]['unsubscribe']+' : '+draft_unsubscribe
     message.set_content(plain)
     message.add_alternative(email_html(content,'cid:campaign-feed','cid:ioma-logo',width,height,draft_unsubscribe),subtype='html')

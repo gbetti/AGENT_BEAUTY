@@ -3,6 +3,7 @@ from datetime import datetime, timedelta, timezone
 from http.cookiejar import CookieJar
 import hashlib
 import json
+from pathlib import Path
 from urllib.parse import urlencode
 from urllib.request import Request, build_opener, HTTPCookieProcessor
 
@@ -116,6 +117,10 @@ def research_trends(brief,now):
         raise ValueError('Configurazione Google Trends non valida.')
     result = {}
     for lang,selection in config['markets'].items():
-        packet = fetch_market(selection['geo'],lang,config['category_id'],now)
+        cache = config.get('evidence_files', {}).get(lang)
+        packet = (json.loads(Path(cache).read_text()) if cache else
+                  fetch_market(selection['geo'],lang,config['category_id'],now))
+        if packet.get('language') != lang:
+            raise ValueError('Lingua del campione Google Trends non coerente.')
         result[lang] = {'data':select_queries(packet,selection,now,config['category_id']),'evidence':packet}
     return result

@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "generation_id": "20261021T233430Z-75bcc8a6",
+  "language": "fr",
+  "username": "gb77ita",
+  "kind": "feed",
+  "caption": "La nutrition et la fermeté, dans un même soin.\n\nCrème Sublime Revitalisante nourrit la peau en profondeur et contribue à une peau plus ferme. Sa texture riche et fondante transforme l’application en un moment de soin.\n\nDécouvrez Crème Sublime Revitalisante sur ioma-paris.com.\n\n#IOMAParis #CrèmeSublimeRevitalisante #SoinVisage",
+  "caption_sha256": "f8322a6bb8b21377ab5869a0119511a1f76f5b9c6017f84300fc682725daa322",
+  "source_image": "../../../posts/2026-10-22-series/01-claim/ioma-20261021T233430Z-75bcc8a6/fr/feed.png",
+  "source_sha256": "2c1b662212c5b8aed136c97153c5f14a4f9e391456463a991f3f8be8bcfd6abd",
+  "image": "feed.jpg",
+  "image_sha256": "e90cb685d272f221ed3e17925dc1778231b2cc0eba4bd7c065a9571d8053abd2",
+  "review": {
+    "technical_checks": "passed",
+    "visual_review": "passed",
+    "reviewed_source_sha256": "2c1b662212c5b8aed136c97153c5f14a4f9e391456463a991f3f8be8bcfd6abd",
+    "reviewed_at": "2026-10-21T23:43:23.856883+00:00"
+  }
+}

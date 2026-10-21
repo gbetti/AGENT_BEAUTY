@@ -30,7 +30,7 @@ PowerPoint and coordinated email per language. The email outputs are
   backgrounds must not introduce ingredients or efficacy claims.
 - Use product-specific copy grounded in documented benefits. Do not turn a
   loosely related news headline into a product claim or a claim of virality.
-- Keep the IOMA logo at the top center, inside each format's safe area.
+- Never overlay an IOMA logo on social graphics or the email hero. Preserve the original packaging label and its printed brand unchanged.
 - Use deliberate editorial typography and native layouts per format.
 - No large button in feed/story; their call to action belongs in the caption.
 - New campaigns rotate `product` → `model` → `pack` with `--creative-mode auto`.
@@ -71,7 +71,7 @@ PowerPoint and coordinated email per language. The email outputs are
 - Separate editorial coverage, brand promotions and advertising campaigns.
   Older campaigns may appear only with a documented active date range and
   their original article date. Mark ended promotions; never invent ad spend.
-- Product-only visuals show exactly two labeled arrows toward the product.
+- Claim-based product-only visuals show exactly two labeled arrows toward the product. Inspiration and review layouts omit arrows and efficacy promises.
   Portrait and pack layouts keep the image clear; verified ingredient information
   stays in the research brief and PowerPoint rather than forcing arrows over faces
   or assigning the main product's formula to all items in a pack.
@@ -134,11 +134,10 @@ No user confirmation is required to do this review and correction work.
   contains the exact source PNG bytes.
 - The user explicitly authorized sending every completed, reviewed campaign's
   emails, PowerPoints and original assets on 2026-10-22. The final recipient
-  is gb77ita@gmail.com, the same as the connected Gmail sender; this replaces
-  the earlier gbetti@live.it destination.
+  allowlist is stored privately in `data/email-settings.json`; the latest explicit user instruction specifies exactly two recipients. Do not add CC, BCC or any other recipients. This replaces prior single-recipient delivery.
   After recording all 14 reviewed hashes, run `python -m agents.mailer deliver`
   with the generation ID and a new delivery directory. Do not ask for another
-  email approval. This authorization does not replace Instagram's per-post SI/NO.
+  email approval. Instagram normally requires per-post consent; explicit bounded batch permission is described below.
 - Gmail is connected and is the default transport. `deliver`/`send` exports
   structured MIME requests for the connector; it does not itself send them.
   Complete the delivery in chat: verify the Gmail profile, reserve each request
@@ -148,7 +147,7 @@ No user confirmation is required to do this review and correction work.
 - The archived contour-eye FR/IT emails were actually sent to gb77ita@gmail.com
   on 2026-10-22 (Europe/Paris), with all original assets; both have SENT and INBOX
   labels. Do not send them again. Preserve `data/email-delivery.sqlite`.
-- `assets/email/delivery.json` stores the recipient. Send one message per language,
+- `assets/email/delivery.json` stores public defaults; `data/email-settings.json` stores the private exact recipient allowlist. Send one message per language,
   with the newsletter as its body and all seven original files, including inline
   feed/logo. Use the authenticated sender, never the draft's IOMA From header.
   Follow `EMAIL_DELIVERY.md`; preserve `data/email-delivery.sqlite` to avoid
@@ -169,7 +168,7 @@ publishing them on social media. Claim publication only after a confirmed
 Instagram API response or a reconciled PUBLISHED container state.
 
 ## Instagram publishing
-- Every completed campaign must end with a publication question for each
+- Unless an explicit bounded user authorization covers the batch, every completed campaign must end with a publication question for each
   proposed Instagram feed. The user explicitly requested this flow: create,
   show the exact content, ask whether to publish, and publish if the reply is
   SI/SÌ. A NO leaves it unpublished. Silence is never consent. Follow `INSTAGRAM.md`.
@@ -207,8 +206,25 @@ Instagram API response or a reconciled PUBLISHED container state.
   published after an explicit SI on 2026-10-22 (Europe/Paris):
   https://www.instagram.com/p/DexcJYEgdJL/ . Its receipt is in
   `publishing/2026-10-17-contour-yeux-fr/publication.json`; do not publish it again
-  from a fresh register. Every new post needs its own SI/SÌ.
-  Never invent an affirmative answer or bypass the confirmation via the
-  low-level publisher. Changed content requires a new preview and question.
+  from a fresh register. Never invent an affirmative answer. Outside a user-authorized batch, changed content requires a new preview and question.
 - Unit tests mock Meta. Report real account connection and publication separately
   from test results. An unavailable permalink does not negate a confirmed post.
+
+## Editorial rotation and the current five-post batch
+- New campaigns alternate claim, inspiration and sourced review using `--editorial-mode`.
+  This is separate from product/model/pack art direction. Backgrounds still vary.
+- Inspiration uses ingredient or skin-type themes without efficacy promises. Export
+  an actual six-second animated pattern MP4, preserve product pixels, and review
+  multiple frames and the loop. Publish it as a Reel shared to the feed.
+- Reviews must belong to the depicted product; quote the retrieved text faithfully,
+  include its rating/date/source and label translations. Do not invent or improve
+  a customer quote, remove qualifications, or call it efficacy evidence.
+- Email header: original logo alone, no expertise subtitle. Hero: no added logo.
+  After confirmed publication, finalize both language emails with the actual
+  Instagram permalink, review the HTML again and refresh only changed file hashes.
+- The user explicitly authorized exactly five new French posts on @gb77ita on
+  2026-10-22 (Paris), without further publication questions, and delivery after each.
+  `authorized_batch.py` binds each of five slots to reviewed content in the durable
+  Instagram register. Keep the grant and email allowlist private under `data/`.
+  This exception does not authorize a sixth post, another account or future batches.
+- Resume uncertain publication/send states read-only. Preserve all durable registers.

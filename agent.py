@@ -30,6 +30,9 @@ def main():
     parser.add_argument('--product', help='Parte del nome per scegliere il prodotto')
     parser.add_argument('--creative-mode', choices=('auto', 'product', 'model', 'pack'), default='auto',
                         help='Rotazione automatica: prodotto, modella, pack; oppure scegli un formato')
+    parser.add_argument('--editorial-mode', choices=('auto', 'claim', 'inspiration', 'review'), default='auto')
+    parser.add_argument('--inspiration-theme', choices=('ingredients', 'skin'), default='ingredients')
+    parser.add_argument('--review-id', help='ID di una recensione pubblica del prodotto selezionato')
     parser.add_argument('--pack-products', nargs='+', metavar='PRODUCT_KEY',
                         help='Chiavi dei prodotti da affiancare al protagonista; stesso ambito viso/capelli')
     parser.add_argument('--instagram-username', default='gb77ita',

@@ -79,8 +79,7 @@ class AgentTests(unittest.TestCase):
                                         self.assertEqual(len([e for e in info['elements'] if e['kind']=='arrow']),2)
                                         self.assertEqual({e['ingredient_id'] for e in info['elements'] if e['kind']=='ingredient'}, {'ceramides','peptides'})
                                     self.assertLess(info['text_area_ratio'],.20)
-                                    logo=next(e['box'] for e in info['elements'] if e['kind']=='logo')
-                                    self.assertAlmostEqual((logo[0]+logo[2])/2,FORMATS[kind][0]/2)
+                                    self.assertFalse(any(e['kind']=='logo' for e in info['elements']))
                                     for e in info['elements']:
                                         if 'text' in e: self.assertGreaterEqual(e['contrast_ratio'],4.5)
                                     if kind!='banner': self.assertNotIn('cta',[e['kind'] for e in info['elements']])

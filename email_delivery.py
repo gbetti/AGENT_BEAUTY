@@ -17,10 +17,11 @@ from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 ROOT = Path(__file__).resolve().parent
 POLICY = ROOT/'assets/email/delivery.json'
+LOCAL_POLICY = ROOT/'data/email-settings.json'
 FILES = ('feed.png', 'story.png', 'banner.png', 'presentazione.pptx',
          'email.html', 'email.eml', 'email-logo.png')
 TYPES = {'png': 'image/png', 'html': 'text/html', 'eml': 'application/octet-stream',
-         'pptx': 'application/vnd.openxmlformats-officedocument.presentationml.presentation'}
+         'pptx': 'application/vnd.openxmlformats-officedocument.presentationml.presentation', 'mp4': 'video/mp4'}
 
 
 class DeliveryError(RuntimeError):
@@ -39,13 +40,21 @@ def address(value):
 
 def delivery_policy():
     result = json.loads(POLICY.read_text())
-    result['recipient'] = address(result['recipient'])
+    # Private recipient configuration stays out of the public repository.
+    if LOCAL_POLICY.is_file() and POLICY == ROOT/'assets/email/delivery.json':
+        result.update(json.loads(LOCAL_POLICY.read_text()))
+    recipients = result.get('recipients', [result['recipient']])
+    if not isinstance(recipients, list) or not recipients or len(recipients) != len(set(recipients)):
+        raise DeliveryError('Lista destinatari autorizzati non valida.')
+    result['recipients'] = [address(item) for item in recipients]
+    result['recipient'] = ', '.join(result['recipients'])
     return result
 
 
 def delivery_intent():
     config = delivery_policy()
-    return {'recipient': config['recipient'], 'languages': config['languages'],
+    return {'recipient': 'configured_private_allowlist', 'languages': config['languages'],
+            'requires_instagram_link': True,
             'status': 'awaiting_visual_review', 'send_after_visual_review': config['send_after_visual_review']}
 
 
@@ -59,7 +68,8 @@ def prepare_delivery(campaign, review, output):
     packets = []
     for language in config['languages']:
         files = []
-        for name in FILES:
+        names = FILES + (('reel.mp4',) if (campaign/language/'reel.mp4').is_file() else ())
+        for name in names:
             path = campaign/language/name
             raw = path.read_bytes()
             sha = digest(raw)
@@ -96,6 +106,12 @@ def prepare_generation(database, generation, output):
     if not row:
         raise DeliveryError('Generazione non trovata.')
     report = json.loads(row[0])
+    if report.get('email_delivery', {}).get('requires_instagram_link'):
+        receipt = report.get('instagram_publication', {})
+        if receipt.get('status') != 'published' or not receipt.get('permalink') or any(
+                item.get('email', {}).get('instagram_url') != receipt['permalink']
+                for item in report['localizations'].values()):
+            raise DeliveryError('Pubblica il post e finalizza le email con il permalink Instagram prima dell’invio.')
     campaign = Path(report['localizations']['fr']['graphics']['feed']['path']).parent.parent
     return prepare_delivery(campaign, {'generation_id': generation, 'quality': report['quality']}, output)
 
@@ -109,7 +125,7 @@ def load_delivery(path):
     for packet in manifest['packets']:
         if packet['recipient'] != config['recipient']:
             raise DeliveryError('Destinatario diverso da quello autorizzato.')
-        if [f['name'] for f in packet['files']] != list(FILES):
+        if [f['name'] for f in packet['files']] not in (list(FILES), list(FILES)+['reel.mp4']):
             raise DeliveryError('Consegna incompleta.')
         identity = {k: v for k, v in packet.items() if k != 'id'}
         identity['files'] = [{k: v for k, v in f.items() if k != 'path'} for f in packet['files']]
@@ -238,7 +254,7 @@ def send_delivery(manifest_path, state, client=None):
                 draft = client.request('POST', '/me/messages', {
                     'subject': packet['subject'],
                     'body': {'contentType': 'HTML', 'content': source.get_body(preferencelist=('html',)).get_content()},
-                    'toRecipients': [{'emailAddress': {'address': packet['recipient']}}],
+                    'toRecipients': [{'emailAddress': {'address': address(item.strip())}} for item in packet['recipient'].split(',')],
                     'internetMessageHeaders': [{'name': 'x-beauty-delivery-id', 'value': packet['id']}],
                 })
                 message_id = draft.get('id')

@@ -9,6 +9,8 @@ import os
 from pathlib import Path
 import re
 import sqlite3
+import subprocess
+import tempfile
 import time
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode, urlsplit
@@ -193,7 +195,7 @@ def prepare_post(database, generation_id, language, expected_username, output):
 def load_post(path):
     path = Path(path).resolve()
     post = json.loads(path.read_text(encoding='utf-8'))
-    if post.get('schema_version') != 1 or post.get('kind') != 'feed' or post.get('language') not in ('fr', 'it'):
+    if post.get('schema_version') != 1 or post.get('kind') not in ('feed', 'reel') or post.get('language') not in ('fr', 'it'):
         raise InstagramError('Manifest Instagram non supportato.')
     if not isinstance(post.get('generation_id'), str) or not post['generation_id']:
         raise InstagramError('Manca l’identificativo della generazione.')
@@ -211,7 +213,50 @@ def load_post(path):
     if digest(raw) != post['image_sha256']:
         raise InstagramError('Il JPEG è cambiato dopo la preparazione.')
     validate_jpeg(raw)
+    if post['kind'] == 'reel':
+        video = (path.parent/post['video']).read_bytes()
+        if digest(video) != post['video_sha256'] or post['review'].get('reviewed_video_sha256') != digest(video):
+            raise InstagramError('Il Reel è cambiato dopo la revisione.')
+        validate_video(path.parent/post['video'])
     return post
+
+
+def validate_video(path):
+    info = json.loads(subprocess.check_output(['ffprobe', '-v', 'error', '-show_streams', '-show_format', '-of', 'json', str(path)]))
+    streams = [s for s in info['streams'] if s['codec_type'] == 'video']
+    if (len(streams) != 1 or streams[0]['codec_name'] != 'h264' or
+            (streams[0]['width'], streams[0]['height']) != (1080, 1920) or
+            not 3 <= float(info['format']['duration']) <= 60 or Path(path).stat().st_size > 24_000_000):
+        raise InstagramError('Reel non valido: serve MP4 H264 1080×1920, 3–60 secondi, massimo 24 MB.')
+
+
+def prepare_reel(database, generation_id, language, expected_username, output):
+    with sqlite3.connect(database) as db:
+        report = json.loads(db.execute('SELECT research_json FROM generations WHERE id=?', (generation_id,)).fetchone()[0])
+    source = Path(report['localizations'][language]['graphics']['feed']['path']).parent/'reel.mp4'
+    raw = source.read_bytes()
+    if report['quality'].get('reviewed_sha256', {}).get(language+'/reel.mp4') != digest(raw):
+        raise InstagramError('Completa la revisione dell’animazione prima della preparazione.')
+    validate_video(source)
+    path = prepare_post(database, generation_id, language, expected_username, output)
+    post = json.loads(path.read_text())
+    post.update(kind='reel', video='reel.mp4', video_sha256=digest(raw))
+    post['review']['reviewed_video_sha256'] = digest(raw)
+    (path.parent/'reel.mp4').write_bytes(raw)
+    path.write_text(json.dumps(post, ensure_ascii=False, indent=2)+'\n')
+    return path
+
+
+def verify_public_video(url, expected_hash):
+    https_url(url)
+    with build_opener(NoRedirect()).open(Request(url), timeout=45) as response:
+        raw = response.read(24_000_001)
+        if response.headers.get_content_type() != 'video/mp4' or digest(raw) != expected_hash:
+            raise InstagramError('Il video pubblico non coincide con il Reel revisionato.')
+    with tempfile.NamedTemporaryFile(suffix='.mp4') as temporary:
+        temporary.write(raw)
+        temporary.flush()
+        validate_video(temporary.name)
 
 
 def verify_public_image(url, expected_hash, *, opener=None):
@@ -258,7 +303,7 @@ def publication_store(path):
 
 
 def publish_post(post, image_url, state_path, client, *, check_image=verify_public_image,
-                 sleep=time.sleep, polls=5, poll_interval=60):
+                 check_video=verify_public_video, sleep=time.sleep, polls=5, poll_interval=10):
     """Publish once. An uncertain publish is reconciled read-only, never retried."""
     https_url(image_url)
     account = client.profile(post['username'])
@@ -304,8 +349,13 @@ def publish_post(post, image_url, state_path, client, *, check_image=verify_publ
             raise InstagramError('Il contenitore è fallito o scaduto. Verifica l’errore Meta prima di una nuova preparazione.')
         if row['status'] == 'prepared':
             # Creating a container cannot publish a post; safe to retry after a lost response.
-            check_image(image_url, post['image_sha256'])
-            result = client.request('POST', f'{account_id}/media', image_url=image_url, caption=post['caption'])
+            if post.get('kind') == 'reel':
+                check_video(image_url, post['video_sha256'])
+                params = {'video_url': image_url, 'media_type': 'REELS', 'share_to_feed': 'true', 'thumb_offset': 0}
+            else:
+                check_image(image_url, post['image_sha256'])
+                params = {'image_url': image_url}
+            result = client.request('POST', f'{account_id}/media', caption=post['caption'], **params)
             save(status='container_created', container_id=object_id(result.get('id')), image_url=image_url)
             row = read()
         container_id = object_id(row['container_id'])

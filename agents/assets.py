@@ -31,6 +31,10 @@ class AssetsAgent:
                                  mode=getattr(args, 'creative_mode', 'auto'),
                                  products=load_products(args.database),
                                  pack_keys=getattr(args, 'pack_products', ()) or ())
+        from editorial_modes import apply_editorial_mode
+        creative = apply_editorial_mode(creative, product, recent_campaigns(args.database, limit=-1),
+            mode=getattr(args, 'editorial_mode', 'auto'), review_id=getattr(args, 'review_id', None),
+            theme=getattr(args, 'inspiration_theme', 'ingredients'))
         ingredients = select_ingredients(product, trends.weekly, creative['source'], now)
         # Keep both upstream results intact; the creative agent works on its own copy.
         weekly = deepcopy(trends.weekly)
@@ -39,7 +43,7 @@ class AssetsAgent:
             'source_ids': [source['id'] for source in weekly['sources']],
             'ingredient_ids': [ingredient['id'] for ingredient in ingredients],
             'keyword_hypotheses': deepcopy(keywords.messaging_hypotheses),
-            'public_copy_basis': 'documented_product_benefit',
+            'public_copy_basis': creative.get('editorial_basis', 'documented_product_benefit'),
         }
         return CampaignBrief(trends, keywords, weekly, creative, ingredients)
 

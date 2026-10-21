@@ -36,7 +36,7 @@ def render_variety(product, copy, directory, scene):
         elements = []
         if kind == 'feed':
             logo_top, logo_width = 75, 146
-            category_top, headline_top, headline_size = 208, 260, 92
+            category_top, headline_top, headline_size = 115, 180, 92
             baseline, name_top = 1090, 1180
             model_box = (475, 490, 995, 1090)
             single_x, single_limits = 285, (300, 510)
@@ -44,7 +44,7 @@ def render_variety(product, copy, directory, scene):
             limits = (330, 570) if len(photos) == 2 else (255, 520)
         elif kind == 'story':
             logo_top, logo_width = 278, 156
-            category_top, headline_top, headline_size = 421, 478, 102
+            category_top, headline_top, headline_size = 310, 380, 102
             baseline, name_top = 1405, 1480
             model_box = (475, 750, 1000, 1405)
             single_x, single_limits = 285, (320, 590)
@@ -58,10 +58,6 @@ def render_variety(product, copy, directory, scene):
             single_x, single_limits = 163, (50, 85)
             centers = (182, 253) if len(photos) == 2 else (158, 211, 264)
             limits = (62, 110) if len(photos) == 2 else (43, 98)
-        logo = logo_layer(logo_width, False)
-        lx = round((width-logo.width)/2)
-        image.alpha_composite(logo, (lx, logo_top))
-        elements.append({'kind': 'logo', 'box': [lx, logo_top, lx+logo.width, logo_top+logo.height]})
         if kind != 'banner':
             elements.append(draw_text(image, copy['category'], width/2, category_top, width*.86, 24, 'category'))
         elements.append(draw_text(image, copy['headline'], width/2 if kind != 'banner' else 17,

@@ -47,6 +47,9 @@ class EmailDeliveryTests(unittest.TestCase):
         temporary = tempfile.TemporaryDirectory()
         self.addCleanup(temporary.cleanup)
         self.root = Path(temporary.name)
+        private_policy = patch('email_delivery.LOCAL_POLICY', self.root/'private-policy.json')
+        private_policy.start()
+        self.addCleanup(private_policy.stop)
         self.campaign = self.root/'campaign'
         self.output = self.root/'delivery'
         self.state = self.root/'state.sqlite'
