@@ -25,8 +25,19 @@
       "source_photo_sha256": "0ca24806cf6f9243e025efb6327451d004c5c7ad466927d739ca73c319def84d",
       "image_sha256": "8f9cc510a0f6efe7b33bd26e494ca72dd7cd848cc5d80519176ad33c21abe8fd",
       "image_file": "posts/2026-10-22-instagram-trio/creme-sublime/feed.jpg",
-      "status": "prepared",
-      "image_generation": "Image generation with official packshot and brand logo references; fictional model on Crème Sublime."
+      "status": "published",
+      "image_generation": "Image generation with official packshot and brand logo references; fictional model on Crème Sublime.",
+      "public_image_url": "https://raw.githubusercontent.com/gbetti/AGENT_BEAUTY/2814e19/posts/2026-10-22-instagram-trio/creme-sublime/feed.jpg",
+      "remote_asset_verified": true,
+      "container_id": "17934619092142015",
+      "instagram": {
+        "id": "18137209882628901",
+        "caption": "Ce n’est pas sublime ? ✨\n\nUn moment pour soi, un soin pour sa peau.\n\nCrème Sublime Revitalisante nourrit la peau en profondeur, renforce la barrière cutanée et aide à retrouver une peau plus ferme. Sa texture riche et fondante accompagne votre rituel, matin et/ou soir, selon vos besoins.\n\nVotre moment soin préféré : au réveil ou en fin de journée ?\n\nDécouvrez Crème Sublime Revitalisante sur ioma-paris.com.\n\n#IOMAParis #CremeSublime #SoinVisage #RoutineBeaute #Fermete",
+        "permalink": "https://www.instagram.com/p/DexhJ_igUpp/",
+        "media_type": "IMAGE",
+        "timestamp": "2026-10-21T22:49:10+0000"
+      },
+      "verified_at": "2026-10-21T22:49:12.657197+00:00"
     },
     {
       "slug": "cc-gel",
@@ -45,8 +56,19 @@
       "source_photo_sha256": "b8dc7dd13d7bfdb699517a0657bd68654f10fbc30e012f132183c180166b9d5b",
       "image_sha256": "8b7aef148330601a2099a56cd4af25879782827b5aaf42ed97ac8ba04289c7e6",
       "image_file": "posts/2026-10-22-instagram-trio/cc-gel/feed.jpg",
-      "status": "prepared",
-      "image_generation": "Image generation with official packshot and brand logo references; fictional model on Crème Sublime."
+      "status": "published",
+      "image_generation": "Image generation with official packshot and brand logo references; fictional model on Crème Sublime.",
+      "public_image_url": "https://raw.githubusercontent.com/gbetti/AGENT_BEAUTY/2814e19/posts/2026-10-22-instagram-trio/cc-gel/feed.jpg",
+      "remote_asset_verified": true,
+      "container_id": "17934619029142015",
+      "instagram": {
+        "id": "18243719569314323",
+        "caption": "L’éclat. Tout naturellement. ✨\n\nEnvie d’un teint unifié au fini naturel ?\n\nCC Gel associe une texture fraîche et légère à des pigments micro-encapsulés pour un effet bonne mine et une couvrance naturelle. Un geste soin et teint à intégrer à votre routine.\n\nEnregistrez ce post pour retrouver cette idée de routine.\n\nCC Gel est actuellement indisponible sur ioma-paris.com. Consultez sa fiche sur le site pour suivre sa disponibilité.\n\n#IOMAParis #CCGel #TeintNaturel #BonneMine #SoinTeinte",
+        "permalink": "https://www.instagram.com/p/DexhIW8gbg-/",
+        "media_type": "IMAGE",
+        "timestamp": "2026-10-21T22:48:57+0000"
+      },
+      "verified_at": "2026-10-21T22:49:00.593783+00:00"
     },
     {
       "slug": "serum-hydratant-optimum",
@@ -65,8 +87,19 @@
       "source_photo_sha256": "54c51b468aa6335dc17d132d545627c89c534fadf145ae4ad8dab8f48c6d7f9e",
       "image_sha256": "d741e3d627024c78769d13712ea560c5180fd00ea8f3836fde5c20eb18e146cb",
       "image_file": "posts/2026-10-22-instagram-trio/serum-hydratant-optimum/feed.jpg",
-      "status": "prepared",
-      "image_generation": "Image generation with official packshot and brand logo references; fictional model on Crème Sublime."
+      "status": "published",
+      "image_generation": "Image generation with official packshot and brand logo references; fictional model on Crème Sublime.",
+      "public_image_url": "https://raw.githubusercontent.com/gbetti/AGENT_BEAUTY/2814e19/posts/2026-10-22-instagram-trio/serum-hydratant-optimum/feed.jpg",
+      "remote_asset_verified": true,
+      "container_id": "17934619002142015",
+      "instagram": {
+        "id": "17979371736067338",
+        "caption": "Et si votre peau avait soif ? 💧\n\nQuand la peau manque de confort, l’hydratation mérite toute votre attention.\n\nSérum Hydratant Optimum désaltère la peau et aide à atténuer les ridules de déshydratation. La peau retrouve souplesse, éclat et confort.\n\nLe geste à retenir : appliquez-le sur le visage et le cou nettoyés, matin et soir, avant votre crème.\n\nDécouvrez Sérum Hydratant Optimum sur ioma-paris.com.\n\n#IOMAParis #SerumHydratant #Hydratation #RoutineVisage #PeauDeshydratee",
+        "permalink": "https://www.instagram.com/p/DexhG6ygbeK/",
+        "media_type": "IMAGE",
+        "timestamp": "2026-10-21T22:48:44+0000"
+      },
+      "verified_at": "2026-10-21T22:48:47.404100+00:00"
     }
   ],
   "quality": {
@@ -97,5 +130,10 @@
         "sha256": "d741e3d627024c78769d13712ea560c5180fd00ea8f3836fde5c20eb18e146cb"
       }
     ]
+  },
+  "final_feed_verification": {
+    "all_three_present": true,
+    "existing_post_present": true,
+    "media_seen": 4
   }
 }
