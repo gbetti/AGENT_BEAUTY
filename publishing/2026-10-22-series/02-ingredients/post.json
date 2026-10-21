@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "generation_id": "20261021T233625Z-a9b61c2c",
+  "language": "fr",
+  "username": "gb77ita",
+  "kind": "reel",
+  "caption": "Des lignes, des courbes, un peu de poésie. Une inspiration graphique autour des peptides présents dans la formule de Crème Généreuse Contour des Yeux.\n\nAnimation graphique d’inspiration. Aucun résultat de soin représenté.\n\n#IOMAParis #RituelDeSoin #Skincare",
+  "caption_sha256": "e77c69aea99764a8f4b3ab9a3cbb777705d77f908130d1577b0916227723765d",
+  "source_image": "../../../posts/2026-10-22-series/02-ingredients/ioma-20261021T233625Z-a9b61c2c/fr/feed.png",
+  "source_sha256": "31dc9a9da92a5293467a7ae15d3326411184211f152028cf734ab2523b8addc5",
+  "image": "feed.jpg",
+  "image_sha256": "93a220efd744e09ad86efc607a0d446209d3b86bbe7f53066ffcea152e748d62",
+  "review": {
+    "technical_checks": "passed",
+    "visual_review": "passed",
+    "reviewed_source_sha256": "31dc9a9da92a5293467a7ae15d3326411184211f152028cf734ab2523b8addc5",
+    "reviewed_at": "2026-10-21T23:46:12.703212+00:00",
+    "reviewed_video_sha256": "79635997e06e91f03fe402d668ac38f31b46ad364acacae875bf5130dc096082"
+  },
+  "video": "reel.mp4",
+  "video_sha256": "79635997e06e91f03fe402d668ac38f31b46ad364acacae875bf5130dc096082"
+}
