@@ -1,44 +1,28 @@
 # Consegna delle campagne via email
 
-Destinatario autorizzato: **gbetti@live.it**. Il 22 ottobre 2026 l’utente ha
-richiesto l’invio delle email coordinate, delle presentazioni e degli altri
-asset. Per ogni campagna revisionata, inviare due messaggi: francese e italiano.
-La conferma SÌ/NO resta necessaria soltanto per ciascun post Instagram.
+Mittente e destinatario: **gb77ita@gmail.com**, l’account Gmail collegato.
+Il 22 ottobre 2026 l’utente ha autorizzato l’invio delle campagne revisionate e
+ha sostituito il precedente destinatario con questo stesso account. Inviare
+due messaggi per campagna: francese e italiano. La conferma SÌ/NO resta
+necessaria per ciascun post Instagram, non per questa consegna email.
 
 Ogni messaggio contiene la newsletter nel corpo, feed e logo originali incorporati,
 e cinque allegati: story, banner, PowerPoint, template HTML e bozza EML originale.
-Tutti i sette file della lingua sono quindi presenti con gli stessi byte; nessuno
-ZIP, nessuna rigenerazione. L’EML allegato resta un documento della campagna,
-con il suo mittente di esempio; il messaggio effettivo parte dal proprio account
-Outlook verificato. Gli asset non vengono inviati ad altri indirizzi.
+Tutti i sette file della lingua sono presenti con gli stessi byte; nessuno ZIP
+e nessuna rigenerazione. L’EML allegato conserva il mittente di esempio;
+il messaggio effettivo parte dall’account Gmail verificato.
 
-## Mittente
+## Gmail collegato: flusso operativo
 
-Al momento della modifica non è collegato alcun servizio email: la connessione
-Instagram non permette l’invio di posta. È stato proposto Outlook Email nella
-chat; va verificata la connessione e la presenza della capacità di invio con
-allegati prima di usarlo. Collegare un plugin non configura automaticamente il
-token del programma Python.
+`assets/email/delivery.json` seleziona `gmail_connector`, mittente e destinatario.
+La connessione è disponibile all’agente tramite il plugin Gmail; non richiede
+di copiare password o token nel progetto. Il programma Python prepara le
+richieste MIME, mentre l’agente nella chat esegue l’invio con il connettore.
+Il solo comando Python non equivale all’invio remoto.
 
-Per l’esecuzione autonoma Python il trasporto implementato usa Microsoft Graph:
-
-- `OUTLOOK_ACCESS_TOKEN`: token delegato, nel gestore dei segreti dell’ambiente,
-  autorizzato soltanto verso `graph.microsoft.com`;
-- `BEAUTY_EMAIL_SENDER`: indirizzo del mittente effettivamente collegato;
-- permessi delegati `User.Read`, `Mail.ReadWrite`, `Mail.Send`, disponibili anche
-  per account Microsoft personali. Il token deve essere valido al momento
-  dell’invio; il rinnovo OAuth non è implementato.
-
-Non inserire password o token nella chat, nei comandi salvati o in Git.
-`python -m agents.mailer check` legge il profilo e verifica il mittente, senza
-spedire. Non usare `contact@ioma-paris.com` come mittente se non è il proprio
-account autorizzato. Il corpo conserva il design IOMA revisionato.
-
-## Nuove campagne
-
-Il renderer registra destinatario e stato `awaiting_visual_review` nel report.
-Non può certificare la qualità visiva: dopo aver aperto PNG, slide ed email,
-registrare `quality.visual_review = passed` e gli hash di tutti i 14 file, quindi:
+1. Verificare il profilo con Gmail `get_profile`: deve essere `gb77ita@gmail.com`.
+2. Dopo il controllo visivo, registrare tutti i 14 hash nel report della campagna.
+3. Preparare la consegna:
 
 ```sh
 python -m agents.mailer deliver \
@@ -46,45 +30,89 @@ python -m agents.mailer deliver \
   --output output/email-delivery/ID_GENERAZIONE
 ```
 
-Il comando prepara entrambi i messaggi, verifica tutti gli hash e invia dal
-mittente configurato senza chiedere una seconda autorizzazione. Il servizio
-riceve gli allegati uno alla volta, per evitare una richiesta unica troppo
-grande. Ogni file deve essere inferiore a 3 MB; se un file supera il limite il
-controllo ferma la preparazione prima di qualsiasi invio. Caricamenti frazionati
-di file più grandi non sono implementati.
+Il comando produce `delivery.json`, `gmail-requests.json`, `fr-gmail-request.json`
+e `it-gmail-request.json`. Controlla destinatario, mittente e integrità di tutti
+gli originali; conserva l’HTML con immagini CID e include gli allegati come
+base64url senza conversioni. Il limite conservativo è 25 MB di richiesta
+codificata per messaggio; non si applica il limite Outlook di 3 MB per file.
 
-## Campagna già pronta
-
-È stata preparata la consegna della campagna contorno occhi del 17 ottobre:
+4. Prima di ciascun invio, riservare il tentativo nel registro persistente:
 
 ```sh
-python -m agents.mailer prepare \
-  --campaign posts/2026-10-17-contour-yeux \
-  --review research/2026-10-17-contour-yeux-quality.json \
-  --output output/email-delivery/2026-10-17-contour-yeux
-python -m agents.mailer send \
-  --manifest output/email-delivery/2026-10-17-contour-yeux/delivery.json
+python -m agents.mailer gmail-reserve \
+  --requests output/email-delivery/ID_GENERAZIONE/gmail-requests.json \
+  --language fr
 ```
 
-Questo invia materiale archiviato con la data e le fonti originali; non lo
-presenta come nuova ricerca settimanale. Le anteprime tecniche dei tre layout
-non sono campagne complete e non entrano automaticamente nella consegna.
+5. Leggere `fr-gmail-request.json` e passare l’oggetto JSON esatto al tool Gmail
+   `send_email`. L’utente ha già autorizzato l’invio: non creare un’altra domanda.
+   Trasferire i dati programmaticamente, senza stampare allegati base64 nella
+   chat. Se il lettore tronca l’output, leggere blocchi completi e ricomporli
+   prima di interpretare il JSON.
+6. Salvare la risposta strutturata reale del tool e registrarla:
 
-## Esiti e ripresa
+```sh
+python -m agents.mailer gmail-record \
+  --packet ID_RESTITUITO_DA_GMAIL_RESERVE \
+  --response output/email-delivery/ID_GENERAZIONE/fr-gmail-response.json
+```
 
-Conservare sempre `data/email-delivery.sqlite`. Il registro blocca invii duplicati
-e conserva l’ID immutabile della bozza Outlook. Lo stato viene salvato prima
-della richiesta di invio. In caso di timeout, una successiva esecuzione controlla
-lo stesso messaggio: non ripete l’invio. Una bozza incompleta richiede verifica
-prima di un recupero manuale; non cancellare il registro per aggirare il blocco.
+La risposta deve contenere l’ID del messaggio e l’etichetta `SENT`.
+Ripetere i passaggi 4–6 per `it`. Leggere infine i messaggi Gmail inviati e
+verificare mittente, destinatario, oggetto e parti MIME. Il registro locale
+si consulta con `python -m agents.mailer status`.
 
-`accepted` significa risposta HTTP 202 di Outlook; `sent` significa messaggio
-con data di invio e non più bozza. Nessuno dei due dimostra il recapito nella
-casella del destinatario. `python -m agents.mailer status` mostra il registro
-locale; ripetere `send` riconcilia gli invii accettati o incerti senza duplicarli.
+## Invio reale già completato
 
-Documentazione Microsoft verificata:
-[creazione bozza](https://learn.microsoft.com/en-us/graph/api/user-post-messages),
+La campagna contorno occhi del 17 ottobre 2026 è stata inviata il **22 ottobre
+2026, 01:16 Europe/Paris**, da e a **gb77ita@gmail.com**:
+
+- FR: «Et si tout commençait par le regard ?»;
+- IT: «E se tutto iniziasse dallo sguardo?».
+
+Gmail ha confermato `SENT` e `INBOX` per entrambi. Una lettura successiva ha
+verificato intestazioni e tutti i sette file originali per lingua. Le copie
+di feed/logo contenute nell’EML allegato possono comparire anche tra le parti
+MIME annidate: non sono invii aggiuntivi. Il materiale conserva data e fonti
+della campagna archiviata; non è presentato come nuova ricerca settimanale.
+
+Manifest e risposte sono in `output/email-delivery/2026-10-17-contour-yeux-gmail/`,
+gli ID di invio nel registro locale. **Non reinviare questa campagna.** Nessuna
+email della consegna è partita verso il precedente destinatario.
+La [ricevuta verificata](email-deliveries/2026-10-22-contour-yeux-gmail.json)
+conserva ID Gmail, destinatario, nomi/dimensioni e hash degli originali inviati.
+
+## Errori e ripresa
+
+Conservare `data/email-delivery.sqlite`. Lo stesso registro copre Gmail e
+Outlook; un tentativo registrato impedisce un secondo invio anche dopo un
+cambio di trasporto. `connector_sending` indica un tentativo in corso o da
+riconciliare, mai un successo automatico.
+
+Se il tool Gmail ha un timeout, non ripeterlo. Cercare negli inviati a partire
+dall’ora del tentativo, leggere i candidati e confrontare mittente, destinatario,
+oggetto, corpo e originali allegati prima di registrare la risposta riconciliata.
+Se l’esito resta incerto, lasciarlo tale; non cancellare il registro per aggirare
+il blocco. `SENT` conferma l’invio. Per questo invio a sé stessi è stata verificata
+anche `INBOX`; nessuna lettura del messaggio da parte dell’utente è presunta.
+
+## Trasporto Python Outlook alternativo
+
+Resta disponibile per un’altra configurazione esplicita, selezionando
+`transport: outlook` e un mittente verificato. Collegare Gmail non configura
+Outlook e non espone le credenziali Gmail al programma Python.
+
+Per Microsoft Graph servono `OUTLOOK_ACCESS_TOKEN` nei segreti dell’ambiente,
+autorizzato a `graph.microsoft.com`, e `BEAUTY_EMAIL_SENDER`. Permessi delegati:
+`User.Read`, `Mail.ReadWrite`, `Mail.Send`. `check` verifica il profilo; `send`
+e `deliver` eseguono le API soltanto quando è selezionato questo trasporto.
+Il token deve essere valido; rinnovo OAuth e caricamenti Outlook di singoli
+allegati da 3 MB in su non sono implementati. Il limite viene controllato prima
+di qualsiasi scrittura remota. Il registro conserva gli ID immutabili e non
+ritenta automaticamente scritture incerte.
+
+Documentazione Microsoft:
+[bozze](https://learn.microsoft.com/en-us/graph/api/user-post-messages),
 [allegati](https://learn.microsoft.com/en-us/graph/api/message-post-attachments),
 [invio](https://learn.microsoft.com/en-us/graph/api/message-send),
 [ID immutabili](https://learn.microsoft.com/en-us/graph/outlook-immutable-id).

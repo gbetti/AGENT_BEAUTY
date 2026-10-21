@@ -217,13 +217,17 @@ byte originali; si apre offline. Di default la disiscrizione è una richiesta
 via email a `contact@ioma-paris.com`. La bozza archiviata resta invariata;
 il passaggio di consegna usa il proprio account mittente verificato.
 
-L’utente ha autorizzato l’invio delle campagne complete a **gbetti@live.it**:
+L’utente ha autorizzato l’invio delle campagne complete a **gb77ita@gmail.com**,
+uguale al mittente Gmail collegato:
 una email per lingua con newsletter, presentazione e tutti gli asset originali.
 Dopo la revisione visiva, l’agente esegue `python -m agents.mailer deliver`
 senza un’altra domanda di conferma. Il renderer registra la consegna da completare;
-il registro persistente protegge dai duplicati. Il trasporto Python Outlook è
-implementato, ma l’invio reale richiede ancora un mittente collegato: la sola
-preparazione non significa che l’email sia stata inviata.
+il registro persistente protegge dai duplicati. Il comando prepara richieste MIME
+che l’agente invia con il connettore Gmail e registra dopo la risposta reale.
+La sola preparazione non equivale all’invio. Le email FR/IT della campagna
+contorno occhi del 17 ottobre sono state inviate il 22 ottobre 2026, con tutti
+gli asset; Gmail le conferma negli inviati e nella posta in arrivo. Outlook
+resta un trasporto Python alternativo, da configurare separatamente.
 [Configurazione e comandi di consegna](EMAIL_DELIVERY.md).
 
 `email.html` contiene il preheader nascosto e l’oggetto nel titolo HTML.

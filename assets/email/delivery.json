@@ -1,7 +1,9 @@
 {
-  "recipient": "gbetti@live.it",
+  "recipient": "gb77ita@gmail.com",
+  "transport": "gmail_connector",
+  "sender": "gb77ita@gmail.com",
   "languages": ["fr", "it"],
   "send_after_visual_review": true,
-  "authorization": "User requested campaign emails, presentations and other assets by email on 2026-10-22.",
+  "authorization": "User requested campaign emails, presentations and assets on 2026-10-22, then changed the recipient to the connected sender gb77ita@gmail.com.",
   "instagram_requires_separate_confirmation": true
 }

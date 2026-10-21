@@ -65,9 +65,6 @@ def prepare_delivery(campaign, review, output):
             sha = digest(raw)
             if quality.get('reviewed_sha256', {}).get(f'{language}/{name}') != sha:
                 raise DeliveryError(f'File non revisionato o cambiato: {language}/{name}.')
-            # Graph's simple attachment API supports files below 3 MB. Fail before any write.
-            if len(raw) >= 3_000_000:
-                raise DeliveryError(f'Allegato oltre il limite di 3 MB: {language}/{name}.')
             files.append({'name': name, 'path': os.path.relpath(path, output),
                           'sha256': sha, 'bytes': len(raw),
                           'content_type': TYPES[name.rsplit('.', 1)[-1]]})
@@ -200,6 +197,8 @@ def send_delivery(manifest_path, state, client=None):
     """Send once per reviewed packet. An uncertain write is reconciled, never replayed."""
     manifest_path = Path(manifest_path).resolve()
     manifest = load_delivery(manifest_path)  # Validate both languages before remote mutations.
+    if any(f['bytes'] >= 3_000_000 for p in manifest['packets'] for f in p['files']):
+        raise DeliveryError('Allegato oltre il limite Outlook di 3 MB; nessun invio avviato.')
     frozen = {}
     for packet in manifest['packets']:
         originals = {f['name']: (manifest_path.parent/f['path']).read_bytes() for f in packet['files']}

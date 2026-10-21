@@ -133,10 +133,21 @@ No user confirmation is required to do this review and correction work.
 - Review the HTML at desktop and phone width, and verify the MIME draft
   contains the exact source PNG bytes.
 - The user explicitly authorized sending every completed, reviewed campaign's
-  emails, PowerPoints and original assets to gbetti@live.it on 2026-10-22.
+  emails, PowerPoints and original assets on 2026-10-22. The final recipient
+  is gb77ita@gmail.com, the same as the connected Gmail sender; this replaces
+  the earlier gbetti@live.it destination.
   After recording all 14 reviewed hashes, run `python -m agents.mailer deliver`
   with the generation ID and a new delivery directory. Do not ask for another
   email approval. This authorization does not replace Instagram's per-post SI/NO.
+- Gmail is connected and is the default transport. `deliver`/`send` exports
+  structured MIME requests for the connector; it does not itself send them.
+  Complete the delivery in chat: verify the Gmail profile, reserve each request
+  with `gmail-reserve`, call the Gmail `send_email` tool with that exact request,
+  then save the real response using `gmail-record`. Use the verified sender,
+  never a guessed From address. Follow `EMAIL_DELIVERY.md` for reconciliation.
+- The archived contour-eye FR/IT emails were actually sent to gb77ita@gmail.com
+  on 2026-10-22 (Europe/Paris), with all original assets; both have SENT and INBOX
+  labels. Do not send them again. Preserve `data/email-delivery.sqlite`.
 - `assets/email/delivery.json` stores the recipient. Send one message per language,
   with the newsletter as its body and all seven original files, including inline
   feed/logo. Use the authenticated sender, never the draft's IOMA From header.

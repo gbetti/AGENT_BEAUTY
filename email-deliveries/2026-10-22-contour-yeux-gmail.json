@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "provider": "gmail_connector",
+  "generation_id": "20261017T103817Z-3535d3f8",
+  "sent_date": "2026-10-22",
+  "timezone": "Europe/Paris",
+  "status": "sent_and_inbox_verified",
+  "messages": [
+    {
+      "language": "fr",
+      "id": "1a160c04a5dcefa8",
+      "thread_id": "1a160c04a5dcefa8",
+      "sender": "gb77ita@gmail.com",
+      "recipient": "gb77ita@gmail.com",
+      "subject": "Et si tout commençait par le regard ?",
+      "labels": [
+        "UNREAD",
+        "SENT",
+        "INBOX"
+      ],
+      "files": [
+        {
+          "name": "feed.png",
+          "bytes": 1099458,
+          "sha256": "99cc2aacddef68c266f0df6b686d16cf1f18db1a87b30008509b14a9cc4e1dfb"
+        },
+        {
+          "name": "email-logo.png",
+          "bytes": 5779,
+          "sha256": "aa3a56e843be2f5a52b8862d35a4284f6192294fe3664694c8f54450947ddd1f"
+        },
+        {
+          "name": "story.png",
+          "bytes": 1006141,
+          "sha256": "4586fecff2c8712b51a141d64f2daa08a88afe67044e10dae14ea56a43a131cc"
+        },
+        {
+          "name": "banner.png",
+          "bytes": 65704,
+          "sha256": "4b20ddf48b1457aa5d87698f5aa027747766d91943d1c501b73482b839642d97"
+        },
+        {
+          "name": "presentazione.pptx",
+          "bytes": 1164875,
+          "sha256": "75adaa98daf7a846beaa9322c75f59acd9177186371f0342f126c3761875e418"
+        },
+        {
+          "name": "email.html",
+          "bytes": 6003,
+          "sha256": "f3726c26de13a844e34dd3888404c63b8a833bf99213d4176402dbd10ee7bf17"
+        },
+        {
+          "name": "email.eml",
+          "bytes": 1520938,
+          "sha256": "7ce8dcdb4130a754f01cab7be164c5ae0fba26346dc9dc6470e4560c8eb67054"
+        }
+      ]
+    },
+    {
+      "language": "it",
+      "id": "1a160c0a7e2aca5c",
+      "thread_id": "1a160c0a7e2aca5c",
+      "sender": "gb77ita@gmail.com",
+      "recipient": "gb77ita@gmail.com",
+      "subject": "E se tutto iniziasse dallo sguardo?",
+      "labels": [
+        "UNREAD",
+        "SENT",
+        "INBOX"
+      ],
+      "files": [
+        {
+          "name": "feed.png",
+          "bytes": 1103175,
+          "sha256": "09350d08dd43b25aa61aa38da85bcdad017d6bbe555e7e8896972d6eaaa12e2c"
+        },
+        {
+          "name": "email-logo.png",
+          "bytes": 5779,
+          "sha256": "aa3a56e843be2f5a52b8862d35a4284f6192294fe3664694c8f54450947ddd1f"
+        },
+        {
+          "name": "story.png",
+          "bytes": 1011667,
+          "sha256": "dfdaeb58e26a1a44798b4787304cc631e30b908672ef81d14cf128c1647d1430"
+        },
+        {
+          "name": "banner.png",
+          "bytes": 66013,
+          "sha256": "99000e83097a11d3e16022661a726794e4df27c01091d0d50342889bbac1664c"
+        },
+        {
+          "name": "presentazione.pptx",
+          "bytes": 1168374,
+          "sha256": "b9ea7c18a9d1081568e7283adc41ef93eae96b3ac01a2833d7e6b490f76043fe"
+        },
+        {
+          "name": "email.html",
+          "bytes": 6023,
+          "sha256": "df8f1e2915ee1062f3a12a6e142e0d260bf625c3e2d8dcf044c3873134105fa9"
+        },
+        {
+          "name": "email.eml",
+          "bytes": 1525923,
+          "sha256": "db6d46298547488bd9e54faea8cda32edd317da16b7474a6a72603dee647fd87"
+        }
+      ]
+    }
+  ]
+}

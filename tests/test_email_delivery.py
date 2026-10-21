@@ -78,7 +78,7 @@ class EmailDeliveryTests(unittest.TestCase):
         before = {str(p): p.read_bytes() for p in self.campaign.glob('*/*')}
         manifest = self.prepare()
         data = load_delivery(manifest)
-        self.assertEqual([p['recipient'] for p in data['packets']], ['gbetti@live.it']*2)
+        self.assertEqual([p['recipient'] for p in data['packets']], ['gb77ita@gmail.com']*2)
         self.assertEqual(data['status'], 'prepared_not_sent')
         self.assertEqual(len(data['packets'][0]['files']), 7)
         self.assertEqual(prepare_delivery(self.campaign, self.review, self.output), manifest)
@@ -98,8 +98,8 @@ class EmailDeliveryTests(unittest.TestCase):
         (self.campaign/'it/story.png').write_bytes(huge)
         self.review['quality']['reviewed_sha256']['it/story.png'] = hashlib.sha256(huge).hexdigest()
         with self.assertRaisesRegex(DeliveryError, '3 MB'):
-            self.prepare()
-        self.assertFalse(self.output.exists())
+            send_delivery(self.prepare(), self.state, self.client)
+        self.assertEqual(self.client.calls, [])
 
     def test_modified_second_language_prevents_even_first_language_send(self):
         path = self.prepare()
@@ -136,7 +136,7 @@ class EmailDeliveryTests(unittest.TestCase):
         self.assertEqual(len(self.client.drafts), 2)
         for body in self.client.drafts.values():
             self.assertNotIn('from', body)
-            self.assertEqual(body['toRecipients'][0]['emailAddress']['address'], 'gbetti@live.it')
+            self.assertEqual(body['toRecipients'][0]['emailAddress']['address'], 'gb77ita@gmail.com')
             self.assertIn('cid:campaign-feed', body['body']['content'])
         attachments = [body for _, endpoint, body in self.client.calls if endpoint.endswith('/attachments')]
         self.assertEqual(len(attachments), 14)
