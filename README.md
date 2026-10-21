@@ -137,7 +137,7 @@ Non occorrono tre server, tre database o nuove dipendenze. Sono componenti
 Python con regole editoriali e provider reali di ricerca, senza un modello
 linguistico collegato in questa versione. Questa separazione **non elimina**
 la revisione del brief entro 36 ore, la verifica degli ingredienti per ogni
-prodotto o il controllo visivo finale. Veo, invio email e gestione del budget
+prodotto o il controllo visivo finale. Veo e gestione del budget
 richiedono ancora integrazioni dedicate.
 
 ## Pubblicare su Instagram
@@ -214,7 +214,17 @@ Se cambia il claim di catalogo, anche il brief email deve essere aggiornato.
 `email.eml` è una **bozza non inviata**: mittente IOMA, destinatario vuoto,
 oggetto, testo semplice e HTML. Feed e logo sono incorporati via CID con i
 byte originali; si apre offline. Di default la disiscrizione è una richiesta
-via email a `contact@ioma-paris.com`. Non avviene alcun invio automatico.
+via email a `contact@ioma-paris.com`. La bozza archiviata resta invariata;
+il passaggio di consegna usa il proprio account mittente verificato.
+
+L’utente ha autorizzato l’invio delle campagne complete a **gbetti@live.it**:
+una email per lingua con newsletter, presentazione e tutti gli asset originali.
+Dopo la revisione visiva, l’agente esegue `python -m agents.mailer deliver`
+senza un’altra domanda di conferma. Il renderer registra la consegna da completare;
+il registro persistente protegge dai duplicati. Il trasporto Python Outlook è
+implementato, ma l’invio reale richiede ancora un mittente collegato: la sola
+preparazione non significa che l’email sia stata inviata.
+[Configurazione e comandi di consegna](EMAIL_DELIVERY.md).
 
 `email.html` contiene il preheader nascosto e l’oggetto nel titolo HTML.
 Usa tabelle e stili inline, immagini fluide, media query per mobile e

@@ -11,6 +11,7 @@ from catalog import load_products
 from creative import recent_campaigns
 from editorial import LANGUAGES, campaign_plan
 from newsletter import create_email
+from email_delivery import delivery_intent
 from instagram_approval import publication_question
 from radar_presentation import create_presentation
 from studio import render_campaign
@@ -89,6 +90,7 @@ def export_campaign(args, now, product, theme, claim, matched, scores, news,
                   'weekly': weekly, 'ingredients': ingredients,
                   'theme_news_counts': scores, 'matched_news': matched, 'news': news,
                   'localizations': localized_reports,
+                  'email_delivery': delivery_intent(),
                   'quality': {'technical_checks': 'passed', 'visual_review': 'pending',
                               'publication_status': 'not_published'},
                   'limitations': 'Weekly sources guide editorial ingredient selection, not concentration ranking. '
@@ -144,4 +146,9 @@ def export_campaign(args, now, product, theme, claim, matched, scores, news,
     print('Nessun post inviato. Prima della risposta: completa la revisione visiva, '
           'prepara il JPEG pubblico e usa python -m agents.publisher offer. '
           'La conferma di un feed non autorizza gli altri contenuti.')
+    print(f"Email e asset destinati a {report['email_delivery']['recipient']}. "
+          'Dopo la revisione visiva registrata, esegui: '
+          f'python -m agents.mailer deliver --generation {generation_id} '
+          f'--database {args.database} --output {directory}/delivery. '
+          'L’invio email è già autorizzato; richiede un mittente collegato.')
     return result
