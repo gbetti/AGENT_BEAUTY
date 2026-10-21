@@ -10,6 +10,7 @@ from agents.trends import QUERY
 from creative import recent_campaigns
 from editorial import LANGUAGES, campaign_plan
 from newsletter import create_email
+from instagram_approval import publication_question
 from radar_presentation import create_presentation
 from studio import render_campaign
 from weekly import select_ingredients
@@ -62,6 +63,7 @@ def export_campaign(args, now, product, theme, claim, matched, scores, news,
     published = False
     try:
         languages = LANGUAGES
+        instagram_username = getattr(args, 'instagram_username', 'gb77ita')
         localized_reports = {}
         for language in languages:
             copy = creative['copies'][language]
@@ -70,6 +72,9 @@ def export_campaign(args, now, product, theme, claim, matched, scores, news,
             graphics = render_campaign(product, copy, locale_working, creative['scene'])
             localized_reports[language] = {
                 **copy,
+                'instagram': {'status': 'awaiting_review_and_confirmation',
+                              'username': instagram_username,
+                              'question': publication_question(instagram_username, language)},
                 'graphics': {kind: {**{k: v for k, v in info.items() if k != 'path'},
                                     'path': str((directory/language/info['path'].name).resolve())}
                              for kind, info in graphics.items()}}
@@ -130,4 +135,8 @@ def export_campaign(args, now, product, theme, claim, matched, scores, news,
         result[language]['email_draft'] = directory/language/'email.eml'
         for path in result[language].values():
             print(path.resolve())
+        print(localized_reports[language]['instagram']['question'])
+    print('Nessun post inviato. Prima della risposta: completa la revisione visiva, '
+          'prepara il JPEG pubblico e usa python -m agents.publisher offer. '
+          'La conferma di un feed non autorizza gli altri contenuti.')
     return result

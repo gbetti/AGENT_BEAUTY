@@ -86,16 +86,27 @@ richiedono ancora integrazioni dedicate.
 
 `agents/publisher.py` aggiunge la pubblicazione di un feed già revisionato,
 con la sua caption, tramite l’API ufficiale Instagram Login. È pronto il post
-francese del contorno occhi destinato a **@gb77ita**. Per inviarlo occorre
-collegare il profilo Business/Creator con il segreto `INSTAGRAM_ACCESS_TOKEN`.
+francese del contorno occhi destinato a **@gb77ita**. Il collegamento reale al
+profilo Creator e la lettura della quota API sono stati verificati il 21 ottobre
+2026 con il segreto `INSTAGRAM_ACCESS_TOKEN`; il token deve restare valido.
 
 ```sh
 python -m agents.publisher connect --username gb77ita
 ```
 
 Il modulo verifica il profilo, prepara un JPEG dal PNG originale e registra
-l’esito in SQLite per evitare invii duplicati. `check` verifica senza pubblicare;
-`publish` esegue l’invio. La generazione creativa non pubblica automaticamente.
+l’esito in SQLite per evitare invii duplicati. Ogni nuova generazione registra
+la domanda di pubblicazione per ciascuna lingua. Nella chat, dopo revisione
+visiva e preparazione dell’URL pubblico, l’agente mostra il feed e la caption
+e chiede **«Vuoi pubblicarlo su Instagram? SÌ/NO»**. Se rispondi SÌ pubblica;
+se rispondi NO resta in bozza. La conferma vale solo per il contenuto mostrato.
+
+`offer` salva la domanda; `respond --request ID --answer SI` esegue la risposta
+dell’utente. `publish` chiede conferma nel terminale; senza terminale interattivo
+salva la domanda in attesa di risposta. `check` controlla senza pubblicare.
+Il renderer da solo lascia la revisione visiva in attesa: il flusso in chat
+la completa prima di chiedere il consenso. Feed francese e italiano hanno
+conferme distinte; story e banner non sono supportati da questo publisher.
 
 [Collegamento Meta e comandi del post francese](INSTAGRAM.md).
 

@@ -115,8 +115,22 @@ publishing them on social media. Claim publication only after a confirmed
 Instagram API response or a reconciled PUBLISHED container state.
 
 ## Instagram publishing
-- `python -m agents.publisher` is the dedicated feed publisher; it is not an
-  automatic fourth stage of creative generation. Follow `INSTAGRAM.md`.
+- Every completed campaign must end with a publication question for each
+  proposed Instagram feed. The user explicitly requested this flow: create,
+  show the exact content, ask whether to publish, and publish if the reply is
+  SI/SÌ. A NO leaves it unpublished. Silence is never consent. Follow `INSTAGRAM.md`.
+- Complete the visual review, prepare the JPEG, host it at a verified immutable
+  public URL and run `python -m agents.publisher offer` BEFORE asking. Show the
+  image, caption, language and target profile with the returned question. Keep
+  the returned request ID associated with that question in the chat.
+- On the user's SI/SÌ, immediately run `python -m agents.publisher respond
+  --request <id> --answer SI` using the same persistent state. Do not ask again
+  or stop at instructions. On NO, use `--answer NO`. If several posts are shown,
+  associate the answer unambiguously with the selected post; approval of one
+  language never authorizes the other or future content.
+- These commands integrate the creative delivery with publishing; the Python
+  renderer alone cannot certify visual quality. Its output records the pending
+  question per language. Finish the existing review and offer workflow in chat.
 - Use Instagram Login with a Business/Creator account. Read the access token
   only from the execution environment; never put credentials in chat, public
   manifests, Git, asset URLs or diagnostic output.
@@ -131,9 +145,13 @@ Instagram API response or a reconciled PUBLISHED container state.
 - Keep one durable `data/instagram.sqlite` register across invocations. Commit
   the publishing state before calling media_publish. Never automatically resend
   an uncertain write or erase the register to bypass duplicate protection.
-- `connect` and `check` are read-only API operations. The `publish` command
-  performs the real social action. Use it only for the user-authorized profile,
-  language and post; this request authorizes the French eye-cream feed on
-  @gb77ita once its account authorization is available.
+- `connect`, `check` and `offer` only read remote APIs. `offer` persists a local
+  request bound to the reviewed post, public URL and verified account. `respond`
+  performs the real social action only on SI/SÌ. `publish` asks in a terminal;
+  without an interactive terminal it saves the question without sending.
+- @gb77ita is the current default profile. The previously prepared French eye
+  cream post also needs a specific SI/SÌ under the user's current instructions.
+  Never invent an affirmative answer or bypass the confirmation via the
+  low-level publisher. Changed content requires a new preview and question.
 - Unit tests mock Meta. Report real account connection and publication separately
   from test results. An unavailable permalink does not negate a confirmed post.

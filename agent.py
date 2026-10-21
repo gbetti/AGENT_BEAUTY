@@ -28,6 +28,8 @@ def main():
     parser.add_argument('--database', type=Path, default=ROOT/'data/catalog.sqlite')
     parser.add_argument('--output', type=Path, default=ROOT/'output')
     parser.add_argument('--product', help='Parte del nome per scegliere il prodotto')
+    parser.add_argument('--instagram-username', default='gb77ita',
+                        help='Profilo proposto per la conferma di ogni feed (predefinito: gb77ita)')
     parser.add_argument('--research', type=Path, default=ROOT/'research/2026-10-08.json', help='Brief settimanale verificato nelle ultime 36 ore')
     parser.add_argument('--email-subject-fr', help='Oggetto francese esatto dell’email, massimo 55 caratteri')
     parser.add_argument('--email-subject-it', help='Oggetto italiano esatto dell’email, massimo 55 caratteri')

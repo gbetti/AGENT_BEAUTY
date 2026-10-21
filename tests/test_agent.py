@@ -162,6 +162,10 @@ class AgentTests(unittest.TestCase):
                 self.assertEqual(report['campaign_brief']['source_claim'],report['source_claim'])
                 self.assertEqual(report['campaign_brief']['keyword_analysis']['it']['top'][1]['query'],'crema')
                 for language in LANGUAGES:
+                    confirmation = report['localizations'][language]['instagram']
+                    self.assertEqual(confirmation['status'], 'awaiting_review_and_confirmation')
+                    self.assertIn('@gb77ita', confirmation['question'])
+                    self.assertIn('[SÌ/NO]', confirmation['question'])
                     email=report['localizations'][language]['email']
                     self.assertEqual(email['language'],language)
                     self.assertEqual(email['image_path'],report['localizations'][language]['graphics']['feed']['path'])

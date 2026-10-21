@@ -245,7 +245,7 @@ class InstagramPublishingTests(unittest.TestCase):
     def test_check_command_never_calls_publish(self):
         with patch('agents.publisher.InstagramClient') as client, \
                 patch('agents.publisher.verify_public_image'), \
-                patch('agents.publisher.publish_post') as publish, redirect_stdout(StringIO()) as output:
+                patch('instagram_approval.publish_post') as publish, redirect_stdout(StringIO()) as output:
             client.from_environment.return_value.profile.return_value = {'username': 'gb77ita'}
             main(['check', '--post', str(self.path), '--image-url', 'https://cdn.example.com/feed.jpg'])
         publish.assert_not_called()

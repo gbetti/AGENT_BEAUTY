@@ -3,7 +3,10 @@
 L’agente pubblica una singola immagine con la sua caption attraverso **Instagram
 API with Instagram Login**. Il post preparato è quello francese della Crème
 Généreuse Contour des Yeux, destinato a **@gb77ita**. L’autorizzazione del profilo
-non è ancora configurata e il post non è stato inviato a Instagram.
+è configurata: il 21 ottobre 2026 l’API ha riconosciuto @gb77ita come
+`MEDIA_CREATOR` e ha restituito la quota di pubblicazione. Sono stati verificati
+anche URL pubblico e hash del JPEG. Queste verifiche non pubblicano un post;
+l’invio reale richiede la risposta SÌ al contenuto mostrato.
 
 ## Collegare @gb77ita una volta
 
@@ -32,7 +35,8 @@ export INSTAGRAM_ACCESS_TOKEN
 python -m agents.publisher connect --username gb77ita
 ```
 
-`connect` legge il profilo autenticato, controlla nome, ID e tipo di account.
+`connect` legge il profilo autenticato, controlla nome, ID, tipo di account e
+accessibilità della quota di pubblicazione.
 Non pubblica nulla e non stampa il token. Un nome profilo diverso da @gb77ita
 blocca il processo. Il token scade e può essere revocato: rinnova l’autorizzazione
 quando necessario. La gestione OAuth di più clienti e il rinnovo automatico
@@ -63,7 +67,42 @@ il contenuto deve coincidere con il file preparato. Mostra lingua e caption,
 senza creare contenitori o post. Il link deve restare accessibile senza login
 anche ai server Meta. Sono accettati URL HTTPS diretti, senza redirect.
 
-Per pubblicare realmente il post, esegui:
+## Domanda e risposta per ogni contenuto
+
+Il flusso nella chat è: generazione → revisione visiva → JPEG pubblico verificato
+→ anteprima con caption e domanda → risposta dell’utente. La normale generazione
+registra e mostra una domanda per ciascuna lingua. L’agente completa i controlli
+e prepara l’offerta prima di chiedere il consenso, senza chiedere all’utente di
+eseguire i comandi o di certificare la revisione visiva.
+
+Per mostrare il post già pronto e salvare la domanda senza inviare nulla:
+
+```bash
+python -m agents.publisher offer \
+  --post publishing/2026-10-17-contour-yeux-fr/post.json \
+  --image-url 'https://raw.githubusercontent.com/gbetti/AGENT_BEAUTY/3c85f1886ec5939d26343b58ef613fcc7bb02e5e/publishing/2026-10-17-contour-yeux-fr/feed.jpg'
+```
+
+Il risultato contiene `request_id`, immagine, caption, lingua, profilo e domanda.
+L’agente mostra questi contenuti nella chat e conserva l’ID. Solo dopo il SÌ
+dell’utente esegue immediatamente:
+
+```bash
+python -m agents.publisher respond --request ID_RESTITUITO --answer SI
+```
+
+Con `--answer NO` registra il rifiuto senza collegarsi a Instagram. SÌ, SI e sì
+sono equivalenti; risposte vuote o ambigue non pubblicano. Non esiste un consenso
+globale per le prossime campagne. Una caption, immagine, lingua o destinazione
+modificata richiede una nuova offerta e un nuovo SÌ. Non usare `--answer SI`
+senza una risposta effettiva dell’utente a quel post.
+
+La domanda resta nel medesimo registro SQLite del publisher tra due comandi o
+messaggi della chat. Un errore dopo il SÌ conserva l’approvazione: riprendere la
+stessa richiesta permette al publisher di verificare l’esito senza inviare due
+volte. Non serve una seconda conferma per riprendere il contenuto già approvato.
+
+Da un terminale interattivo è disponibile anche:
 
 ```bash
 python -m agents.publisher publish \
@@ -71,11 +110,11 @@ python -m agents.publisher publish \
   --image-url 'https://raw.githubusercontent.com/gbetti/AGENT_BEAUTY/3c85f1886ec5939d26343b58ef613fcc7bb02e5e/publishing/2026-10-17-contour-yeux-fr/feed.jpg'
 ```
 
-Il comando invia il JPEG e la caption francese, attende che il contenitore sia
-pronto e lo pubblica. Salva l’ID restituito da Instagram e, quando disponibile,
-il permalink. Non invia email e non pubblica automaticamente l’altra lingua,
-le story o i banner. Eseguire la normale generazione con `agent.py` continua a
-creare gli asset; la pubblicazione richiede questo comando dedicato.
+Il comando mostra immagine, caption e domanda e attende SÌ/NO. Solo con SÌ invia
+il JPEG e la caption, attende il contenitore e pubblica. Senza un terminale
+interattivo salva la richiesta e termina senza inviare: si usa poi `respond`.
+Salva l’ID restituito da Instagram e, quando disponibile, il permalink. Non invia
+email e non estende la conferma all’altra lingua, alle story o ai banner.
 
 ## Registro, ripresa e problemi
 
@@ -108,8 +147,10 @@ persistente alternativo. L’esecuzione è supportata su Linux e macOS.
   Gli errori mostrano i codici diagnostici senza esporre le credenziali.
 
 Il registro Instagram è separato dalla ricerca e conserva l’esito per account,
-generazione e lingua. Il vecchio campo `quality.publication_status` fotografa
-lo stato alla generazione e non è lo stato live del post.
+generazione e lingua. `instagram_approvals` conserva domanda e risposta;
+`instagram_publications` conserva lo stato dell’invio. I campi della generazione
+`quality.publication_status` e `localizations.<lingua>.instagram` fotografano lo
+stato alla creazione e non sono lo stato live del post.
 
 ## Preparare le prossime campagne
 
@@ -126,7 +167,9 @@ python -m agents.publisher prepare \
 La cartella deve essere nuova. La preparazione rifiuta una revisione mancante,
 un PNG modificato dopo la revisione, un formato diverso dal feed o una caption
 non valida. Carica il JPEG su un URL HTTPS pubblico nel workflow del repository
-o sul tuo hosting, poi usa `check` e `publish` con il nuovo manifest e URL.
+o sul tuo hosting, poi usa `offer` con il nuovo manifest e URL, mostra il contenuto
+e chiedi SÌ/NO. `agent.py --instagram-username NOME` cambia il profilo proposto;
+passa lo stesso nome a `prepare`.
 Per conservare un URL immutabile puoi usare il commit Git che contiene il JPEG
 al posto del nome del ramo. I token non vanno inclusi negli URL degli asset.
 
@@ -135,8 +178,9 @@ campagna continua invece a richiedere ricerca aggiornata e revisione completa.
 
 ## Verifica dell’integrazione
 
-Il 21 ottobre 2026 sono passati tutti i 64 test del progetto, inclusi 21 test
-del publisher con risposte Meta simulate. Verificati anche il manifest da una
-cartella diversa senza il database originale e la resa visiva del JPEG.
-Questi controlli non equivalgono a un collegamento o a un invio reale: per quelli
-serve il token dell’account autorizzato.
+I test del publisher e delle conferme usano risposte Meta simulate: coprono
+SÌ/NO, assenza di risposta, cambio del contenuto o account, ripresa dopo timeout,
+invii duplicati e comandi interattivi/non interattivi. Il collegamento reale,
+la quota API e il JPEG pubblico sono stati verificati separatamente il
+21 ottobre 2026. Il test completo con un post reale resta subordinato al SÌ
+dell’utente; Meta può ancora rifiutare un invio per permessi o limiti dell’app.
