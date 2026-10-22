@@ -95,7 +95,7 @@
     "image_sha256": "0beac082db5cf701cad8eb05d0ddaa90b1591226bac0937fbd3cd6b3b41810e4"
   },
   "delivery": {
-    "schema_version": 1,
+    "schema_version": 2,
     "generation_id": "instagram-haircare-2026-10-22T12:17:05.193152+00:00",
     "created_at": "2026-10-22T13:08:21.293649+00:00",
     "required_outputs": [
@@ -131,6 +131,33 @@
       "message_id": "1a163c006a47c7ca",
       "thread_id": "1a163c006a47c7ca",
       "sent_at": "2026-10-22T13:15:11.224343+00:00"
+    },
+    "instagram_story": {
+      "provider": "instagram",
+      "account_id": "17841464260421573",
+      "username": "gb77ita",
+      "language": "it",
+      "required": true,
+      "status": "published",
+      "published": true,
+      "image_url": "https://raw.githubusercontent.com/gbetti/AGENT_BEAUTY/3b24c94/posts/2026-10-22-ioma-haircare-instagram/it/story-instagram.jpg",
+      "image_sha256": "9ecf445511fba4cb6d1eb962a3c544a4695f8f1b454a17bc2a7549fa9263227f",
+      "source_sha256": "f1bfc4f3a53fde8b4770e87025f9b5366268e5b62bcb7ef43bda1fedc725c4e6",
+      "container_id": "17934746139142015",
+      "media_id": "18101224415435022",
+      "create_attempted_at": "2026-10-22T13:36:09.582847+00:00",
+      "publish_attempted_at": "2026-10-22T13:36:29.361929+00:00",
+      "verified_at": "2026-10-22T13:42:15.361923+00:00",
+      "published_media": {
+        "id": "18101224415435022",
+        "permalink": "https://www.instagram.com/stories/gb77ita/4013581115248061776",
+        "media_type": "IMAGE",
+        "media_product_type": "STORY",
+        "timestamp": "2026-10-22T13:36:30+0000",
+        "username": "gb77ita"
+      },
+      "permalink": "https://www.instagram.com/stories/gb77ita/4013581115248061776",
+      "published_at": "2026-10-22T13:36:30+0000"
     }
   },
   "localizations": {
@@ -169,5 +196,32 @@
         "sent": false
       }
     }
+  },
+  "story_publication": {
+    "provider": "instagram",
+    "account_id": "17841464260421573",
+    "username": "gb77ita",
+    "language": "it",
+    "required": true,
+    "status": "published",
+    "published": true,
+    "image_url": "https://raw.githubusercontent.com/gbetti/AGENT_BEAUTY/3b24c94/posts/2026-10-22-ioma-haircare-instagram/it/story-instagram.jpg",
+    "image_sha256": "9ecf445511fba4cb6d1eb962a3c544a4695f8f1b454a17bc2a7549fa9263227f",
+    "source_sha256": "f1bfc4f3a53fde8b4770e87025f9b5366268e5b62bcb7ef43bda1fedc725c4e6",
+    "container_id": "17934746139142015",
+    "media_id": "18101224415435022",
+    "create_attempted_at": "2026-10-22T13:36:09.582847+00:00",
+    "publish_attempted_at": "2026-10-22T13:36:29.361929+00:00",
+    "verified_at": "2026-10-22T13:42:15.361923+00:00",
+    "published_media": {
+      "id": "18101224415435022",
+      "permalink": "https://www.instagram.com/stories/gb77ita/4013581115248061776",
+      "media_type": "IMAGE",
+      "media_product_type": "STORY",
+      "timestamp": "2026-10-22T13:36:30+0000",
+      "username": "gb77ita"
+    },
+    "permalink": "https://www.instagram.com/stories/gb77ita/4013581115248061776",
+    "published_at": "2026-10-22T13:36:30+0000"
   }
 }
