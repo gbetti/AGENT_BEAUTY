@@ -1,10 +1,17 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "required_outputs": ["post", "email", "story"],
   "languages": ["fr", "it"],
   "email": {
     "provider": "gmail",
     "to": "gb77ita@gmail.com",
+    "language": "it",
+    "required": true
+  },
+  "instagram_story": {
+    "provider": "instagram",
+    "account_id": "17841464260421573",
+    "username": "gb77ita",
     "language": "it",
     "required": true
   }

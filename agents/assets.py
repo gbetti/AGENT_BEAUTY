@@ -136,5 +136,6 @@ def export_campaign(args, now, product, theme, claim, matched, scores, news,
             print(path.resolve())
     print((directory/'delivery.json').resolve())
     print('Post + story + email creati. Invio Gmail a '
-          + report['delivery']['email']['to'] + ' in attesa: la consegna non è ancora completa.')
+          + report['delivery']['email']['to'] + ' e pubblicazione story su @'
+          + report['delivery']['instagram_story']['username'] + ' in attesa: consegna da completare.')
     return result

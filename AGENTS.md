@@ -13,9 +13,12 @@ email through the connected Gmail account to **gb77ita@gmail.com**. This is the
 default saved in `delivery-policy.json`; it is a preview to the user, not a
 customer mailing list. Send one email per campaign. Both localized email files
 are still generated. Do not ask again for approval of this established workflow.
-Social publication remains a separate action when requested; creating a story
-does not authorize publishing it. Do not repost an existing Instagram feed when
-completing its missing story or email.
+The user has also explicitly authorized **publishing each campaign's Italian
+story directly on Instagram @gb77ita**, every time, without another approval.
+This is mandatory in the default Codex workflow, including requests for only a
+post. The French story remains an export unless requested. Feed publication is
+still performed when requested. Do not repost an existing feed or resend an
+email when completing a campaign's missing story.
 
 Before declaring completion, follow these steps in Codex:
 1. Generate and visually review the complete bundle. `delivery.py` validates
@@ -32,16 +35,35 @@ Before declaring completion, follow these steps in Codex:
 5. Save the actual Gmail result's `id`, `thread_id`, and `label_ids` as receipt
    JSON, then run `python delivery.py record-sent --campaign <directory>
    --receipt <receipt.json> --database <catalog.sqlite>`.
-6. Deliver links to the post and story, and report the email recipient and actual
-   status. A campaign is complete only when Gmail confirms the email was sent.
+6. Run `python instagram_story.py export --campaign <directory>` to convert the
+   reviewed Italian story to `it/story-instagram.jpg`. Publish that JPEG through
+   the same GitHub workflow, using an immutable commit URL. Then run
+   `python instagram_story.py publish --campaign <directory> --image-url
+   <public-JPEG-URL> --database <catalog.sqlite>`. This verifies the linked account
+   and public bytes, creates a `STORIES` container, publishes it and verifies the
+   actual story. Use the configured `INSTAGRAM_ACCESS_TOKEN` only with
+   `graph.instagram.com`; never print or save credentials. If Meta is still
+   processing a known container, resume the same command and ledger later.
+7. Deliver the actual Instagram story link alongside campaign assets and email
+   status. Completion requires both Gmail's sent receipt and the verified story
+   publication. A local image or GitHub URL alone is not a published story.
 
-`delivery.json` is the durable delivery ledger; it starts at `pending_email`.
+`delivery.json` is the durable delivery ledger; it starts at `pending_deliveries`.
 The Python CLI cannot invoke Codex connectors by itself: its normal exit code 2
-means assets are ready but Gmail delivery remains pending. `--prepare-only` is
-an explicit generation-only run and never marks the email sent. A failure or
+means assets are ready but Gmail and Instagram delivery remain pending.
+`--prepare-only` is an explicit generation-only run with no external sends.
+A failure or
 timeout leaves the assets available. If a send is already recorded as `sending`
 or `sent`, never send blindly again: reconcile the original attempt in Gmail.
 Never invent a Gmail receipt or infer delivery from an exported HTML/EML file.
+Instagram checkpoints distinguish `creating`, `created`, `publishing`,
+`verifying`, and `published`. A lost mutation response must be reconciled with
+Instagram using the saved account, timestamp and container/media IDs before
+any retry; never delete its checkpoint to repeat the request. A verified story
+is not reposted after its normal 24-hour expiry. Report an actual credential or
+API failure and keep delivery pending; do not silently downgrade to a file.
+Apply this rule to new campaigns and the current requested campaign, without
+bulk-publishing archived campaigns. Preserve all prior Gmail and feed receipts.
 
 Current scope: exactly French and Italian; three PNG formats per language:
 feed 1080×1350, story 1080×1920, banner 300×250, plus one four-slide
