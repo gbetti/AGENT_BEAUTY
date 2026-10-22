@@ -36,14 +36,14 @@ def main():
     parser.add_argument('--email-unsubscribe-url',
                         help='URL HTTPS di disiscrizione; l’HTML usa il tag Klaviyo quando non specificato')
     parser.add_argument('--prepare-only', action='store_true',
-                        help='Esporta il pacchetto senza completare l’invio Gmail; resta segnato come pending_email')
+                        help='Esporta soltanto: Gmail e story Instagram restano pending_deliveries')
     args = parser.parse_args()
     try:
         run(args, progress=cli_progress)
     except Exception as error:
         parser.exit(1, f'Errore: {error}\n')
     if not args.prepare_only:
-        parser.exit(2, 'Asset pronti; invio Gmail richiesto. Completare il flusso Codex descritto in AGENTS.md.\n')
+        parser.exit(2, 'Asset pronti; invio Gmail e pubblicazione story Instagram richiesti. Completare il flusso Codex descritto in AGENTS.md.\n')
 
 
 if __name__ == '__main__':
