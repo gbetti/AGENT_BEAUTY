@@ -35,11 +35,15 @@ def main():
                         help='Base HTTPS degli asset: ogni lingua usa <base>/<lingua>/feed.png ed email-logo.png')
     parser.add_argument('--email-unsubscribe-url',
                         help='URL HTTPS di disiscrizione; l’HTML usa il tag Klaviyo quando non specificato')
+    parser.add_argument('--prepare-only', action='store_true',
+                        help='Esporta il pacchetto senza completare l’invio Gmail; resta segnato come pending_email')
     args = parser.parse_args()
     try:
         run(args, progress=cli_progress)
     except Exception as error:
         parser.exit(1, f'Errore: {error}\n')
+    if not args.prepare_only:
+        parser.exit(2, 'Asset pronti; invio Gmail richiesto. Completare il flusso Codex descritto in AGENTS.md.\n')
 
 
 if __name__ == '__main__':

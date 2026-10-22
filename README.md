@@ -5,6 +5,12 @@ ciascuno con feed, story, banner, presentazione editoriale di quattro slide e ne
 logo centrato in alto, Cormorant Garamond per i titoli e una composizione
 specifica per ciascun formato.
 
+Ogni richiesta creativa include sempre **post + email + story**, anche quando
+si chiede soltanto «un post Instagram». Nel flusso Codex, l’email italiana viene
+inviata tramite **Gmail a gb77ita@gmail.com**: un invio per campagna, con conferma
+registrata. Le due versioni linguistiche rimangono disponibili come file.
+La story viene creata; la sua pubblicazione richiede una richiesta specifica.
+
 ## Avvio
 
 ```sh
@@ -20,6 +26,7 @@ Ogni esecuzione crea una nuova cartella `output/ioma-<data>-<id>/`:
 
 ```text
 fr/feed.png      1080×1350
+fr/caption.txt   testo e hashtag del post
 fr/story.png     1080×1920
 fr/banner.png    300×250
 fr/presentazione.pptx    4 slide
@@ -27,15 +34,17 @@ fr/email.html           template responsive
 fr/email.eml            bozza con immagini incorporate
 fr/email-logo.png       logo originale per l’HTML
 it/feed.png      1080×1350
+it/caption.txt   testo e hashtag del post
 it/story.png     1080×1920
 it/banner.png    300×250
 it/presentazione.pptx    4 slide
 it/email.html           template responsive
 it/email.eml            bozza con immagini incorporate
 it/email-logo.png       logo originale per l’HTML
+delivery.json           completezza del pacchetto e stato reale dell’invio Gmail
 ```
 
-Solo francese e italiano. Caption, fonti, concept e controlli restano nel database
+Solo francese e italiano. Caption, fonti, concept e controlli restano anche nel database
 `data/catalog.sqlite`, tabella `generations`, campo `research_json`.
 
 ## Tre agenti, un solo avvio
@@ -79,8 +88,44 @@ Non occorrono tre server, tre database o nuove dipendenze. Sono componenti
 Python con regole editoriali e provider reali di ricerca, senza un modello
 linguistico collegato in questa versione. Questa separazione **non elimina**
 la revisione del brief entro 36 ore, la verifica degli ingredienti per ogni
-prodotto o il controllo visivo finale. Veo, invio email, pubblicazione Meta
-e gestione del budget richiedono ancora integrazioni dedicate.
+prodotto o il controllo visivo finale. L’invio usa il connettore Gmail nel flusso
+Codex descritto sotto. Veo, pubblicazione Meta nel CLI e gestione del budget
+richiedono ancora integrazioni dedicate.
+
+## Consegna completa tramite Gmail in Codex
+
+`delivery-policy.json` conserva il destinatario autorizzato, il provider Gmail
+e la lingua italiana dell’email da inviare. Il generatore rifiuta una campagna
+senza post/caption, story o email; verifica i formati e i byte del feed incorporato.
+Il registro `delivery.json` distingue la creazione degli asset dall’invio reale.
+
+Dopo la revisione visiva e la pubblicazione degli asset su GitHub:
+
+```sh
+python delivery.py prepare --campaign output/ioma-<id> \
+  --assets-url 'https://raw.githubusercontent.com/gbetti/AGENT_BEAUTY/<commit>/posts/<campagna>'
+python delivery.py begin-send --campaign output/ioma-<id>
+```
+
+Codex passa il JSON restituito al tool Gmail `send_email`, già collegato,
+e salva la ricevuta reale (`id`, `thread_id`, `label_ids`, inclusa `SENT`):
+
+```sh
+python delivery.py record-sent --campaign output/ioma-<id> \
+  --receipt /tmp/gmail-receipt.json --database data/catalog.sqlite
+```
+
+Il messaggio parte dall’account Gmail autenticato. Le immagini pubbliche vengono
+confrontate con i PNG locali prima dell’invio. Il contenuto resta quello della
+newsletter coordinata; nessuna spedizione a liste clienti viene configurata.
+
+Il CLI Python **da solo non può chiamare i connettori Codex**: termina con codice
+2 quando gli asset sono pronti ma l’invio resta da completare. Per una richiesta
+esplicita di sola generazione usare `--prepare-only`, che termina con codice 0 e
+mantiene `pending_email`. Il flusso completo in Codex segue `AGENTS.md` e termina
+soltanto dopo la conferma Gmail. Il comando keyword rimane una ricerca senza invii.
+Un invio interrotto o già completato non viene ripetuto automaticamente: bisogna
+riconciliare il tentativo in Gmail. I file restano disponibili anche se Gmail fallisce.
 
 ## Eseguire soltanto l’agente keyword
 
@@ -124,10 +169,11 @@ campagna dello stesso prodotto l’oggetto cambia. I testi in
 gli esempi inoltrati guidano lo stile, non aggiungono claim ad altri prodotti.
 Se cambia il claim di catalogo, anche il brief email deve essere aggiornato.
 
-`email.eml` è una **bozza non inviata**: mittente IOMA, destinatario vuoto,
+`email.eml` conserva la **bozza sorgente**: mittente IOMA, destinatario vuoto,
 oggetto, testo semplice e HTML. Feed e logo sono incorporati via CID con i
 byte originali; si apre offline. Di default la disiscrizione è una richiesta
-via email a `contact@ioma-paris.com`. Non avviene alcun invio automatico.
+via email a `contact@ioma-paris.com`. L’invio coordinato avviene con il connettore
+Gmail e viene registrato separatamente in `delivery.json`, senza modificare l’EML.
 
 `email.html` contiene il preheader nascosto e l’oggetto nel titolo HTML.
 Usa tabelle e stili inline, immagini fluide, media query per mobile e

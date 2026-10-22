@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "required_outputs": ["post", "email", "story"],
+  "languages": ["fr", "it"],
+  "email": {
+    "provider": "gmail",
+    "to": "gb77ita@gmail.com",
+    "language": "it",
+    "required": true
+  }
+}
