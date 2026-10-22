@@ -19,4 +19,4 @@ Riferimenti visivi: [packshot ufficiale del trio](https://ioma-paris.com/cdn/sho
 
 Richiesta specifica: un post Instagram. Questa consegna comprende il feed e la caption nelle due lingue del progetto. Non è un'esecuzione della pipeline di campagna completa, né una ricerca Google Trends; non attribuisce al tema dati di popolarità o crescita. Il brief prodotto è stato verificato per questa richiesta.
 
-Le immagini sono asset da scaricare: nessun post è stato pubblicato su Instagram.
+Versione italiana pubblicata su Instagram il 22 ottobre 2026 alle 14:42 (Europe/Paris), account **@gb77ita**: [apri il post](https://www.instagram.com/p/DezAhSKHazI/). Caption e pubblicazione verificate tramite API. La versione francese resta disponibile come asset da scaricare.
