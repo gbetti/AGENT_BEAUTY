@@ -9,7 +9,8 @@ Ogni richiesta creativa include sempre **post + email + story**, anche quando
 si chiede soltanto «un post Instagram». Nel flusso Codex, l’email italiana viene
 inviata tramite **Gmail a gb77ita@gmail.com**: un invio per campagna, con conferma
 registrata. Le due versioni linguistiche rimangono disponibili come file.
-La story viene creata; la sua pubblicazione richiede una richiesta specifica.
+La **story italiana viene pubblicata direttamente su Instagram @gb77ita a ogni
+campagna**, con autorizzazione permanente dell’utente e verifica della pubblicazione.
 
 ## Avvio
 
@@ -41,7 +42,7 @@ it/presentazione.pptx    4 slide
 it/email.html           template responsive
 it/email.eml            bozza con immagini incorporate
 it/email-logo.png       logo originale per l’HTML
-delivery.json           completezza del pacchetto e stato reale dell’invio Gmail
+delivery.json           stato reale dell’invio Gmail e della story Instagram
 ```
 
 Solo francese e italiano. Caption, fonti, concept e controlli restano anche nel database
@@ -89,13 +90,15 @@ Python con regole editoriali e provider reali di ricerca, senza un modello
 linguistico collegato in questa versione. Questa separazione **non elimina**
 la revisione del brief entro 36 ore, la verifica degli ingredienti per ogni
 prodotto o il controllo visivo finale. L’invio usa il connettore Gmail nel flusso
-Codex descritto sotto. Veo, pubblicazione Meta nel CLI e gestione del budget
+Codex descritto sotto; `instagram_story.py` pubblica la story tramite API Meta.
+Veo e gestione del budget
 richiedono ancora integrazioni dedicate.
 
-## Consegna completa tramite Gmail in Codex
+## Consegna completa tramite Gmail e Instagram in Codex
 
 `delivery-policy.json` conserva il destinatario autorizzato, il provider Gmail
-e la lingua italiana dell’email da inviare. Il generatore rifiuta una campagna
+e la lingua italiana dell’email da inviare, oltre all’account Instagram della
+story obbligatoria. Il generatore rifiuta una campagna
 senza post/caption, story o email; verifica i formati e i byte del feed incorporato.
 Il registro `delivery.json` distingue la creazione degli asset dall’invio reale.
 
@@ -119,11 +122,30 @@ Il messaggio parte dall’account Gmail autenticato. Le immagini pubbliche vengo
 confrontate con i PNG locali prima dell’invio. Il contenuto resta quello della
 newsletter coordinata; nessuna spedizione a liste clienti viene configurata.
 
+Per la story, esportare il JPEG dalla grafica già revisionata, pubblicarlo su
+GitHub e usare la sua URL pubblica con commit immutabile:
+
+```sh
+python instagram_story.py export --campaign output/ioma-<id>
+# Dopo il caricamento di it/story-instagram.jpg su GitHub:
+python instagram_story.py publish --campaign output/ioma-<id> \
+  --image-url 'https://raw.githubusercontent.com/gbetti/AGENT_BEAUTY/<commit>/posts/<campagna>/it/story-instagram.jpg' \
+  --database data/catalog.sqlite
+```
+
+Il comando usa `INSTAGRAM_ACCESS_TOKEN` già configurato, verifica @gb77ita e i
+byte del JPEG pubblico, quindi pubblica una story e registra ID, permalink e
+verifica reale. Un container in elaborazione si riprende con lo stesso comando.
+Se la risposta a una scrittura si perde, il registro blocca nuove scritture:
+riconciliare l’esito su Instagram prima di intervenire. Ripetere il comando dopo
+un successo non ripubblica la story, nemmeno dopo la scadenza delle 24 ore.
+
 Il CLI Python **da solo non può chiamare i connettori Codex**: termina con codice
 2 quando gli asset sono pronti ma l’invio resta da completare. Per una richiesta
 esplicita di sola generazione usare `--prepare-only`, che termina con codice 0 e
-mantiene `pending_email`. Il flusso completo in Codex segue `AGENTS.md` e termina
-soltanto dopo la conferma Gmail. Il comando keyword rimane una ricerca senza invii.
+mantiene `pending_deliveries`. Dopo un solo invio lo stato diventa `pending_story`
+o `pending_email`; `complete` richiede entrambe le conferme. Il flusso completo
+in Codex segue `AGENTS.md`. Il comando keyword rimane una ricerca senza invii.
 Un invio interrotto o già completato non viene ripetuto automaticamente: bisogna
 riconciliare il tentativo in Gmail. I file restano disponibili anche se Gmail fallisce.
 
@@ -324,8 +346,9 @@ assistito descritto in `AGENTS.md` richiede di aprire tutti i PNG e verificarli
 anche a dimensione smartphone; eventuali difetti vengono corretti prima della
 consegna. Anche le otto slide vengono aperte e controllate dopo il rendering.
 Il programma registra inizialmente `visual_review: pending`.
-La revisione annota osservazioni e hash dei file esaminati. Non esiste una
-pubblicazione automatica sui social.
+La revisione annota osservazioni e hash dei file esaminati. Nel flusso Codex la
+story viene poi pubblicata automaticamente sull’account autorizzato, secondo
+il registro di consegna; la generazione da sola non pubblica sui social.
 
 ```sh
 python -m pip install -r requirements-dev.txt

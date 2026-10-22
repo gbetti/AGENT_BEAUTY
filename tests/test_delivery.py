@@ -73,7 +73,7 @@ class DeliveryTests(unittest.TestCase):
         self.assertIn('https://cdn.example.com/campaign/it/email-logo.png', html)
         self.assertNotIn('cid:', html)
         self.assertNotIn('{% unsubscribe_link %}', html)
-        self.assertEqual(self.ledger()['status'], 'pending_email')
+        self.assertEqual(self.ledger()['status'], 'pending_deliveries')
         self.assertFalse(self.ledger()['email']['sent'])
 
     def test_wrong_hosted_image_does_not_make_email_ready(self):
@@ -108,7 +108,7 @@ class DeliveryTests(unittest.TestCase):
         self.assertEqual(self.ledger()['email']['status'], 'sending')
         self.assertFalse(self.ledger()['email']['sent'])
 
-    def test_only_gmail_sent_receipt_completes_and_persists_delivery(self):
+    def test_gmail_receipt_persists_but_story_still_required(self):
         self.prepare()
         with self.assertRaisesRegex(ValueError, 'Nessun tentativo'):
             record_sent(self.campaign, {'id': '123', 'label_ids': ['SENT']})
@@ -122,7 +122,7 @@ class DeliveryTests(unittest.TestCase):
                 json.dumps({'localizations': {'it': {'email': {'sent': False}}}})))
         receipt = {'id': 'gmail-123', 'thread_id': 'thread-123', 'label_ids': ['SENT']}
         completed = record_sent(self.campaign, receipt, self.db)
-        self.assertEqual(completed['status'], 'complete')
+        self.assertEqual(completed['status'], 'pending_story')
         self.assertTrue(completed['email']['sent'])
         with sqlite3.connect(self.db) as db:
             report = json.loads(db.execute('SELECT research_json FROM generations WHERE id=?',

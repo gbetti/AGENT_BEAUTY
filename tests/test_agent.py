@@ -156,7 +156,7 @@ class AgentTests(unittest.TestCase):
                 self.assertEqual(set(report['localizations']),{'fr','it'})
                 self.assertEqual(report['quality']['visual_review'],'pending')
                 self.assertEqual(report['quality']['publication_status'],'not_published')
-                self.assertEqual(report['delivery']['status'], 'pending_email')
+                self.assertEqual(report['delivery']['status'], 'pending_deliveries')
                 self.assertEqual(report['delivery']['email']['to'], 'gb77ita@gmail.com')
                 self.assertFalse(report['delivery']['email']['sent'])
                 self.assertEqual(report['delivery']['required_outputs'], ['post', 'email', 'story'])

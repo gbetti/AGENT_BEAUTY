@@ -39,6 +39,11 @@ def read_policy():
             or email['language'] not in config['languages'] or email['required'] is not True
             or '@' not in email['to'] or any(c.isspace() for c in email['to'])):
         raise ValueError('Configurazione di consegna Gmail non valida.')
+    story = config['instagram_story']
+    if (story['provider'] != 'instagram' or not story['account_id'].isdigit()
+            or not story['username'] or story['language'] not in config['languages']
+            or story['required'] is not True):
+        raise ValueError('Configurazione della story Instagram non valida.')
     return config
 
 
@@ -83,12 +88,45 @@ def create_manifest(directory, generation_id):
     path = directory / 'delivery.json'
     if path.exists():
         raise FileExistsError('Il registro di consegna esiste già; non azzerare lo stato dell’invio.')
-    manifest = {'schema_version': 1, 'generation_id': generation_id, 'created_at': now(),
+    manifest = {'schema_version': 2, 'generation_id': generation_id, 'created_at': now(),
                 'required_outputs': ['post', 'email', 'story'],
-                'status': 'pending_email', 'files': bundle_files(directory),
-                'email': {**read_policy()['email'], 'status': 'pending', 'sent': False}}
+                'status': 'pending_deliveries', 'files': bundle_files(directory),
+                'email': {**read_policy()['email'], 'status': 'pending', 'sent': False},
+                'instagram_story': {**read_policy()['instagram_story'],
+                                    'status': 'pending', 'published': False}}
     write_json(path, manifest)
     return manifest
+
+
+def refresh_status(manifest):
+    """Apply the standing story requirement only to the campaign being worked on."""
+    manifest.setdefault('instagram_story', {**read_policy()['instagram_story'],
+                                            'status': 'pending', 'published': False})
+    manifest['schema_version'] = 2
+    email_done = manifest['email'].get('sent') is True
+    story = manifest['instagram_story']
+    story_done = (story.get('status') == 'published' and story.get('published') is True
+                  and bool(story.get('media_id')) and bool(story.get('verified_at')))
+    manifest['status'] = ('complete' if email_done and story_done else
+                          'pending_story' if email_done else
+                          'pending_email' if story_done else 'pending_deliveries')
+
+
+def sync_database(manifest, database):
+    if database is None or not Path(database).is_file():
+        return
+    with sqlite3.connect(database) as db:
+        row = db.execute('SELECT research_json FROM generations WHERE id=?',
+                         (manifest['generation_id'],)).fetchone()
+        if row:
+            report = json.loads(row[0])
+            report['delivery'] = manifest
+            email_report = report.get('localizations', {}).get(
+                manifest['email']['language'], {}).get('email')
+            if email_report is not None and manifest['email'].get('sent'):
+                email_report.update(sent=True, gmail_message_id=manifest['email']['message_id'])
+            db.execute('UPDATE generations SET research_json=? WHERE id=?',
+                       (json.dumps(report, ensure_ascii=False), manifest['generation_id']))
 
 
 @contextmanager
@@ -162,7 +200,7 @@ def begin_send(directory):
         if sha256(request) != manifest['email']['request_sha256']:
             raise ValueError('La richiesta Gmail è stata modificata dopo la verifica.')
         manifest['email'].update(status='sending', attempt_started_at=now())
-        manifest['status'] = 'pending_email'
+        refresh_status(manifest)
     return json.loads(request)
 
 
@@ -179,20 +217,8 @@ def record_sent(directory, receipt, database=None):
         else:
             email.update(status='sent', sent=True, message_id=receipt['id'],
                          thread_id=receipt.get('thread_id'), sent_at=now())
-            manifest['status'] = 'complete'
-    if database is not None:
-        with sqlite3.connect(database) as db:
-            row = db.execute('SELECT research_json FROM generations WHERE id=?',
-                             (manifest['generation_id'],)).fetchone()
-            if row:
-                report = json.loads(row[0])
-                report['delivery'] = manifest
-                language = manifest['email']['language']
-                email_report = report.get('localizations', {}).get(language, {}).get('email')
-                if email_report is not None:
-                    email_report.update(sent=True, gmail_message_id=receipt['id'])
-                db.execute('UPDATE generations SET research_json=? WHERE id=?',
-                           (json.dumps(report, ensure_ascii=False), manifest['generation_id']))
+        refresh_status(manifest)
+    sync_database(manifest, database)
     return manifest
 
 
