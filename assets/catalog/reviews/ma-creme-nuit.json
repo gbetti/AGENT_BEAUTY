@@ -1,0 +1,112 @@
+{
+  "product": "Ma crème Nuit",
+  "source_url": "https://ioma-paris.com/products/ma-creme-nuit",
+  "collected_at": "2026-10-21T22:19:38.733793+00:00",
+  "status": "complete",
+  "reported_count": 9,
+  "average": "4.67",
+  "items": [
+    {
+      "id": "5fbad69c-476b-4119-978d-c66da0353359",
+      "rating": 3,
+      "title": "Experimentation trop récente pour formuler un avis tranché",
+      "body": "Experimentation trop récente pour formuler un avis tranché. Néanmoins plutôt bon à très bon.",
+      "author": "Anonyme",
+      "created_at": "2026-03-27T18:55:50.539Z",
+      "verified_buyer": true,
+      "source_product_title": "Ma crème Nuit",
+      "from_group": false
+    },
+    {
+      "id": "3df82c25-1631-4923-ade9-0049458288c8",
+      "rating": 5,
+      "title": "J&#39;adore",
+      "body": "J'adore",
+      "author": "Yuliya W.",
+      "created_at": "2026-03-23T18:06:21.097Z",
+      "verified_buyer": true,
+      "source_product_title": "Ma crème Nuit",
+      "from_group": false
+    },
+    {
+      "id": "e45e6876-de0e-40b4-9089-1c1f73b82ab3",
+      "rating": 4,
+      "title": "",
+      "body": "Ma crème Nuit",
+      "author": "Elisabeth P.",
+      "created_at": "2024-06-04T22:00:00.000Z",
+      "verified_buyer": true,
+      "source_product_title": "Ma crème Nuit",
+      "from_group": false
+    },
+    {
+      "id": "94a02b7e-b505-46e0-aa64-d526058c73f5",
+      "rating": 5,
+      "title": "",
+      "body": "Ma crème Nuit",
+      "author": "FLORENCE L.",
+      "created_at": "2024-02-12T23:00:00.000Z",
+      "verified_buyer": true,
+      "source_product_title": "Ma crème Nuit",
+      "from_group": false
+    },
+    {
+      "id": "e230906a-4e5a-400b-abe0-41106846ade4",
+      "rating": 5,
+      "title": "Ma crème Nuit",
+      "body": "Très facile à appliqué, pénètre aussitôt et sensation agréable sur la peau",
+      "author": "PATRICK S.",
+      "created_at": "2023-08-12T22:00:00.000Z",
+      "verified_buyer": true,
+      "source_product_title": "Ma crème Nuit",
+      "from_group": false
+    },
+    {
+      "id": "64360721-d571-44cd-a2d3-b9aca279046c",
+      "rating": 5,
+      "title": "Ma crème Nuit",
+      "body": "Prodotto ottimo, lo utilizzo da anni e mi trovo molto bene",
+      "author": "Francesca",
+      "created_at": "2023-04-26T22:00:00.000Z",
+      "verified_buyer": true,
+      "source_product_title": "Ma crème Nuit",
+      "from_group": false
+    },
+    {
+      "id": "3770e4a2-3ce7-4c67-9e29-136385f7278c",
+      "rating": 5,
+      "title": "Ma crème Nuit",
+      "body": "conforme aux attentes",
+      "author": "Agnès J.",
+      "created_at": "2022-02-23T23:00:00.000Z",
+      "verified_buyer": true,
+      "source_product_title": "Ma crème Nuit",
+      "from_group": false
+    },
+    {
+      "id": "7228c96f-4b39-43db-8fd4-eef42dbd0e40",
+      "rating": 5,
+      "title": "Ma crème Nuit",
+      "body": "toujours très satisfaite",
+      "author": "Véronique M.",
+      "created_at": "2021-02-09T23:00:00.000Z",
+      "verified_buyer": true,
+      "source_product_title": "Ma crème Nuit",
+      "from_group": false
+    },
+    {
+      "id": "d5e52c22-c6a2-4809-adc8-26c09fa968a7",
+      "rating": 5,
+      "title": "Ma crème Nuit",
+      "body": "excellent produit",
+      "author": "marie f.P.s.",
+      "created_at": "2020-05-19T22:00:00.000Z",
+      "verified_buyer": false,
+      "source_product_title": "Ma crème Nuit",
+      "from_group": false
+    }
+  ],
+  "page_urls": [],
+  "reason": null,
+  "policy": "Opinioni dei clienti, non prove di efficacia o claim ufficiali."
+}

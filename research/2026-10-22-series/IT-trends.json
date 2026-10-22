@@ -1,0 +1,265 @@
+{
+  "retrieved_at": "2026-10-21T23:26:46.230414+00:00",
+  "geo": "IT",
+  "language": "it",
+  "period_start": "2026-10-14",
+  "period_end": "2026-10-20",
+  "category_id": 143,
+  "category_name": "Face & Body Care",
+  "search_property": "web",
+  "timezone": "UTC",
+  "seed_keyword": "",
+  "source_url": "https://trends.google.com/trends/explore?cat=143&date=2026-10-14+2026-10-20&geo=IT&hl=it",
+  "widget_request": {
+    "restriction": {
+      "geo": {
+        "country": "IT"
+      },
+      "time": "2026-10-14 2026-10-20",
+      "originalTimeRangeForExploreUrl": "2026-10-14 2026-10-20"
+    },
+    "keywordType": "QUERY",
+    "metric": [
+      "TOP",
+      "RISING"
+    ],
+    "trendinessSettings": {
+      "compareTime": "2026-10-07 2026-10-13"
+    },
+    "requestOptions": {
+      "property": "",
+      "backend": "IZG",
+      "category": 143
+    },
+    "language": "it",
+    "userCountryCode": "US",
+    "userConfig": {
+      "userType": "USER_TYPE_SCRAPER"
+    }
+  },
+  "response": {
+    "default": {
+      "rankedList": [
+        {
+          "rankedKeyword": [
+            {
+              "query": "crema",
+              "value": 100,
+              "formattedValue": "100",
+              "hasData": true,
+              "link": "/trends/explore?q=crema&date=2026-10-14+2026-10-20&geo=IT"
+            },
+            {
+              "query": "profumo",
+              "value": 94,
+              "formattedValue": "94",
+              "hasData": true,
+              "link": "/trends/explore?q=profumo&date=2026-10-14+2026-10-20&geo=IT"
+            },
+            {
+              "query": "unghie",
+              "value": 53,
+              "formattedValue": "53",
+              "hasData": true,
+              "link": "/trends/explore?q=unghie&date=2026-10-14+2026-10-20&geo=IT"
+            },
+            {
+              "query": "profumi",
+              "value": 36,
+              "formattedValue": "36",
+              "hasData": true,
+              "link": "/trends/explore?q=profumi&date=2026-10-14+2026-10-20&geo=IT"
+            },
+            {
+              "query": "sephora",
+              "value": 24,
+              "formattedValue": "24",
+              "hasData": true,
+              "link": "/trends/explore?q=sephora&date=2026-10-14+2026-10-20&geo=IT"
+            },
+            {
+              "query": "crema viso",
+              "value": 22,
+              "formattedValue": "22",
+              "hasData": true,
+              "link": "/trends/explore?q=crema+viso&date=2026-10-14+2026-10-20&geo=IT"
+            },
+            {
+              "query": "fondotinta",
+              "value": 17,
+              "formattedValue": "17",
+              "hasData": true,
+              "link": "/trends/explore?q=fondotinta&date=2026-10-14+2026-10-20&geo=IT"
+            },
+            {
+              "query": "amazon",
+              "value": 13,
+              "formattedValue": "13",
+              "hasData": true,
+              "link": "/trends/explore?q=amazon&date=2026-10-14+2026-10-20&geo=IT"
+            },
+            {
+              "query": "profumo uomo",
+              "value": 13,
+              "formattedValue": "13",
+              "hasData": true,
+              "link": "/trends/explore?q=profumo+uomo&date=2026-10-14+2026-10-20&geo=IT"
+            },
+            {
+              "query": "dior",
+              "value": 12,
+              "formattedValue": "12",
+              "hasData": true,
+              "link": "/trends/explore?q=dior&date=2026-10-14+2026-10-20&geo=IT"
+            },
+            {
+              "query": "crema idratante",
+              "value": 12,
+              "formattedValue": "12",
+              "hasData": true,
+              "link": "/trends/explore?q=crema+idratante&date=2026-10-14+2026-10-20&geo=IT"
+            },
+            {
+              "query": "profumo donna",
+              "value": 12,
+              "formattedValue": "12",
+              "hasData": true,
+              "link": "/trends/explore?q=profumo+donna&date=2026-10-14+2026-10-20&geo=IT"
+            },
+            {
+              "query": "braun",
+              "value": 7,
+              "formattedValue": "7",
+              "hasData": true,
+              "link": "/trends/explore?q=braun&date=2026-10-14+2026-10-20&geo=IT"
+            },
+            {
+              "query": "unghia",
+              "value": 7,
+              "formattedValue": "7",
+              "hasData": true,
+              "link": "/trends/explore?q=unghia&date=2026-10-14+2026-10-20&geo=IT"
+            },
+            {
+              "query": "cerave",
+              "value": 7,
+              "formattedValue": "7",
+              "hasData": true,
+              "link": "/trends/explore?q=cerave&date=2026-10-14+2026-10-20&geo=IT"
+            },
+            {
+              "query": "bionike",
+              "value": 7,
+              "formattedValue": "7",
+              "hasData": true,
+              "link": "/trends/explore?q=bionike&date=2026-10-14+2026-10-20&geo=IT"
+            },
+            {
+              "query": "la roche posay",
+              "value": 6,
+              "formattedValue": "6",
+              "hasData": true,
+              "link": "/trends/explore?q=la+roche+posay&date=2026-10-14+2026-10-20&geo=IT"
+            },
+            {
+              "query": "crema corpo",
+              "value": 6,
+              "formattedValue": "6",
+              "hasData": true,
+              "link": "/trends/explore?q=crema+corpo&date=2026-10-14+2026-10-20&geo=IT"
+            },
+            {
+              "query": "blush",
+              "value": 6,
+              "formattedValue": "6",
+              "hasData": true,
+              "link": "/trends/explore?q=blush&date=2026-10-14+2026-10-20&geo=IT"
+            },
+            {
+              "query": "kiko",
+              "value": 6,
+              "formattedValue": "6",
+              "hasData": true,
+              "link": "/trends/explore?q=kiko&date=2026-10-14+2026-10-20&geo=IT"
+            },
+            {
+              "query": "fragrantica",
+              "value": 6,
+              "formattedValue": "6",
+              "hasData": true,
+              "link": "/trends/explore?q=fragrantica&date=2026-10-14+2026-10-20&geo=IT"
+            },
+            {
+              "query": "yodeyma",
+              "value": 5,
+              "formattedValue": "5",
+              "hasData": true,
+              "link": "/trends/explore?q=yodeyma&date=2026-10-14+2026-10-20&geo=IT"
+            },
+            {
+              "query": "meteo",
+              "value": 5,
+              "formattedValue": "5",
+              "hasData": true,
+              "link": "/trends/explore?q=meteo&date=2026-10-14+2026-10-20&geo=IT"
+            },
+            {
+              "query": "avene",
+              "value": 5,
+              "formattedValue": "5",
+              "hasData": true,
+              "link": "/trends/explore?q=avene&date=2026-10-14+2026-10-20&geo=IT"
+            },
+            {
+              "query": "maybelline",
+              "value": 5,
+              "formattedValue": "5",
+              "hasData": true,
+              "link": "/trends/explore?q=maybelline&date=2026-10-14+2026-10-20&geo=IT"
+            }
+          ]
+        },
+        {
+          "rankedKeyword": [
+            {
+              "query": "clenia",
+              "value": 5050,
+              "formattedValue": "Impennata",
+              "link": "/trends/explore?q=clenia&date=2026-10-14+2026-10-20&geo=IT"
+            },
+            {
+              "query": "sally rooney",
+              "value": 1950,
+              "formattedValue": "+1.950%",
+              "link": "/trends/explore?q=sally+rooney&date=2026-10-14+2026-10-20&geo=IT"
+            },
+            {
+              "query": "leonardo maria del vecchio",
+              "value": 750,
+              "formattedValue": "+750%",
+              "link": "/trends/explore?q=leonardo+maria+del+vecchio&date=2026-10-14+2026-10-20&geo=IT"
+            },
+            {
+              "query": "ascella",
+              "value": 180,
+              "formattedValue": "+180%",
+              "link": "/trends/explore?q=ascella&date=2026-10-14+2026-10-20&geo=IT"
+            },
+            {
+              "query": "crema idratante viso",
+              "value": 160,
+              "formattedValue": "+160%",
+              "link": "/trends/explore?q=crema+idratante+viso&date=2026-10-14+2026-10-20&geo=IT"
+            },
+            {
+              "query": "crema idratante",
+              "value": 110,
+              "formattedValue": "+110%",
+              "link": "/trends/explore?q=crema+idratante&date=2026-10-14+2026-10-20&geo=IT"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

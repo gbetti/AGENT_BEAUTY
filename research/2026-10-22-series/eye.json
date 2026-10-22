@@ -1,0 +1,134 @@
+{
+  "reviewed_at": "2026-10-21T23:33:26.399058+00:00",
+  "product_key": "creme-genereuse-contour-des-yeux",
+  "sources": [
+    {
+      "id": "arpy-eye",
+      "title": "peptide eye cream: what’s in it, and how and when to use it",
+      "url": "https://arpyskin.com/blogs/guides/peptide-eye-cream",
+      "publisher": "arpy",
+      "published_at": "2026-10-15T00:00:00+00:00",
+      "kind": "brand_promotion",
+      "brand": "arpy",
+      "topics": [
+        "peptides",
+        "vitamin-e",
+        "glycerin"
+      ],
+      "evidence_terms": [
+        "October 15, 2026",
+        "peptides",
+        "tocopherol: vitamin E",
+        "glycerin is a humectant"
+      ],
+      "summary": {
+        "fr": "arpy : contenu de marque du 15 octobre sur les peptides du contour des yeux. Ce n’est pas une annonce payante vérifiée.",
+        "it": "arpy: contenuto del marchio del 15 ottobre sui peptidi nel contorno occhi. Non è una campagna paid verificata."
+      },
+      "display_title": {
+        "fr": "Peptides & contour des yeux : guide de marque",
+        "it": "Peptidi e contorno occhi: guida del marchio"
+      }
+    },
+    {
+      "id": "cerave",
+      "title": "CeraVe Hong Kong campaign",
+      "url": "https://www.marketing-interactive.com/cerave-hk-ditches-the-hard-sell-to-win-over-genz",
+      "publisher": "Marketing-Interactive",
+      "published_at": "2026-09-24T00:00:00+00:00",
+      "kind": "advertising_campaign",
+      "brand": "CeraVe",
+      "event_start": "2026-09-01",
+      "event_end": "2026-11-30",
+      "topics": [
+        "social_creative"
+      ],
+      "evidence_terms": [
+        "September to November 2026",
+        "six-second Reels"
+      ],
+      "summary": {
+        "fr": "CeraVe, Hong Kong : campagne prévue sept.–nov. 2026, dont Reels de 6 s. Article du 24 septembre.",
+        "it": "CeraVe, Hong Kong: campagna prevista sett.–nov. 2026, con Reel da 6 s. Articolo del 24 settembre."
+      },
+      "display_title": {
+        "fr": "CeraVe Hong Kong : la campagne « anti-publicité »",
+        "it": "CeraVe Hong Kong: la campagna «anti-pubblicità»"
+      }
+    }
+  ],
+  "signal_title": {
+    "fr": "Le soin ciblé",
+    "it": "La cura mirata"
+  },
+  "insight": {
+    "fr": "Angle proposé : associer le confort de la routine à un soin ciblé pour les rides du regard.",
+    "it": "Angolo proposto: unire il comfort della routine a un trattamento mirato per le rughe del contorno occhi."
+  },
+  "strategy": {
+    "fr": {
+      "positioning": "Crème Généreuse lisse les rides et aide à raffermir le contour des yeux. Peptides et vitamine E : présents dans son INCI et cités dans le récent contenu arpy.",
+      "audience": "Hypothèse de cible : personnes recherchant un soin ciblé pour les rides du contour des yeux.",
+      "activation": "Alterner claim, inspiration animée et avis client. Email avec lien du post publié.",
+      "measurement": "Comparer enregistrements et visites produit par format. Ne pas déduire une efficacité du soin."
+    },
+    "it": {
+      "positioning": "Crème Généreuse leviga le rughe e aiuta a rassodare il contorno occhi. Peptidi e vitamina E: presenti nel suo INCI e citati nel recente contenuto arpy.",
+      "audience": "Ipotesi di pubblico: persone che cercano una cura mirata per le rughe del contorno occhi.",
+      "activation": "Alternare claim, ispirazione animata e recensione. Email con link al post pubblicato.",
+      "measurement": "Confrontare salvataggi e visite prodotto per formato. Non dedurre l’efficacia del trattamento."
+    }
+  },
+  "google_trends": {
+    "category_id": 143,
+    "markets": {
+      "fr": {
+        "geo": "FR",
+        "top": [
+          "crème",
+          "yves rocher",
+          "vichy",
+          "guerlain",
+          "chanel",
+          "caudalie",
+          "lancome",
+          "la roche posay",
+          "avene"
+        ],
+        "rising": [
+          "musc ravageur",
+          "vernis rouge",
+          "action l'oreal"
+        ],
+        "interpretation": "Sélection de marques beauté et soins. Les hausses ne prouvent pas un intérêt accru pour le contour des yeux IOMA."
+      },
+      "it": {
+        "geo": "IT",
+        "top": [
+          "crema",
+          "crema viso",
+          "crema idratante",
+          "roche posay",
+          "contorno occhi",
+          "bionike",
+          "cerave",
+          "la roche posay",
+          "skincare",
+          "acne",
+          "avene",
+          "caudalie"
+        ],
+        "rising": [
+          "ascella",
+          "crema idratante viso",
+          "crema idratante"
+        ],
+        "interpretation": "Selezione skincare e cura corpo: le crescite non misurano un aumento dell’interesse per il contorno occhi IOMA."
+      }
+    },
+    "evidence_files": {
+      "fr": "research/2026-10-22-series/FR-trends.json",
+      "it": "research/2026-10-22-series/IT-trends.json"
+    }
+  }
+}

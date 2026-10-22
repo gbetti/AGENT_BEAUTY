@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "generation_id": "20261021T233652Z-b5a0af50",
+  "language": "fr",
+  "username": "gb77ita",
+  "kind": "feed",
+  "caption": "« Texture agréable et flacon pratique » — 5/5.\n\nLes petits détails font le rituel. Merci pour ce retour.\n\nCrème Généreuse Contour des Yeux\nAvis du 09.09.2021 · ioma-paris.com\nOpinion individuelle, pas une promesse de résultat.\nhttps://ioma-paris.com/products/creme-genereuse-contour-des-yeux\n\n#IOMAParis #RituelDeSoin #Skincare",
+  "caption_sha256": "7d2f8c5d0186b6f97a26a6205a047d217942036aa6378cf2f171f519889057b7",
+  "source_image": "../../../posts/2026-10-22-series/03-review-eye/ioma-20261021T233652Z-b5a0af50/fr/feed.png",
+  "source_sha256": "a82715a02f997b635f671dcdfbbc8de48f57c07c13a7a27bd3ca3a672511172e",
+  "image": "feed.jpg",
+  "image_sha256": "98beb3f4978a871aa5e8bf1441da647a78ea737f9f27cde38c84d2b147d4565d",
+  "review": {
+    "technical_checks": "passed",
+    "visual_review": "passed",
+    "reviewed_source_sha256": "a82715a02f997b635f671dcdfbbc8de48f57c07c13a7a27bd3ca3a672511172e",
+    "reviewed_at": "2026-10-21T23:48:24.866942+00:00"
+  }
+}

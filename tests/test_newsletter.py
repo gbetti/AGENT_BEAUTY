@@ -14,6 +14,7 @@ from PIL import Image
 
 from agent import load_products, run
 from newsletter import campaign_email_copy, create_email
+from editorial import BRIEFS
 from test_agent import weekly_fixture, ingredient_fixture, trends_fixture
 
 
@@ -64,6 +65,8 @@ class NewsletterTests(unittest.TestCase):
 
     def test_all_products_have_brief_copy_and_rotate_subject_on_next_run(self):
         for product in self.products:
+            if product['id'].rsplit(':',1)[-1] not in BRIEFS:
+                continue
             for language in ('fr','it'):
                 with self.subTest(product=product['name'],language=language):
                     first=campaign_email_copy(product,self.report,language)

@@ -18,6 +18,9 @@ class KeywordAgent:
     def run(self, trends, now):
         if trends.created_at != now:
             raise ValueError('Il brief trend appartiene a un’altra esecuzione.')
+        expected_category = 146 if trends.product['data'].get('editorial', {}).get('theme') == 'hair' else 143
+        if trends.weekly['google_trends']['category_id'] != expected_category:
+            raise ValueError('La categoria Google Trends non corrisponde al prodotto: capelli 146, viso/corpo 143.')
         return self.analyze(trends.weekly, trends.product['id'], now)
 
     def analyze(self, weekly, product_id, now):
@@ -49,6 +52,9 @@ def run_standalone(args, *, now=None):
                     if product['id'].rsplit(':', 1)[-1] == weekly['product_key']), None)
     if product is None:
         raise ValueError('Il prodotto del brief non è presente nel database.')
+    expected_category = 146 if product['data'].get('editorial', {}).get('theme') == 'hair' else 143
+    if weekly['google_trends']['category_id'] != expected_category:
+        raise ValueError('La categoria Google Trends non corrisponde al prodotto.')
     print('[Keyword & Domanda] ricerca Google Trends FR e IT', file=sys.stderr, flush=True)
     result = KeywordAgent().analyze(weekly, product['id'], now)
     report = {'schema_version': 1, 'kind': 'keyword_analysis',

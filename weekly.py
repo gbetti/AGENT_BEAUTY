@@ -68,13 +68,34 @@ def extract_inci(text):
     return tokens
 
 
+def fetch_scoped_inci(url):
+    """Read only the composition accordion; perfume can occur mid-list."""
+    from bs4 import BeautifulSoup
+    request = urllib.request.Request(url, headers={'User-Agent': 'AGENT_BEAUTY/FormulaCheck'})
+    with urllib.request.urlopen(request, timeout=30) as response:
+        soup = BeautifulSoup(response.read(4_000_000), 'html.parser')
+    for accordion in soup.select('accordion-disclosure.accordion'):
+        title = accordion.select_one('summary')
+        body = accordion.select_one('.accordion__content')
+        if title and body and 'composition' in title.get_text().casefold():
+            text = body.get_text(' ', strip=True).upper()
+            match = re.search(r'\b(?:AQUA\s*\(WATER\)|WATER\s*\(AQUA\))\s*,', text)
+            if match:
+                # The DOM section is the boundary, including formulas without a final full stop.
+                tail = text[match.start():].split('.')[0]
+                tokens = {item.strip().rstrip('*') for item in tail.split(',')}
+                if len(tokens) >= 2 and all(re.fullmatch(r'[A-Z0-9 ()/+\-]+', item) for item in tokens):
+                    return tokens
+    raise ValueError('INCI non individuabile nella sezione ufficiale della formula.')
+
+
 def select_ingredients(product,brief,source_url,now):
     key=product['id'].split(':')[-1]
     if key!=brief['product_key']: raise ValueError('Il brief settimanale riguarda un altro prodotto.')
     candidates=json.loads((ROOT/'assets/ingredients.json').read_text()).get(key,[])
-    text=fetch_text(source_url)
-    # Limit identity matching to the official INCI list, not reviews or related products.
-    inci=extract_inci(text)
+    # New hair formulas contain perfume in the middle: use the bounded DOM section.
+    inci = (fetch_scoped_inci(source_url) if product.get('data', {}).get('editorial', {}).get('theme') == 'hair'
+            else extract_inci(fetch_text(source_url)))
     ranked=[]
     for candidate in candidates:
         topics=candidate.get('research_topics',[candidate['id']])

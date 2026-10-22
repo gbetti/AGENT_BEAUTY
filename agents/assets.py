@@ -6,10 +6,13 @@ from pathlib import Path
 import sqlite3
 
 from agents.contracts import CampaignBrief
-from agents.trends import QUERY
+from agents.trends import QUERY, HAIR_QUERY
+from catalog import load_products
 from creative import recent_campaigns
 from editorial import LANGUAGES, campaign_plan
 from newsletter import create_email
+from email_delivery import delivery_intent
+from instagram_approval import publication_question
 from radar_presentation import create_presentation
 from studio import render_campaign
 from weekly import select_ingredients
@@ -24,8 +27,15 @@ class AssetsAgent:
         product = trends.product
         if trends.source_claim != product['data']['editorial']['claim_it']:
             raise ValueError('Il claim del brief trend non corrisponde al catalogo.')
-        creative = campaign_plan(product, recent_campaigns(args.database))
+        creative = campaign_plan(product, recent_campaigns(args.database, limit=-1),
+                                 mode=getattr(args, 'creative_mode', 'auto'),
+                                 products=load_products(args.database),
+                                 pack_keys=getattr(args, 'pack_products', ()) or ())
+        from editorial_modes import apply_editorial_mode
         ingredients = select_ingredients(product, trends.weekly, creative['source'], now)
+        creative = apply_editorial_mode(creative, product, recent_campaigns(args.database, limit=-1),
+            mode=getattr(args, 'editorial_mode', 'auto'), review_id=getattr(args, 'review_id', None),
+            theme=getattr(args, 'inspiration_theme', 'ingredients'), ingredients=ingredients)
         # Keep both upstream results intact; the creative agent works on its own copy.
         weekly = deepcopy(trends.weekly)
         weekly['google_trends_results'] = deepcopy(keywords.markets)
@@ -33,7 +43,7 @@ class AssetsAgent:
             'source_ids': [source['id'] for source in weekly['sources']],
             'ingredient_ids': [ingredient['id'] for ingredient in ingredients],
             'keyword_hypotheses': deepcopy(keywords.messaging_hypotheses),
-            'public_copy_basis': 'documented_product_benefit',
+            'public_copy_basis': creative.get('editorial_basis', 'documented_product_benefit'),
         }
         return CampaignBrief(trends, keywords, weekly, creative, ingredients)
 
@@ -62,6 +72,7 @@ def export_campaign(args, now, product, theme, claim, matched, scores, news,
     published = False
     try:
         languages = LANGUAGES
+        instagram_username = getattr(args, 'instagram_username', 'gb77ita')
         localized_reports = {}
         for language in languages:
             copy = creative['copies'][language]
@@ -70,15 +81,20 @@ def export_campaign(args, now, product, theme, claim, matched, scores, news,
             graphics = render_campaign(product, copy, locale_working, creative['scene'])
             localized_reports[language] = {
                 **copy,
+                'instagram': {'status': 'awaiting_review_and_confirmation',
+                              'username': instagram_username,
+                              'question': publication_question(instagram_username, language)},
                 'graphics': {kind: {**{k: v for k, v in info.items() if k != 'path'},
                                     'path': str((directory/language/info['path'].name).resolve())}
                              for kind, info in graphics.items()}}
         report = {'created_at': now.isoformat(), 'window_start': (now-timedelta(days=7)).isoformat(),
-                  'query': QUERY, 'product': product['name'], 'product_id': product['id'],
+                  'query': HAIR_QUERY if product['data'].get('editorial', {}).get('theme') == 'hair' else QUERY,
+                  'product': product['name'], 'product_id': product['id'],
                   'creative': creative, 'source_claim': claim, 'theme': theme,
                   'weekly': weekly, 'ingredients': ingredients,
                   'theme_news_counts': scores, 'matched_news': matched, 'news': news,
                   'localizations': localized_reports,
+                  'email_delivery': delivery_intent(),
                   'quality': {'technical_checks': 'passed', 'visual_review': 'pending',
                               'publication_status': 'not_published'},
                   'limitations': 'Weekly sources guide editorial ingredient selection, not concentration ranking. '
@@ -130,4 +146,13 @@ def export_campaign(args, now, product, theme, claim, matched, scores, news,
         result[language]['email_draft'] = directory/language/'email.eml'
         for path in result[language].values():
             print(path.resolve())
+        print(localized_reports[language]['instagram']['question'])
+    print('Nessun post inviato. Prima della risposta: completa la revisione visiva, '
+          'prepara il JPEG pubblico e usa python -m agents.publisher offer. '
+          'La conferma di un feed non autorizza gli altri contenuti.')
+    print(f"Email e asset destinati a {report['email_delivery']['recipient']}. "
+          'Dopo la revisione visiva registrata, esegui: '
+          f'python -m agents.mailer deliver --generation {generation_id} '
+          f'--database {args.database} --output {directory}/delivery. '
+          'L’invio email è già autorizzato; richiede un mittente collegato.')
     return result

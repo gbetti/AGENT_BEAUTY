@@ -1,0 +1,22 @@
+{
+  "shampooing-soin-hydratant-anti-casse": {
+    "theme": "hair",
+    "claim_it": "Aiuta a contrastare la rottura dei capelli e idrata il cuoio capelluto.",
+    "source_url": "https://ioma-paris.com/products/shampooing-soin-hydratant-anti-casse",
+    "reviewed_at": "2026-10-22",
+    "basis": "Official French and Italian product descriptions and details, retrieved in assets/catalog/ioma.json.",
+    "user_supplied": {
+      "price_eur": "25.00",
+      "volume_ml": 200,
+      "unit_price_per_100ml_eur": "12.50",
+      "note": "User supplied reference; current storefront price is stored separately under official.variants."
+    }
+  },
+  "apres-shampooing-reparateur": {
+    "theme": "hair",
+    "claim_it": "Ripara visibilmente i capelli danneggiati e li rende più morbidi.",
+    "source_url": "https://ioma-paris.com/products/apres-shampooing-reparateur",
+    "reviewed_at": "2026-10-22",
+    "basis": "Official French and Italian product descriptions and details, retrieved in assets/catalog/ioma.json."
+  }
+}

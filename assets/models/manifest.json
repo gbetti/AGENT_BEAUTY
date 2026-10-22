@@ -1,0 +1,15 @@
+[
+  {
+    "id": "editorial-brunette",
+    "path": "assets/models/editorial-brunette.png",
+    "sha256": "a3243e299fa2ce76c10324f17529f48589cc52fffecb4fecbdd84f9a15d7d097",
+    "size": [
+      1122,
+      1402
+    ],
+    "mode": "RGBA",
+    "origin": "AI-generated fictional adult editorial model; no customer testimonial or treatment result.",
+    "created_at": "2026-10-22",
+    "lighting": "large upper-left softbox"
+  }
+]

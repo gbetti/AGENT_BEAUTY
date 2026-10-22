@@ -1,0 +1,230 @@
+{
+  "preview_only": true,
+  "publication_status": "not_published",
+  "reason": "Layout validation; not a new weekly researched campaign.",
+  "creative": {
+    "variant": 0,
+    "scene": {
+      "id": "studio-5307921937504435aeb03733a1bb34eb",
+      "path": "assets/backgrounds/editorial/studio-pearl.png",
+      "sha256": "8e83cd5aee23bdcaa75f8935f446e7904e9780c2bf2e1689aa9b11565036bdd5",
+      "origin": "AI-generated empty photographic cyclorama. No product, label, ingredients or text generated.",
+      "floor_start": 0.78,
+      "format_crops": {
+        "feed": [
+          0,
+          0.15,
+          1,
+          1
+        ],
+        "story": [
+          0,
+          0.3,
+          1,
+          1
+        ],
+        "banner": [
+          0,
+          0.4,
+          1,
+          1
+        ]
+      },
+      "lighting": {
+        "source": "large upper-left softbox",
+        "cast_direction": [
+          0.22,
+          0.07
+        ],
+        "color": [
+          53,
+          51,
+          64
+        ]
+      },
+      "max_copy_detail": 3.0,
+      "art_direction": "Smooth negative space for logo, headline and ingredient labels; continuous matte floor. No props, folds, podiums or pre-rendered product shadows.",
+      "design": {
+        "id": "studio-5307921937504435aeb03733a1bb34eb",
+        "mode": "pack",
+        "renderer_version": "variety-studio-v1",
+        "family": "hair",
+        "palette": "sage",
+        "motif": "diagonal",
+        "seed": 20329684089203,
+        "products": [
+          {
+            "id": "urn:agent-beauty:ioma:shampooing-soin-hydratant-anti-casse",
+            "name": "Shampooing Soin Hydratant Anti-Casse",
+            "image": {
+              "source_url": "https://cdn.shopify.com/s/files/1/0663/1745/1420/files/IOMA_Haircare_cheveux_Shampooing_anti-casse_packshot.jpg?v=1746559181",
+              "path": "assets/catalog/images/shampooing-soin-hydratant-anti-casse-25d1db04cda4d7a9.jpg"
+            },
+            "sha256": "25d1db04cda4d7a9db5fed755cd7d2e6e80ba0fa92917d857aa53207dce2c210"
+          },
+          {
+            "id": "urn:agent-beauty:ioma:apres-shampooing-reparateur",
+            "name": "Après-Shampooing Réparateur",
+            "image": {
+              "source_url": "https://cdn.shopify.com/s/files/1/0663/1745/1420/files/IOMA_Haircare_cheveux_Apres_shampooing_reparateur_packshot.jpg?v=1746559092",
+              "path": "assets/catalog/images/apres-shampooing-reparateur-d79e7af3d7e73603.jpg"
+            },
+            "sha256": "d79e7af3d7e736034fdeb39770b9cf660d23ac58fab90bf3ca9697ebc89d8ed3"
+          }
+        ],
+        "background_sha256": "619798b882cb806fd383a8b4172d7bf633a878d5159e9af7d60f8803a46cabf7"
+      }
+    },
+    "copies": {
+      "fr": {
+        "language": "fr",
+        "headline": "Le rituel.\nEn duo.",
+        "category": "HYDRATATION & RÉSISTANCE",
+        "product_name": "IOMA Haircare",
+        "cta": "Découvrir",
+        "caption": "Hydratation et résistance, dès le shampooing.\n\nLe Shampooing Soin Hydratant Anti-Casse aide à lutter contre la casse, hydrate le cuir chevelu et élimine les impuretés. Pour des cheveux plus forts, plus résistants et plus souples.\n\nDécouvrez le soin sur ioma-paris.com.\n\n#IOMAParis #IOMAHaircare #SoinCapillaire\n\nComposition proposée : Shampooing Soin Hydratant Anti-Casse + Après-Shampooing Réparateur. Une association de produits, sans offre promotionnelle.",
+        "ingredients": [
+          {
+            "id": "sunflower",
+            "label": {
+              "fr": "Tournesol",
+              "it": "Girasole"
+            },
+            "short": {
+              "fr": "Tournesol",
+              "it": "Girasole"
+            },
+            "inci": [
+              "HELIANTHUS ANNUUS (SUNFLOWER) SEED OIL"
+            ],
+            "priority": 90,
+            "research_topics": [
+              "sunflower",
+              "haircare",
+              "scalp"
+            ],
+            "role": {
+              "fr": "Soin capillaire",
+              "it": "Cura dei capelli"
+            }
+          },
+          {
+            "id": "pentavitin",
+            "label": {
+              "fr": "Pentavitin®",
+              "it": "Pentavitin®"
+            },
+            "short": {
+              "fr": "Pentavitin®",
+              "it": "Pentavitin®"
+            },
+            "inci": [
+              "SACCHARIDE ISOMERATE"
+            ],
+            "priority": 90,
+            "research_topics": [
+              "pentavitin",
+              "hydration",
+              "scalp"
+            ],
+            "role": {
+              "fr": "Soin capillaire",
+              "it": "Cura dei capelli"
+            }
+          }
+        ]
+      },
+      "it": {
+        "language": "it",
+        "headline": "Il rituale.\nIn due.",
+        "category": "IDRATAZIONE & RESISTENZA",
+        "product_name": "IOMA Haircare",
+        "cta": "Scopri",
+        "caption": "Idratazione e resistenza, già dallo shampoo.\n\nShampooing Soin Hydratant Anti-Casse aiuta a contrastare la rottura dei capelli, idrata il cuoio capelluto ed elimina le impurità. Per capelli più forti, resistenti e morbidi.\n\nScopri il trattamento su ioma-paris.com.\n\n#IOMAParis #IOMAHaircare #CuraDeiCapelli\n\nComposizione proposta: Shampooing Soin Hydratant Anti-Casse + Après-Shampooing Réparateur. Un abbinamento di prodotti, senza offerta promozionale.",
+        "ingredients": [
+          {
+            "id": "sunflower",
+            "label": {
+              "fr": "Tournesol",
+              "it": "Girasole"
+            },
+            "short": {
+              "fr": "Tournesol",
+              "it": "Girasole"
+            },
+            "inci": [
+              "HELIANTHUS ANNUUS (SUNFLOWER) SEED OIL"
+            ],
+            "priority": 90,
+            "research_topics": [
+              "sunflower",
+              "haircare",
+              "scalp"
+            ],
+            "role": {
+              "fr": "Soin capillaire",
+              "it": "Cura dei capelli"
+            }
+          },
+          {
+            "id": "pentavitin",
+            "label": {
+              "fr": "Pentavitin®",
+              "it": "Pentavitin®"
+            },
+            "short": {
+              "fr": "Pentavitin®",
+              "it": "Pentavitin®"
+            },
+            "inci": [
+              "SACCHARIDE ISOMERATE"
+            ],
+            "priority": 90,
+            "research_topics": [
+              "pentavitin",
+              "hydration",
+              "scalp"
+            ],
+            "role": {
+              "fr": "Soin capillaire",
+              "it": "Cura dei capelli"
+            }
+          }
+        ]
+      }
+    },
+    "source": "https://ioma-paris.com/products/shampooing-soin-hydratant-anti-casse",
+    "content_mode": "pack",
+    "design_id": "studio-5307921937504435aeb03733a1bb34eb",
+    "source_claim_it": "Aiuta a contrastare la rottura dei capelli e idrata il cuoio capelluto.",
+    "editorial_basis": "documented_product_benefit",
+    "art_direction": "Quiet studio plate, protected copy space, continuous support plane, upper-left softbox and silhouette-based contact/cast shadows; original packshot."
+  },
+  "export_sha256": {
+    "fr": {
+      "feed": "fb3a7e5883bf7bcf3f19086f221570da4b41aa509db688d1512708f25b8107e5",
+      "story": "c98f9e18c57ec61e849570fc6768a5253b2d10f87ca1a47d951ceb7cb5df5955",
+      "banner": "e48da48782b6bc154f35fef38757c5c1972a287663f1200b5c5c548c24d9578a"
+    },
+    "it": {
+      "feed": "b2e9b0361b3b6a59071bb5cea6b2b268d2d39a49fb488de54f4e55f07c3c65a3",
+      "story": "e285c8768e1182bc5224cc0c7c3d42d833c372c3bcb5bc98880a89890ea2cd1c",
+      "banner": "0f7b7fab4b85dee357ba76a3b569045fed6cf19884cb3ce09a8a6a0a326a8ea5"
+    }
+  },
+  "quality": {
+    "technical_checks": "passed",
+    "visual_review": "passed",
+    "reviewed_at": "2026-10-22",
+    "scope": "18 design-preview PNGs only; not weekly research approval or publication consent.",
+    "observations": "Viewed both languages: feed at 360 px, story at 360 px and banners at 300x250. Original bottle labels and shapes remain intact; product bases meet the shadows. Product-only arrows avoid the labels. Portrait sits in an intentional frame without covering the bottle. Pack shows two different hair products. Logo stays centered; captions/headlines have clear spacing and no clipped accents.",
+    "reviewed_sha256": {
+      "it/story.png": "e285c8768e1182bc5224cc0c7c3d42d833c372c3bcb5bc98880a89890ea2cd1c",
+      "it/banner.png": "0f7b7fab4b85dee357ba76a3b569045fed6cf19884cb3ce09a8a6a0a326a8ea5",
+      "it/feed.png": "b2e9b0361b3b6a59071bb5cea6b2b268d2d39a49fb488de54f4e55f07c3c65a3",
+      "fr/story.png": "c98f9e18c57ec61e849570fc6768a5253b2d10f87ca1a47d951ceb7cb5df5955",
+      "fr/banner.png": "e48da48782b6bc154f35fef38757c5c1972a287663f1200b5c5c548c24d9578a",
+      "fr/feed.png": "fb3a7e5883bf7bcf3f19086f221570da4b41aa509db688d1512708f25b8107e5"
+    }
+  }
+}

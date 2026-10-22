@@ -1,0 +1,238 @@
+{
+  "schema_version": 1,
+  "verified_at": "2026-10-22T00:02:39.759828+00:00",
+  "username": "gb77ita",
+  "post_count": 5,
+  "email_message_count": 10,
+  "posts": [
+    {
+      "slot": 1,
+      "generation_id": "20261021T233430Z-75bcc8a6",
+      "kind": "feed",
+      "permalink": "https://www.instagram.com/p/DexnamSj67H/",
+      "media_id": "18076083011751044",
+      "username": "gb77ita",
+      "timestamp": "2026-10-21T23:43:58+0000",
+      "caption_matches": true,
+      "campaign": "posts/2026-10-22-series/01-claim/ioma-20261021T233430Z-75bcc8a6",
+      "editorial_mode": "claim",
+      "quality": {
+        "technical_checks": "passed",
+        "visual_review": "passed",
+        "publication_status": "published",
+        "reviewed_sha256": {
+          "fr/feed.png": "2c1b662212c5b8aed136c97153c5f14a4f9e391456463a991f3f8be8bcfd6abd",
+          "fr/story.png": "279a50dc8798f68a9a43ba232ef150988b7453c7ce06fce9aea9eabf5e5fc40d",
+          "fr/banner.png": "c586c09c8c031e18037a4a48391fe3436cdc2fba06f0ce6717a41848174f5951",
+          "fr/presentazione.pptx": "7f016bf8eb19944a168ba0d74132645805bf9523df9473e7a5fecccf695d9a20",
+          "fr/email.html": "b020a6b9c2e9903beddced588a8f7b4194b7953801337414c1d609d6a5da5995",
+          "fr/email.eml": "d5e0be0e696e2b00a8f897ef93a2872ac0f2f07c82d7fd3556d5351ff4a3b8b0",
+          "fr/email-logo.png": "aa3a56e843be2f5a52b8862d35a4284f6192294fe3664694c8f54450947ddd1f",
+          "it/feed.png": "6d895f4fedbf4fe7fcc736ae55b9597995db433e28bc6919322c469a02fc6523",
+          "it/story.png": "79c30b3c9ea6598979195511b4e80c0578dcb0596b6297fbf9846045919fa97a",
+          "it/banner.png": "68aa3200585e583ebaeab9f4de9d1046f99f5ae8ed10709d9553d0d3cea303b0",
+          "it/presentazione.pptx": "13fe79912de8273cd02a22d2aa18355d4d9a79cf69ef5d6c5f77f734290efa2f",
+          "it/email.html": "1a2e63afb825186117cbf291e00d600838f202c75db7c5f485d5d58ab8acc3f1",
+          "it/email.eml": "bdc5ec71b74e50d7d4be37f782de337fe511333f365f3997da1d94bea0774155",
+          "it/email-logo.png": "aa3a56e843be2f5a52b8862d35a4284f6192294fe3664694c8f54450947ddd1f"
+        },
+        "reviewed_at": "2026-10-21T23:44:49.809258+00:00",
+        "review_notes": "Reviewed six graphics and eight deck slides. Original product labels, no overlay logo, correct language and spacing. Final emails reopened on desktop and phone after publication: header logo without subtitle, unchanged hero, visible actual Instagram permalink below CTA, no collisions. MIME preserves original feed and logo."
+      },
+      "email_delivery": {
+        "languages": [
+          "fr",
+          "it"
+        ],
+        "status": "sent_and_verified",
+        "authorized_recipient_count": 2,
+        "cc_count": 0,
+        "bcc_count": 0
+      }
+    },
+    {
+      "slot": 2,
+      "generation_id": "20261021T233625Z-a9b61c2c",
+      "kind": "reel",
+      "permalink": "https://www.instagram.com/reel/Dexn1BOFweM/",
+      "media_id": "18114645647586675",
+      "username": "gb77ita",
+      "timestamp": "2026-10-21T23:47:50+0000",
+      "caption_matches": true,
+      "campaign": "posts/2026-10-22-series/02-ingredients/ioma-20261021T233625Z-a9b61c2c",
+      "editorial_mode": "inspiration",
+      "quality": {
+        "technical_checks": "passed",
+        "visual_review": "passed",
+        "publication_status": "published",
+        "reviewed_sha256": {
+          "fr/feed.png": "31dc9a9da92a5293467a7ae15d3326411184211f152028cf734ab2523b8addc5",
+          "fr/story.png": "d005f92c6ad13adcbd92e29ee430ce5a53bb3b82667e5eb88dfb7d7780a433b6",
+          "fr/banner.png": "64a68f734f667981d426bc64bfabe53add4d467492687f39f874a43732481d0f",
+          "fr/presentazione.pptx": "ffb5a9629c31a056e8fd1b57c1284467ed398cdb7c16725af0b934e5be4d2654",
+          "fr/email.html": "e398bf0aa0e01bac681d71b665b94608907ade5debb09d4b75bb720508f97934",
+          "fr/email.eml": "5d67e74c1d86ff5333640b8c0110cf8d457147368d77bc842294da6b04cf8a3b",
+          "fr/email-logo.png": "aa3a56e843be2f5a52b8862d35a4284f6192294fe3664694c8f54450947ddd1f",
+          "fr/reel.mp4": "79635997e06e91f03fe402d668ac38f31b46ad364acacae875bf5130dc096082",
+          "it/feed.png": "d745808e1b04c5e558d191e10741041d114731cbf6447886c89275fe543f2611",
+          "it/story.png": "1b128bc3e350795bfd31a2d77ad572087add66673a8f469198bbb94facbd9940",
+          "it/banner.png": "87f476c4a3b2171be06b283f0c54186b8fa2ab106dd9c0cf0ebd467959ba65b9",
+          "it/presentazione.pptx": "1e779a2ba5e795ef45b4adb2ec77c943d6f25023020d8d67773f2ce153564a39",
+          "it/email.html": "3bccc9b703413745da8078ecd7d17ae85eaf267a06124266f20104e7f4fcabca",
+          "it/email.eml": "b10235f19b2597deef7da97f78f37f1fe7a97c90777818dc07f968b33df36330",
+          "it/email-logo.png": "aa3a56e843be2f5a52b8862d35a4284f6192294fe3664694c8f54450947ddd1f",
+          "it/reel.mp4": "2e4701ce8e4b502d6a1e1f5fb14abf200b5fa2149ddd3e256c87821399eb38a7"
+        },
+        "reviewed_at": "2026-10-21T23:49:09.760031+00:00",
+        "review_notes": "Opened six graphics, eight slides and six frames from each actual MP4: smooth moving pattern behind unchanged product, protected lettering, no efficacy claim or overlay logo. Final email desktop/phone views checked after publication: actual Reel link below CTA, no subtitle, no clipping; original PNG and MP4 retained."
+      },
+      "email_delivery": {
+        "languages": [
+          "fr",
+          "it"
+        ],
+        "status": "sent_and_verified",
+        "authorized_recipient_count": 2,
+        "cc_count": 0,
+        "bcc_count": 0
+      }
+    },
+    {
+      "slot": 3,
+      "generation_id": "20261021T233652Z-b5a0af50",
+      "kind": "feed",
+      "permalink": "https://www.instagram.com/p/DexoJjzD4aX/",
+      "media_id": "18098225093207010",
+      "username": "gb77ita",
+      "timestamp": "2026-10-21T23:50:22+0000",
+      "caption_matches": true,
+      "campaign": "posts/2026-10-22-series/03-review-eye/ioma-20261021T233652Z-b5a0af50",
+      "editorial_mode": "review",
+      "quality": {
+        "technical_checks": "passed",
+        "visual_review": "passed",
+        "publication_status": "published",
+        "reviewed_sha256": {
+          "fr/feed.png": "a82715a02f997b635f671dcdfbbc8de48f57c07c13a7a27bd3ca3a672511172e",
+          "fr/story.png": "aa2ea5212fc6cc41ea10fa5d1464c3fd8127f3e9a76ac32ddef5b3c759107653",
+          "fr/banner.png": "05fdfcc159451c0455247784ef9978c54dc422bc3feae23084021a703f1d141e",
+          "fr/presentazione.pptx": "6e74c30f8552ccccf2ce2a00d0fff9e6f885fbb519555916ed69eefaed7d76e2",
+          "fr/email.html": "c311cdf11969c3c4cdb2e95a76ec2e300d42ff00270fb4c8624d812ed697e121",
+          "fr/email.eml": "a341bce40ec74edc658bc56f77d6923a461670c96d6a4c78cbabe9dc07208884",
+          "fr/email-logo.png": "aa3a56e843be2f5a52b8862d35a4284f6192294fe3664694c8f54450947ddd1f",
+          "it/feed.png": "bdefcd35144679a5f00f8667b7082ef1714634e7cea0c1e7e461270391fa8793",
+          "it/story.png": "38052cfc4f197720c2b94eb206a20d2aff85d83aaeac4ba2e8de5116de4e5fb3",
+          "it/banner.png": "19567bc53d62d0e592f6356ba986939a07bf662459334359034bc360ee562b1d",
+          "it/presentazione.pptx": "1be8eb119038762e24b40b894af809cdc533b86e59a1d64bc6a60b82b880b1b9",
+          "it/email.html": "b8ad56064c36c38e38f1d199b72186ffbe76fd553ba5dc33852e27c7680e55ee",
+          "it/email.eml": "41fe8651acb7d5e1e37243a31d57755728e2d8e596bcefa774c519371c6c8384",
+          "it/email-logo.png": "aa3a56e843be2f5a52b8862d35a4284f6192294fe3664694c8f54450947ddd1f"
+        },
+        "reviewed_at": "2026-10-21T23:52:25.455514+00:00",
+        "review_notes": "Reviewed six graphics and eight slides, faithful 5/5 customer quote with source/date and editorial comment. No separate logo in imagery. Final French and Italian email desktop/phone screenshots show the actual published Instagram link below CTA, header logo alone and readable wrapping. Original hero and product label preserved."
+      },
+      "email_delivery": {
+        "languages": [
+          "fr",
+          "it"
+        ],
+        "status": "sent_and_verified",
+        "authorized_recipient_count": 2,
+        "cc_count": 0,
+        "bcc_count": 0
+      }
+    },
+    {
+      "slot": 4,
+      "generation_id": "20261021T233712Z-9041ea3e",
+      "kind": "reel",
+      "permalink": "https://www.instagram.com/reel/DexosCVjF84/",
+      "media_id": "18090834758297881",
+      "username": "gb77ita",
+      "timestamp": "2026-10-21T23:55:22+0000",
+      "caption_matches": true,
+      "campaign": "posts/2026-10-22-series/04-skin/ioma-20261021T233712Z-9041ea3e",
+      "editorial_mode": "inspiration",
+      "quality": {
+        "technical_checks": "passed",
+        "visual_review": "passed",
+        "publication_status": "published",
+        "reviewed_sha256": {
+          "fr/feed.png": "57d8b756e925e39bc41af7de6b2c0c501f6c01d42f19a1c062d4f90de958501b",
+          "fr/story.png": "6dd76deec055931fdc62079aa865e49bf9e7ef904f49a2236730140d7c13ab5e",
+          "fr/banner.png": "fee80eb0b485c1b2f6208fa08ca7c8d94bcd2133ff10ee549644804e80cd7416",
+          "fr/presentazione.pptx": "26cb32f638cc8e599af4e890df52d7bbd9a8f9fa93949f9284dc4ffa860e9032",
+          "fr/email.html": "195cff04f291e9f4331e8f34f6e7d8efa7f540ddcfa3a82dac178efce79db2c4",
+          "fr/email.eml": "0506406de97b91fae9b52ffef93d0122bc46e67a18150eb1a341684ed41a6113",
+          "fr/email-logo.png": "aa3a56e843be2f5a52b8862d35a4284f6192294fe3664694c8f54450947ddd1f",
+          "fr/reel.mp4": "0eb90d8b1f0851681a651a969d10d2ae3314022ac95a18eec0df5820df27c4c4",
+          "it/feed.png": "bd02d1c11c617f44852dc78c19d07acc1310bb7e7e6e692fe3cf119f3dd9c5c2",
+          "it/story.png": "8d24ca2386234d66e0265a1dd9369bc51ae03dd8d901b7c01146fab3f0fd0c03",
+          "it/banner.png": "da18ec00bd082015e3ed66e65d46859d89a6d097fbc5d24aec995cc8a694a4ae",
+          "it/presentazione.pptx": "2bbc93b22f6d9297b7ae3222d493079e24ba3eab1830351996ef61cd2d86f045",
+          "it/email.html": "9b777e360ffb9121c81f5e27e26d6acb08f3986907d4e857aa3249637feaaaa8",
+          "it/email.eml": "e2d0db9ff67856378af58c91ac727e6553d64cc471a846ef07e0c5224860af0a",
+          "it/email-logo.png": "aa3a56e843be2f5a52b8862d35a4284f6192294fe3664694c8f54450947ddd1f",
+          "it/reel.mp4": "5e69ad6750b035643718edba8fc869bbd5723a71498bea4673482b2a9c2b0b68"
+        },
+        "reviewed_at": "2026-10-21T23:57:26.213772+00:00",
+        "review_notes": "Reviewed six final graphics, eight slides and six frames of each MP4 after removing SEO subtitle. Pattern moves behind fixed original product; skin inspiration uses no efficacy promise and no added logo. Final FR/IT emails reopened on desktop and phone after publication: actual Reel permalink visible below CTA, header logo without expertise subtitle, unchanged hero and readable wrapping."
+      },
+      "email_delivery": {
+        "languages": [
+          "fr",
+          "it"
+        ],
+        "status": "sent_and_verified",
+        "authorized_recipient_count": 2,
+        "cc_count": 0,
+        "bcc_count": 0
+      }
+    },
+    {
+      "slot": 5,
+      "generation_id": "20261021T233736Z-0d9fd64a",
+      "kind": "feed",
+      "permalink": "https://www.instagram.com/p/DexpCXcGRV2/",
+      "media_id": "17892111939617539",
+      "username": "gb77ita",
+      "timestamp": "2026-10-21T23:58:08+0000",
+      "caption_matches": true,
+      "campaign": "posts/2026-10-22-series/05-review-sublime/ioma-20261021T233736Z-0d9fd64a",
+      "editorial_mode": "review",
+      "quality": {
+        "technical_checks": "passed",
+        "visual_review": "passed",
+        "publication_status": "published",
+        "reviewed_sha256": {
+          "fr/feed.png": "a1c80a779008c13e7334c632645480bcc12f9ecca65c33dacbcc5de0d4f4c106",
+          "fr/story.png": "b00cb10937c854677d225e94b609b45f67e7c6bcc88b589abc6996d54635c131",
+          "fr/banner.png": "a3aa0ddea97cba3a64fbc3d74a23e638182d191b86410d60ea5b1afb89f30295",
+          "fr/presentazione.pptx": "47b9bd620661474c3e421a8bb26a869cdd20c4330a0290e1452e764033cc501d",
+          "fr/email.html": "5ee073bc9c688c5d0f38946ff94121c4c8913248c44981a80e138c5da494b889",
+          "fr/email.eml": "5289f50a7aa7d5d86068a070859e4f49ac583aef203cb02ee93ee50e07250827",
+          "fr/email-logo.png": "aa3a56e843be2f5a52b8862d35a4284f6192294fe3664694c8f54450947ddd1f",
+          "it/feed.png": "d43e3995dcdd4f0c7fdf8583c8c8664684f4990c43b081364426caa2cdef7f4d",
+          "it/story.png": "f29fc83bc80b88e742dcbbdf8c4f9a6f92a330748d1d25b8bc97c47ca9d3f337",
+          "it/banner.png": "fc4cd239e9eabf4b19535ce56e06a2c9e757925324deae016beee9b90ab43694",
+          "it/presentazione.pptx": "0439eedb1844555af0947460ce5dfa6cd34c79e8f378c9212e87812935940a4d",
+          "it/email.html": "c4d81cba264e5c305d85c76dd25303d9c706dde0a7c631bb5239a4b077ce03ac",
+          "it/email.eml": "d448368e4397971d9424f1bf65480e49b7b765d9aea09ef38308d0a84fdf1e80",
+          "it/email-logo.png": "aa3a56e843be2f5a52b8862d35a4284f6192294fe3664694c8f54450947ddd1f"
+        },
+        "reviewed_at": "2026-10-21T23:59:49.685805+00:00",
+        "review_notes": "Opened all six final graphics, eight slide renders and FR/IT email desktop/phone views. Source quote Texture très agréable and 5/5 are faithful to retrieved review; source/date and editorial comment separate. Canonical product name, no added image logo. Final emails show the confirmed Instagram permalink, header logo alone and clean wrapping; source PNG and presentation bytes unchanged."
+      },
+      "email_delivery": {
+        "languages": [
+          "fr",
+          "it"
+        ],
+        "status": "sent_and_verified",
+        "authorized_recipient_count": 2,
+        "cc_count": 0,
+        "bcc_count": 0
+      }
+    }
+  ]
+}

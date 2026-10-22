@@ -45,6 +45,8 @@ class CampaignBrief:
             'source_ids': [s['id'] for s in self.weekly['sources']],
             'ingredient_ids': [i['id'] for i in self.ingredients],
             'scene_id': self.creative['scene']['id'],
+            'content_mode': self.creative.get('content_mode', 'product'),
+            'design': self.creative['scene'].get('design'),
             'headlines': {lang: copy['headline']
                           for lang, copy in self.creative['copies'].items()},
             'keyword_analysis': {
