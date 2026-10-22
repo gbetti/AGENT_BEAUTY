@@ -130,11 +130,12 @@ class AgentTests(unittest.TestCase):
             self.assertEqual(trends.call_count,2)
             self.assertNotEqual(first,second)
             for d in args.output.iterdir():
-                self.assertEqual({p.name for p in d.iterdir()},{'fr','it'})
+                self.assertEqual({p.name for p in d.iterdir()},{'fr','it','delivery.json'})
                 self.assertEqual({str(p.relative_to(d)) for p in d.rglob('*') if p.is_file()},
                                  {lang+'/'+kind+'.png' for lang in LANGUAGES for kind in FORMATS} |
                                  {lang+'/'+name for lang in LANGUAGES
-                                  for name in ('presentazione.pptx','email.html','email.eml','email-logo.png')})
+                                  for name in ('presentazione.pptx','email.html','email.eml','email-logo.png','caption.txt')} |
+                                 {'delivery.json'})
                 for lang in LANGUAGES:
                     deck=Presentation(d/lang/'presentazione.pptx')
                     self.assertEqual(len(deck.slides),4)
@@ -155,6 +156,10 @@ class AgentTests(unittest.TestCase):
                 self.assertEqual(set(report['localizations']),{'fr','it'})
                 self.assertEqual(report['quality']['visual_review'],'pending')
                 self.assertEqual(report['quality']['publication_status'],'not_published')
+                self.assertEqual(report['delivery']['status'], 'pending_email')
+                self.assertEqual(report['delivery']['email']['to'], 'gb77ita@gmail.com')
+                self.assertFalse(report['delivery']['email']['sent'])
+                self.assertEqual(report['delivery']['required_outputs'], ['post', 'email', 'story'])
                 self.assertEqual([s['agent'] for s in report['agent_pipeline']['stages']],
                                  ['trends','keywords','assets'])
                 self.assertTrue(all(s['status']=='completed' for s in report['agent_pipeline']['stages']))

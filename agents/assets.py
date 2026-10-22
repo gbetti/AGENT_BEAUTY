@@ -8,6 +8,7 @@ import sqlite3
 from agents.contracts import CampaignBrief
 from agents.trends import QUERY
 from creative import recent_campaigns
+from delivery import create_manifest
 from editorial import LANGUAGES, campaign_plan
 from newsletter import create_email
 from radar_presentation import create_presentation
@@ -68,6 +69,7 @@ def export_campaign(args, now, product, theme, claim, matched, scores, news,
             locale_working = working/language
             locale_working.mkdir()
             graphics = render_campaign(product, copy, locale_working, creative['scene'])
+            (locale_working/'caption.txt').write_text(copy['caption'].strip()+'\n', encoding='utf-8')
             localized_reports[language] = {
                 **copy,
                 'graphics': {kind: {**{k: v for k, v in info.items() if k != 'path'},
@@ -106,6 +108,7 @@ def export_campaign(args, now, product, theme, claim, matched, scores, news,
                 key: str((directory/language/value.name).resolve()) if isinstance(value,Path) else value
                 for key,value in newsletter.items()}
         # Mark successful rendering before storing the same pipeline trace atomically.
+        report['delivery'] = create_manifest(working, generation_id)
         if pipeline is not None:
             pipeline['stages'][-1].update(status='completed',
                 finished_at=datetime.now(timezone.utc).isoformat())
@@ -128,6 +131,10 @@ def export_campaign(args, now, product, theme, claim, matched, scores, news,
         result[language]['presentation'] = directory/language/'presentazione.pptx'
         result[language]['email'] = directory/language/'email.html'
         result[language]['email_draft'] = directory/language/'email.eml'
+        result[language]['caption'] = directory/language/'caption.txt'
         for path in result[language].values():
             print(path.resolve())
+    print((directory/'delivery.json').resolve())
+    print('Post + story + email creati. Invio Gmail a '
+          + report['delivery']['email']['to'] + ' in attesa: la consegna non è ancora completa.')
     return result
