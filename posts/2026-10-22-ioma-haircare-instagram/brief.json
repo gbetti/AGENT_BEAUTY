@@ -1,0 +1,61 @@
+{
+  "created_at": "2026-10-22T12:17:05.193152+00:00",
+  "scope": "single_instagram_post",
+  "product_id": "ioma-haircare-soins-reparateurs-cheveux",
+  "languages": [
+    "it",
+    "fr"
+  ],
+  "format": {
+    "width": 1080,
+    "height": 1350
+  },
+  "official_source": "https://ioma-paris.com/products/soins-reparateurs-cheveux",
+  "source_reviewed_at": "2026-10-22T12:17:05.193152+00:00",
+  "concept": "Skincare attention applied to haircare",
+  "claims": {
+    "shampoo": "Hydrates and helps reduce breakage",
+    "conditioner": "Repairs, softens and makes styling easier",
+    "serum": "Hydrates and tames frizz"
+  },
+  "ingredient_callouts": [
+    {
+      "label_it": "Olio di girasole",
+      "label_fr": "Huile de tournesol",
+      "product": "REVITALIZE shampoo",
+      "inci": "HELIANTHUS ANNUUS (SUNFLOWER) SEED OIL"
+    },
+    {
+      "label_it": "Acido ialuronico",
+      "label_fr": "Acide hyaluronique",
+      "product": "HYDRA serum",
+      "inci": "SODIUM HYALURONATE"
+    }
+  ],
+  "pipeline": {
+    "mode": "bespoke_instagram_post",
+    "full_campaign_pipeline_executed": false,
+    "google_trends_executed": false
+  },
+  "quality": {
+    "reviewed_at": "2026-10-22T12:17:05.193152+00:00",
+    "sha256": {
+      "README.md": "278295ba6bc1abb1e9e0d68a93501f3dbb492ce39d828f0216a39693003c6634",
+      "it/feed.png": "80a2d6e4cb5de5dadaaa9d7be03cd35ac265a91dbe7d0c8f2b7b1f4ec534fcf0",
+      "it/caption.txt": "549d47a3fb96b6448e7a3a5ffdc32c4a139c587601c983542ebee20926f4ab6e",
+      "fr/feed.png": "572df4dac768b1a47581e19ff61b4e6bce9256c9b3ee84425c765bfb7cc6d220",
+      "fr/caption.txt": "51d4451b2111a0ce2b8cdb28a53d4e120af2b9241bf7608fdfd4e8e84eab2190"
+    },
+    "reviewed_full_size": true,
+    "reviewed_at_mobile_width": 360,
+    "observations": [
+      "Italian and French headlines and callouts readable at 360 px width.",
+      "Three bottles fully visible with consistent proportions, floor contact and soft shadows.",
+      "Top-centered logo and two arrows; callouts point to shampoo and serum respectively.",
+      "No clipping, text collision, promotional offers or numeric efficacy promises.",
+      "Packaging was generated with official image references; pixel identity with the source photograph is not certified."
+    ],
+    "pixel_identical_packshot": false
+  },
+  "social_published": false
+}
