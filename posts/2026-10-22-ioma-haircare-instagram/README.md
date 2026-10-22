@@ -22,4 +22,4 @@ La consegna iniziale del post è stata completata con story ed email nelle due l
 Versione italiana pubblicata su Instagram il 22 ottobre 2026 alle 14:42 (Europe/Paris), account **@gb77ita**: [apri il post](https://www.instagram.com/p/DezAhSKHazI/). Caption e pubblicazione verificate tramite API. La versione francese resta disponibile come asset da scaricare.
 
 
-Email italiana: invio Gmail a gb77ita@gmail.com previsto dal flusso autorizzato. Lo stato effettivo è registrato in `delivery.json`. Story create e verificate, non pubblicate sui social.
+Email italiana inviata tramite Gmail a **gb77ita@gmail.com** il 22 ottobre 2026 alle 15:14 (Europe/Paris), con conferma `SENT`. Lo stato e la ricevuta sono registrati in `delivery.json`. Story create e verificate, non pubblicate sui social.

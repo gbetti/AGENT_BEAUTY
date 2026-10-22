@@ -7,7 +7,7 @@
     "email",
     "story"
   ],
-  "status": "pending_email",
+  "status": "complete",
   "files": {
     "fr/feed.png": "572df4dac768b1a47581e19ff61b4e6bce9256c9b3ee84425c765bfb7cc6d220",
     "fr/caption.txt": "51d4451b2111a0ce2b8cdb28a53d4e120af2b9241bf7608fdfd4e8e84eab2190",
@@ -27,7 +27,13 @@
     "to": "gb77ita@gmail.com",
     "language": "it",
     "required": true,
-    "status": "pending",
-    "sent": false
+    "status": "sent",
+    "sent": true,
+    "assets_url": "https://raw.githubusercontent.com/gbetti/AGENT_BEAUTY/76de86c6acba7170c50c6d56effa0284ae33c20b/posts/2026-10-22-ioma-haircare-instagram",
+    "request_sha256": "8a61f85e027b724b0b8ce148c551f0d766296824b003f17bd35e7e23e56fe1ac",
+    "attempt_started_at": "2026-10-22T13:14:43.667440+00:00",
+    "message_id": "1a163c006a47c7ca",
+    "thread_id": "1a163c006a47c7ca",
+    "sent_at": "2026-10-22T13:15:11.224343+00:00"
   }
 }
