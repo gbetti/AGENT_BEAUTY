@@ -33,7 +33,8 @@ PowerPoint and coordinated email per language. The email outputs are
 - Never overlay an IOMA logo on social graphics or the email hero. Preserve the original packaging label and its printed brand unchanged.
 - Use deliberate editorial typography and native layouts per format.
 - No large button in feed/story; their call to action belongs in the caption.
-- New campaigns rotate `product` → `model` → `pack` with `--creative-mode auto`.
+- Claim campaigns rotate `product` → `model` → `pack` with `--creative-mode auto`.
+  Inspiration and review use the original product image without consuming that rotation.
   `art_direction.py` varies palette, architectural motif and lighting field;
   compare the actual background hash against the full campaign history and do
   not reuse it. Save seed, palette, motif, assets and mode in the creative brief.
