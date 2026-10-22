@@ -1,11 +1,11 @@
 # IOMA Haircare — Instagram, 22 ottobre 2026
 
-Post feed in italiano e francese dedicato al trio REVITALIZE, RENEW e HYDRA. Formato PNG 1080 × 1350, rapporto 4:5; caption separate pronte da copiare.
+Post, story ed email coordinata in italiano e francese dedicati al trio REVITALIZE, RENEW e HYDRA. Feed PNG 1080 × 1350, story PNG 1080 × 1920 e caption separate. L’email riutilizza il PNG originale del feed.
 
-| Lingua | Grafica | Caption |
-| --- | --- | --- |
-| Italiano | [Feed](it/feed.png) | [Caption](it/caption.txt) |
-| Français | [Feed](fr/feed.png) | [Caption](fr/caption.txt) |
+| Lingua | Post | Story | Email |
+| --- | --- | --- | --- |
+| Italiano | [Feed](it/feed.png) · [Caption](it/caption.txt) | [Story](it/story.png) | [HTML](it/email.html) · [EML](it/email.eml) |
+| Français | [Feed](fr/feed.png) · [Caption](fr/caption.txt) | [Story](fr/story.png) | [HTML](fr/email.html) · [EML](fr/email.eml) |
 
 ## Messaggio e fonti
 
@@ -17,6 +17,9 @@ Riferimenti visivi: [packshot ufficiale del trio](https://ioma-paris.com/cdn/sho
 
 ## Perimetro
 
-Richiesta specifica: un post Instagram. Questa consegna comprende il feed e la caption nelle due lingue del progetto. Non è un'esecuzione della pipeline di campagna completa, né una ricerca Google Trends; non attribuisce al tema dati di popolarità o crescita. Il brief prodotto è stato verificato per questa richiesta.
+La consegna iniziale del post è stata completata con story ed email nelle due lingue, applicando la nuova regola post + email + story. Non è un'esecuzione della pipeline di campagna completa, né una ricerca Google Trends; non attribuisce al tema dati di popolarità o crescita. Il brief prodotto è stato verificato per questa richiesta.
 
 Versione italiana pubblicata su Instagram il 22 ottobre 2026 alle 14:42 (Europe/Paris), account **@gb77ita**: [apri il post](https://www.instagram.com/p/DezAhSKHazI/). Caption e pubblicazione verificate tramite API. La versione francese resta disponibile come asset da scaricare.
+
+
+Email italiana: invio Gmail a gb77ita@gmail.com previsto dal flusso autorizzato. Lo stato effettivo è registrato in `delivery.json`. Story create e verificate, non pubblicate sui social.

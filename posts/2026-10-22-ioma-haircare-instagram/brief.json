@@ -1,6 +1,6 @@
 {
   "created_at": "2026-10-22T12:17:05.193152+00:00",
-  "scope": "single_instagram_post",
+  "scope": "post_email_story",
   "product_id": "ioma-haircare-soins-reparateurs-cheveux",
   "languages": [
     "it",
@@ -55,7 +55,32 @@
       "No clipping, text collision, promotional offers or numeric efficacy promises.",
       "Packaging was generated with official image references; pixel identity with the source photograph is not certified."
     ],
-    "pixel_identical_packshot": false
+    "pixel_identical_packshot": false,
+    "completion_review": {
+      "reviewed_at": "2026-10-22T13:13:30.202529+00:00",
+      "sha256": {
+        "it/feed.png": "80a2d6e4cb5de5dadaaa9d7be03cd35ac265a91dbe7d0c8f2b7b1f4ec534fcf0",
+        "it/caption.txt": "549d47a3fb96b6448e7a3a5ffdc32c4a139c587601c983542ebee20926f4ab6e",
+        "it/email.html": "710c19ed30ab733362603420c998b554ada03935b24e54e17b767c13f7e843f0",
+        "it/email-logo.png": "aa3a56e843be2f5a52b8862d35a4284f6192294fe3664694c8f54450947ddd1f",
+        "it/feed-instagram.jpg": "0beac082db5cf701cad8eb05d0ddaa90b1591226bac0937fbd3cd6b3b41810e4",
+        "it/story.png": "f1bfc4f3a53fde8b4770e87025f9b5366268e5b62bcb7ef43bda1fedc725c4e6",
+        "it/email.eml": "3bb096c2b1cf2f7c257f06a96d572552f513bf3c00c875b0d32ca3a2d197b2db",
+        "fr/feed.png": "572df4dac768b1a47581e19ff61b4e6bce9256c9b3ee84425c765bfb7cc6d220",
+        "fr/caption.txt": "51d4451b2111a0ce2b8cdb28a53d4e120af2b9241bf7608fdfd4e8e84eab2190",
+        "fr/email.html": "17c73e1023381dd73000f8caa7768d4184c9bdb0af714876110a8234b96d4a00",
+        "fr/email-logo.png": "aa3a56e843be2f5a52b8862d35a4284f6192294fe3664694c8f54450947ddd1f",
+        "fr/story.png": "9ffbc3ed0bc31d20ea5cbaf8f487622ef362541c3e685696fd88e9f93ec53635",
+        "fr/email.eml": "1915e84811ee9b8d8338bd0d4c27ad51e93dc8e9d53ba12ba48d3dce50396f6b"
+      },
+      "observations": [
+        "Both native 1080x1920 stories inspected at 360x640; headlines, two ingredient callouts and footer visible without collisions.",
+        "Italian and French email HTML inspected at desktop 900px and phone 390px; original feed and logo load correctly, text wraps naturally and CTA remains legible.",
+        "Italian commercial copy 51 words; French 54 words.",
+        "Both MIME files embed the exact original feed PNG and logo bytes.",
+        "Italian preview to be sent through authenticated Gmail; existing Instagram feed is not reposted."
+      ]
+    }
   },
   "social_published": true,
   "publication": {
@@ -68,5 +93,74 @@
     "verified_at": "2026-10-22T12:43:11.088292+00:00",
     "caption_verified": true,
     "image_sha256": "0beac082db5cf701cad8eb05d0ddaa90b1591226bac0937fbd3cd6b3b41810e4"
+  },
+  "delivery": {
+    "schema_version": 1,
+    "generation_id": "instagram-haircare-2026-10-22T12:17:05.193152+00:00",
+    "created_at": "2026-10-22T13:08:21.293649+00:00",
+    "required_outputs": [
+      "post",
+      "email",
+      "story"
+    ],
+    "status": "pending_email",
+    "files": {
+      "fr/feed.png": "572df4dac768b1a47581e19ff61b4e6bce9256c9b3ee84425c765bfb7cc6d220",
+      "fr/caption.txt": "51d4451b2111a0ce2b8cdb28a53d4e120af2b9241bf7608fdfd4e8e84eab2190",
+      "fr/story.png": "9ffbc3ed0bc31d20ea5cbaf8f487622ef362541c3e685696fd88e9f93ec53635",
+      "fr/email.html": "17c73e1023381dd73000f8caa7768d4184c9bdb0af714876110a8234b96d4a00",
+      "fr/email.eml": "1915e84811ee9b8d8338bd0d4c27ad51e93dc8e9d53ba12ba48d3dce50396f6b",
+      "fr/email-logo.png": "aa3a56e843be2f5a52b8862d35a4284f6192294fe3664694c8f54450947ddd1f",
+      "it/feed.png": "80a2d6e4cb5de5dadaaa9d7be03cd35ac265a91dbe7d0c8f2b7b1f4ec534fcf0",
+      "it/caption.txt": "549d47a3fb96b6448e7a3a5ffdc32c4a139c587601c983542ebee20926f4ab6e",
+      "it/story.png": "f1bfc4f3a53fde8b4770e87025f9b5366268e5b62bcb7ef43bda1fedc725c4e6",
+      "it/email.html": "710c19ed30ab733362603420c998b554ada03935b24e54e17b767c13f7e843f0",
+      "it/email.eml": "3bb096c2b1cf2f7c257f06a96d572552f513bf3c00c875b0d32ca3a2d197b2db",
+      "it/email-logo.png": "aa3a56e843be2f5a52b8862d35a4284f6192294fe3664694c8f54450947ddd1f"
+    },
+    "email": {
+      "provider": "gmail",
+      "to": "gb77ita@gmail.com",
+      "language": "it",
+      "required": true,
+      "status": "pending",
+      "sent": false
+    }
+  },
+  "localizations": {
+    "it": {
+      "email": {
+        "subject": "La tua skincare ha pensato anche ai capelli?",
+        "preheader": "Tre gesti IOMA Haircare per idratare, riparare e disciplinare.",
+        "title": "La tua skincare. Anche per i capelli.",
+        "lead": "E se dedicassi ai capelli la stessa cura del viso?",
+        "body": "Lo shampoo REVITALIZE idrata e aiuta a contrastare la rottura.\nIl balsamo RENEW ammorbidisce e facilita la pettinatura.\nIl siero HYDRA idrata le lunghezze e disciplina il crespo.",
+        "closing": "Una routine da scoprire se hai capelli secchi, fragili o difficili da gestire.",
+        "cta": "Scopri IOMA Haircare",
+        "language": "it",
+        "campaign_headline": "La tua skincare. Anche per i capelli.",
+        "product_url": "https://ioma-paris.com/products/soins-reparateurs-cheveux?utm_source=beauty_agent&utm_medium=email&utm_campaign=haircare-20261022",
+        "body_word_count": 51,
+        "image_sha256": "80a2d6e4cb5de5dadaaa9d7be03cd35ac265a91dbe7d0c8f2b7b1f4ec534fcf0",
+        "sent": false
+      }
+    },
+    "fr": {
+      "email": {
+        "subject": "Et si vos cheveux avaient leur routine skincare ?",
+        "preheader": "Trois gestes IOMA Haircare pour hydrater, réparer et discipliner.",
+        "title": "Votre skincare. Aussi pour vos cheveux.",
+        "lead": "Et si vos cheveux recevaient autant d’attention que votre visage ?",
+        "body": "Le shampooing REVITALIZE hydrate et aide à limiter la casse.\nL’après-shampooing RENEW adoucit les cheveux et facilite le coiffage.\nLe sérum HYDRA hydrate les longueurs et discipline les frisottis.",
+        "closing": "Une routine à découvrir si vos cheveux sont secs, fragilisés ou difficiles à coiffer.",
+        "cta": "Découvrir IOMA Haircare",
+        "language": "fr",
+        "campaign_headline": "Votre skincare. Aussi pour vos cheveux.",
+        "product_url": "https://ioma-paris.com/products/soins-reparateurs-cheveux?utm_source=beauty_agent&utm_medium=email&utm_campaign=haircare-20261022",
+        "body_word_count": 54,
+        "image_sha256": "572df4dac768b1a47581e19ff61b4e6bce9256c9b3ee84425c765bfb7cc6d220",
+        "sent": false
+      }
+    }
   }
 }

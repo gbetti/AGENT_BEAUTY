@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "generation_id": "instagram-haircare-2026-10-22T12:17:05.193152+00:00",
+  "created_at": "2026-10-22T13:08:21.293649+00:00",
+  "required_outputs": [
+    "post",
+    "email",
+    "story"
+  ],
+  "status": "pending_email",
+  "files": {
+    "fr/feed.png": "572df4dac768b1a47581e19ff61b4e6bce9256c9b3ee84425c765bfb7cc6d220",
+    "fr/caption.txt": "51d4451b2111a0ce2b8cdb28a53d4e120af2b9241bf7608fdfd4e8e84eab2190",
+    "fr/story.png": "9ffbc3ed0bc31d20ea5cbaf8f487622ef362541c3e685696fd88e9f93ec53635",
+    "fr/email.html": "17c73e1023381dd73000f8caa7768d4184c9bdb0af714876110a8234b96d4a00",
+    "fr/email.eml": "1915e84811ee9b8d8338bd0d4c27ad51e93dc8e9d53ba12ba48d3dce50396f6b",
+    "fr/email-logo.png": "aa3a56e843be2f5a52b8862d35a4284f6192294fe3664694c8f54450947ddd1f",
+    "it/feed.png": "80a2d6e4cb5de5dadaaa9d7be03cd35ac265a91dbe7d0c8f2b7b1f4ec534fcf0",
+    "it/caption.txt": "549d47a3fb96b6448e7a3a5ffdc32c4a139c587601c983542ebee20926f4ab6e",
+    "it/story.png": "f1bfc4f3a53fde8b4770e87025f9b5366268e5b62bcb7ef43bda1fedc725c4e6",
+    "it/email.html": "710c19ed30ab733362603420c998b554ada03935b24e54e17b767c13f7e843f0",
+    "it/email.eml": "3bb096c2b1cf2f7c257f06a96d572552f513bf3c00c875b0d32ca3a2d197b2db",
+    "it/email-logo.png": "aa3a56e843be2f5a52b8862d35a4284f6192294fe3664694c8f54450947ddd1f"
+  },
+  "email": {
+    "provider": "gmail",
+    "to": "gb77ita@gmail.com",
+    "language": "it",
+    "required": true,
+    "status": "pending",
+    "sent": false
+  }
+}
