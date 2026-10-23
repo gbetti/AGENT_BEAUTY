@@ -61,16 +61,19 @@ class DeliveryTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'PNG originale'):
             bundle_files(self.campaign)
 
-    def test_prepares_one_italian_email_for_authorized_recipient_without_spoofed_sender(self):
+    def test_prepares_one_french_email_for_authorized_recipient_without_spoofed_sender(self):
         request = self.prepare()
         self.assertEqual(request['to'], 'gb77ita@gmail.com')
         self.assertNotIn('from_address', request)
+        self.assertEqual(self.ledger()['primary_language'], 'fr')
+        self.assertEqual(self.ledger()['email']['language'], 'fr')
+        self.assertEqual(self.ledger()['instagram_story']['language'], 'fr')
         original = BytesParser(policy=policy.default).parsebytes(
-            (self.campaign / 'it/email.eml').read_bytes())
+            (self.campaign / 'fr/email.eml').read_bytes())
         self.assertEqual(request['subject'], str(original['Subject']))
         html = request['payload']['body']['content']
-        self.assertIn('https://cdn.example.com/campaign/it/feed.png', html)
-        self.assertIn('https://cdn.example.com/campaign/it/email-logo.png', html)
+        self.assertIn('https://cdn.example.com/campaign/fr/feed.png', html)
+        self.assertIn('https://cdn.example.com/campaign/fr/email-logo.png', html)
         self.assertNotIn('cid:', html)
         self.assertNotIn('{% unsubscribe_link %}', html)
         self.assertEqual(self.ledger()['status'], 'pending_deliveries')
@@ -119,7 +122,7 @@ class DeliveryTests(unittest.TestCase):
         with sqlite3.connect(self.db) as db:
             db.execute('INSERT INTO generations VALUES(?,?,?,?,?)', (
                 'generation-1', '2026-10-22T14:00:00+00:00', 'product', 'feed.png',
-                json.dumps({'localizations': {'it': {'email': {'sent': False}}}})))
+                json.dumps({'localizations': {'fr': {'email': {'sent': False}}}})))
         receipt = {'id': 'gmail-123', 'thread_id': 'thread-123', 'label_ids': ['SENT']}
         completed = record_sent(self.campaign, receipt, self.db)
         self.assertEqual(completed['status'], 'pending_story')
@@ -127,7 +130,7 @@ class DeliveryTests(unittest.TestCase):
         with sqlite3.connect(self.db) as db:
             report = json.loads(db.execute('SELECT research_json FROM generations WHERE id=?',
                                            ('generation-1',)).fetchone()[0])
-        self.assertTrue(report['localizations']['it']['email']['sent'])
+        self.assertTrue(report['localizations']['fr']['email']['sent'])
         self.assertEqual(report['delivery']['email']['message_id'], 'gmail-123')
         record_sent(self.campaign, receipt, self.db)  # Idempotent receipt persistence.
         with self.assertRaisesRegex(ValueError, 'già tentato'):

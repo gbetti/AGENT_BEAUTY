@@ -1,4 +1,4 @@
-"""Publish one reviewed Italian story per campaign, with durable duplicate guards."""
+"""Publish one reviewed story in the configured primary language per campaign."""
 import argparse
 import json
 import os

@@ -6,10 +6,14 @@ logo centrato in alto, Cormorant Garamond per i titoli e una composizione
 specifica per ciascun formato.
 
 Ogni richiesta creativa include sempre **post + email + story**, anche quando
-si chiede soltanto «un post Instagram». Nel flusso Codex, l’email italiana viene
+si chiede soltanto «un post Instagram». La lingua principale delle creatività
+è sempre **il francese**, anche se la richiesta è scritta in italiano: post,
+caption, story ed email vengono consegnati in francese per impostazione predefinita.
+Le esportazioni italiane rimangono versioni di supporto.
+Nel flusso Codex, l’email francese viene
 inviata tramite **Gmail a gb77ita@gmail.com**: un invio per campagna, con conferma
 registrata. Le due versioni linguistiche rimangono disponibili come file.
-La **story italiana viene pubblicata direttamente su Instagram @gb77ita a ogni
+La **story francese viene pubblicata direttamente su Instagram @gb77ita a ogni
 campagna**, con autorizzazione permanente dell’utente e verifica della pubblicazione.
 
 ## Avvio
@@ -97,7 +101,8 @@ richiedono ancora integrazioni dedicate.
 ## Consegna completa tramite Gmail e Instagram in Codex
 
 `delivery-policy.json` conserva il destinatario autorizzato, il provider Gmail
-e la lingua italiana dell’email da inviare, oltre all’account Instagram della
+e `primary_language: fr`, condivisa dall’email da inviare e dalla story,
+oltre all’account Instagram della
 story obbligatoria. Il generatore rifiuta una campagna
 senza post/caption, story o email; verifica i formati e i byte del feed incorporato.
 Il registro `delivery.json` distingue la creazione degli asset dall’invio reale.
@@ -129,7 +134,7 @@ GitHub e usare la sua URL pubblica con commit immutabile:
 python instagram_story.py export --campaign output/ioma-<id>
 # Dopo il caricamento di it/story-instagram.jpg su GitHub:
 python instagram_story.py publish --campaign output/ioma-<id> \
-  --image-url 'https://raw.githubusercontent.com/gbetti/AGENT_BEAUTY/<commit>/posts/<campagna>/it/story-instagram.jpg' \
+  --image-url 'https://raw.githubusercontent.com/gbetti/AGENT_BEAUTY/<commit>/posts/<campagna>/fr/story-instagram.jpg' \
   --database data/catalog.sqlite
 ```
 
@@ -139,6 +144,10 @@ verifica reale. Un container in elaborazione si riprende con lo stesso comando.
 Se la risposta a una scrittura si perde, il registro blocca nuove scritture:
 riconciliare l’esito su Instagram prima di intervenire. Ripetere il comando dopo
 un successo non ripubblica la story, nemmeno dopo la scadenza delle 24 ore.
+Un cambio della lingua predefinita vale per le nuove consegne: le ricevute delle
+email già inviate restano valide nella lingua originale. Una story ancora da
+pubblicare può passare al francese prima della creazione del container, dopo
+la verifica dell’asset; nessun contenuto già pubblicato viene duplicato.
 
 Il CLI Python **da solo non può chiamare i connettori Codex**: termina con codice
 2 quando gli asset sono pronti ma l’invio resta da completare. Per una richiesta
