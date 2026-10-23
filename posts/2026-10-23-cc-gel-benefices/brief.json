@@ -61,7 +61,8 @@
         "html_unsubscribe": "Klaviyo unsubscribe_link",
         "draft_unsubscribe": "mailto contact@ioma-paris.com",
         "body_word_count": 210,
-        "sent": false
+        "sent": true,
+        "gmail_message_id": "1a16866a2c91737b"
       }
     },
     "it": {
@@ -115,7 +116,49 @@
     }
   },
   "quality": {
-    "visual_review": "pending"
+    "visual_review": "approved",
+    "reviewed_at": "2026-10-23T10:56:42.943523+00:00",
+    "observations": [
+      "All six exports opened; post and story reviewed at approximately 360px wide and banners at 300x250.",
+      "Restock badge and benefit labels readable; exactly two ingredient arrows; no collisions or clipped text.",
+      "French wording uses the user-approved adaptive-complexion claim, without an all-tones promise.",
+      "Native story layout fitted within an ivory frame to retain Instagram safe zones; no image stretching or text cropping.",
+      "Both emails opened at desktop and phone width; ingredient box readable and exact feed/logo bytes verified in MIME.",
+      "All eight presentation slides opened and reviewed; their pixels match the full-slide PNGs embedded in the PPTX."
+    ],
+    "files": {
+      "it/feed.png": "a66a511703101060eb1d47a3eac33cae6c65f1013955b28d6c2886371db22eb4",
+      "it/email-preview-desktop.png": "0221e56da659b5902e05d733bfacac8faa514f999800a9ccd7e3c06a65d1bcf0",
+      "it/presentazione.pptx": "ba9396534cfb6baa8b6e8183e61448b69c2c62f3e4edb32919a0bc5abe4cd162",
+      "it/email.html": "f37b0bb14e13f4e13de75863a229b23d572003e1ab3e6572a6622438aa536914",
+      "it/email-klaviyo.html": "5cee27d56149daf5e10b55df3185f9c5f409737a74f6df9ef65c06c0f500ac3a",
+      "it/email-logo.png": "aa3a56e843be2f5a52b8862d35a4284f6192294fe3664694c8f54450947ddd1f",
+      "it/email-preview-mobile.png": "4172c748faee4d94bf5140092bb2a580884b4dfeb8f0c512497bcd19c1970fc5",
+      "it/story.png": "e5507b36fc196980eaf3fd80711aa98af03ede13177c6d83c287de308100691b",
+      "it/email.eml": "f4cef049a4fbc3346789203a986bdd1f959ff1cf31274950c769bc51bc861789",
+      "it/banner.png": "667ad069e9178fe92be9bf7f8ae432d2d80462c0a7202bf31af18280fc8d649e",
+      "fr/feed.png": "629d85d31f711d9352b21f0b8c6af0a665a16988adb0b913af8a89b84fbddd30",
+      "fr/story-instagram.jpg": "e4047ec23e87bd0539736d5cf756f2a9795dc8b1d33f537adb92466c26d19823",
+      "fr/email-preview-desktop.png": "726bef5845d3580d19c09e92b0ad54cc4b1b2caf14ca0f8019021b66d0af872d",
+      "fr/presentazione.pptx": "40fa2f312a7ba3e0b9a2d88e9754d384c5191eea0532ca689ef3318b5d2ac063",
+      "fr/email.html": "2b1faa5de6097ffb4863f6d7731034b6e98b835e62af5ac1f1ccbe3b70f26422",
+      "fr/email-klaviyo.html": "ece6bbff3ebea0dc43d7511acd4c672054e1a554fe04f53ea61c99627f5cd26f",
+      "fr/email-logo.png": "aa3a56e843be2f5a52b8862d35a4284f6192294fe3664694c8f54450947ddd1f",
+      "fr/email-preview-mobile.png": "8d9e7ca270a205cb6e18d510a74d2c9d45a2dcb5cdc154f30bc0ce1fbf382083",
+      "fr/feed-instagram.jpg": "be6512370325e730a0cffcb0085501e5c540f139368e9f2d4fbe3ee9c4285e7e",
+      "fr/story.png": "b0743b67a56211d59939ea4b7645f6f562b200a34b7418e5a23536f1563e13a3",
+      "fr/email.eml": "8902a0d758238a4f608cf2bd5a92fb1fa95195d55e44b951434712d4f7404f85",
+      "fr/banner.png": "d7b7c3f120de3b0823f39f01ff22d8510a4e49233c06b6b9afacb791b6b7a33c",
+      "it/slides/01.png": "9c1a7046ab7d93f9f4561909912f587e58b10401373279dc4c0936a73bc4441e",
+      "it/slides/02.png": "83b439f47bce9abeb1038bad37ba87010dda24c0dea689f1e0f1eb53020f8f44",
+      "it/slides/03.png": "edea7bd4e73eb4b0843fcbdecdba549014ef9c2b961b31a84dd1abb0e0416e42",
+      "it/slides/04.png": "78d3c1578bfb6d121ade87c74ced6407b00c89036a555e1a96961d8a1a38ac9e",
+      "fr/slides/01.png": "596d5beff97ebe26101b0f651378d9e22961819584db7d0431783039f7e196e5",
+      "fr/slides/02.png": "d1b6df7d2ec9a2e78f54e2d16510effb7de277c74a16546638c8b8fcf3ad2b85",
+      "fr/slides/03.png": "c17709ab89515f49d77360d03e93ccb8844b952df30a160c035d5d87523a6645",
+      "fr/slides/04.png": "a405fd740145a74ba2065abe0bf59498fb56e0e8ab0727a606f6cc808750c244"
+    },
+    "visual_method": "Image generation/editing tool using prior approved CC Gel campaign as reference; technical proportional resizing and ivory framing for export dimensions."
   },
   "google_trends": {
     "it": {
@@ -269,7 +312,7 @@
       "email",
       "story"
     ],
-    "status": "pending_deliveries",
+    "status": "complete",
     "files": {
       "fr/feed.png": "629d85d31f711d9352b21f0b8c6af0a665a16988adb0b913af8a89b84fbddd30",
       "fr/caption.txt": "107ee8f9a32c96f6a0cd4694f9c200ab3f6d412abfce67b5ac358850816a05a4",
@@ -289,8 +332,14 @@
       "to": "gb77ita@gmail.com",
       "language": "fr",
       "required": true,
-      "status": "pending",
-      "sent": false
+      "status": "sent",
+      "sent": true,
+      "assets_url": "https://raw.githubusercontent.com/gbetti/AGENT_BEAUTY/03253ec/posts/2026-10-23-cc-gel-benefices",
+      "request_sha256": "384ca7608f45f7e23305f3cbf0b0efc1d7b8ae73f5550537dd22468affd45081",
+      "attempt_started_at": "2026-10-23T10:55:11.411661+00:00",
+      "message_id": "1a16866a2c91737b",
+      "thread_id": "1a16866a2c91737b",
+      "sent_at": "2026-10-23T10:55:31.329061+00:00"
     },
     "instagram_story": {
       "provider": "instagram",
@@ -298,8 +347,48 @@
       "username": "gb77ita",
       "language": "fr",
       "required": true,
-      "status": "pending",
-      "published": false
+      "status": "published",
+      "published": true,
+      "image_sha256": "e4047ec23e87bd0539736d5cf756f2a9795dc8b1d33f537adb92466c26d19823",
+      "source_sha256": "b0743b67a56211d59939ea4b7645f6f562b200a34b7418e5a23536f1563e13a3",
+      "image_url": "https://raw.githubusercontent.com/gbetti/AGENT_BEAUTY/03253ec/posts/2026-10-23-cc-gel-benefices/fr/story-instagram.jpg",
+      "create_attempted_at": "2026-10-23T10:52:31.920290+00:00",
+      "container_id": "17934925038142015",
+      "publish_attempted_at": "2026-10-23T10:54:29.909000+00:00",
+      "media_id": "18148875124565959",
+      "verified_at": "2026-10-23T10:54:33.573271+00:00",
+      "published_media": {
+        "id": "18148875124565959",
+        "permalink": "https://www.instagram.com/stories/gb77ita/4014223499547856957",
+        "media_type": "IMAGE",
+        "media_product_type": "STORY",
+        "timestamp": "2026-10-23T10:54:30+0000",
+        "username": "gb77ita"
+      },
+      "permalink": "https://www.instagram.com/stories/gb77ita/4014223499547856957",
+      "published_at": "2026-10-23T10:54:30+0000"
     }
+  },
+  "instagram_feed": {
+    "username": "gb77ita",
+    "account_id": "17841464260421573",
+    "language": "fr",
+    "image_url": "https://raw.githubusercontent.com/gbetti/AGENT_BEAUTY/03253ec/posts/2026-10-23-cc-gel-benefices/fr/feed-instagram.jpg",
+    "image_sha256": "be6512370325e730a0cffcb0085501e5c540f139368e9f2d4fbe3ee9c4285e7e",
+    "caption": "CC Gel est de nouveau disponible ✨\n\nVotre teint. En mieux.\n\nLe secret de cette CC crème IOMA ? Des pigments micro-encapsulés qui se libèrent à l’application et s’adaptent à votre carnation, pour un résultat naturel.\n\n🤎 UNIFIE : une couvrance légère pour harmoniser le teint.\n💧 HYDRATE : la glycérine aide à retenir l’eau dans l’épiderme.\n✨ ILLUMINE : un effet bonne mine qui révèle l’éclat du visage.\n\nUne texture gel légère, pour associer soin et maquillage dans un seul geste.\n\nEnvie de retrouver CC Gel ? Écrivez-nous en message privé.\n\n#IOMAParis #CCGel #CCCreme #SoinTeinte #TeintLumineux",
+    "create_attempted_at": "2026-10-23T10:51:39.763938+00:00",
+    "status": "published",
+    "container_id": "17934924876142015",
+    "publish_attempted_at": "2026-10-23T10:51:57.703144+00:00",
+    "media_id": "18117332903118641",
+    "verified_post": {
+      "id": "18117332903118641",
+      "permalink": "https://www.instagram.com/p/De1Yp3PE6VC/",
+      "caption": "CC Gel est de nouveau disponible ✨\n\nVotre teint. En mieux.\n\nLe secret de cette CC crème IOMA ? Des pigments micro-encapsulés qui se libèrent à l’application et s’adaptent à votre carnation, pour un résultat naturel.\n\n🤎 UNIFIE : une couvrance légère pour harmoniser le teint.\n💧 HYDRATE : la glycérine aide à retenir l’eau dans l’épiderme.\n✨ ILLUMINE : un effet bonne mine qui révèle l’éclat du visage.\n\nUne texture gel légère, pour associer soin et maquillage dans un seul geste.\n\nEnvie de retrouver CC Gel ? Écrivez-nous en message privé.\n\n#IOMAParis #CCGel #CCCreme #SoinTeinte #TeintLumineux",
+      "media_type": "IMAGE",
+      "timestamp": "2026-10-23T10:51:58+0000",
+      "username": "gb77ita"
+    },
+    "verified_at": "2026-10-23T10:52:13.005750+00:00"
   }
 }

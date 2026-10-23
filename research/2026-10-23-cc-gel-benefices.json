@@ -1,0 +1,18 @@
+{
+  "reviewed_at": "2026-10-23T10:56:42.943523+00:00",
+  "product_key": "cc-gel",
+  "campaign_directory": "posts/2026-10-23-cc-gel-benefices",
+  "source": "https://ioma-paris.com/products/cc-gel-soin-teinte-eclat-parfait",
+  "complexion_claim": {
+    "approved_by_user": "Usa «si adatta all’incarnato»",
+    "source_conflict": "Official marketing copy uses universal shade; FAQ limits suitability to light/medium complexions. No all-tones promise in this campaign."
+  },
+  "availability": {
+    "user_confirmed": true,
+    "site_update": "previously deferred by user"
+  },
+  "google_trends_period": [
+    "2026-10-16",
+    "2026-10-22"
+  ]
+}

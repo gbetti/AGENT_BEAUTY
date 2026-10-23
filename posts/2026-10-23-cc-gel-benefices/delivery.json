@@ -8,7 +8,7 @@
     "email",
     "story"
   ],
-  "status": "pending_deliveries",
+  "status": "complete",
   "files": {
     "fr/feed.png": "629d85d31f711d9352b21f0b8c6af0a665a16988adb0b913af8a89b84fbddd30",
     "fr/caption.txt": "107ee8f9a32c96f6a0cd4694f9c200ab3f6d412abfce67b5ac358850816a05a4",
@@ -28,8 +28,14 @@
     "to": "gb77ita@gmail.com",
     "language": "fr",
     "required": true,
-    "status": "pending",
-    "sent": false
+    "status": "sent",
+    "sent": true,
+    "assets_url": "https://raw.githubusercontent.com/gbetti/AGENT_BEAUTY/03253ec/posts/2026-10-23-cc-gel-benefices",
+    "request_sha256": "384ca7608f45f7e23305f3cbf0b0efc1d7b8ae73f5550537dd22468affd45081",
+    "attempt_started_at": "2026-10-23T10:55:11.411661+00:00",
+    "message_id": "1a16866a2c91737b",
+    "thread_id": "1a16866a2c91737b",
+    "sent_at": "2026-10-23T10:55:31.329061+00:00"
   },
   "instagram_story": {
     "provider": "instagram",
@@ -37,9 +43,25 @@
     "username": "gb77ita",
     "language": "fr",
     "required": true,
-    "status": "ready",
-    "published": false,
+    "status": "published",
+    "published": true,
     "image_sha256": "e4047ec23e87bd0539736d5cf756f2a9795dc8b1d33f537adb92466c26d19823",
-    "source_sha256": "b0743b67a56211d59939ea4b7645f6f562b200a34b7418e5a23536f1563e13a3"
+    "source_sha256": "b0743b67a56211d59939ea4b7645f6f562b200a34b7418e5a23536f1563e13a3",
+    "image_url": "https://raw.githubusercontent.com/gbetti/AGENT_BEAUTY/03253ec/posts/2026-10-23-cc-gel-benefices/fr/story-instagram.jpg",
+    "create_attempted_at": "2026-10-23T10:52:31.920290+00:00",
+    "container_id": "17934925038142015",
+    "publish_attempted_at": "2026-10-23T10:54:29.909000+00:00",
+    "media_id": "18148875124565959",
+    "verified_at": "2026-10-23T10:54:33.573271+00:00",
+    "published_media": {
+      "id": "18148875124565959",
+      "permalink": "https://www.instagram.com/stories/gb77ita/4014223499547856957",
+      "media_type": "IMAGE",
+      "media_product_type": "STORY",
+      "timestamp": "2026-10-23T10:54:30+0000",
+      "username": "gb77ita"
+    },
+    "permalink": "https://www.instagram.com/stories/gb77ita/4014223499547856957",
+    "published_at": "2026-10-23T10:54:30+0000"
   }
 }
