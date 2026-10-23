@@ -169,13 +169,21 @@ No user confirmation is required to do this review and correction work.
 - Generate the email after the campaign exports in each of the same two languages.
 - Use the campaign feed PNG without regeneration, cropping or recompression.
 - Follow the supplied IOMA email style: centered original logo, large hero,
-  concise product-specific copy and one CTA. Subject max 55 characters,
-  preheader max 100, commercial body max 70 words. Structure the commercial
-  copy as five short statements: curiosity hook, three benefit statements,
-  and a conditional explanation of whom the product suits. Allow natural
-  wrapping on phones; do not force five physical lines on every screen.
-  Curiosity hooks must not
+  extended product-specific copy and one CTA. French remains the primary
+  language. Subject max 55 characters, preheader max 100; write 150–250
+  commercial words including the ingredient section. Open with a curiosity
+  hook, explain the product in two short paragraphs, add the ingredient box,
+  then close with whom the product suits and the CTA. Curiosity hooks must not
   invent reviews, discounts, scarcity, ingredient claims or clinical results.
+- Every email must contain a clearly framed, mobile-readable ingredient box:
+  2–3 verified ingredients or active complexes, each with its name and a plain
+  explanation of its specific benefit. Use only the selected product's official
+  INCI and documented active benefits; never borrow another formula's claims.
+  Maintain the reviewed sources, INCI, quotations and source hashes in
+  `assets/email/ingredient-evidence.json` alongside localized copy in
+  `assets/email/product-copy.json`. Refresh both if the formula changes. Add
+  verified profiles for new products before exporting, with no short fallback.
+  Include the same ingredient explanations in the plain-text MIME alternative.
 - Use documented catalog benefits. Email examples inform style, not claims.
 - Review the HTML at desktop and phone width, and verify the MIME draft
   contains the exact source PNG bytes. Send the French preview through Gmail
@@ -185,6 +193,9 @@ No user confirmation is required to do this review and correction work.
   The standalone MIME draft uses embedded images and defaults to a mailto
   unsubscribe request to the IOMA contact address. The Gmail handoff uses its
   HTML with verified public image URLs and the authenticated sender.
+- A template-maintenance request updates future campaigns. Preview examples
+  may be saved separately, but do not resend an already-delivered campaign or
+  republish its story solely because the email template changed.
 
 ## Delivery
 Use verified accessible GitHub links in this established repository workflow;
