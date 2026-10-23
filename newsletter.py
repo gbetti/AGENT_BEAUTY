@@ -1,4 +1,4 @@
-"""Export a concise IOMA email with the campaign's unmodified feed image."""
+"""Export an IOMA email with documented ingredient benefits and the exact feed."""
 from email import policy
 from email.message import EmailMessage
 from email.utils import format_datetime
@@ -15,6 +15,7 @@ from editorial import BRIEFS
 
 ROOT = Path(__file__).resolve().parent
 COPY_PATH = ROOT / 'assets/email/product-copy.json'
+INGREDIENT_EVIDENCE_PATH = ROOT / 'assets/email/ingredient-evidence.json'
 LOGO_PATH = ROOT / 'assets/brand/ioma-logo.png'
 SENDER = 'IOMA Paris <contact@ioma-paris.com>'
 UNSUBSCRIBE_MAILTO = 'mailto:contact@ioma-paris.com?subject=D%C3%A9sinscription'
@@ -32,6 +33,36 @@ def https_url(value):
             parsed.password or any(ch.isspace() for ch in value)):
         raise ValueError('I link email e la base URL degli asset devono essere HTTPS validi.')
     return value
+
+
+def commercial_text(content):
+    """Shared reading order for the plain-text alternative and word count."""
+    parts = [content[k] for k in ('lead', 'body', 'ingredients_title', 'ingredients_intro')]
+    parts.extend(item['name'] + '\n' + item['benefit'] for item in content['ingredients'])
+    return '\n\n'.join([*parts, content['closing']])
+
+
+def validate_ingredients(content, evidence, product_url):
+    """Require product-specific, reviewed formula evidence before exporting."""
+    ingredients = content.get('ingredients', [])
+    if not isinstance(ingredients, list) or not 2 <= len(ingredients) <= 3:
+        raise ValueError('Il riquadro email richiede 2–3 ingredienti documentati.')
+    if not all(content.get(k, '').strip() for k in ('ingredients_title', 'ingredients_intro')):
+        raise ValueError('Titolo e introduzione del riquadro ingredienti sono obbligatori.')
+    if (not evidence or evidence.get('source_url') != product_url or
+            not evidence.get('reviewed_at') or not evidence.get('inci')):
+        raise ValueError('Fonti ingredienti email mancanti o riferite a un altro prodotto.')
+    ids = set()
+    formula = {token.strip().upper().rstrip('.') for token in evidence['inci'].split(',')}
+    for item in ingredients:
+        item_id = item.get('id')
+        verified = evidence.get('ingredients', {}).get(item_id, {})
+        if (not item_id or item_id in ids or not item.get('name', '').strip() or
+                not item.get('benefit', '').strip() or not verified.get('source_quote') or
+                not verified.get('inci') or
+                not all(token.upper() in formula for token in verified['inci'])):
+            raise ValueError('Ingrediente email non documentato, duplicato o assente dall’INCI.')
+        ids.add(item_id)
 
 
 def campaign_email_copy(product, report, language='fr', history=(), subject=None):
@@ -61,9 +92,11 @@ def campaign_email_copy(product, report, language='fr', history=(), subject=None
         value = content[field]
         if not value.strip() or len(value) > maximum or '\r' in value or '\n' in value:
             raise ValueError(f'{field} email: testo non vuoto, una riga, massimo {maximum} caratteri.')
-    if len(' '.join(content[k] for k in ('lead', 'body', 'closing')).split()) > 70:
-        raise ValueError('Email troppo lunga: massimo 70 parole nel testo commerciale.')
     base = https_url(entry['product_url'])
+    evidence = json.loads(INGREDIENT_EVIDENCE_PATH.read_text(encoding='utf-8')).get(key)
+    validate_ingredients(content, evidence, base)
+    if not 150 <= len(commercial_text(content).split()) <= 250:
+        raise ValueError('Email estesa: usare 150–250 parole, inclusi ingredienti e benefici.')
     parsed = urlsplit(base)
     campaign = report['created_at'].replace(':', '').replace('+', '').replace('.', '')
     query = dict(parse_qsl(parsed.query))
@@ -82,6 +115,11 @@ def email_html(content, image_source, logo_source, width, height, unsubscribe):
     benefits = '\n'.join(
         f'<p style="margin:0 0 12px;font:16px/1.6 Arial,Helvetica,sans-serif;">{e(line)}</p>'
         for line in content['body'].splitlines() if line.strip())
+    ingredient_rows = '\n'.join(
+        f'''<tr><td style="padding:16px 0 0;text-align:left;">
+<h3 style="margin:0 0 5px;font:600 16px/1.4 Arial,Helvetica,sans-serif;color:#191919;">{e(item['name'])}</h3>
+<p style="margin:0;font:16px/1.6 Arial,Helvetica,sans-serif;color:#423D37;">{e(item['benefit'])}</p>
+</td></tr>''' for item in content['ingredients'])
     return f'''<!doctype html>
 <html lang="{e(content['language'])}" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -103,7 +141,13 @@ def email_html(content, image_source, logo_source, width, height, unsubscribe):
 <h1 class="product-title" style="margin:0 0 20px;font:normal 30px/1.2 Georgia,'Times New Roman',serif;color:#191919;">{e(content['title'])}</h1>
 <p style="margin:0 0 12px;font:600 16px/1.6 Arial,Helvetica,sans-serif;">{e(content['lead'])}</p>
 {benefits}
-<p style="margin:0 0 26px;font:16px/1.6 Arial,Helvetica,sans-serif;">{e(content['closing'])}</p>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="width:100%;margin:24px 0;background-color:#F3EDE4;border:1px solid #D6C9B8;">
+<tr><td style="padding:24px;text-align:left;">
+<h2 style="margin:0 0 10px;font:normal 24px/1.25 Georgia,'Times New Roman',serif;color:#191919;">{e(content['ingredients_title'])}</h2>
+<p style="margin:0;font:15px/1.6 Arial,Helvetica,sans-serif;color:#423D37;">{e(content['ingredients_intro'])}</p>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="width:100%;">{ingredient_rows}</table>
+</td></tr></table>
+<p style="margin:24px 0 26px;font:16px/1.6 Arial,Helvetica,sans-serif;">{e(content['closing'])}</p>
 <!--[if mso]><v:roundrect href="{e(content['product_url'])}" style="height:48px;v-text-anchor:middle;width:270px;" arcsize="0%" strokecolor="#191919" fillcolor="#191919"><w:anchorlock/><center style="color:#FFFFFF;font-family:Arial,sans-serif;font-size:13px;font-weight:bold;">{e(content['cta'].upper())}</center></v:roundrect><![endif]-->
 <!--[if !mso]><!--><a href="{e(content['product_url'])}" style="display:inline-block;background-color:#191919;color:#FFFFFF;padding:16px 28px;font:600 13px/16px Arial,Helvetica,sans-serif;letter-spacing:1px;text-decoration:none;text-align:center;">{e(content['cta'].upper())}</a><!--<![endif]-->
 </td></tr>
@@ -152,7 +196,7 @@ def create_email(product, report, feed, directory, *, language='fr', history=(),
     message['X-Unsent']='1'
     message['X-Beauty-Agent-Preheader']=content['preheader']
     message['List-Unsubscribe']='<'+draft_unsubscribe+'>'
-    plain='\n\n'.join(content[k] for k in ('title','lead','body','closing'))
+    plain=content['title']+'\n\n'+commercial_text(content)
     plain+='\n\n'+content['cta']+' : '+content['product_url']
     plain+='\n\nIOMA PARIS · 87 Rue Réaumur · 75002 Paris\n'+LABELS[language]['unsubscribe']+' : '+draft_unsubscribe
     message.set_content(plain)
@@ -167,5 +211,5 @@ def create_email(product, report, feed, directory, *, language='fr', history=(),
             'image_size':[width,height], 'html_images':'hosted' if assets_url else 'local',
             'html_unsubscribe':'custom' if unsubscribe_url else 'Klaviyo unsubscribe_link',
             'draft_unsubscribe':'custom' if unsubscribe_url else 'mailto contact@ioma-paris.com',
-            'body_word_count':len(' '.join(content[k] for k in ('lead','body','closing')).split()),
+            'body_word_count':len(commercial_text(content).split()),
             'sent':False}

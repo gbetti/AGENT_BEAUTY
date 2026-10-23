@@ -185,20 +185,36 @@ terminano il comando con stato 1 senza creare un nuovo report.
 Dopo gli asset, `newsletter.py` crea un’email per ogni lingua. Riutilizza
 **esattamente il PNG del feed**: niente rigenerazione, ritaglio o ricompressione.
 Il layout segue le email IOMA fornite: logo centrale, immagine protagonista,
-testo breve centrato e un solo pulsante scuro. L’immagine conserva i propri
+testo esteso e un solo pulsante scuro. Il francese resta la lingua principale.
+L’immagine conserva i propri
 colori e la propria tipografia; i testi dell’email usano titoli serif e corpo
 leggibile, con margini generosi.
 
 Gli oggetti usano curiosità e benefici documentati, senza recensioni,
-scarsità, sconti o risultati clinici inventati. Il testo commerciale ha
-cinque frasi brevi: apertura curiosa, tre benefici documentati e una chiusura
-che spiega per quali esigenze il prodotto è adatto. I benefici sono su righe
-distinte, con a capo naturali su mobile. Massimo 55 caratteri per
-l’oggetto, 100 per il preheader e 70 parole commerciali. Alla successiva
-campagna dello stesso prodotto l’oggetto cambia. I testi in
-`assets/email/product-copy.json` derivano dai benefici del catalogo:
-gli esempi inoltrati guidano lo stile, non aggiungono claim ad altri prodotti.
-Se cambia il claim di catalogo, anche il brief email deve essere aggiornato.
+scarsità, sconti o risultati clinici inventati. Il testo commerciale contiene
+**150–250 parole**, compreso il riquadro ingredienti: apertura curiosa,
+due brevi paragrafi sul prodotto, approfondimento degli attivi e una chiusura
+che spiega per quali esigenze il prodotto è adatto. Restano i limiti di
+55 caratteri per l’oggetto e 100 per il preheader. Alla successiva campagna
+dello stesso prodotto l’oggetto cambia.
+
+Il **riquadro ingredienti e benefici è obbligatorio**: presenta 2–3 ingredienti
+o complessi attivi della formula, ciascuno con nome e spiegazione semplice del
+beneficio. Sfondo avorio, bordo visibile e voci sovrapposte lo rendono leggibile
+anche da telefono. Le spiegazioni sono incluse anche nel testo semplice EML.
+`assets/email/product-copy.json` contiene i testi FR/IT; le fonti ufficiali,
+la data di verifica, le citazioni, l’INCI e l’hash della pagina letta sono in
+`assets/email/ingredient-evidence.json`. I profili coprono CC Gel, Crème Sublime
+Revitalisante e Crème Généreuse Contour des Yeux. L’esportazione verifica che gli
+ingredienti abbiano evidenze specifiche del prodotto e siano presenti nell’INCI
+archiviato; questa verifica non sostituisce la revisione delle fonti correnti.
+Un prodotto nuovo richiede prima il suo profilo verificato. Se cambia il claim
+di catalogo o la formula, aggiornare copy ed evidenze prima di una nuova campagna.
+Gli esempi inoltrati guidano lo stile, non aggiungono claim ad altri prodotti.
+Una modifica al modello si applica alle campagne successive: non reinvia le
+email già consegnate e non ripubblica le relative story.
+
+[Esempio CC Gel in francese: HTML e anteprime desktop/mobile](examples/klaviyo/2026-10-23-cc-gel-fr/).
 
 `email.eml` conserva la **bozza sorgente**: mittente IOMA, destinatario vuoto,
 oggetto, testo semplice e HTML. Feed e logo sono incorporati via CID con i
