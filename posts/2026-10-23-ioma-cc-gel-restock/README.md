@@ -14,3 +14,5 @@ La disponibilità è confermata esplicitamente dal committente il 23 ottobre 202
 Le presentazioni includono la rassegna Who What Wear aggiornata il 20 ottobre (pubblicazione originaria 2019), la campagna CeraVe Hong Kong annunciata per settembre–novembre e Google Trends FR/IT del 16–22 ottobre: categoria 143, Web, nessuna query iniziale. Ordine e valori originali conservati dopo filtro editoriale beauty. Nessuna crescita specifica di CC Gel dichiarata. Fonti e risposte originali sono in `evidence/`.
 
 Lo stato effettivo dell’email Gmail e della pubblicazione story è registrato in [delivery.json](delivery.json). Il feed è un contenuto pronto con caption; la sua pubblicazione è separata.
+
+Email italiana inviata via Gmail a **gb77ita@gmail.com** il 23 ottobre 2026, ricevuta `SENT` registrata. La story **non è pubblicata**: Meta restituisce OAuthException 200, `API access blocked.`, già alla verifica dell’account prima di creare un container. JPEG pronto, nessun tentativo di pubblicazione da duplicare; riprendere dopo il ripristino dell’accesso Instagram.

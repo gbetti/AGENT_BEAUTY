@@ -121,7 +121,8 @@
         "language": "it",
         "campaign_headline": "È tornata. La tua luce.",
         "product_url": "https://ioma-paris.com/products/cc-gel-soin-teinte-eclat-parfait?utm_source=beauty_agent&utm_medium=email&utm_campaign=cc-gel-restock-20261023",
-        "sent": false
+        "sent": true,
+        "gmail_message_id": "1a1683b2d1b30ec5"
       },
       "language": "it",
       "ingredients": [
@@ -1214,7 +1215,7 @@
       "Both emails reviewed at 900px and 390px: hero uses original feed PNG, text wraps naturally, CTA and footer fit. Embedded MIME images checked byte-for-byte.",
       "All eight slide renders opened; no text collisions or clipping. PPTX slide images verified byte-for-byte against previews. Full source areas have active hyperlinks."
     ],
-    "publication_status": "story_pending"
+    "publication_status": "story_pending_api_access_blocked"
   },
   "google_trends": {
     "it": {
@@ -1367,7 +1368,7 @@
       "email",
       "story"
     ],
-    "status": "pending_deliveries",
+    "status": "pending_story",
     "files": {
       "fr/feed.png": "e113f66bd8239aea855eff97b7c01e84af29d6d6f246fd2e1217d2c764160ab6",
       "fr/caption.txt": "8f7b1b274c33db979e684db7971c2c3a56d521c558f6c21ac4aa1c73284ee8af",
@@ -1387,8 +1388,14 @@
       "to": "gb77ita@gmail.com",
       "language": "it",
       "required": true,
-      "status": "pending",
-      "sent": false
+      "status": "sent",
+      "sent": true,
+      "assets_url": "https://raw.githubusercontent.com/gbetti/AGENT_BEAUTY/036d8ae/posts/2026-10-23-ioma-cc-gel-restock",
+      "request_sha256": "5b0127800e38e092656461236dc275f90920b2c01e44cf8ebfab286a9a8fdcc9",
+      "attempt_started_at": "2026-10-23T10:07:25.343177+00:00",
+      "message_id": "1a1683b2d1b30ec5",
+      "thread_id": "1a1683b2d1b30ec5",
+      "sent_at": "2026-10-23T10:08:12.054824+00:00"
     },
     "instagram_story": {
       "provider": "instagram",
@@ -1399,7 +1406,15 @@
       "status": "ready",
       "published": false,
       "image_sha256": "4160fe7250bb9e7abb2a0b215dde32019af483a234548b8bda02c75fc4607a8f",
-      "source_sha256": "82471d013c4cc58073e4f776125452146178c84a9285fe4b4fb7766ab2703565"
+      "source_sha256": "82471d013c4cc58073e4f776125452146178c84a9285fe4b4fb7766ab2703565",
+      "last_error": {
+        "provider": "Meta Instagram API",
+        "code": 200,
+        "type": "OAuthException",
+        "message": "API access blocked.",
+        "stage": "account_verification_before_upload",
+        "checked_at": "2026-10-23T10:09:04.470756+00:00"
+      }
     }
   }
 }
