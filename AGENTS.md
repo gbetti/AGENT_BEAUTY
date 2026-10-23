@@ -8,15 +8,23 @@ native story. Do not finish with only a feed image or bypass the bundle because
 the product is new. Extend its verified brief and assets first. Keep the existing
 FR/IT campaign formats, decks, and supporting outputs below.
 
-The user has explicitly authorized sending each campaign's Italian coordinated
+**French is the standing primary creative language.** Create and present the
+French post, caption, story, banner, presentation and email first, even when the
+user writes the request in Italian. Use the `fr/` assets for external delivery
+and social publication by default. The Italian exports remain supporting
+versions; only an explicit user language request overrides this preference.
+`delivery-policy.json` saves `primary_language: fr` and the French send/publish
+defaults. This language preference does not change the conversation language.
+
+The user has explicitly authorized sending each campaign's French coordinated
 email through the connected Gmail account to **gb77ita@gmail.com**. This is the
 default saved in `delivery-policy.json`; it is a preview to the user, not a
 customer mailing list. Send one email per campaign. Both localized email files
 are still generated. Do not ask again for approval of this established workflow.
-The user has also explicitly authorized **publishing each campaign's Italian
+The user has also explicitly authorized **publishing each campaign's French
 story directly on Instagram @gb77ita**, every time, without another approval.
 This is mandatory in the default Codex workflow, including requests for only a
-post. The French story remains an export unless requested. Feed publication is
+post. The Italian story remains an export unless requested. Feed publication is
 still performed when requested. Do not repost an existing feed or resend an
 email when completing a campaign's missing story.
 
@@ -36,7 +44,7 @@ Before declaring completion, follow these steps in Codex:
    JSON, then run `python delivery.py record-sent --campaign <directory>
    --receipt <receipt.json> --database <catalog.sqlite>`.
 6. Run `python instagram_story.py export --campaign <directory>` to convert the
-   reviewed Italian story to `it/story-instagram.jpg`. Publish that JPEG through
+   reviewed French story to `fr/story-instagram.jpg`. Publish that JPEG through
    the same GitHub workflow, using an immutable commit URL. Then run
    `python instagram_story.py publish --campaign <directory> --image-url
    <public-JPEG-URL> --database <catalog.sqlite>`. This verifies the linked account
@@ -64,6 +72,11 @@ is not reposted after its normal 24-hour expiry. Report an actual credential or
 API failure and keep delivery pending; do not silently downgrade to a file.
 Apply this rule to new campaigns and the current requested campaign, without
 bulk-publishing archived campaigns. Preserve all prior Gmail and feed receipts.
+When resuming a campaign after a language preference change, use French for
+outstanding outputs only if their external mutation has not started. Preserve
+already-sent emails and already-published media in their original language;
+never resend or republish them solely to apply a new default. Verify the
+French asset and its public URL before resuming an unpublished story.
 
 Current scope: exactly French and Italian; three PNG formats per language:
 feed 1080×1350, story 1080×1920, banner 300×250, plus one four-slide
@@ -165,7 +178,7 @@ No user confirmation is required to do this review and correction work.
   invent reviews, discounts, scarcity, ingredient claims or clinical results.
 - Use documented catalog benefits. Email examples inform style, not claims.
 - Review the HTML at desktop and phone width, and verify the MIME draft
-  contains the exact source PNG bytes. Send the Italian preview through Gmail
+  contains the exact source PNG bytes. Send the French preview through Gmail
   to the configured user recipient, following the standing workflow above.
 - HTML is a Klaviyo template: publish its assets at the configured HTTPS base
   before import. Leave per-recipient unsubscribe resolution to the ESP.

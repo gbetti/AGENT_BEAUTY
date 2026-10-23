@@ -13,14 +13,14 @@ class StoryTests(TestCase):
     ledger = test_delivery.DeliveryTests.ledger
     hosted = test_delivery.DeliveryTests.hosted
     prepare = test_delivery.DeliveryTests.prepare
-    url = 'https://cdn.example.com/campaign/it/story-instagram.jpg'
+    url = 'https://cdn.example.com/campaign/fr/story-instagram.jpg'
 
     def ready(self):
         create_manifest(self.campaign, 'generation-1')
         export_jpeg(self.campaign)
 
     def remote(self, url, timeout=30):
-        response = io.BytesIO((self.campaign / 'it/story-instagram.jpg').read_bytes())
+        response = io.BytesIO((self.campaign / 'fr/story-instagram.jpg').read_bytes())
         response.headers = Message()
         response.headers['Content-Type'] = 'image/jpeg'
         return response
@@ -85,6 +85,29 @@ class StoryTests(TestCase):
                 publish(self.campaign, self.url)
         self.assertEqual(api.call_count, 1)
         self.assertEqual(self.ledger()['instagram_story']['status'], 'ready')
+
+    def test_new_french_story_preserves_real_italian_email_receipt(self):
+        self.ready()
+        old = self.ledger()
+        old['email'].update(language='it', status='sent', sent=True, message_id='previous-italian')
+        write_json(self.campaign / 'delivery.json', old)
+        result, _ = self.run_publish()
+        self.assertEqual(result['status'], 'complete')
+        self.assertEqual(result['instagram_story']['language'], 'fr')
+        self.assertEqual(result['email']['language'], 'it')
+        self.assertEqual(result['email']['message_id'], 'previous-italian')
+        with self.assertRaisesRegex(ValueError, 'già tentato'):
+            begin_send(self.campaign)
+
+    def test_unsent_email_cannot_keep_obsolete_language(self):
+        self.ready()
+        old = self.ledger()
+        old['email']['language'] = 'it'
+        write_json(self.campaign / 'delivery.json', old)
+        with patch('instagram_story.api') as calls:
+            with self.assertRaisesRegex(ValueError, 'lingua'):
+                publish(self.campaign, self.url)
+        calls.assert_not_called()
 
     def test_remote_byte_mismatch_cannot_create_container(self):
         self.ready()
