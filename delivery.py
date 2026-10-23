@@ -35,13 +35,14 @@ def sha256(data):
 def read_policy():
     config = json.loads(POLICY.read_text(encoding='utf-8'))
     email = config['email']
-    if (config['languages'] != ['fr', 'it'] or email['provider'] != 'gmail'
-            or email['language'] not in config['languages'] or email['required'] is not True
+    if (config['languages'] != ['fr', 'it'] or config['primary_language'] not in config['languages']
+            or email['provider'] != 'gmail'
+            or email['language'] != config['primary_language'] or email['required'] is not True
             or '@' not in email['to'] or any(c.isspace() for c in email['to'])):
         raise ValueError('Configurazione di consegna Gmail non valida.')
     story = config['instagram_story']
     if (story['provider'] != 'instagram' or not story['account_id'].isdigit()
-            or not story['username'] or story['language'] not in config['languages']
+            or not story['username'] or story['language'] != config['primary_language']
             or story['required'] is not True):
         raise ValueError('Configurazione della story Instagram non valida.')
     return config
@@ -89,6 +90,7 @@ def create_manifest(directory, generation_id):
     if path.exists():
         raise FileExistsError('Il registro di consegna esiste già; non azzerare lo stato dell’invio.')
     manifest = {'schema_version': 2, 'generation_id': generation_id, 'created_at': now(),
+                'primary_language': read_policy()['primary_language'],
                 'required_outputs': ['post', 'email', 'story'],
                 'status': 'pending_deliveries', 'files': bundle_files(directory),
                 'email': {**read_policy()['email'], 'status': 'pending', 'sent': False},
@@ -151,7 +153,13 @@ def verify_manifest(directory, manifest):
     if bundle_files(directory) != manifest['files']:
         raise ValueError('Gli asset sono cambiati dopo la preparazione: rivalidare la campagna.')
     configured = read_policy()['email']
-    if any(manifest['email'].get(k) != v for k, v in configured.items()):
+    email = manifest['email']
+    # A new language default must not invalidate a real historical receipt or
+    # cause another email while finishing an outstanding story.
+    already_sent = (email.get('status') == 'sent' and email.get('sent') is True
+                    and bool(email.get('message_id')))
+    if any(email.get(k) != v for k, v in configured.items()
+           if not (k == 'language' and already_sent)):
         raise ValueError('Destinatario, lingua o provider non corrispondono alla configurazione corrente.')
 
 
