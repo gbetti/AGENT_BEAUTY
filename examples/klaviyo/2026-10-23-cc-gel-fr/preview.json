@@ -1,0 +1,179 @@
+{
+  "subject": "Et si votre glow restait naturel ?",
+  "preheader": "Une couvrance naturelle, une teinte universelle, un teint lumineux.",
+  "language": "fr",
+  "body_word_count": 206,
+  "image_sha256": "e113f66bd8239aea855eff97b7c01e84af29d6d6f246fd2e1217d2c764160ab6",
+  "image_size": [
+    1080,
+    1350
+  ],
+  "html_images": "hosted",
+  "html_unsubscribe": "Klaviyo unsubscribe_link",
+  "sent": false,
+  "created_at": "2026-10-23T10:32:02.055894+00:00",
+  "kind": "template_preview",
+  "source_feed_url": "https://raw.githubusercontent.com/gbetti/AGENT_BEAUTY/036d8aef591440e7c954fcda8a9e9e15c72d1ef6/posts/2026-10-23-ioma-cc-gel-restock/fr/feed.png",
+  "source_logo_url": "https://raw.githubusercontent.com/gbetti/AGENT_BEAUTY/036d8aef591440e7c954fcda8a9e9e15c72d1ef6/posts/2026-10-23-ioma-cc-gel-restock/fr/email-logo.png",
+  "verified_public_assets": [
+    {
+      "file": "feed.png",
+      "url": "https://raw.githubusercontent.com/gbetti/AGENT_BEAUTY/036d8aef591440e7c954fcda8a9e9e15c72d1ef6/posts/2026-10-23-ioma-cc-gel-restock/fr/feed.png",
+      "sha256": "e113f66bd8239aea855eff97b7c01e84af29d6d6f246fd2e1217d2c764160ab6"
+    },
+    {
+      "file": "email-logo.png",
+      "url": "https://raw.githubusercontent.com/gbetti/AGENT_BEAUTY/036d8aef591440e7c954fcda8a9e9e15c72d1ef6/posts/2026-10-23-ioma-cc-gel-restock/fr/email-logo.png",
+      "sha256": "aa3a56e843be2f5a52b8862d35a4284f6192294fe3664694c8f54450947ddd1f"
+    }
+  ],
+  "quality": {
+    "reviewed_at": "2026-10-23T10:34:06.068614+00:00",
+    "viewports": [
+      900,
+      390
+    ],
+    "observations": [
+      "Riquadro ingredienti con bordo visibile e nomi in grassetto; spiegazioni leggibili su entrambe le larghezze.",
+      "Nessun testo tagliato o sovrapposto; accenti francesi corretti e CTA visibile.",
+      "Feed e logo riutilizzati senza modifica; confrontati con i file pubblici."
+    ],
+    "files": {
+      "email.html": "8a56a83a6a5ebfac0f4e8304dc9848e87f7c4e7a6ca099b3ef42e45074a83768",
+      "preview-mobile.png": "161a3094ede88411d276e390ebf059b7c944b1df8bb0551981c06d6bf680a3c4",
+      "preview-desktop.png": "678fc726a7b3f849993f7b0910ee7ffc025a0dce0c5a33936679df223dbf0020"
+    },
+    "automated_tests": {
+      "passed": 25,
+      "suites": [
+        "test_newsletter",
+        "test_delivery",
+        "test_instagram_story"
+      ]
+    },
+    "render_scope": "Tre prodotti, FR/IT, desktop 900 e mobile 390: tutte le 12 anteprime aperte e riviste.",
+    "render_checks": [
+      {
+        "product": "cc-gel",
+        "language": "fr",
+        "width": 900,
+        "viewport": 900,
+        "document": 900,
+        "ingredientHeading": "Les ingrédients, leurs bénéfices",
+        "ingredients": 3,
+        "brokenImages": 0
+      },
+      {
+        "product": "cc-gel",
+        "language": "fr",
+        "width": 390,
+        "viewport": 390,
+        "document": 390,
+        "ingredientHeading": "Les ingrédients, leurs bénéfices",
+        "ingredients": 3,
+        "brokenImages": 0
+      },
+      {
+        "product": "cc-gel",
+        "language": "it",
+        "width": 900,
+        "viewport": 900,
+        "document": 900,
+        "ingredientHeading": "Gli ingredienti e i loro benefici",
+        "ingredients": 3,
+        "brokenImages": 0
+      },
+      {
+        "product": "cc-gel",
+        "language": "it",
+        "width": 390,
+        "viewport": 390,
+        "document": 390,
+        "ingredientHeading": "Gli ingredienti e i loro benefici",
+        "ingredients": 3,
+        "brokenImages": 0
+      },
+      {
+        "product": "creme-genereuse-contour-des-yeux",
+        "language": "fr",
+        "width": 900,
+        "viewport": 900,
+        "document": 900,
+        "ingredientHeading": "Les ingrédients, leurs bénéfices",
+        "ingredients": 3,
+        "brokenImages": 0
+      },
+      {
+        "product": "creme-genereuse-contour-des-yeux",
+        "language": "fr",
+        "width": 390,
+        "viewport": 390,
+        "document": 390,
+        "ingredientHeading": "Les ingrédients, leurs bénéfices",
+        "ingredients": 3,
+        "brokenImages": 0
+      },
+      {
+        "product": "creme-genereuse-contour-des-yeux",
+        "language": "it",
+        "width": 900,
+        "viewport": 900,
+        "document": 900,
+        "ingredientHeading": "Gli ingredienti e i loro benefici",
+        "ingredients": 3,
+        "brokenImages": 0
+      },
+      {
+        "product": "creme-genereuse-contour-des-yeux",
+        "language": "it",
+        "width": 390,
+        "viewport": 390,
+        "document": 390,
+        "ingredientHeading": "Gli ingredienti e i loro benefici",
+        "ingredients": 3,
+        "brokenImages": 0
+      },
+      {
+        "product": "creme-sublime-revitalisante",
+        "language": "fr",
+        "width": 900,
+        "viewport": 900,
+        "document": 900,
+        "ingredientHeading": "Les ingrédients, leurs bénéfices",
+        "ingredients": 3,
+        "brokenImages": 0
+      },
+      {
+        "product": "creme-sublime-revitalisante",
+        "language": "fr",
+        "width": 390,
+        "viewport": 390,
+        "document": 390,
+        "ingredientHeading": "Les ingrédients, leurs bénéfices",
+        "ingredients": 3,
+        "brokenImages": 0
+      },
+      {
+        "product": "creme-sublime-revitalisante",
+        "language": "it",
+        "width": 900,
+        "viewport": 900,
+        "document": 900,
+        "ingredientHeading": "Gli ingredienti e i loro benefici",
+        "ingredients": 3,
+        "brokenImages": 0
+      },
+      {
+        "product": "creme-sublime-revitalisante",
+        "language": "it",
+        "width": 390,
+        "viewport": 390,
+        "document": 390,
+        "ingredientHeading": "Gli ingredienti e i loro benefici",
+        "ingredients": 3,
+        "brokenImages": 0
+      }
+    ],
+    "limitations": "Revisione HTML locale in Chromium; nessun invio o test nel servizio Klaviyo."
+  }
+}
