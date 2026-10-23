@@ -7,7 +7,7 @@
     "email",
     "story"
   ],
-  "status": "pending_story",
+  "status": "complete",
   "files": {
     "fr/feed.png": "e113f66bd8239aea855eff97b7c01e84af29d6d6f246fd2e1217d2c764160ab6",
     "fr/caption.txt": "8f7b1b274c33db979e684db7971c2c3a56d521c558f6c21ac4aa1c73284ee8af",
@@ -42,10 +42,26 @@
     "username": "gb77ita",
     "language": "fr",
     "required": true,
-    "status": "ready",
-    "published": false,
+    "status": "published",
+    "published": true,
     "image_sha256": "f90f6a20d9548ed3aabff259a7f7a9527a18f99c9cf70adae5cdc05c3049b8eb",
-    "source_sha256": "7bd48af783ba78befaa36b8208a4ae791f291a10f9f60b9c11aa323fecb49f3c"
+    "source_sha256": "7bd48af783ba78befaa36b8208a4ae791f291a10f9f60b9c11aa323fecb49f3c",
+    "image_url": "https://raw.githubusercontent.com/gbetti/AGENT_BEAUTY/523e80f/posts/2026-10-23-ioma-cc-gel-restock/fr/story-instagram.jpg",
+    "create_attempted_at": "2026-10-23T10:22:15.663245+00:00",
+    "container_id": "17934920505142015",
+    "publish_attempted_at": "2026-10-23T10:22:19.800806+00:00",
+    "media_id": "17909731524591231",
+    "verified_at": "2026-10-23T10:22:22.985665+00:00",
+    "published_media": {
+      "id": "17909731524591231",
+      "permalink": "https://www.instagram.com/stories/gb77ita/4014208260761146237",
+      "media_type": "IMAGE",
+      "media_product_type": "STORY",
+      "timestamp": "2026-10-23T10:22:20+0000",
+      "username": "gb77ita"
+    },
+    "permalink": "https://www.instagram.com/stories/gb77ita/4014208260761146237",
+    "published_at": "2026-10-23T10:22:20+0000"
   },
   "delivery_history": [
     {

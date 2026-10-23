@@ -15,4 +15,8 @@ Le presentazioni includono la rassegna Who What Wear aggiornata il 20 ottobre (p
 
 Lo stato effettivo dell’email Gmail e della pubblicazione story è registrato in [delivery.json](delivery.json). Il feed è un contenuto pronto con caption; la sua pubblicazione è separata.
 
-Email italiana inviata via Gmail a **gb77ita@gmail.com** il 23 ottobre 2026, ricevuta `SENT` registrata. La story **non è pubblicata**: Meta restituisce OAuthException 200, `API access blocked.`, già alla verifica dell’account prima di creare un container. JPEG pronto, nessun tentativo di pubblicazione da duplicare; riprendere dopo il ripristino dell’accesso Instagram.
+Email italiana inviata via Gmail a **gb77ita@gmail.com** il 23 ottobre 2026, ricevuta `SENT` registrata. Questo invio precedente al cambio di lingua viene conservato senza duplicati.
+
+**Story francese pubblicata su @gb77ita il 23 ottobre 2026 alle 12:22 (Europe/Rome)**, dopo il ripristino dell’accesso: [apri la story](https://www.instagram.com/stories/gb77ita/4014208260761146237). Pubblicazione verificata tramite API. Le story restano normalmente visibili per 24 ore. Il precedente errore API e il passaggio della story pendente da italiano a francese sono conservati nel registro.
+
+La nuova lingua principale dell’agente è il francese: [post francese](fr/feed.png) e [caption francese](fr/caption.txt). Il feed resta pronto per la pubblicazione; questa operazione ha pubblicato soltanto la story.

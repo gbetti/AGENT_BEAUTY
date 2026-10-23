@@ -1207,7 +1207,8 @@
       "it/slides/01.png": "9c1a7046ab7d93f9f4561909912f587e58b10401373279dc4c0936a73bc4441e",
       "it/slides/02.png": "79d2710a75fc4685eacbe468658fd163b30d3cf74c0d4af4729994a472c1a121",
       "it/slides/03.png": "edea7bd4e73eb4b0843fcbdecdba549014ef9c2b961b31a84dd1abb0e0416e42",
-      "it/slides/04.png": "78d3c1578bfb6d121ade87c74ced6407b00c89036a555e1a96961d8a1a38ac9e"
+      "it/slides/04.png": "78d3c1578bfb6d121ade87c74ced6407b00c89036a555e1a96961d8a1a38ac9e",
+      "fr/story-instagram.jpg": "f90f6a20d9548ed3aabff259a7f7a9527a18f99c9cf70adae5cdc05c3049b8eb"
     },
     "observations": [
       "All six final exports opened; feed/story reviewed at 360px and banners at 300x250. Logo centered, two clear ingredient arrows, original package text legible; no overlaps or clipping.",
@@ -1215,7 +1216,7 @@
       "Both emails reviewed at 900px and 390px: hero uses original feed PNG, text wraps naturally, CTA and footer fit. Embedded MIME images checked byte-for-byte.",
       "All eight slide renders opened; no text collisions or clipping. PPTX slide images verified byte-for-byte against previews. Full source areas have active hyperlinks."
     ],
-    "publication_status": "story_pending_api_access_blocked"
+    "publication_status": "story_published_fr"
   },
   "google_trends": {
     "it": {
@@ -1368,7 +1369,7 @@
       "email",
       "story"
     ],
-    "status": "pending_story",
+    "status": "complete",
     "files": {
       "fr/feed.png": "e113f66bd8239aea855eff97b7c01e84af29d6d6f246fd2e1217d2c764160ab6",
       "fr/caption.txt": "8f7b1b274c33db979e684db7971c2c3a56d521c558f6c21ac4aa1c73284ee8af",
@@ -1401,20 +1402,58 @@
       "provider": "instagram",
       "account_id": "17841464260421573",
       "username": "gb77ita",
-      "language": "it",
+      "language": "fr",
       "required": true,
-      "status": "ready",
-      "published": false,
-      "image_sha256": "4160fe7250bb9e7abb2a0b215dde32019af483a234548b8bda02c75fc4607a8f",
-      "source_sha256": "82471d013c4cc58073e4f776125452146178c84a9285fe4b4fb7766ab2703565",
-      "last_error": {
-        "provider": "Meta Instagram API",
-        "code": 200,
-        "type": "OAuthException",
-        "message": "API access blocked.",
-        "stage": "account_verification_before_upload",
-        "checked_at": "2026-10-23T10:09:04.470756+00:00"
+      "status": "published",
+      "published": true,
+      "image_sha256": "f90f6a20d9548ed3aabff259a7f7a9527a18f99c9cf70adae5cdc05c3049b8eb",
+      "source_sha256": "7bd48af783ba78befaa36b8208a4ae791f291a10f9f60b9c11aa323fecb49f3c",
+      "image_url": "https://raw.githubusercontent.com/gbetti/AGENT_BEAUTY/523e80f/posts/2026-10-23-ioma-cc-gel-restock/fr/story-instagram.jpg",
+      "create_attempted_at": "2026-10-23T10:22:15.663245+00:00",
+      "container_id": "17934920505142015",
+      "publish_attempted_at": "2026-10-23T10:22:19.800806+00:00",
+      "media_id": "17909731524591231",
+      "verified_at": "2026-10-23T10:22:22.985665+00:00",
+      "published_media": {
+        "id": "17909731524591231",
+        "permalink": "https://www.instagram.com/stories/gb77ita/4014208260761146237",
+        "media_type": "IMAGE",
+        "media_product_type": "STORY",
+        "timestamp": "2026-10-23T10:22:20+0000",
+        "username": "gb77ita"
+      },
+      "permalink": "https://www.instagram.com/stories/gb77ita/4014208260761146237",
+      "published_at": "2026-10-23T10:22:20+0000"
+    },
+    "delivery_history": [
+      {
+        "kind": "story_language_change",
+        "from": "it",
+        "to": "fr",
+        "changed_at": "2026-10-23T10:21:39.322214+00:00",
+        "reason": "User requested French as the standing creative language after access restoration.",
+        "previous_preparation": {
+          "provider": "instagram",
+          "account_id": "17841464260421573",
+          "username": "gb77ita",
+          "language": "it",
+          "required": true,
+          "status": "ready",
+          "published": false,
+          "image_sha256": "4160fe7250bb9e7abb2a0b215dde32019af483a234548b8bda02c75fc4607a8f",
+          "source_sha256": "82471d013c4cc58073e4f776125452146178c84a9285fe4b4fb7766ab2703565",
+          "last_error": {
+            "provider": "Meta Instagram API",
+            "code": 200,
+            "type": "OAuthException",
+            "message": "API access blocked.",
+            "stage": "account_verification_before_upload",
+            "checked_at": "2026-10-23T10:09:04.470756+00:00"
+          }
+        }
       }
-    }
-  }
+    ],
+    "primary_language": "fr"
+  },
+  "primary_language": "fr"
 }
