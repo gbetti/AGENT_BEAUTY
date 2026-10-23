@@ -1,0 +1,44 @@
+{
+  "schema_version": 2,
+  "generation_id": "cc-gel-restock-2026-10-23T10:04:36.964966+00:00",
+  "created_at": "2026-10-23T10:04:45.591815+00:00",
+  "required_outputs": [
+    "post",
+    "email",
+    "story"
+  ],
+  "status": "pending_deliveries",
+  "files": {
+    "fr/feed.png": "e113f66bd8239aea855eff97b7c01e84af29d6d6f246fd2e1217d2c764160ab6",
+    "fr/caption.txt": "8f7b1b274c33db979e684db7971c2c3a56d521c558f6c21ac4aa1c73284ee8af",
+    "fr/story.png": "7bd48af783ba78befaa36b8208a4ae791f291a10f9f60b9c11aa323fecb49f3c",
+    "fr/email.html": "f1f1c74ad4d6b962bb40f8ded03cd47d20bade937359a038c9edb512550d2918",
+    "fr/email.eml": "e9f6197cf5f3bc2b6b5711e1a65f08bc68f8b90d1d524baf3c39ce509c5f02b1",
+    "fr/email-logo.png": "aa3a56e843be2f5a52b8862d35a4284f6192294fe3664694c8f54450947ddd1f",
+    "it/feed.png": "d5610299e6e74b480040487d46ec0555f67c981776eea1b10e9251d772450d6f",
+    "it/caption.txt": "998adef3373a236d79dd71eafc56600d093a4164ba92fc9c5cfd1bef107ec6de",
+    "it/story.png": "82471d013c4cc58073e4f776125452146178c84a9285fe4b4fb7766ab2703565",
+    "it/email.html": "33bc1969126311feb5337ad8f1893b06fcd0153fe2586479f1655f41cd5c59d1",
+    "it/email.eml": "16f25da897e0533ef2376eec9baaa0469998c9bbe592d622f0e6c847a687c06a",
+    "it/email-logo.png": "aa3a56e843be2f5a52b8862d35a4284f6192294fe3664694c8f54450947ddd1f"
+  },
+  "email": {
+    "provider": "gmail",
+    "to": "gb77ita@gmail.com",
+    "language": "it",
+    "required": true,
+    "status": "pending",
+    "sent": false
+  },
+  "instagram_story": {
+    "provider": "instagram",
+    "account_id": "17841464260421573",
+    "username": "gb77ita",
+    "language": "it",
+    "required": true,
+    "status": "ready",
+    "published": false,
+    "image_sha256": "4160fe7250bb9e7abb2a0b215dde32019af483a234548b8bda02c75fc4607a8f",
+    "source_sha256": "82471d013c4cc58073e4f776125452146178c84a9285fe4b4fb7766ab2703565"
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "reviewed_at": "2026-10-23T10:04:36.964966+00:00",
+  "product_key": "cc-gel",
+  "scope": "Restock creative; current raw Trends and linked sources are archived with the campaign.",
+  "availability": {
+    "user_confirmed": true,
+    "user_instruction": "fai il post! poi cambiamo il testo sul sito",
+    "official_site_available_at_review": false,
+    "site_update": "deferred by user"
+  },
+  "ingredients": [
+    {
+      "id": "glycerin",
+      "label": {
+        "fr": "Glycérine",
+        "it": "Glicerina"
+      },
+      "short": {
+        "fr": "Glycérine",
+        "it": "Glicerina"
+      },
+      "inci": [
+        "GLYCERIN"
+      ],
+      "priority": 100,
+      "role": {
+        "fr": "Hydratation",
+        "it": "Idratazione"
+      },
+      "source_url": "https://ioma-paris.com/products/cc-gel-soin-teinte-eclat-parfait",
+      "verified_at": "2026-10-23T10:04:36.964966+00:00"
+    },
+    {
+      "id": "pigments",
+      "label": {
+        "fr": "Pigments\nencapsulés",
+        "it": "Pigmenti\nincapsulati"
+      },
+      "short": {
+        "fr": "Pigments",
+        "it": "Pigmenti"
+      },
+      "inci": [
+        "CI 77492 (IRON OXIDES)",
+        "CI 77491 (IRON OXIDES)",
+        "CI 77499 (IRON OXIDES)"
+      ],
+      "priority": 90,
+      "role": {
+        "fr": "Teint unifié",
+        "it": "Incarnato uniforme"
+      },
+      "official_actives": [
+        "PIGMENTS MICRO-ENCAPSULÉS"
+      ],
+      "source_url": "https://ioma-paris.com/products/cc-gel-soin-teinte-eclat-parfait",
+      "verified_at": "2026-10-23T10:04:36.964966+00:00"
+    }
+  ],
+  "campaign_directory": "posts/2026-10-23-ioma-cc-gel-restock"
+}

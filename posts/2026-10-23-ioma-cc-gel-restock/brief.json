@@ -1,0 +1,1405 @@
+{
+  "created_at": "2026-10-23T10:04:36.964966+00:00",
+  "generation_id": "cc-gel-restock-2026-10-23T10:04:36.964966+00:00",
+  "product_id": "urn:agent-beauty:manual:ioma:cc-gel",
+  "product": "CC Gel – Crème Soin Teinté Eclat Parfait",
+  "scope": "Restock announcement confirmed explicitly by user; complete bilingual creative bundle.",
+  "availability": {
+    "user_confirmed": true,
+    "user_instruction": "fai il post! poi cambiamo il testo sul sito",
+    "official_site_available_at_review": false,
+    "site_update": "deferred by user"
+  },
+  "source": "https://ioma-paris.com/products/cc-gel-soin-teinte-eclat-parfait",
+  "ingredients": [
+    {
+      "id": "glycerin",
+      "label": {
+        "fr": "Glycérine",
+        "it": "Glicerina"
+      },
+      "short": {
+        "fr": "Glycérine",
+        "it": "Glicerina"
+      },
+      "inci": [
+        "GLYCERIN"
+      ],
+      "priority": 100,
+      "role": {
+        "fr": "Hydratation",
+        "it": "Idratazione"
+      },
+      "source_url": "https://ioma-paris.com/products/cc-gel-soin-teinte-eclat-parfait",
+      "verified_at": "2026-10-23T10:04:36.964966+00:00"
+    },
+    {
+      "id": "pigments",
+      "label": {
+        "fr": "Pigments\nencapsulés",
+        "it": "Pigmenti\nincapsulati"
+      },
+      "short": {
+        "fr": "Pigments",
+        "it": "Pigmenti"
+      },
+      "inci": [
+        "CI 77492 (IRON OXIDES)",
+        "CI 77491 (IRON OXIDES)",
+        "CI 77499 (IRON OXIDES)"
+      ],
+      "priority": 90,
+      "role": {
+        "fr": "Teint unifié",
+        "it": "Incarnato uniforme"
+      },
+      "official_actives": [
+        "PIGMENTS MICRO-ENCAPSULÉS"
+      ],
+      "source_url": "https://ioma-paris.com/products/cc-gel-soin-teinte-eclat-parfait",
+      "verified_at": "2026-10-23T10:04:36.964966+00:00"
+    }
+  ],
+  "creative": {
+    "scene": {
+      "id": "studio-ivory",
+      "path": "assets/backgrounds/editorial/studio-ivory.png",
+      "sha256": "5ede3b5467c72962f4b2fd8311c0679f6b784b8d53d020617c76e9aeaca873a3",
+      "origin": "AI-generated empty photographic cyclorama. No product, label, ingredients or text generated.",
+      "floor_start": 0.7,
+      "format_crops": {
+        "feed": [
+          0,
+          0.15,
+          1,
+          1
+        ],
+        "story": [
+          0,
+          0.3,
+          1,
+          1
+        ],
+        "banner": [
+          0,
+          0.4,
+          1,
+          1
+        ]
+      },
+      "lighting": {
+        "source": "large upper-left softbox",
+        "cast_direction": [
+          0.22,
+          0.07
+        ],
+        "color": [
+          62,
+          54,
+          46
+        ]
+      },
+      "max_copy_detail": 3.0,
+      "art_direction": "Smooth negative space for logo, headline and ingredient labels; continuous matte floor. No props, folds, podiums or pre-rendered product shadows."
+    }
+  },
+  "localizations": {
+    "it": {
+      "headline": "È tornata.\nLa tua luce.",
+      "category": "CC CRÈME · DI NUOVO DISPONIBILE",
+      "product_name": "CC GEL\nCoprenza naturale. Luminosità immediata.",
+      "cta": "Scopri CC Gel",
+      "caption": "È tornata. La tua luce. ✨\n\nCC Crème è di nuovo disponibile: ritrova CC Gel di IOMA, il trattamento colorato dalla texture leggera che uniforma l’incarnato e regala un effetto bonne mine naturale.\n\nPigmenti microincapsulati e glicerina, per unire colore e idratazione in un solo gesto.\n\nScrivici in DM per informazioni.\n\n#IOMAParis #CCGel #CCCreme #IncarnatoLuminoso #Skincare",
+      "email": {
+        "subject": "È tornata: riscopri la tua luce con CC Gel",
+        "preheader": "CC Crème di nuovo disponibile: coprenza naturale e idratazione.",
+        "title": "È tornata. La tua luce.",
+        "lead": "Ti mancava quel tocco di luce? CC Crème è tornata disponibile.",
+        "body": "CC Gel uniforma l’incarnato con una coprenza naturale.\nI pigmenti microincapsulati regalano un effetto bonne mine.\nLa glicerina contribuisce all’idratazione della pelle.",
+        "closing": "Fa per te se cerchi leggerezza e un risultato luminoso e naturale.",
+        "cta": "Scopri CC Gel",
+        "language": "it",
+        "campaign_headline": "È tornata. La tua luce.",
+        "product_url": "https://ioma-paris.com/products/cc-gel-soin-teinte-eclat-parfait?utm_source=beauty_agent&utm_medium=email&utm_campaign=cc-gel-restock-20261023",
+        "sent": false
+      },
+      "language": "it",
+      "ingredients": [
+        {
+          "id": "glycerin",
+          "label": {
+            "fr": "Glycérine",
+            "it": "Glicerina"
+          },
+          "short": {
+            "fr": "Glycérine",
+            "it": "Glicerina"
+          },
+          "inci": [
+            "GLYCERIN"
+          ],
+          "priority": 100,
+          "role": {
+            "fr": "Hydratation",
+            "it": "Idratazione"
+          },
+          "source_url": "https://ioma-paris.com/products/cc-gel-soin-teinte-eclat-parfait",
+          "verified_at": "2026-10-23T10:04:36.964966+00:00"
+        },
+        {
+          "id": "pigments",
+          "label": {
+            "fr": "Pigments\nencapsulés",
+            "it": "Pigmenti\nincapsulati"
+          },
+          "short": {
+            "fr": "Pigments",
+            "it": "Pigmenti"
+          },
+          "inci": [
+            "CI 77492 (IRON OXIDES)",
+            "CI 77491 (IRON OXIDES)",
+            "CI 77499 (IRON OXIDES)"
+          ],
+          "priority": 90,
+          "role": {
+            "fr": "Teint unifié",
+            "it": "Incarnato uniforme"
+          },
+          "official_actives": [
+            "PIGMENTS MICRO-ENCAPSULÉS"
+          ],
+          "source_url": "https://ioma-paris.com/products/cc-gel-soin-teinte-eclat-parfait",
+          "verified_at": "2026-10-23T10:04:36.964966+00:00"
+        }
+      ],
+      "graphics": {
+        "feed": {
+          "path": "/workspace/AGENT_BEAUTY/posts/2026-10-23-ioma-cc-gel-restock/it/feed.png",
+          "size": [
+            1080,
+            1350
+          ],
+          "elements": [
+            {
+              "kind": "logo",
+              "box": [
+                467.0,
+                75,
+                613.0,
+                136
+              ]
+            },
+            {
+              "kind": "category",
+              "text": "CC CRÈME · DI NUOVO DISPONIBILE",
+              "font_size": 26,
+              "contrast_ratio": 11.161606391583884,
+              "box": [
+                307.3671875,
+                208,
+                772.3671875,
+                232
+              ]
+            },
+            {
+              "kind": "headline",
+              "text": "È tornata.\nLa tua luce.",
+              "font_size": 100,
+              "contrast_ratio": 11.102508929904918,
+              "box": [
+                317.09375,
+                260,
+                763.09375,
+                438
+              ]
+            },
+            {
+              "kind": "product",
+              "box": [
+                447,
+                490,
+                633,
+                1100
+              ],
+              "shadow": {
+                "model": "silhouette-floor-v2",
+                "baseline": 1100,
+                "footprint": [
+                  497,
+                  585
+                ],
+                "cast_vector": [
+                  134.2,
+                  42.7
+                ],
+                "color": [
+                  62,
+                  54,
+                  46
+                ]
+              }
+            },
+            {
+              "kind": "ingredient",
+              "text": "Glicerina",
+              "font_size": 28,
+              "contrast_ratio": 11.040609099396942,
+              "box": [
+                101.953125,
+                635.5,
+                225.953125,
+                656.5
+              ],
+              "ingredient_id": "glycerin"
+            },
+            {
+              "kind": "arrow",
+              "ingredient_id": "glycerin",
+              "start": [
+                235.953125,
+                688.5
+              ],
+              "end": [
+                440,
+                718.5
+              ],
+              "box": [
+                235.953125,
+                688.5,
+                440,
+                721.4505983028824
+              ]
+            },
+            {
+              "kind": "ingredient",
+              "text": "Pigmenti\nincapsulati",
+              "font_size": 28,
+              "contrast_ratio": 10.490874075045863,
+              "box": [
+                840.046875,
+                867.3,
+                992.046875,
+                933.3
+              ],
+              "ingredient_id": "pigments"
+            },
+            {
+              "kind": "arrow",
+              "ingredient_id": "pigments",
+              "start": [
+                830.046875,
+                920.3
+              ],
+              "end": [
+                640,
+                950.3
+              ],
+              "box": [
+                640,
+                920.3,
+                830.046875,
+                953.1604374611197
+              ]
+            },
+            {
+              "kind": "product_name",
+              "text": "CC GEL\nCoprenza naturale. Luminosità immediata.",
+              "font_size": 28,
+              "contrast_ratio": 9.285653581252763,
+              "box": [
+                241.09375,
+                1165,
+                839.09375,
+                1232
+              ]
+            }
+          ],
+          "text_area_ratio": 0.11325410841131837,
+          "layout": "native-editorial-v2",
+          "background_placement": {
+            "crop": [
+              0,
+              0.15,
+              1,
+              1
+            ],
+            "floor_start_y": 864,
+            "light_direction": [
+              0.22,
+              0.07
+            ]
+          },
+          "copy_space_detail": 0.517,
+          "product_source": "https://ioma-paris.com/cdn/shop/files/cc-gel-soin-teinte-eclat-parfait-cc-creme-packshot-IOMA.jpg?v=1782400396&width=2000"
+        },
+        "story": {
+          "path": "/workspace/AGENT_BEAUTY/posts/2026-10-23-ioma-cc-gel-restock/it/story.png",
+          "size": [
+            1080,
+            1920
+          ],
+          "elements": [
+            {
+              "kind": "logo",
+              "box": [
+                462.0,
+                278,
+                618.0,
+                343
+              ]
+            },
+            {
+              "kind": "category",
+              "text": "CC CRÈME · DI NUOVO DISPONIBILE",
+              "font_size": 26,
+              "contrast_ratio": 12.13101317185543,
+              "box": [
+                307.3671875,
+                421,
+                772.3671875,
+                445
+              ]
+            },
+            {
+              "kind": "headline",
+              "text": "È tornata.\nLa tua luce.",
+              "font_size": 108,
+              "contrast_ratio": 11.621874079958566,
+              "box": [
+                299.28125,
+                478,
+                780.28125,
+                669
+              ]
+            },
+            {
+              "kind": "product",
+              "box": [
+                433,
+                700,
+                647,
+                1400
+              ],
+              "shadow": {
+                "model": "silhouette-floor-v2",
+                "baseline": 1400,
+                "footprint": [
+                  490,
+                  591
+                ],
+                "cast_vector": [
+                  154.0,
+                  49.0
+                ],
+                "color": [
+                  62,
+                  54,
+                  46
+                ]
+              }
+            },
+            {
+              "kind": "ingredient",
+              "text": "Glicerina",
+              "font_size": 28,
+              "contrast_ratio": 12.192238764262653,
+              "box": [
+                101.953125,
+                877.0,
+                225.953125,
+                898.0
+              ],
+              "ingredient_id": "glycerin"
+            },
+            {
+              "kind": "arrow",
+              "ingredient_id": "glycerin",
+              "start": [
+                235.953125,
+                930.0
+              ],
+              "end": [
+                426,
+                960.0
+              ],
+              "box": [
+                235.953125,
+                930.0,
+                426,
+                962.8604374611198
+              ]
+            },
+            {
+              "kind": "ingredient",
+              "text": "Pigmenti\nincapsulati",
+              "font_size": 28,
+              "contrast_ratio": 11.137112711455336,
+              "box": [
+                840.046875,
+                1143.0,
+                992.046875,
+                1209.0
+              ],
+              "ingredient_id": "pigments"
+            },
+            {
+              "kind": "arrow",
+              "ingredient_id": "pigments",
+              "start": [
+                830.046875,
+                1196.0
+              ],
+              "end": [
+                654,
+                1226.0
+              ],
+              "box": [
+                654,
+                1196.0,
+                830.046875,
+                1228.755915501354
+              ]
+            },
+            {
+              "kind": "product_name",
+              "text": "CC GEL\nCoprenza naturale. Luminosità immediata.",
+              "font_size": 28,
+              "contrast_ratio": 10.38431829977449,
+              "box": [
+                241.09375,
+                1480,
+                839.09375,
+                1547
+              ]
+            }
+          ],
+          "text_area_ratio": 0.0857853973825213,
+          "layout": "native-editorial-v2",
+          "background_placement": {
+            "crop": [
+              0,
+              0.3,
+              1,
+              1
+            ],
+            "floor_start_y": 1097,
+            "light_direction": [
+              0.22,
+              0.07
+            ]
+          },
+          "copy_space_detail": 0.338,
+          "product_source": "https://ioma-paris.com/cdn/shop/files/cc-gel-soin-teinte-eclat-parfait-cc-creme-packshot-IOMA.jpg?v=1782400396&width=2000"
+        },
+        "banner": {
+          "path": "/workspace/AGENT_BEAUTY/posts/2026-10-23-ioma-cc-gel-restock/it/banner.png",
+          "size": [
+            300,
+            250
+          ],
+          "elements": [
+            {
+              "kind": "logo",
+              "box": [
+                117.5,
+                16,
+                182.5,
+                43
+              ]
+            },
+            {
+              "kind": "headline",
+              "text": "È tornata.\nLa tua luce.",
+              "font_size": 26,
+              "contrast_ratio": 10.814785963651698,
+              "box": [
+                17,
+                59,
+                133,
+                105
+              ]
+            },
+            {
+              "kind": "product",
+              "box": [
+                202,
+                77,
+                242,
+                207
+              ],
+              "shadow": {
+                "model": "silhouette-floor-v2",
+                "baseline": 207,
+                "footprint": [
+                  213,
+                  232
+                ],
+                "cast_vector": [
+                  28.6,
+                  9.1
+                ],
+                "color": [
+                  62,
+                  54,
+                  46
+                ]
+              }
+            },
+            {
+              "kind": "ingredient",
+              "text": "Glicerina",
+              "font_size": 12,
+              "contrast_ratio": 13.119727687243124,
+              "box": [
+                17,
+                146,
+                70,
+                156
+              ],
+              "ingredient_id": "glycerin"
+            },
+            {
+              "kind": "arrow",
+              "ingredient_id": "glycerin",
+              "start": [
+                78,
+                151.0
+              ],
+              "end": [
+                197,
+                142.0
+              ],
+              "box": [
+                78,
+                140.42571388345564,
+                197,
+                151.0
+              ]
+            },
+            {
+              "kind": "ingredient",
+              "text": "Pigmenti",
+              "font_size": 12,
+              "contrast_ratio": 12.28806525590312,
+              "box": [
+                17,
+                174,
+                70,
+                186
+              ],
+              "ingredient_id": "pigments"
+            },
+            {
+              "kind": "arrow",
+              "ingredient_id": "pigments",
+              "start": [
+                78,
+                180.0
+              ],
+              "end": [
+                197,
+                171.0
+              ],
+              "box": [
+                78,
+                169.42571388345564,
+                197,
+                180.0
+              ]
+            },
+            {
+              "kind": "cta",
+              "text": "Scopri CC Gel",
+              "font_size": 14,
+              "contrast_ratio": 10.776808396225036,
+              "box": [
+                17,
+                211,
+                113,
+                225
+              ]
+            }
+          ],
+          "text_area_ratio": 0.16156906794316744,
+          "layout": "native-editorial-v2",
+          "background_placement": {
+            "crop": [
+              0,
+              0.4,
+              1,
+              1
+            ],
+            "floor_start_y": 115,
+            "light_direction": [
+              0.22,
+              0.07
+            ]
+          },
+          "copy_space_detail": 0.491,
+          "product_source": "https://ioma-paris.com/cdn/shop/files/cc-gel-soin-teinte-eclat-parfait-cc-creme-packshot-IOMA.jpg?v=1782400396&width=2000"
+        }
+      }
+    },
+    "fr": {
+      "headline": "Le retour\nde l’éclat.",
+      "category": "CC GEL · DE NOUVEAU DISPONIBLE",
+      "product_name": "CC GEL\nCouvrance naturelle. Éclat immédiat.",
+      "cta": "Découvrir",
+      "caption": "Le retour de l’éclat. ✨\n\nCC Gel IOMA est de nouveau disponible. Retrouvez ce soin teinté à la texture légère qui unifie le teint et apporte un effet bonne mine naturel.\n\nDes pigments micro-encapsulés et de la glycérine pour associer couleur et hydratation en un seul geste.\n\nÉcrivez-nous en message privé pour en savoir plus.\n\n#IOMAParis #CCGel #SoinTeinte #TeintLumineux #Skincare",
+      "email": {
+        "subject": "CC Gel est de retour : retrouvez votre éclat",
+        "preheader": "De nouveau disponible : une couvrance naturelle et une peau hydratée.",
+        "title": "Le retour de l’éclat.",
+        "lead": "Ce petit éclat vous manquait ? CC Gel est de retour.",
+        "body": "Sa couvrance naturelle unifie le teint.\nSes pigments micro-encapsulés apportent un effet bonne mine.\nLa glycérine contribue à l’hydratation de la peau.",
+        "closing": "Pour vous, si vous cherchez légèreté et éclat au fini naturel.",
+        "cta": "Découvrir CC Gel",
+        "language": "fr",
+        "campaign_headline": "Le retour de l’éclat.",
+        "product_url": "https://ioma-paris.com/products/cc-gel-soin-teinte-eclat-parfait?utm_source=beauty_agent&utm_medium=email&utm_campaign=cc-gel-restock-20261023",
+        "sent": false
+      },
+      "language": "fr",
+      "ingredients": [
+        {
+          "id": "glycerin",
+          "label": {
+            "fr": "Glycérine",
+            "it": "Glicerina"
+          },
+          "short": {
+            "fr": "Glycérine",
+            "it": "Glicerina"
+          },
+          "inci": [
+            "GLYCERIN"
+          ],
+          "priority": 100,
+          "role": {
+            "fr": "Hydratation",
+            "it": "Idratazione"
+          },
+          "source_url": "https://ioma-paris.com/products/cc-gel-soin-teinte-eclat-parfait",
+          "verified_at": "2026-10-23T10:04:36.964966+00:00"
+        },
+        {
+          "id": "pigments",
+          "label": {
+            "fr": "Pigments\nencapsulés",
+            "it": "Pigmenti\nincapsulati"
+          },
+          "short": {
+            "fr": "Pigments",
+            "it": "Pigmenti"
+          },
+          "inci": [
+            "CI 77492 (IRON OXIDES)",
+            "CI 77491 (IRON OXIDES)",
+            "CI 77499 (IRON OXIDES)"
+          ],
+          "priority": 90,
+          "role": {
+            "fr": "Teint unifié",
+            "it": "Incarnato uniforme"
+          },
+          "official_actives": [
+            "PIGMENTS MICRO-ENCAPSULÉS"
+          ],
+          "source_url": "https://ioma-paris.com/products/cc-gel-soin-teinte-eclat-parfait",
+          "verified_at": "2026-10-23T10:04:36.964966+00:00"
+        }
+      ],
+      "graphics": {
+        "feed": {
+          "path": "/workspace/AGENT_BEAUTY/posts/2026-10-23-ioma-cc-gel-restock/fr/feed.png",
+          "size": [
+            1080,
+            1350
+          ],
+          "elements": [
+            {
+              "kind": "logo",
+              "box": [
+                467.0,
+                75,
+                613.0,
+                136
+              ]
+            },
+            {
+              "kind": "category",
+              "text": "CC GEL · DE NOUVEAU DISPONIBLE",
+              "font_size": 26,
+              "contrast_ratio": 11.161606391583884,
+              "box": [
+                310.21875,
+                208,
+                770.21875,
+                227
+              ]
+            },
+            {
+              "kind": "headline",
+              "text": "Le retour\nde l’éclat.",
+              "font_size": 100,
+              "contrast_ratio": 11.572584176511892,
+              "box": [
+                358.1953125,
+                260,
+                722.1953125,
+                438
+              ]
+            },
+            {
+              "kind": "product",
+              "box": [
+                447,
+                490,
+                633,
+                1100
+              ],
+              "shadow": {
+                "model": "silhouette-floor-v2",
+                "baseline": 1100,
+                "footprint": [
+                  497,
+                  585
+                ],
+                "cast_vector": [
+                  134.2,
+                  42.7
+                ],
+                "color": [
+                  62,
+                  54,
+                  46
+                ]
+              }
+            },
+            {
+              "kind": "ingredient",
+              "text": "Glycérine",
+              "font_size": 28,
+              "contrast_ratio": 11.033751360650749,
+              "box": [
+                97.515625,
+                635.5,
+                230.515625,
+                663.5
+              ],
+              "ingredient_id": "glycerin"
+            },
+            {
+              "kind": "arrow",
+              "ingredient_id": "glycerin",
+              "start": [
+                240.515625,
+                688.5
+              ],
+              "end": [
+                440,
+                718.5
+              ],
+              "box": [
+                240.515625,
+                688.5,
+                440,
+                721.4226095293675
+              ]
+            },
+            {
+              "kind": "ingredient",
+              "text": "Pigments\nencapsulés",
+              "font_size": 28,
+              "contrast_ratio": 10.490874075045863,
+              "box": [
+                837.3671875,
+                867.3,
+                994.3671875,
+                934.3
+              ],
+              "ingredient_id": "pigments"
+            },
+            {
+              "kind": "arrow",
+              "ingredient_id": "pigments",
+              "start": [
+                827.3671875,
+                920.3
+              ],
+              "end": [
+                640,
+                950.3
+              ],
+              "box": [
+                640,
+                920.3,
+                827.3671875,
+                953.1416404367856
+              ]
+            },
+            {
+              "kind": "product_name",
+              "text": "CC GEL\nCouvrance naturelle. Éclat immédiat.",
+              "font_size": 28,
+              "contrast_ratio": 9.4564194616722,
+              "box": [
+                279.28125,
+                1165,
+                800.28125,
+                1230
+              ]
+            }
+          ],
+          "text_area_ratio": 0.09826268311856083,
+          "layout": "native-editorial-v2",
+          "background_placement": {
+            "crop": [
+              0,
+              0.15,
+              1,
+              1
+            ],
+            "floor_start_y": 864,
+            "light_direction": [
+              0.22,
+              0.07
+            ]
+          },
+          "copy_space_detail": 0.514,
+          "product_source": "https://ioma-paris.com/cdn/shop/files/cc-gel-soin-teinte-eclat-parfait-cc-creme-packshot-IOMA.jpg?v=1782400396&width=2000"
+        },
+        "story": {
+          "path": "/workspace/AGENT_BEAUTY/posts/2026-10-23-ioma-cc-gel-restock/fr/story.png",
+          "size": [
+            1080,
+            1920
+          ],
+          "elements": [
+            {
+              "kind": "logo",
+              "box": [
+                462.0,
+                278,
+                618.0,
+                343
+              ]
+            },
+            {
+              "kind": "category",
+              "text": "CC GEL · DE NOUVEAU DISPONIBLE",
+              "font_size": 26,
+              "contrast_ratio": 12.163885339099098,
+              "box": [
+                310.21875,
+                421,
+                770.21875,
+                440
+              ]
+            },
+            {
+              "kind": "headline",
+              "text": "Le retour\nde l’éclat.",
+              "font_size": 108,
+              "contrast_ratio": 11.930672890088886,
+              "box": [
+                343.6484375,
+                478,
+                736.6484375,
+                669
+              ]
+            },
+            {
+              "kind": "product",
+              "box": [
+                433,
+                700,
+                647,
+                1400
+              ],
+              "shadow": {
+                "model": "silhouette-floor-v2",
+                "baseline": 1400,
+                "footprint": [
+                  490,
+                  591
+                ],
+                "cast_vector": [
+                  154.0,
+                  49.0
+                ],
+                "color": [
+                  62,
+                  54,
+                  46
+                ]
+              }
+            },
+            {
+              "kind": "ingredient",
+              "text": "Glycérine",
+              "font_size": 28,
+              "contrast_ratio": 12.192238764262653,
+              "box": [
+                97.515625,
+                877.0,
+                230.515625,
+                905.0
+              ],
+              "ingredient_id": "glycerin"
+            },
+            {
+              "kind": "arrow",
+              "ingredient_id": "glycerin",
+              "start": [
+                240.515625,
+                930.0
+              ],
+              "end": [
+                426,
+                960.0
+              ],
+              "box": [
+                240.515625,
+                930.0,
+                426,
+                962.8281079919092
+              ]
+            },
+            {
+              "kind": "ingredient",
+              "text": "Pigments\nencapsulés",
+              "font_size": 28,
+              "contrast_ratio": 11.137112711455336,
+              "box": [
+                837.3671875,
+                1143.0,
+                994.3671875,
+                1210.0
+              ],
+              "ingredient_id": "pigments"
+            },
+            {
+              "kind": "arrow",
+              "ingredient_id": "pigments",
+              "start": [
+                827.3671875,
+                1196.0
+              ],
+              "end": [
+                654,
+                1226.0
+              ],
+              "box": [
+                654,
+                1196.0,
+                827.3671875,
+                1228.7339860028492
+              ]
+            },
+            {
+              "kind": "product_name",
+              "text": "CC GEL\nCouvrance naturelle. Éclat immédiat.",
+              "font_size": 28,
+              "contrast_ratio": 10.584403380181081,
+              "box": [
+                279.28125,
+                1480,
+                800.28125,
+                1545
+              ]
+            }
+          ],
+          "text_area_ratio": 0.07417780680087291,
+          "layout": "native-editorial-v2",
+          "background_placement": {
+            "crop": [
+              0,
+              0.3,
+              1,
+              1
+            ],
+            "floor_start_y": 1097,
+            "light_direction": [
+              0.22,
+              0.07
+            ]
+          },
+          "copy_space_detail": 0.339,
+          "product_source": "https://ioma-paris.com/cdn/shop/files/cc-gel-soin-teinte-eclat-parfait-cc-creme-packshot-IOMA.jpg?v=1782400396&width=2000"
+        },
+        "banner": {
+          "path": "/workspace/AGENT_BEAUTY/posts/2026-10-23-ioma-cc-gel-restock/fr/banner.png",
+          "size": [
+            300,
+            250
+          ],
+          "elements": [
+            {
+              "kind": "logo",
+              "box": [
+                117.5,
+                16,
+                182.5,
+                43
+              ]
+            },
+            {
+              "kind": "headline",
+              "text": "Le retour\nde l’éclat.",
+              "font_size": 26,
+              "contrast_ratio": 10.814785963651698,
+              "box": [
+                17,
+                59,
+                112,
+                105
+              ]
+            },
+            {
+              "kind": "product",
+              "box": [
+                202,
+                77,
+                242,
+                207
+              ],
+              "shadow": {
+                "model": "silhouette-floor-v2",
+                "baseline": 207,
+                "footprint": [
+                  213,
+                  232
+                ],
+                "cast_vector": [
+                  28.6,
+                  9.1
+                ],
+                "color": [
+                  62,
+                  54,
+                  46
+                ]
+              }
+            },
+            {
+              "kind": "ingredient",
+              "text": "Glycérine",
+              "font_size": 12,
+              "contrast_ratio": 12.985310841303756,
+              "box": [
+                17,
+                146,
+                74,
+                159
+              ],
+              "ingredient_id": "glycerin"
+            },
+            {
+              "kind": "arrow",
+              "ingredient_id": "glycerin",
+              "start": [
+                82,
+                152.5
+              ],
+              "end": [
+                197,
+                143.5
+              ],
+              "box": [
+                82,
+                141.93533555917773,
+                197,
+                152.5
+              ]
+            },
+            {
+              "kind": "ingredient",
+              "text": "Pigments",
+              "font_size": 12,
+              "contrast_ratio": 12.28806525590312,
+              "box": [
+                17,
+                174,
+                73,
+                186
+              ],
+              "ingredient_id": "pigments"
+            },
+            {
+              "kind": "arrow",
+              "ingredient_id": "pigments",
+              "start": [
+                81,
+                180.0
+              ],
+              "end": [
+                197,
+                171.0
+              ],
+              "box": [
+                81,
+                169.43286727855116,
+                197,
+                180.0
+              ]
+            },
+            {
+              "kind": "cta",
+              "text": "Découvrir",
+              "font_size": 14,
+              "contrast_ratio": 11.202923176381422,
+              "box": [
+                17,
+                211,
+                85,
+                222
+              ]
+            }
+          ],
+          "text_area_ratio": 0.1430229840851017,
+          "layout": "native-editorial-v2",
+          "background_placement": {
+            "crop": [
+              0,
+              0.4,
+              1,
+              1
+            ],
+            "floor_start_y": 115,
+            "light_direction": [
+              0.22,
+              0.07
+            ]
+          },
+          "copy_space_detail": 0.482,
+          "product_source": "https://ioma-paris.com/cdn/shop/files/cc-gel-soin-teinte-eclat-parfait-cc-creme-packshot-IOMA.jpg?v=1782400396&width=2000"
+        }
+      }
+    }
+  },
+  "quality": {
+    "technical_checks": "passed",
+    "visual_review": "passed",
+    "reviewed_at": "2026-10-23T10:07:05.043698+00:00",
+    "reviewed_files_sha256": {
+      "fr/feed.png": "e113f66bd8239aea855eff97b7c01e84af29d6d6f246fd2e1217d2c764160ab6",
+      "fr/presentazione.pptx": "d36e966db02e65437b4dc9f4a26ccdbc8e842cf37d30b87a5de0b47133041ff1",
+      "fr/email.html": "f1f1c74ad4d6b962bb40f8ded03cd47d20bade937359a038c9edb512550d2918",
+      "fr/email-logo.png": "aa3a56e843be2f5a52b8862d35a4284f6192294fe3664694c8f54450947ddd1f",
+      "fr/story.png": "7bd48af783ba78befaa36b8208a4ae791f291a10f9f60b9c11aa323fecb49f3c",
+      "fr/email.eml": "e9f6197cf5f3bc2b6b5711e1a65f08bc68f8b90d1d524baf3c39ce509c5f02b1",
+      "fr/banner.png": "0094bcd427b9e67a4e62bfb7b3cd08face7443453c513e13104513210c7fc41b",
+      "fr/slides/01.png": "596d5beff97ebe26101b0f651378d9e22961819584db7d0431783039f7e196e5",
+      "fr/slides/02.png": "14d3c4696fe7b213fbaac8f39a83f9b55a82ac71222048541cb930801655de7d",
+      "fr/slides/03.png": "c17709ab89515f49d77360d03e93ccb8844b952df30a160c035d5d87523a6645",
+      "fr/slides/04.png": "a405fd740145a74ba2065abe0bf59498fb56e0e8ab0727a606f6cc808750c244",
+      "it/feed.png": "d5610299e6e74b480040487d46ec0555f67c981776eea1b10e9251d772450d6f",
+      "it/story-instagram.jpg": "4160fe7250bb9e7abb2a0b215dde32019af483a234548b8bda02c75fc4607a8f",
+      "it/presentazione.pptx": "7c35dbbb2947cd66aaf69d3efb1a7df94add4208d38bb8007377650dc1acd2d0",
+      "it/email.html": "33bc1969126311feb5337ad8f1893b06fcd0153fe2586479f1655f41cd5c59d1",
+      "it/email-logo.png": "aa3a56e843be2f5a52b8862d35a4284f6192294fe3664694c8f54450947ddd1f",
+      "it/story.png": "82471d013c4cc58073e4f776125452146178c84a9285fe4b4fb7766ab2703565",
+      "it/email.eml": "16f25da897e0533ef2376eec9baaa0469998c9bbe592d622f0e6c847a687c06a",
+      "it/banner.png": "2174f27153baeb746ae8082e21d827ecbbb4e4f4a3906fd29f39938d20960302",
+      "it/slides/01.png": "9c1a7046ab7d93f9f4561909912f587e58b10401373279dc4c0936a73bc4441e",
+      "it/slides/02.png": "79d2710a75fc4685eacbe468658fd163b30d3cf74c0d4af4729994a472c1a121",
+      "it/slides/03.png": "edea7bd4e73eb4b0843fcbdecdba549014ef9c2b961b31a84dd1abb0e0416e42",
+      "it/slides/04.png": "78d3c1578bfb6d121ade87c74ced6407b00c89036a555e1a96961d8a1a38ac9e"
+    },
+    "observations": [
+      "All six final exports opened; feed/story reviewed at 360px and banners at 300x250. Logo centered, two clear ingredient arrows, original package text legible; no overlaps or clipping.",
+      "Original official product photo composited with native layouts. White and silver tube remains unchanged apart from proportional scaling and background cutout.",
+      "Both emails reviewed at 900px and 390px: hero uses original feed PNG, text wraps naturally, CTA and footer fit. Embedded MIME images checked byte-for-byte.",
+      "All eight slide renders opened; no text collisions or clipping. PPTX slide images verified byte-for-byte against previews. Full source areas have active hyperlinks."
+    ],
+    "publication_status": "story_pending"
+  },
+  "google_trends": {
+    "it": {
+      "retrieved_at": "2026-10-23T10:01:32.570543+00:00",
+      "geo": "IT",
+      "language": "it",
+      "period_start": "2026-10-16",
+      "period_end": "2026-10-22",
+      "category_id": 143,
+      "category_name": "Face & Body Care",
+      "search_property": "web",
+      "timezone": "UTC",
+      "source_url": "https://trends.google.com/trends/explore?cat=143&date=2026-10-16+2026-10-22&geo=IT&hl=it",
+      "top": [
+        {
+          "query": "crema",
+          "value": 100,
+          "source_rank": 1,
+          "breakout": false
+        },
+        {
+          "query": "crema viso",
+          "value": 22,
+          "source_rank": 6,
+          "breakout": false
+        },
+        {
+          "query": "fondotinta",
+          "value": 17,
+          "source_rank": 7,
+          "breakout": false
+        },
+        {
+          "query": "eucerin",
+          "value": 8,
+          "source_rank": 14,
+          "breakout": false
+        },
+        {
+          "query": "cerave",
+          "value": 7,
+          "source_rank": 15,
+          "breakout": false
+        }
+      ],
+      "rising": [
+        {
+          "query": "kylie cosmetics",
+          "value": 140,
+          "source_rank": 3,
+          "breakout": false
+        },
+        {
+          "query": "crema anti età",
+          "value": 110,
+          "source_rank": 4,
+          "breakout": false
+        },
+        {
+          "query": "eucerin",
+          "value": 70,
+          "source_rank": 5,
+          "breakout": false
+        }
+      ],
+      "interpretation": "Contesto beauty ampio; nessuna evidenza di crescita specifica per CC Gel.",
+      "comparison_start": "2026-10-09",
+      "comparison_end": "2026-10-15",
+      "method_url": "https://support.google.com/trends/answer/4355000",
+      "response_sha256": "bb090c50ff3433dcc9fda5e26fffcb006f9b8704c3b38fcb09a41e62dcd1aa98",
+      "selection_note": "Editorial relevance filter; original order, spelling and scores retained. Not exhaustive beauty search volumes."
+    },
+    "fr": {
+      "retrieved_at": "2026-10-23T10:01:32.570543+00:00",
+      "geo": "FR",
+      "language": "fr",
+      "period_start": "2026-10-16",
+      "period_end": "2026-10-22",
+      "category_id": 143,
+      "category_name": "Face & Body Care",
+      "search_property": "web",
+      "timezone": "UTC",
+      "source_url": "https://trends.google.com/trends/explore?cat=143&date=2026-10-16+2026-10-22&geo=FR&hl=fr",
+      "top": [
+        {
+          "query": "maquillage",
+          "value": 18,
+          "source_rank": 7,
+          "breakout": false
+        },
+        {
+          "query": "dior",
+          "value": 14,
+          "source_rank": 10,
+          "breakout": false
+        },
+        {
+          "query": "vichy",
+          "value": 11,
+          "source_rank": 12,
+          "breakout": false
+        },
+        {
+          "query": "fond de teint",
+          "value": 9,
+          "source_rank": 16,
+          "breakout": false
+        },
+        {
+          "query": "caudalie",
+          "value": 6,
+          "source_rank": 24,
+          "breakout": false
+        }
+      ],
+      "rising": [
+        {
+          "query": "gloss victoria secret",
+          "value": 100,
+          "source_rank": 3,
+          "breakout": false
+        },
+        {
+          "query": "vernis rouge",
+          "value": 70,
+          "source_rank": 4,
+          "breakout": false
+        },
+        {
+          "query": "poudre huda beauty",
+          "value": 40,
+          "source_rank": 7,
+          "breakout": false
+        }
+      ],
+      "interpretation": "Contexte beauté large ; aucune preuve de hausse spécifique pour CC Gel.",
+      "comparison_start": "2026-10-09",
+      "comparison_end": "2026-10-15",
+      "method_url": "https://support.google.com/trends/answer/4355000",
+      "response_sha256": "452d6a92199a90514f8d623977bb9305e7877c587adbb6d2f3d80539134e018f",
+      "selection_note": "Editorial relevance filter; original order, spelling and scores retained. Not exhaustive beauty search volumes."
+    }
+  },
+  "delivery": {
+    "schema_version": 2,
+    "generation_id": "cc-gel-restock-2026-10-23T10:04:36.964966+00:00",
+    "created_at": "2026-10-23T10:04:45.591815+00:00",
+    "required_outputs": [
+      "post",
+      "email",
+      "story"
+    ],
+    "status": "pending_deliveries",
+    "files": {
+      "fr/feed.png": "e113f66bd8239aea855eff97b7c01e84af29d6d6f246fd2e1217d2c764160ab6",
+      "fr/caption.txt": "8f7b1b274c33db979e684db7971c2c3a56d521c558f6c21ac4aa1c73284ee8af",
+      "fr/story.png": "7bd48af783ba78befaa36b8208a4ae791f291a10f9f60b9c11aa323fecb49f3c",
+      "fr/email.html": "f1f1c74ad4d6b962bb40f8ded03cd47d20bade937359a038c9edb512550d2918",
+      "fr/email.eml": "e9f6197cf5f3bc2b6b5711e1a65f08bc68f8b90d1d524baf3c39ce509c5f02b1",
+      "fr/email-logo.png": "aa3a56e843be2f5a52b8862d35a4284f6192294fe3664694c8f54450947ddd1f",
+      "it/feed.png": "d5610299e6e74b480040487d46ec0555f67c981776eea1b10e9251d772450d6f",
+      "it/caption.txt": "998adef3373a236d79dd71eafc56600d093a4164ba92fc9c5cfd1bef107ec6de",
+      "it/story.png": "82471d013c4cc58073e4f776125452146178c84a9285fe4b4fb7766ab2703565",
+      "it/email.html": "33bc1969126311feb5337ad8f1893b06fcd0153fe2586479f1655f41cd5c59d1",
+      "it/email.eml": "16f25da897e0533ef2376eec9baaa0469998c9bbe592d622f0e6c847a687c06a",
+      "it/email-logo.png": "aa3a56e843be2f5a52b8862d35a4284f6192294fe3664694c8f54450947ddd1f"
+    },
+    "email": {
+      "provider": "gmail",
+      "to": "gb77ita@gmail.com",
+      "language": "it",
+      "required": true,
+      "status": "pending",
+      "sent": false
+    },
+    "instagram_story": {
+      "provider": "instagram",
+      "account_id": "17841464260421573",
+      "username": "gb77ita",
+      "language": "it",
+      "required": true,
+      "status": "ready",
+      "published": false,
+      "image_sha256": "4160fe7250bb9e7abb2a0b215dde32019af483a234548b8bda02c75fc4607a8f",
+      "source_sha256": "82471d013c4cc58073e4f776125452146178c84a9285fe4b4fb7766ab2703565"
+    }
+  }
+}

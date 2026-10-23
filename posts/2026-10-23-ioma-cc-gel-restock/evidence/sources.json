@@ -1,0 +1,22 @@
+[
+  {
+    "id": "editorial",
+    "url": "https://www.whowhatwear.com/best-tinted-moisturiser",
+    "publisher": "Who What Wear",
+    "date": "2026-10-20T16:28:22Z",
+    "kind": "editorial_updated",
+    "retrieved_text_sha256": "08a4fef56beea3a7d5634330314513fd66b2ac02c6b6e5849a9f9413d3df476e",
+    "active_period": null,
+    "note": "Original article first published in 2019, updated 20 October 2026."
+  },
+  {
+    "id": "advertising",
+    "url": "https://www.marketing-interactive.com/cerave-hk-ditches-the-hard-sell-to-win-over-genz",
+    "publisher": "Marketing-Interactive",
+    "date": "2026-09-24",
+    "kind": "advertising_campaign",
+    "retrieved_text_sha256": "3f1d837687c0d5a7a53a3fd5edd5e50b4f2cf185e617e470cfcb073e9561233a",
+    "active_period": "September–November 2026",
+    "note": "Announced campaign period, not verification of paid delivery."
+  }
+]

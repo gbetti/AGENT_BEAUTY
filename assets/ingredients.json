@@ -106,5 +106,50 @@
         "it": "Idratazione"
       }
     }
+  ],
+  "cc-gel": [
+    {
+      "id": "glycerin",
+      "label": {
+        "fr": "Glycérine",
+        "it": "Glicerina"
+      },
+      "short": {
+        "fr": "Glycérine",
+        "it": "Glicerina"
+      },
+      "inci": [
+        "GLYCERIN"
+      ],
+      "priority": 100,
+      "role": {
+        "fr": "Hydratation",
+        "it": "Idratazione"
+      }
+    },
+    {
+      "id": "pigments",
+      "label": {
+        "fr": "Pigments\nencapsulés",
+        "it": "Pigmenti\nincapsulati"
+      },
+      "short": {
+        "fr": "Pigments",
+        "it": "Pigmenti"
+      },
+      "inci": [
+        "CI 77492 (IRON OXIDES)",
+        "CI 77491 (IRON OXIDES)",
+        "CI 77499 (IRON OXIDES)"
+      ],
+      "priority": 90,
+      "role": {
+        "fr": "Teint unifié",
+        "it": "Incarnato uniforme"
+      },
+      "official_actives": [
+        "PIGMENTS MICRO-ENCAPSULÉS"
+      ]
+    }
   ]
 }
