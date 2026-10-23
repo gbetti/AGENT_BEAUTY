@@ -1,0 +1,305 @@
+{
+  "created_at": "2026-10-23T10:50:25.631820+00:00",
+  "generation_id": "cc-gel-benefices-2026-10-23T10:50:25.631820+00:00",
+  "product_id": "urn:agent-beauty:manual:ioma:cc-gel",
+  "product": "CC Gel – Crème Soin Teinté Eclat Parfait",
+  "primary_language": "fr",
+  "scope": "Benefit-led restock post explicitly requested for publication; coordinated story and long email.",
+  "availability": {
+    "user_confirmed": true,
+    "site_update": "previously deferred by user"
+  },
+  "complexion_claim": {
+    "approved_by_user": "Usa «si adatta all’incarnato»",
+    "source_conflict": "Official marketing copy uses universal shade; FAQ limits suitability to light/medium complexions. No all-tones promise in this campaign."
+  },
+  "source": "https://ioma-paris.com/products/cc-gel-soin-teinte-eclat-parfait",
+  "localizations": {
+    "fr": {
+      "headline": "Votre teint. En mieux.",
+      "caption": "CC Gel est de nouveau disponible ✨\n\nVotre teint. En mieux.\n\nLe secret de cette CC crème IOMA ? Des pigments micro-encapsulés qui se libèrent à l’application et s’adaptent à votre carnation, pour un résultat naturel.\n\n🤎 UNIFIE : une couvrance légère pour harmoniser le teint.\n💧 HYDRATE : la glycérine aide à retenir l’eau dans l’épiderme.\n✨ ILLUMINE : un effet bonne mine qui révèle l’éclat du visage.\n\nUne texture gel légère, pour associer soin et maquillage dans un seul geste.\n\nEnvie de retrouver CC Gel ? Écrivez-nous en message privé.\n\n#IOMAParis #CCGel #CCCreme #SoinTeinte #TeintLumineux",
+      "email": {
+        "title": "CC Gel",
+        "preheader": "Une couvrance légère, un teint unifié et une peau hydratée.",
+        "lead": "Un teint lumineux, sans masquer ce qui vous rend unique ?",
+        "body": "Retrouvez le plaisir d’un teint lumineux avec CC Gel, le soin teinté IOMA qui associe une couvrance naturelle à des actifs hydratants. Sa texture légère accompagne les envies de bonne mine tout en laissant votre peau exprimer sa beauté.\nSes pigments se libèrent à l’application et s’adaptent à votre carnation pour unifier le teint. Derrière ce fini naturel, chaque actif sélectionné joue un rôle précis : apporter de l’eau, la retenir ou révéler l’éclat du visage.",
+        "closing": "Pour vous, si vous recherchez un teint plus uniforme, de l’hydratation et un fini naturel dans un même soin. Découvrez la formule et ses bénéfices.",
+        "cta": "Découvrir CC Gel",
+        "ingredients": [
+          {
+            "id": "glycerin",
+            "name": "Glycérine · Hydratation",
+            "benefit": "Elle attire l’eau et aide à la retenir dans l’épiderme. Cette action contribue à maintenir l’hydratation de la peau, au cœur du geste de soin."
+          },
+          {
+            "id": "pigments",
+            "name": "Pigments micro-encapsulés · Éclat",
+            "benefit": "Ils unifient et rehaussent instantanément le teint en s’adaptant aux carnations. Le visage bénéficie d’un effet bonne mine, avec la couvrance naturelle de CC Gel."
+          },
+          {
+            "id": "fucocert",
+            "name": "Fucocert · Protection",
+            "benefit": "Cet actif hydrate et forme une matrice protectrice non occlusive à la surface de la peau. Il contribue ainsi à la protéger des agressions extérieures."
+          }
+        ],
+        "ingredients_title": "Les ingrédients, leurs bénéfices",
+        "ingredients_intro": "Découvrez le rôle des actifs sélectionnés dans cette formule.",
+        "subject": "CC Gel est de retour : votre teint, en mieux",
+        "language": "fr",
+        "product_url": "https://ioma-paris.com/products/cc-gel-soin-teinte-eclat-parfait?utm_source=beauty_agent&utm_medium=email&utm_campaign=cc-gel-2026-10-23T1050256318200000",
+        "campaign_headline": "Votre teint. En mieux.",
+        "html_path": "/workspace/AGENT_BEAUTY/posts/2026-10-23-cc-gel-benefices/fr/email.html",
+        "eml_path": "/workspace/AGENT_BEAUTY/posts/2026-10-23-cc-gel-benefices/fr/email.eml",
+        "logo_path": "/workspace/AGENT_BEAUTY/posts/2026-10-23-cc-gel-benefices/fr/email-logo.png",
+        "image_path": "/workspace/AGENT_BEAUTY/posts/2026-10-23-cc-gel-benefices/fr/feed.png",
+        "image_sha256": "629d85d31f711d9352b21f0b8c6af0a665a16988adb0b913af8a89b84fbddd30",
+        "image_size": [
+          1080,
+          1350
+        ],
+        "html_images": "local",
+        "html_unsubscribe": "Klaviyo unsubscribe_link",
+        "draft_unsubscribe": "mailto contact@ioma-paris.com",
+        "body_word_count": 210,
+        "sent": false
+      }
+    },
+    "it": {
+      "headline": "Il tuo incarnato. Al meglio.",
+      "caption": "CC Gel è di nuovo disponibile ✨\n\nIl tuo incarnato. Al meglio.\n\nIl segreto di questa CC crème IOMA? Pigmenti microincapsulati che si liberano durante l’applicazione e si adattano al tuo incarnato, per un risultato naturale.\n\n🤎 UNIFORMA: una coprenza leggera per armonizzare il colorito.\n💧 IDRATA: la glicerina aiuta a trattenere l’acqua nell’epidermide.\n✨ ILLUMINA: un effetto bonne mine che valorizza la luminosità del viso.\n\nUna texture gel leggera, per unire trattamento e make-up in un solo gesto.\n\nVuoi ritrovare CC Gel? Scrivici in DM.\n\n#IOMAParis #CCGel #CCCreme #IncarnatoLuminoso #Skincare",
+      "email": {
+        "title": "CC Gel",
+        "preheader": "Coprenza leggera, incarnato uniforme e pelle idratata.",
+        "lead": "Un incarnato luminoso, con la tua naturalezza?",
+        "body": "Riscopri il piacere di un incarnato luminoso con CC Gel, il trattamento colorato IOMA che unisce una coprenza naturale ad attivi idratanti. La sua texture leggera accompagna il desiderio di un effetto bonne mine, lasciando esprimere la bellezza della tua pelle.\nI pigmenti si liberano durante l’applicazione e si adattano al tuo incarnato per uniformare il colorito. Dietro questo risultato naturale, ogni attivo selezionato ha un ruolo preciso: apportare acqua, trattenerla oppure valorizzare la luminosità del viso.",
+        "closing": "Fa per te se cerchi un incarnato più uniforme, idratazione e un risultato naturale in un unico trattamento. Scopri la formula e i suoi benefici.",
+        "cta": "Scopri CC Gel",
+        "ingredients": [
+          {
+            "id": "glycerin",
+            "name": "Glicerina · Idratazione",
+            "benefit": "Attira l’acqua e aiuta a trattenerla nell’epidermide. Questa azione contribuisce a mantenere la pelle idratata, portando il beneficio del trattamento nel gesto dedicato al tuo incarnato."
+          },
+          {
+            "id": "pigments",
+            "name": "Pigmenti microincapsulati · Luminosità",
+            "benefit": "Uniformano e valorizzano immediatamente il colorito, adattandosi alle carnagioni. Il viso acquista un effetto bonne mine, con la coprenza naturale che caratterizza CC Gel."
+          },
+          {
+            "id": "fucocert",
+            "name": "Fucocert · Protezione",
+            "benefit": "Idrata e forma una matrice protettiva non occlusiva sulla superficie della pelle. In questo modo contribuisce a proteggerla dalle aggressioni esterne, completando l’azione idratante della formula."
+          }
+        ],
+        "ingredients_title": "Gli ingredienti e i loro benefici",
+        "ingredients_intro": "Scopri il ruolo degli attivi selezionati in questa formula.",
+        "subject": "CC Gel è tornato: il tuo incarnato, al meglio",
+        "language": "it",
+        "product_url": "https://ioma-paris.com/products/cc-gel-soin-teinte-eclat-parfait?utm_source=beauty_agent&utm_medium=email&utm_campaign=cc-gel-2026-10-23T1050256318200000",
+        "campaign_headline": "Il tuo incarnato. Al meglio.",
+        "html_path": "/workspace/AGENT_BEAUTY/posts/2026-10-23-cc-gel-benefices/it/email.html",
+        "eml_path": "/workspace/AGENT_BEAUTY/posts/2026-10-23-cc-gel-benefices/it/email.eml",
+        "logo_path": "/workspace/AGENT_BEAUTY/posts/2026-10-23-cc-gel-benefices/it/email-logo.png",
+        "image_path": "/workspace/AGENT_BEAUTY/posts/2026-10-23-cc-gel-benefices/it/feed.png",
+        "image_sha256": "a66a511703101060eb1d47a3eac33cae6c65f1013955b28d6c2886371db22eb4",
+        "image_size": [
+          1080,
+          1350
+        ],
+        "html_images": "local",
+        "html_unsubscribe": "Klaviyo unsubscribe_link",
+        "draft_unsubscribe": "mailto contact@ioma-paris.com",
+        "body_word_count": 210,
+        "sent": false
+      }
+    }
+  },
+  "quality": {
+    "visual_review": "pending"
+  },
+  "google_trends": {
+    "it": {
+      "retrieved_at": "2026-10-23T10:01:32.570543+00:00",
+      "geo": "IT",
+      "language": "it",
+      "period_start": "2026-10-16",
+      "period_end": "2026-10-22",
+      "category_id": 143,
+      "category_name": "Face & Body Care",
+      "search_property": "web",
+      "timezone": "UTC",
+      "source_url": "https://trends.google.com/trends/explore?cat=143&date=2026-10-16+2026-10-22&geo=IT&hl=it",
+      "top": [
+        {
+          "query": "crema",
+          "value": 100,
+          "source_rank": 1,
+          "breakout": false
+        },
+        {
+          "query": "crema viso",
+          "value": 22,
+          "source_rank": 6,
+          "breakout": false
+        },
+        {
+          "query": "fondotinta",
+          "value": 17,
+          "source_rank": 7,
+          "breakout": false
+        },
+        {
+          "query": "eucerin",
+          "value": 8,
+          "source_rank": 14,
+          "breakout": false
+        },
+        {
+          "query": "cerave",
+          "value": 7,
+          "source_rank": 15,
+          "breakout": false
+        }
+      ],
+      "rising": [
+        {
+          "query": "kylie cosmetics",
+          "value": 140,
+          "source_rank": 3,
+          "breakout": false
+        },
+        {
+          "query": "crema anti età",
+          "value": 110,
+          "source_rank": 4,
+          "breakout": false
+        },
+        {
+          "query": "eucerin",
+          "value": 70,
+          "source_rank": 5,
+          "breakout": false
+        }
+      ],
+      "interpretation": "Contesto beauty ampio; nessuna evidenza di crescita specifica per CC Gel.",
+      "comparison_start": "2026-10-09",
+      "comparison_end": "2026-10-15",
+      "method_url": "https://support.google.com/trends/answer/4355000",
+      "response_sha256": "bb090c50ff3433dcc9fda5e26fffcb006f9b8704c3b38fcb09a41e62dcd1aa98",
+      "selection_note": "Editorial relevance filter; original order, spelling and scores retained. Not exhaustive beauty search volumes."
+    },
+    "fr": {
+      "retrieved_at": "2026-10-23T10:01:32.570543+00:00",
+      "geo": "FR",
+      "language": "fr",
+      "period_start": "2026-10-16",
+      "period_end": "2026-10-22",
+      "category_id": 143,
+      "category_name": "Face & Body Care",
+      "search_property": "web",
+      "timezone": "UTC",
+      "source_url": "https://trends.google.com/trends/explore?cat=143&date=2026-10-16+2026-10-22&geo=FR&hl=fr",
+      "top": [
+        {
+          "query": "maquillage",
+          "value": 18,
+          "source_rank": 7,
+          "breakout": false
+        },
+        {
+          "query": "dior",
+          "value": 14,
+          "source_rank": 10,
+          "breakout": false
+        },
+        {
+          "query": "vichy",
+          "value": 11,
+          "source_rank": 12,
+          "breakout": false
+        },
+        {
+          "query": "fond de teint",
+          "value": 9,
+          "source_rank": 16,
+          "breakout": false
+        },
+        {
+          "query": "caudalie",
+          "value": 6,
+          "source_rank": 24,
+          "breakout": false
+        }
+      ],
+      "rising": [
+        {
+          "query": "gloss victoria secret",
+          "value": 100,
+          "source_rank": 3,
+          "breakout": false
+        },
+        {
+          "query": "vernis rouge",
+          "value": 70,
+          "source_rank": 4,
+          "breakout": false
+        },
+        {
+          "query": "poudre huda beauty",
+          "value": 40,
+          "source_rank": 7,
+          "breakout": false
+        }
+      ],
+      "interpretation": "Contexte beauté large ; aucune preuve de hausse spécifique pour CC Gel.",
+      "comparison_start": "2026-10-09",
+      "comparison_end": "2026-10-15",
+      "method_url": "https://support.google.com/trends/answer/4355000",
+      "response_sha256": "452d6a92199a90514f8d623977bb9305e7877c587adbb6d2f3d80539134e018f",
+      "selection_note": "Editorial relevance filter; original order, spelling and scores retained. Not exhaustive beauty search volumes."
+    }
+  },
+  "delivery": {
+    "schema_version": 2,
+    "generation_id": "cc-gel-benefices-2026-10-23T10:50:25.631820+00:00",
+    "created_at": "2026-10-23T10:50:25.707642+00:00",
+    "primary_language": "fr",
+    "required_outputs": [
+      "post",
+      "email",
+      "story"
+    ],
+    "status": "pending_deliveries",
+    "files": {
+      "fr/feed.png": "629d85d31f711d9352b21f0b8c6af0a665a16988adb0b913af8a89b84fbddd30",
+      "fr/caption.txt": "107ee8f9a32c96f6a0cd4694f9c200ab3f6d412abfce67b5ac358850816a05a4",
+      "fr/story.png": "b0743b67a56211d59939ea4b7645f6f562b200a34b7418e5a23536f1563e13a3",
+      "fr/email.html": "2b1faa5de6097ffb4863f6d7731034b6e98b835e62af5ac1f1ccbe3b70f26422",
+      "fr/email.eml": "8902a0d758238a4f608cf2bd5a92fb1fa95195d55e44b951434712d4f7404f85",
+      "fr/email-logo.png": "aa3a56e843be2f5a52b8862d35a4284f6192294fe3664694c8f54450947ddd1f",
+      "it/feed.png": "a66a511703101060eb1d47a3eac33cae6c65f1013955b28d6c2886371db22eb4",
+      "it/caption.txt": "1dd8b79f7c1d938f39a299af601a6f480ef22e57ae4462c01943200437176295",
+      "it/story.png": "e5507b36fc196980eaf3fd80711aa98af03ede13177c6d83c287de308100691b",
+      "it/email.html": "f37b0bb14e13f4e13de75863a229b23d572003e1ab3e6572a6622438aa536914",
+      "it/email.eml": "f4cef049a4fbc3346789203a986bdd1f959ff1cf31274950c769bc51bc861789",
+      "it/email-logo.png": "aa3a56e843be2f5a52b8862d35a4284f6192294fe3664694c8f54450947ddd1f"
+    },
+    "email": {
+      "provider": "gmail",
+      "to": "gb77ita@gmail.com",
+      "language": "fr",
+      "required": true,
+      "status": "pending",
+      "sent": false
+    },
+    "instagram_story": {
+      "provider": "instagram",
+      "account_id": "17841464260421573",
+      "username": "gb77ita",
+      "language": "fr",
+      "required": true,
+      "status": "pending",
+      "published": false
+    }
+  }
+}

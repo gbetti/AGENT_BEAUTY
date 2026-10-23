@@ -1,0 +1,271 @@
+{
+  "retrieved_at": "2026-10-23T10:01:32.570543+00:00",
+  "geo": "FR",
+  "language": "fr",
+  "period_start": "2026-10-16",
+  "period_end": "2026-10-22",
+  "category_id": 143,
+  "category_name": "Face & Body Care",
+  "search_property": "web",
+  "timezone": "UTC",
+  "seed_keyword": "",
+  "source_url": "https://trends.google.com/trends/explore?cat=143&date=2026-10-16+2026-10-22&geo=FR&hl=fr",
+  "widget_request": {
+    "restriction": {
+      "geo": {
+        "country": "FR"
+      },
+      "time": "2026-10-16 2026-10-22",
+      "originalTimeRangeForExploreUrl": "2026-10-16 2026-10-22"
+    },
+    "keywordType": "QUERY",
+    "metric": [
+      "TOP",
+      "RISING"
+    ],
+    "trendinessSettings": {
+      "compareTime": "2026-10-09 2026-10-15"
+    },
+    "requestOptions": {
+      "property": "",
+      "backend": "IZG",
+      "category": 143
+    },
+    "language": "fr",
+    "userCountryCode": "US",
+    "userConfig": {
+      "userType": "USER_TYPE_SCRAPER"
+    }
+  },
+  "response": {
+    "default": {
+      "rankedList": [
+        {
+          "rankedKeyword": [
+            {
+              "query": "parfum",
+              "value": 100,
+              "formattedValue": "100",
+              "hasData": true,
+              "link": "/trends/explore?q=parfum&date=2026-10-16+2026-10-22&geo=FR"
+            },
+            {
+              "query": "parking",
+              "value": 47,
+              "formattedValue": "47",
+              "hasData": true,
+              "link": "/trends/explore?q=parking&date=2026-10-16+2026-10-22&geo=FR"
+            },
+            {
+              "query": "sephora",
+              "value": 43,
+              "formattedValue": "43",
+              "hasData": true,
+              "link": "/trends/explore?q=sephora&date=2026-10-16+2026-10-22&geo=FR"
+            },
+            {
+              "query": "homme",
+              "value": 31,
+              "formattedValue": "31",
+              "hasData": true,
+              "link": "/trends/explore?q=homme&date=2026-10-16+2026-10-22&geo=FR"
+            },
+            {
+              "query": "nocibe",
+              "value": 22,
+              "formattedValue": "22",
+              "hasData": true,
+              "link": "/trends/explore?q=nocibe&date=2026-10-16+2026-10-22&geo=FR"
+            },
+            {
+              "query": "ongle",
+              "value": 20,
+              "formattedValue": "20",
+              "hasData": true,
+              "link": "/trends/explore?q=ongle&date=2026-10-16+2026-10-22&geo=FR"
+            },
+            {
+              "query": "maquillage",
+              "value": 18,
+              "formattedValue": "18",
+              "hasData": true,
+              "link": "/trends/explore?q=maquillage&date=2026-10-16+2026-10-22&geo=FR"
+            },
+            {
+              "query": "ongles",
+              "value": 18,
+              "formattedValue": "18",
+              "hasData": true,
+              "link": "/trends/explore?q=ongles&date=2026-10-16+2026-10-22&geo=FR"
+            },
+            {
+              "query": "yves rocher",
+              "value": 16,
+              "formattedValue": "16",
+              "hasData": true,
+              "link": "/trends/explore?q=yves+rocher&date=2026-10-16+2026-10-22&geo=FR"
+            },
+            {
+              "query": "dior",
+              "value": 14,
+              "formattedValue": "14",
+              "hasData": true,
+              "link": "/trends/explore?q=dior&date=2026-10-16+2026-10-22&geo=FR"
+            },
+            {
+              "query": "parfum homme",
+              "value": 11,
+              "formattedValue": "11",
+              "hasData": true,
+              "link": "/trends/explore?q=parfum+homme&date=2026-10-16+2026-10-22&geo=FR"
+            },
+            {
+              "query": "vichy",
+              "value": 11,
+              "formattedValue": "11",
+              "hasData": true,
+              "link": "/trends/explore?q=vichy&date=2026-10-16+2026-10-22&geo=FR"
+            },
+            {
+              "query": "parfum femme",
+              "value": 11,
+              "formattedValue": "11",
+              "hasData": true,
+              "link": "/trends/explore?q=parfum+femme&date=2026-10-16+2026-10-22&geo=FR"
+            },
+            {
+              "query": "guerlain",
+              "value": 10,
+              "formattedValue": "10",
+              "hasData": true,
+              "link": "/trends/explore?q=guerlain&date=2026-10-16+2026-10-22&geo=FR"
+            },
+            {
+              "query": "mascara",
+              "value": 9,
+              "formattedValue": "9",
+              "hasData": true,
+              "link": "/trends/explore?q=mascara&date=2026-10-16+2026-10-22&geo=FR"
+            },
+            {
+              "query": "fond de teint",
+              "value": 9,
+              "formattedValue": "9",
+              "hasData": true,
+              "link": "/trends/explore?q=fond+de+teint&date=2026-10-16+2026-10-22&geo=FR"
+            },
+            {
+              "query": "chanel",
+              "value": 8,
+              "formattedValue": "8",
+              "hasData": true,
+              "link": "/trends/explore?q=chanel&date=2026-10-16+2026-10-22&geo=FR"
+            },
+            {
+              "query": "nocibé",
+              "value": 8,
+              "formattedValue": "8",
+              "hasData": true,
+              "link": "/trends/explore?q=nocib%C3%A9&date=2026-10-16+2026-10-22&geo=FR"
+            },
+            {
+              "query": "amazon",
+              "value": 7,
+              "formattedValue": "7",
+              "hasData": true,
+              "link": "/trends/explore?q=amazon&date=2026-10-16+2026-10-22&geo=FR"
+            },
+            {
+              "query": "nyx",
+              "value": 7,
+              "formattedValue": "7",
+              "hasData": true,
+              "link": "/trends/explore?q=nyx&date=2026-10-16+2026-10-22&geo=FR"
+            },
+            {
+              "query": "dermatologue",
+              "value": 6,
+              "formattedValue": "6",
+              "hasData": true,
+              "link": "/trends/explore?q=dermatologue&date=2026-10-16+2026-10-22&geo=FR"
+            },
+            {
+              "query": "lancome",
+              "value": 6,
+              "formattedValue": "6",
+              "hasData": true,
+              "link": "/trends/explore?q=lancome&date=2026-10-16+2026-10-22&geo=FR"
+            },
+            {
+              "query": "action",
+              "value": 6,
+              "formattedValue": "6",
+              "hasData": true,
+              "link": "/trends/explore?q=action&date=2026-10-16+2026-10-22&geo=FR"
+            },
+            {
+              "query": "caudalie",
+              "value": 6,
+              "formattedValue": "6",
+              "hasData": true,
+              "link": "/trends/explore?q=caudalie&date=2026-10-16+2026-10-22&geo=FR"
+            },
+            {
+              "query": "marionnaud",
+              "value": 5,
+              "formattedValue": "5",
+              "hasData": true,
+              "link": "/trends/explore?q=marionnaud&date=2026-10-16+2026-10-22&geo=FR"
+            }
+          ]
+        },
+        {
+          "rankedKeyword": [
+            {
+              "query": "patou",
+              "value": 300,
+              "formattedValue": "+300 %",
+              "link": "/trends/explore?q=patou&date=2026-10-16+2026-10-22&geo=FR"
+            },
+            {
+              "query": "parking",
+              "value": 120,
+              "formattedValue": "+120 %",
+              "link": "/trends/explore?q=parking&date=2026-10-16+2026-10-22&geo=FR"
+            },
+            {
+              "query": "gloss victoria secret",
+              "value": 100,
+              "formattedValue": "+100 %",
+              "link": "/trends/explore?q=gloss+victoria+secret&date=2026-10-16+2026-10-22&geo=FR"
+            },
+            {
+              "query": "vernis rouge",
+              "value": 70,
+              "formattedValue": "+70 %",
+              "link": "/trends/explore?q=vernis+rouge&date=2026-10-16+2026-10-22&geo=FR"
+            },
+            {
+              "query": "cinema vichy",
+              "value": 60,
+              "formattedValue": "+60 %",
+              "link": "/trends/explore?q=cinema+vichy&date=2026-10-16+2026-10-22&geo=FR"
+            },
+            {
+              "query": "agent provocateur",
+              "value": 50,
+              "formattedValue": "+50 %",
+              "link": "/trends/explore?q=agent+provocateur&date=2026-10-16+2026-10-22&geo=FR"
+            },
+            {
+              "query": "poudre huda beauty",
+              "value": 40,
+              "formattedValue": "+40 %",
+              "link": "/trends/explore?q=poudre+huda+beauty&date=2026-10-16+2026-10-22&geo=FR"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

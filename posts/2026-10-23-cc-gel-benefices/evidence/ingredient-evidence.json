@@ -1,0 +1,99 @@
+{
+  "cc-gel": {
+    "source_url": "https://ioma-paris.com/products/cc-gel-soin-teinte-eclat-parfait",
+    "reviewed_at": "2026-10-23T10:30:26.343195+00:00",
+    "source_sha256": "03bf8c66c1bfb81636a05565eb0c8d9828fa2be3486a243ba14fa89802159862",
+    "section": "Actifs et composition",
+    "inci": "WATER (AQUA), PROPANEDIOL, PENTYLENE GLYCOL, SILICA, TITANIUM DIOXIDE, DIGLYCERIN, ACRYLATES/C10-30 ALKYL ACRYLATE CROSSPOLYMER, MICA, SODIUM POLYACRYLATE, PARFUM (FRAGRANCE), , SODIUM GLUCONATE, TAMARINDUS INDICA SEED GUM, STYRENE/ACRYLATES COPOLYMER, O-CYMEN-5-OL, SODIUM HYDROXIDE, CELLULOSE GUM, SUCROSE, GLYCERIN, GLUCOSE, BIOSACCHARIDE GUM-1, SODIUM LEVULINATE, GLYCERYL CAPRYLATE, P-ANISIC ACID, CI 77492 (IRON OXIDES), CI 77491 (IRON OXIDES), CI 77499 (IRON OXIDES)",
+    "ingredients": {
+      "glycerin": {
+        "inci": [
+          "GLYCERIN"
+        ],
+        "active": "GLYCÉRINE",
+        "source_quote": "Connue pour ses propriétés hygroscopiques, elle capture les molécules d’eau et les retient dans l’épiderme."
+      },
+      "pigments": {
+        "inci": [
+          "CI 77492 (IRON OXIDES)",
+          "CI 77491 (IRON OXIDES)",
+          "CI 77499 (IRON OXIDES)"
+        ],
+        "active": "PIGMENTS MICRO-ENCAPSULÉS",
+        "source_quote": "Unifient et réhaussent le teint instantanément, ils s'adaptent à toutes les carnations."
+      },
+      "fucocert": {
+        "inci": [
+          "BIOSACCHARIDE GUM-1"
+        ],
+        "active": "FUCOCERT",
+        "source_quote": "Hydrate et crée une matrice protectrice et non occlusive sur la peau pour se protéger des agressions externes. Il a aussi un effet restructurant."
+      }
+    }
+  },
+  "creme-sublime-revitalisante": {
+    "source_url": "https://ioma-paris.com/products/creme-sublime-revitalisante",
+    "reviewed_at": "2026-10-23T10:30:26.351128+00:00",
+    "source_sha256": "0cd6917b563eed4f49402fd07dfc7e5cbc2f2e31927b900e88a52c2543232540",
+    "section": "Actifs et composition",
+    "inci": "AQUA (WATER), OCTYLDODECANOL, CETEARYL ALCOHOL, GLYCERIN, ISOPROPYL PALMITATE, CAPRYLIC/CAPRIC TRIGLYCERIDE, C12-13 ALKYL LACTATE, PENTYLENE GLYCOL, C10-18 TRIGLYCERIDES, TRIFOLIUM PRATENSE (CLOVER) FLOWER EXTRACT, HELIANTHUS ANNUUS (SUNFLOWER) SEED WAX, CETEARETH-20, SODIUM POLYACRYLATE, BUTYLENE GLYCOL, PROPANEDIOL, XANTHAN GUM, UREA, CHLORPHENESIN, CETEARETH-25, SACCHARIDE HYDROLYSATE, TOCOPHERYL ACETATE, TAMARINDUS INDICA SEED GUM, LECITHIN, CETYL ALCOHOL, DISODIUM ACETYL GLUCOSAMINE PHOSPHATE, PHENOXYETHANOL, PHOSPHOLIPIDS, DISODIUM EDTA, ALANINE, GLYCINE, MAGNESIUM ASPARTATE, LACTIC ACID, GLYCOLIPIDS, GLUCOSE, BEHENIC ACID, CERAMIDE NP, CHOLESTEROL, LINUM USITATISSIMUM (LINSEED) SEED EXTRACT, MAGNESIUM HYDROXIDE, GLYCERYL CAPRYLATE, TOCOPHEROL, ETHYLHEXYLGLYCERIN, CREATINE, SODIUM LEVULINATE, SODIUM CITRATE, CERAMIDE AP, CERAMIDE EOP, CERAMIDE EOS, CITRIC ACID, SODIUM ANISATE, CAPROOYL PHYTOSPHINGOSINE, CAPROOYL SPHINGOSINE, PALMITOYL TETRAPEPTIDE-7, P-ANISIC ACID, ASCORBYL PALMITATE, GLYCERYL OLEATE, GLYCERYL STEARATE, HELIANTHUS ANNUUS (SUNFLOWER) SEED OIL, BIOTIN, PARFUM (FRAGRANCE).",
+    "ingredients": {
+      "skinmimics": {
+        "inci": [
+          "CERAMIDE NP",
+          "CERAMIDE AP",
+          "CERAMIDE EOP",
+          "CERAMIDE EOS"
+        ],
+        "active": "SKINMIMICS ®",
+        "source_quote": "Complexe biomimétique qui restaure la barrière cutanée, hydrate et protège la peau des agressions extérieures."
+      },
+      "rigin": {
+        "inci": [
+          "PALMITOYL TETRAPEPTIDE-7"
+        ],
+        "active": "RIGIN ™",
+        "source_quote": "Peptide anti âge qui améliore l’élasticité, renforce la fermeté et apaise les inflammations liées au vieillissement cutané."
+      },
+      "unitamuron": {
+        "inci": [
+          "TAMARINDUS INDICA SEED GUM"
+        ],
+        "active": "UNITAMURON",
+        "source_quote": "Ingrédient filmogène naturel qui lisse, protège et renforce l’hydratation tout en atténuant les rides."
+      }
+    }
+  },
+  "creme-genereuse-contour-des-yeux": {
+    "source_url": "https://ioma-paris.com/products/creme-genereuse-contour-des-yeux",
+    "reviewed_at": "2026-10-23T10:30:26.357310+00:00",
+    "source_sha256": "bd2edfac314a0e4be4975e3a51821f4ef529a4bc0a8a117303cac62d1ff1b967",
+    "section": "Actifs et composition",
+    "inci": "WATER (AQUA), HYDROGENATED POLYDECENE, BUTYLENE GLYCOL, GLYCERIN, GLYCERYL STEARATE, ISOHEXADECANE, CETEARYL ALCOHOL, CAPRYLYL GLYCOL, SODIUM ACRYLATES COPOLYMER, RHIZOBIAN GUM, DIPEPTIDE DIAMINOBUTYROYL BENZYLAMIDE DIACETATE, ACETYL HEXAPEPTIDE-8, TRIPEPTIDE-1, HYDROGENATED POLYISOBUTENE, CETYL PALMITATE, COCOGLYCERIDES, CETEARYL GLUCOSIDE, TOCOPHERYL ACETATE, PHOSPHOLIPIDS, POLYGLYCERYL-10 STEARATE, P-ANISIC ACID, TOCOPHEROL, HELIANTHUS ANNUUS (SUNFLOWER) SEED OIL, DEXTRAN, DISODIUM EDTA, POTASSIUM HYDROXIDE.",
+    "ingredients": {
+      "smoothing-peptides": {
+        "inci": [
+          "DIPEPTIDE DIAMINOBUTYROYL BENZYLAMIDE DIACETATE",
+          "ACETYL HEXAPEPTIDE-8"
+        ],
+        "active": "SYN-AKE™ / ARGIRELINE",
+        "source_quote": "Ce peptide détend les muscles du visage pour réduire les rides d'expression. Il offre un effet lissant et anti-âge en diminuant la profondeur des rides, en particulier celles liées aux mouvements répétitifs."
+      },
+      "kollaren": {
+        "inci": [
+          "TRIPEPTIDE-1"
+        ],
+        "active": "KOLLAREN™",
+        "source_quote": "Il stimule la production de collagène et d'élastine, renforçant la fermeté et l'élasticité de la peau. Il favorise la réparation cellulaire et améliore la texture cutanée, réduisant les signes visibles de l'âge."
+      },
+      "vitamin-e": {
+        "inci": [
+          "TOCOPHERYL ACETATE",
+          "TOCOPHEROL"
+        ],
+        "active": "VITAMINE E",
+        "source_quote": "Cet hydratant renforce le film hydrolipidique, permettant à la peau de maintenir une bonne hydratation tout en étant protégée des agressions extérieures qui peuvent la dessécher."
+      }
+    }
+  }
+}

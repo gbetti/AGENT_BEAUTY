@@ -1,0 +1,45 @@
+{
+  "schema_version": 2,
+  "generation_id": "cc-gel-benefices-2026-10-23T10:50:25.631820+00:00",
+  "created_at": "2026-10-23T10:50:25.707642+00:00",
+  "primary_language": "fr",
+  "required_outputs": [
+    "post",
+    "email",
+    "story"
+  ],
+  "status": "pending_deliveries",
+  "files": {
+    "fr/feed.png": "629d85d31f711d9352b21f0b8c6af0a665a16988adb0b913af8a89b84fbddd30",
+    "fr/caption.txt": "107ee8f9a32c96f6a0cd4694f9c200ab3f6d412abfce67b5ac358850816a05a4",
+    "fr/story.png": "b0743b67a56211d59939ea4b7645f6f562b200a34b7418e5a23536f1563e13a3",
+    "fr/email.html": "2b1faa5de6097ffb4863f6d7731034b6e98b835e62af5ac1f1ccbe3b70f26422",
+    "fr/email.eml": "8902a0d758238a4f608cf2bd5a92fb1fa95195d55e44b951434712d4f7404f85",
+    "fr/email-logo.png": "aa3a56e843be2f5a52b8862d35a4284f6192294fe3664694c8f54450947ddd1f",
+    "it/feed.png": "a66a511703101060eb1d47a3eac33cae6c65f1013955b28d6c2886371db22eb4",
+    "it/caption.txt": "1dd8b79f7c1d938f39a299af601a6f480ef22e57ae4462c01943200437176295",
+    "it/story.png": "e5507b36fc196980eaf3fd80711aa98af03ede13177c6d83c287de308100691b",
+    "it/email.html": "f37b0bb14e13f4e13de75863a229b23d572003e1ab3e6572a6622438aa536914",
+    "it/email.eml": "f4cef049a4fbc3346789203a986bdd1f959ff1cf31274950c769bc51bc861789",
+    "it/email-logo.png": "aa3a56e843be2f5a52b8862d35a4284f6192294fe3664694c8f54450947ddd1f"
+  },
+  "email": {
+    "provider": "gmail",
+    "to": "gb77ita@gmail.com",
+    "language": "fr",
+    "required": true,
+    "status": "pending",
+    "sent": false
+  },
+  "instagram_story": {
+    "provider": "instagram",
+    "account_id": "17841464260421573",
+    "username": "gb77ita",
+    "language": "fr",
+    "required": true,
+    "status": "ready",
+    "published": false,
+    "image_sha256": "e4047ec23e87bd0539736d5cf756f2a9795dc8b1d33f537adb92466c26d19823",
+    "source_sha256": "b0743b67a56211d59939ea4b7645f6f562b200a34b7418e5a23536f1563e13a3"
+  }
+}
