@@ -40,19 +40,40 @@
     "provider": "instagram",
     "account_id": "17841464260421573",
     "username": "gb77ita",
-    "language": "it",
+    "language": "fr",
     "required": true,
     "status": "ready",
     "published": false,
-    "image_sha256": "4160fe7250bb9e7abb2a0b215dde32019af483a234548b8bda02c75fc4607a8f",
-    "source_sha256": "82471d013c4cc58073e4f776125452146178c84a9285fe4b4fb7766ab2703565",
-    "last_error": {
-      "provider": "Meta Instagram API",
-      "code": 200,
-      "type": "OAuthException",
-      "message": "API access blocked.",
-      "stage": "account_verification_before_upload",
-      "checked_at": "2026-10-23T10:09:04.470756+00:00"
+    "image_sha256": "f90f6a20d9548ed3aabff259a7f7a9527a18f99c9cf70adae5cdc05c3049b8eb",
+    "source_sha256": "7bd48af783ba78befaa36b8208a4ae791f291a10f9f60b9c11aa323fecb49f3c"
+  },
+  "delivery_history": [
+    {
+      "kind": "story_language_change",
+      "from": "it",
+      "to": "fr",
+      "changed_at": "2026-10-23T10:21:39.322214+00:00",
+      "reason": "User requested French as the standing creative language after access restoration.",
+      "previous_preparation": {
+        "provider": "instagram",
+        "account_id": "17841464260421573",
+        "username": "gb77ita",
+        "language": "it",
+        "required": true,
+        "status": "ready",
+        "published": false,
+        "image_sha256": "4160fe7250bb9e7abb2a0b215dde32019af483a234548b8bda02c75fc4607a8f",
+        "source_sha256": "82471d013c4cc58073e4f776125452146178c84a9285fe4b4fb7766ab2703565",
+        "last_error": {
+          "provider": "Meta Instagram API",
+          "code": 200,
+          "type": "OAuthException",
+          "message": "API access blocked.",
+          "stage": "account_verification_before_upload",
+          "checked_at": "2026-10-23T10:09:04.470756+00:00"
+        }
+      }
     }
-  }
+  ],
+  "primary_language": "fr"
 }
